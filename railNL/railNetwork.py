@@ -1,6 +1,6 @@
 from typing import List
 
-class railNetwork:
+class RailNetwork:
     """
     TODO
     Network of stations connected by rail connections
