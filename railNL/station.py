@@ -28,7 +28,7 @@ class Station:
     def listConnections(self) -> List(str):
         """
         TODO
-        Returns a list of all connections the station has to other stations.
+        Returns a list names of all connected stations.
         """
 
     def connectionTime(self, stationName: str) -> int:
@@ -40,5 +40,5 @@ class Station:
     def hasConnection(self, stationName: str) -> bool:
         """
         TODO
-        Returns True if 
+        Returns True if the station is connected to the station with stationName, else False.
         """
