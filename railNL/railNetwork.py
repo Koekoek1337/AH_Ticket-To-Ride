@@ -4,12 +4,17 @@ class RailNetwork:
     """
     TODO
     Network of stations connected by rail connections
+
+    Attributes:
+        stations (dict[str, Station]): Dictionary with key value pairs of a station and it's name.
     """
+
     def __init__(self, filenameStations: str, filenameConnections: str):
         """
         TODO
         Initializer funtion
         """
+        self.stations = dict()
         pass
     
     def loadStations(self, filename: str) -> None:
@@ -31,7 +36,15 @@ class RailNetwork:
         TODO
         Returns a list of all stations
         """
+        
         pass
+
+    def listStationConnections(self, stationName: str):
+        """
+        TODO
+        Returns the list of connections of a station stationName
+        """
+
 
     def addRoute(self):
         """
