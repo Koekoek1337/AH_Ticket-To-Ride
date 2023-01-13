@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Tuple
 
 if TYPE_CHECKING:
     from station import Station
@@ -6,8 +6,6 @@ if TYPE_CHECKING:
 class Connection:
     """
     TODO
-    - Implement in railNetwork
-    - Implement in station
     - Implement in route
     """
 
@@ -18,6 +16,7 @@ class Connection:
         self._duration = duration
 
     def getID(self):
+        """Returns the unique ID of the connection"""
         return self._id
 
     def duration(self):
@@ -25,12 +24,28 @@ class Connection:
         return self._duration
 
     def getConnectedStation(self, name: str) -> "Station":
-        """Returns the station object keyed with name"""
+        """
+        Returns the Station object in self._connectedStations with key name.
+
+        Args:
+            Station(str): the name of the station
+        """
         return self._connectedStations[name]
 
-    def stationConnectionAmount(self, name:str):
-        """Returns the amount of connections of station keyed with name"""
+    def stationConnectionAmount(self, name:str) -> int:
+        """
+        Returns the amount of connections he Station object in self._connectedStations with key 
+        name.
+
+        Args:
+            Station(str): the name of the station
+        """
         return self._connectedStations[name].connectionAmount()
     
-    def connectionPoints(self):
-        return list(self._connectedStations.items())[0][1].position(), list(self._connectedStations.items())[1][1].position()
+    def connectionPoints(self) -> Tuple[Tuple[float, float], Tuple[float, float]]:
+        """
+        Returns (Tuple())station positions for visualization.
+        """
+
+        return (list(self._connectedStations.items())[0][1].position(), 
+                list(self._connectedStations.items())[1][1].position())
