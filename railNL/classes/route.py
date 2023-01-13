@@ -8,11 +8,18 @@ class Route:
     Route object that tracks rail connections between stations
     """
 
-    def __init__(self, id: int):
+    counter = -1
+
+    @classmethod
+    def newID(self):
+        self.counter += 1
+        return self.counter
+
+    def __init__(self):
         """
         Initializer function
         """
-        self.id = id
+        self.id = self.newID()
         self.stations: List[Station] = []
 
     def addConnection(self, station: Station, position: int = -1) -> bool:
