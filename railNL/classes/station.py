@@ -1,7 +1,7 @@
-import connection
-from typing import TypeAlias, List, Tuple, Dict
+from typing import TYPE_CHECKING, List, Tuple, Dict
 
-Connection: TypeAlias = connection.Connection
+if TYPE_CHECKING:
+    from connection import Connection
 
 class Station:
     """
@@ -22,22 +22,30 @@ class Station:
 
         self._name = name
         self._position = (x, y)
-        self._connections: Dict[str, Tuple["Station", int]] = dict()
+        self._connections: Dict[str, "Connection"] = dict()
+
+    def __str__(self) -> str:
+        return f"{self._name} station, connected to {len(self.listConnections())} other stations"
 
     def name(self) -> str:
         """Returns the name of the station"""
 
         return self._name
     
-    def position(self) -> tuple(float, float):
+    def position(self) -> Tuple[float, float]:
         """Returns the position of the station"""
-
+    
         return self._position
 
-    def addConnection(self, otherStation: "Station", duration: int) -> None:
+    def stationPoint(self) -> Tuple[str, Tuple[float, float]]:
+        """Returns the name and position of the station"""
+
+        return self._name, self._position
+
+    def addConnection(self, stationName,  connection: "Connection") -> None:
         """Adds a connection to station with a duration"""
 
-        self._connections[otherStation.name()] = (otherStation, duration)
+        self._connections[stationName] = connection
     
     def removeConnection(self, stationName: str) -> None:
         """Removes a station from connections"""
@@ -47,20 +55,21 @@ class Station:
     def connectionAmount(self) -> int: 
         return len(self._connections)
 
-    def listConnections(self) -> List[Tuple(str, int, int)]:
+    def listConnections(self) -> List[Tuple[str, float, int]]:
         """
-        Returns (List[Tuple[str, int, int]]) name, duration and connections of connecting stations
+        Returns (List[Tuple[str, float, int]]) name, duration and connections of connecting stations
         """
-        return [(key, duration, station.connectionAmount()) for key, (station, duration)  in self._connections.items()]
+        return [(stationName, connection.duration(), connection.stationConnectionAmount(stationName)) 
+                for stationName, connection  in self._connections.items()]
     
     def hasConnection(self, stationName: str) -> bool:
         """Returns True if the station is connected to the station with stationName, else False."""
-        return stationName in self.listConnections()
+        return stationName in self._connections.keys()
 
     def getConnectedStation(self, stationName: str):
         """returns the station object of a connected station."""
-        return self._connections[stationName][0]
+        return self._connections[stationName].getConnectedStation(stationName)
 
     def connectionDuration(self, stationName: str) -> int:
         """Returns the duration of the connection"""
-        return self._connections[stationName][1]
+        return self._connections[stationName].duration()
