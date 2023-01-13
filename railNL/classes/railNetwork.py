@@ -12,34 +12,37 @@ class RailNetwork:
 
     Attributes:
 
-        stations (dict[str, Station]): Dictionary with key value pairs of a station and it's name.
+        stations (dict[str, Station]): Dictionary of station nodes, keyed by their name.
+        connections (List[Connection]): List of all connection nodes, indexed by their id.
+        routes (List[Route]: List of all used routes.
     """
 
-    def __init__(self, filenameStations: str, filenameConnections: str):
-        """
-        Initializer funtion
-        """
+    def __init__(self, filepathStations: str, filepathConnections: str):
+        """Initializer funtion"""
         self.stations: Dict[str, Station] = dict()
 
         self.connections: List[Connection] = []
-        self.nConnections = 0
 
-        self.routeID = 0
-        self.routes: Dict[int, Route]
+        self.routes: Dict[int, Route] = dict()
 
-        self.loadStations(filenameStations)
-        self.loadConnections(filenameConnections)
+        self.loadStations(filepathStations)
+        self.loadConnections(filepathConnections)
 
     
-    def loadStations(self, filename: str) -> None:
+    def loadStations(self, csvFilepath: str) -> None:
         """
-        Loads station objects from file filename
+        Loads stations in memory from csv file
+        
+        Args:
+            csvFilepath: The path of the CSV file containing the fields [station, x, y] in any order.
+        
+        Post:
+            Station objects are created and stored in self.stations, keyed by name.
         """
 
-        with open(filename) as csvFile:
+        with open(csvFilepath) as csvFile:
             reader = csv.DictReader(csvFile)
 
-            # load station object
             for row in reader:
                 station = Station(row["station"], float(row["x"]), float(row["y"]))
                 
@@ -47,7 +50,8 @@ class RailNetwork:
    
     def loadConnections(self, filename: str) -> None:
         """
-        Adds rail connections to station objects
+        Adds rail connections to station objects from csv file
+        
         """
         with open(filename) as csvFile:
             for row in csv.DictReader(csvFile):
@@ -61,12 +65,12 @@ class RailNetwork:
 
     def listStationObjects(self) -> List[Station]:
         """
-        Returns a list of all stations
+        Returns a list of all station objects
         """
         return [station for _, station in self.stations.items()]
 
     def listStations(self) -> List[Tuple[str, int]]:
-        """Returns a list of all stations with their amount of connections"""
+        """Returns a list of all station names with the amount of stations connected to them"""
         return [(station.name(), station.connectionAmount()) for _, station in self.stations.items()]
 
     def listStationConnections(self, stationName: str) -> List[Tuple[str, int, int]]:
