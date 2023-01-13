@@ -1,6 +1,6 @@
-from station import Station
-from route import Route
-from connection import Connection
+from classes.station import Station
+from classes.route import Route
+from classes.connection import Connection
 
 import csv
 
@@ -21,6 +21,7 @@ class RailNetwork:
         """
         self.stations: Dict[str, Station] = dict()
 
+        self.connections: List[Connection] = []
         self.nConnections = 0
 
         self.routeID = 0
@@ -38,26 +39,9 @@ class RailNetwork:
         with open(filename) as csvFile:
             reader = csv.DictReader(csvFile)
 
-            # find min and max x coordinates for relative x coordninates
-            coords = [float(row["x"]) for row in reader]
-            minX = min(coords)
-            maxDX = max(coords) - minX
-
-            csvFile.seek(0)
-
-            # find min and max y coordinates for relative y coordinates
-            coords = [float(row["y"]) for row in reader]
-            minY = min(coords)
-            maxDY = max(coords) - minY
-
-            csvFile.seek(0)
-
             # load station object
             for row in reader:
-                station = Station(row["station"], 
-                                  (float(row["x"]) - minX) / maxDX, 
-                                  (float(row["y"] - minY)) / maxDY
-                                )
+                station = Station(row["station"], float(row["x"]), float(row["y"]))
                 
                 self.stations[station.name()] = station
    
@@ -68,10 +52,12 @@ class RailNetwork:
         with open(filename) as csvFile:
             for row in csv.DictReader(csvFile):
                 if row["station1"] in self.stations and row["station2"] in self.stations:
-                    self.stations[row["station1"]].addConnection(self.stations[row["station2"]], row["distance"])
-                    self.stations[row["station2"]].addConnection(self.stations[row["station1"]], row["distance"])
+                    # make new connection object and add it to both stations
+                    connection = Connection(len(self.connections), self.stations[row["station1"]], self.stations[row["station2"]], float(row["distance"]))
+                    self.connections.append(connection)
                     
-                    self.routes += 1
+                    self.stations[row["station1"]].addConnection(row["station2"], connection)
+                    self.stations[row["station2"]].addConnection(row["station1"], connection)
 
     def listStationObjects(self) -> List[Station]:
         """
@@ -88,6 +74,34 @@ class RailNetwork:
         Returns (List[Tuple[str, int, int]]) name, duration and connections of connecting stations
         """
         return self.stations[stationName].listConnections()
+    
+    def getConnectedStation(self, fromStation, toStation) -> Station:
+        """
+        Returns the connected station object of a station
+        """
+        return self.stations[fromStation].getConnectedStation(toStation)
+
+    def connectionPoints(self) -> List[Tuple[Tuple[int, int], Tuple[int, int]]]:
+        """
+        Returns coordinate pairs for all rail connections
+        """
+        pointPairs = []
+        
+        for connection in self.connections:
+            pointPairs.append(connection.connectionPoints())
+        
+        return pointPairs
+    
+    def stationPoints(self) -> List[Tuple[str, Tuple[float, float]]]:
+        """
+        Returns name coordinate pairs for all stations
+        """
+        points = []
+        
+        for station in [entry[1] for entry in self.stations.items()]:
+            points.append(station.stationPoint())
+        
+        return points
 
     def createRoute(self):
         """
