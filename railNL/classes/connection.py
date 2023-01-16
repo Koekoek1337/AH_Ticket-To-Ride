@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Tuple
+from typing import TYPE_CHECKING, Tuple, Set
 
 if TYPE_CHECKING:
     from station import Station
@@ -14,6 +14,7 @@ class Connection:
         self._id = uid
         self._connectedStations = {stationA.name():stationA, stationB.name():stationB}
         self._duration = duration
+        self._routes: Set[int] = set()
 
     def getID(self):
         """Returns the unique ID of the connection"""
@@ -22,6 +23,19 @@ class Connection:
     def duration(self):
         """Returns the duration of the connection"""
         return self._duration
+    
+    def addRoute(self, routeID: int):
+        """Adds a route to the set of routes"""
+        self._routes.add(routeID)
+    
+    def removeRoute(self, routeID: int):
+        """Removes a route from the set of routes"""
+        if routeID in self._routes:
+            self._routes.remove(routeID)
+
+    def isVisited(self):
+        """Returns whether the connection is in any route"""
+        return bool(self._routes)
 
     def getConnectedStation(self, name: str) -> "Station":
         """
