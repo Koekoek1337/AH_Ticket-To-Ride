@@ -1,5 +1,6 @@
 from classes.station import Station
 from classes.connection import Connection
+from classes.route import Route
 
 from typing import Tuple
 
@@ -60,3 +61,43 @@ def test_getConnectedStation():
 
 def test_connectionDuration():
     assert stationA.connectionDuration("BBB") == 10
+
+def test_addRoute():
+    route0 = Route(stationA)
+
+    assert stationA._routes == {0}
+
+    assert stationB._routes == set()
+
+    route0.appendStation(stationB)
+
+    assert stationB._routes == {0}
+
+    assert route0._stations == [stationA, stationB]    
+
+    route0.empty()
+
+    assert stationA._routes == set()
+    assert stationB._routes == set()
+
+def test_broken():
+    route1 = Route(stationA)
+
+    route1.appendStation(stationD)
+
+    assert route1.brokenConnections() == [("AAA", "DDD")]
+    
+    route1.insertStation(1, stationB)
+
+    assert route1.brokenConnections() == []
+
+    route1.empty()
+
+def test_reroute():
+    route3 = Route(stationB)
+
+    route3.appendStation(stationD)
+
+    route3.insertStation(1, stationC)
+
+    assert route3._connections == [connection1, connection3]
