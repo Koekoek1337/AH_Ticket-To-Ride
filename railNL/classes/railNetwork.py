@@ -1,8 +1,10 @@
+import os
+import csv
+import datetime
+
 from classes.station import Station
 from classes.route import Route
 from classes.connection import Connection
-
-import csv
 
 from typing import List, Tuple, Dict
 
@@ -16,6 +18,8 @@ class RailNetwork:
         connections (List[Connection]): List of all connection nodes, indexed by their id.
         routes (List[Route]: List of all used routes.
     """
+
+    # Initialization functions
 
     def __init__(self, filepathStations: str, filepathConnections: str):
         """Initializer funtion"""
@@ -63,12 +67,7 @@ class RailNetwork:
                     self.stations[row["station1"]].addConnection(row["station2"], connection)
                     self.stations[row["station2"]].addConnection(row["station1"], connection)
 
-    def listStationObjects(self) -> List[Station]:
-        """
-        Returns a list of all station objects
-        """
-        return [station for _, station in self.stations.items()]
-
+    # User methods: Stations
     def listStations(self) -> List[Tuple[str, int]]:
         """Returns a list of all station names with the amount of stations connected to them"""
         return [(station.name(), station.connectionAmount()) for _, station in self.stations.items()]
@@ -79,11 +78,63 @@ class RailNetwork:
         """
         return self.stations[stationName].listConnections()
     
-    def getConnectedStation(self, fromStation, toStation) -> Station:
+    # User methods: Routes
+    def createRoute(self, stationName: str):
         """
-        Returns the connected station object of a station
+        Creates an empty route object and adds it to routes
         """
-        return self.stations[fromStation].getConnectedStation(toStation)
+        newRoute = Route(self.stations[stationName])
+        self.routes[newRoute.getID()] = newRoute
+    
+    def delRoute(self, routeID: int):
+        """
+        Removes a route from routes
+        """
+        self.routes[routeID].empty()
+        self.routes.pop(routeID)
+
+    def listRoutes(self) -> List[Tuple[int, List[str]]]:
+        """
+        Returns the list of train routes
+        """
+        return [(key, route.listStations()) for key, route in self.routes.items()]
+
+    def routeAppendStation(self, routeID: int, stationName: str):
+        """
+        Append station with stationName to route with routeID
+        """
+        self.routes[routeID].appendStation(self.stations[stationName])
+
+    # TODO: add more route methods
+
+    # Output methods
+    def score(self) -> float:
+        """
+        Returns the score of the solution for the solution with the current routes according to
+        score function:
+            K = p*10000 - (T*100 + Min)
+        K is the quality of the service
+        p is the fraction of rail connections with 
+        """
+        return self.connectionCoverage() * 1000 - (len(self.routes) * 100 + self.totalDuration())
+    
+    def exportSolution(self, filename: str) -> None:
+        """
+        Exports the current routes to a csv file to /results
+        """
+        if not os.path.exists("results/"):
+            os.mkdir("results/")
+        
+        timeStamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+
+        with open(f"results/{timeStamp}-{filename}.csv", "w") as resultFile:
+            resultFile.write("train,stations\n")
+
+            for id, route in self.routes.items():
+                resultFile.write(f"{id},\"[{', '.join(route.listStations())}]\"\n")
+            
+            resultFile.write(f"score,{self.score()}")
+
 
     def connectionPoints(self) -> List[Tuple[Tuple[int, int], Tuple[int, int]]]:
         """
@@ -106,19 +157,64 @@ class RailNetwork:
             points.append(station.stationPoint())
         
         return points
-
-    def createRoute(self):
-        """
-        TODO
-        Creates an empty route object and adds it to routes
-        """
-        pass
     
-    def listRoutes(self):
+    def routePointLists(self) -> List[List[Tuple[Tuple[int, int], Tuple[int, int]]]]:
         """
-        TODO
-        Returns the list of train routes
+        Returns a list of coordinate pairs for connections of all rail routes
         """
-        pass
+        routePointLists = []
+        
+        for _, route in self.routes.items():
+            routePointLists.append(route.connectionPoints())
+        
+        return routePointLists
 
-    # TODO: add route operations
+    # Check methods
+    def checkValidSolution(self) -> bool:
+        if self.checkStationCoverage(self) and self.checkLegalRoutes(self):
+            return True
+
+    def checkStationCoverage(self) -> bool:
+        """Returns True if all stations have routes going through them, else false"""
+        for _, station in self.stations.items():
+            if not station.isVisited():
+                return False
+        return True
+    
+    def checkLegalRoutes(self, tMax: float) -> bool:
+        """Returns True if all routes are legal (unbroken and duration < tMax)"""
+        for _, route in self.routes.items():
+            if route.brokenConnections() or route.duration() > tMax:
+                return False
+
+    def connectionCoverage(self) -> float:
+        """Returns the fraction of connections that have routes going over them"""
+        usedConnections = 0
+
+        for connection in self.connections:
+            if connection.isVisited():
+                usedConnections += 1
+        
+        return usedConnections / len(self.connections)
+
+    def totalDuration(self) -> float:
+        """returns the total duration of the routes"""
+        totalDuration = 0
+
+        for _, route in self.routes.items():
+            totalDuration += route.duration()
+        
+        return totalDuration
+    
+    # operation methods
+    def listStationObjects(self) -> List[Station]:
+        """
+        Returns a list of all station objects
+        """
+        return [station for _, station in self.stations.items()]
+
+    def getConnectedStation(self, fromStation, toStation) -> Station:
+        """
+        Returns the connected station object of a station
+        """
+        return self.stations[fromStation].getConnectedStation(toStation)
