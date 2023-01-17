@@ -22,7 +22,12 @@ class RailNetwork:
     # Initialization functions
 
     def __init__(self, filepathStations: str, filepathConnections: str):
-        """Initializer funtion"""
+        """
+        Initializer function
+
+        Args:
+            filepathStations (str): The path to the station data csv file
+        """
         self.stations: Dict[str, Station] = dict()
 
         self.connections: List[Connection] = []
@@ -90,17 +95,17 @@ class RailNetwork:
         stationList = []
 
         for _, station in self.stations.items():
-
-            stationPoint = [station]
+            
+            stationPoint = station
 
             if nConnections:
-                stationPoint.append(station.connectionAmount())
+                list(stationPoint).append(station.connectionAmount())
             
             if nUnused:
-                stationPoint.append(station.unusedConnectionAmount())
+                list(stationPoint).append(station.unusedConnectionAmount())
             
             if nUnconnected:
-                stationPoint.append(station.unvistitedConnectionAmount())
+                list(stationPoint).append(station.unvistitedConnectionAmount())
         
             stationList.append(stationPoint)
         
@@ -135,16 +140,16 @@ class RailNetwork:
             if station.isConnected():
                 continue
 
-            stationPoint = [_, station]
+            stationPoint = station
 
             if nConnections:
-                stationPoint.append(station.connectionAmount())
+                list(stationPoint).append(station.connectionAmount())
             
             if nUnused:
-                stationPoint.append(station.unusedConnectionAmount())
+                list(stationPoint).append(station.unusedConnectionAmount())
             
             if nUnconnected:
-                stationPoint.append(station.unvistitedConnectionAmount())
+                list(stationPoint).append(station.unvistitedConnectionAmount())
         
             stationList.append(stationPoint)
         
