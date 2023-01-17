@@ -12,6 +12,6 @@ def test_load():
     
     conB = testNetwork.getStation("BBB").listStations() 
     assert conB == [[testNetwork.getStation("AAA"), 10.0],
-                    [testNetwork.getStation("CCC"), 10.0],
-                    [testNetwork.getStation("DDD"), 10.0]
+                    [testNetwork.getStation("CCC"), 20.0],
+                    [testNetwork.getStation("DDD"), 30.0]
                    ]
