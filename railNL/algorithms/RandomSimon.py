@@ -9,7 +9,7 @@ def main():
     model.nRoute() =< 7
 
 
-    while not checkValidSoltution() and (model.validMoves() and model.nRoutes() <=7):
+    while not checkValidSolution() and (model.validMoves() and model.nRoutes() <=7):
         currentRoute = random.Randomchoice(model.listRoutes())
         current_station = currentRoute.listStations()[-1]
         new_station = random.Randomchoice(current_station.listConnectedStations())
@@ -25,3 +25,4 @@ def main():
             else:
                 continue
             
+    exportSolution("random")
