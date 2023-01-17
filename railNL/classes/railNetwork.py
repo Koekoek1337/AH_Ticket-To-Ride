@@ -98,14 +98,17 @@ class RailNetwork:
             
             stationPoint = station
 
-            if nConnections:
-                list(stationPoint).append(station.connectionAmount())
-            
-            if nUnused:
-                list(stationPoint).append(station.unusedConnectionAmount())
-            
-            if nUnconnected:
-                list(stationPoint).append(station.unvistitedConnectionAmount())
+            if nConnections or nUnused or nUnconnected:
+                stationPoint = [stationPoint]
+
+                if nConnections:
+                    stationPoint.append(station.connectionAmount())
+                
+                if nUnused:
+                    stationPoint.append(station.unusedConnectionAmount())
+                
+                if nUnconnected:
+                    stationPoint.append(station.unvistitedConnectionAmount())
         
             stationList.append(stationPoint)
         
@@ -142,14 +145,17 @@ class RailNetwork:
 
             stationPoint = station
 
-            if nConnections:
-                list(stationPoint).append(station.connectionAmount())
-            
-            if nUnused:
-                list(stationPoint).append(station.unusedConnectionAmount())
-            
-            if nUnconnected:
-                list(stationPoint).append(station.unvistitedConnectionAmount())
+            if nConnections or nUnused or nUnconnected:
+                stationPoint = [stationPoint]
+
+                if nConnections:
+                    stationPoint.append(station.connectionAmount())
+                
+                if nUnused:
+                    stationPoint.append(station.unusedConnectionAmount())
+                
+                if nUnconnected:
+                    stationPoint.append(station.unvistitedConnectionAmount())
         
             stationList.append(stationPoint)
         
