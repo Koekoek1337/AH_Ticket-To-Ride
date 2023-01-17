@@ -6,7 +6,7 @@ from classes.station import Station
 from classes.route import Route
 from classes.connection import Connection
 
-from typing import Optional, List, Tuple, Dict
+from typing import Optional, List, Tuple, Dict, Union
 
 class RailNetwork:
     """
@@ -70,7 +70,7 @@ class RailNetwork:
 
     # User methods: Stations
     def listStations(self, nConnections = False, nUnused = False, nUnconnected = False) \
-        -> List[List[Station, Optional[int], Optional[int], Optional[int]]]:
+        -> List[List[Union["Station", Optional[int]]]]:
         """
         Returns a list of all station nodes with optional information on their connections
         
@@ -106,12 +106,12 @@ class RailNetwork:
         
         return stationList
     
-    def getStations(self, stationName: str) -> Station:
+    def getStation(self, stationName: str) -> Station:
         """Returns the station node with stationName"""
         return self.stations[stationName]
 
     def listUnconnectedStations(self, nConnections = False, nUnused = False, nUnconnected = False) \
-        -> List[List[Station, Optional[int], Optional[int], Optional[int]]]:
+        -> List[List[Union["Station", Optional[int]]]]:
         """
         Returns a list of all stations not connected to any route.
 

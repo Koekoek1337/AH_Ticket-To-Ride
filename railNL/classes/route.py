@@ -48,11 +48,11 @@ class Route:
         """
         return len(self._connections)
     
-    def listStations(self) -> List[str]:
+    def listStations(self) -> List[Station]:
         """
         returns a list of station names
         """
-        return [station.name() for station in self._stations]
+        return self._stations
 
     def insertStation(self, stationIndex: int, station: Station) -> None:
         """

@@ -5,15 +5,14 @@ if TYPE_CHECKING:
 
 class Connection:
     """
-    TODO
-    - Implement in route
+    Connection Node
     """
 
     def __init__(self, uid: int, stationA: "Station", stationB: "Station", duration: float):
         """Initializer function"""
         self._id = uid
         self._connectedStations = {stationA.name():stationA, stationB.name():stationB}
-        self._duration = duration
+        self._duration = float(duration)
         self._routes: Set[int] = set()
 
     def getID(self):
