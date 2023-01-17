@@ -5,8 +5,8 @@ def main():
     network = RailNetwork("data/StationsNationaal.csv", "data/ConnectiesNationaal.csv")
     
     network.createRoute("Den Helder")
-    network.routeAppendStation(0, "Alkmaar")
-    network.routeAppendStation(0, "Castricum")
+    route = network.getRoute(0)
+    route.appendStation(0, "Castricum")
 
     visualize(network.connectionPoints(), network.stationPoints(), network.routePointLists())
 
