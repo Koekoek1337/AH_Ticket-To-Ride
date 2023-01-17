@@ -1,6 +1,8 @@
 import pytest
 from classes.railNetwork import RailNetwork
 
+testNetwork = RailNetwork("tests/testStation.csv", "tests/testRoute.csv")
+
 def test_load():
     testNetwork = RailNetwork("tests/testStation.csv", "tests/testRoute.csv")
 
@@ -15,3 +17,6 @@ def test_load():
                     [testNetwork.getStation("CCC"), 20.0],
                     [testNetwork.getStation("DDD"), 30.0]
                    ]
+
+def test_route():
+    pass
