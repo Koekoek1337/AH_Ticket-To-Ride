@@ -6,7 +6,7 @@ def main():
     model = RailNetwork(filename)
     model.newRoute(random.Randomchoice(model.listStations()))
 
-    model.nRoute() =< 7
+    model.nRoute() <= 7
 
 
     while not checkValidSolution() and (model.validMoves() and model.nRoutes() <=7):
@@ -18,7 +18,7 @@ def main():
         if model.nRoute() < 7:
             if model.validMoves() == True:
                 randomFloat = random.random()
-                if randomFloat <= 0.2
+                if randomFloat <= 0.2:
                     model.newRoute(random.Randomchoice(model.listStatins()))
                 else:
                     continue
