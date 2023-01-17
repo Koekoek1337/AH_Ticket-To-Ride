@@ -4,12 +4,14 @@ from classes.railNetwork import RailNetwork
 def test_load():
     testNetwork = RailNetwork("tests/testStation.csv", "tests/testRoute.csv")
 
-    for station in testNetwork.listStationObjects():
+    for station in testNetwork.listStations():
         print(station)
     
-    assert testNetwork.listStationConnections("AAA") == [("BBB", 10, 3)]
+    conA = testNetwork.getStation("AAA").listStations() 
+    assert conA == [[testNetwork.getStation("BBB"), 10.0]]
     
-    assert testNetwork.listStationConnections("BBB") == [("AAA", 10, 1),
-                                                         ("CCC", 10, 2),
-                                                         ("DDD", 10, 2)
-                                                    ]
+    conB = testNetwork.getStation("BBB").listStations() 
+    assert conB == [[testNetwork.getStation("AAA"), 10.0],
+                    [testNetwork.getStation("CCC"), 10.0],
+                    [testNetwork.getStation("DDD"), 10.0]
+                   ]
