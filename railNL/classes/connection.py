@@ -33,7 +33,7 @@ class Connection:
         if routeID in self._routes:
             self._routes.remove(routeID)
 
-    def isVisited(self):
+    def isConnected(self):
         """Returns whether the connection is in any route"""
         return bool(self._routes)
 
