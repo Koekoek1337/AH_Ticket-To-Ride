@@ -6,7 +6,7 @@ from classes.station import Station
 from classes.route import Route
 from classes.connection import Connection
 
-from typing import List, Tuple, Dict
+from typing import Optional, List, Tuple, Dict
 
 class RailNetwork:
     """
@@ -52,12 +52,13 @@ class RailNetwork:
                 
                 self.stations[station.name()] = station
    
-    def loadConnections(self, filename: str) -> None:
+    def loadConnections(self, csvFilepath: str) -> None:
         """
         Adds rail connections to station objects from csv file
         
+
         """
-        with open(filename) as csvFile:
+        with open(csvFilepath) as csvFile:
             for row in csv.DictReader(csvFile):
                 if row["station1"] in self.stations and row["station2"] in self.stations:
                     # make new connection object and add it to both stations
@@ -68,24 +69,107 @@ class RailNetwork:
                     self.stations[row["station2"]].addConnection(row["station1"], connection)
 
     # User methods: Stations
-    def listStations(self) -> List[Tuple[str, int]]:
-        """Returns a list of all station names with the amount of stations connected to them"""
-        return [(station.name(), station.connectionAmount()) for _, station in self.stations.items()]
+    def listStations(self, nConnections = False, nUnused = False, nUnconnected = False) \
+        -> List[List[Station, Optional[int], Optional[int], Optional[int]]]:
+        """
+        Returns a list of all station nodes with optional information on their connections
+        
+        Args:
+            nConnections (bool): Whether the amount of connections of the stations should be given.
+            nUnused (bool): Whether the amount of unused connections should be given. A connection
+                            is unused if the corresponding station node is in a route, but the
+                            connection is not.
+            nUnconnected (bool): Whether the amount of unconnected connections should be given. A
+                               connection is unconnected if the corresponding station node is not
+                               in any route.
+        
+        Returns: A list of lists of The station nodes with the amounts of connections (optional), 
+                 the amount of unused connectiosn (optional) and the amount of unconnected connections
+                (optional) in that order
+        """
+        stationList = []
 
-    def listStationConnections(self, stationName: str) -> List[Tuple[str, int, int]]:
+        for _, station in self.stations.items():
+
+            stationPoint = [station]
+
+            if nConnections:
+                stationPoint.append(station.connectionAmount())
+            
+            if nUnused:
+                stationPoint.append(station.unusedConnectionAmount())
+            
+            if nUnconnected:
+                stationPoint.append(station.unvistitedConnectionAmount())
+        
+            stationList.append(stationPoint)
+        
+        return stationList
+    
+    def getStations(self, stationName: str) -> Station:
+        """Returns the station node with stationName"""
+        return self.stations[stationName]
+
+    def listUnconnectedStations(self, nConnections = False, nUnused = False, nUnconnected = False) \
+        -> List[List[Station, Optional[int], Optional[int], Optional[int]]]:
         """
-        Returns (List[Tuple[str, int, int]]) name, duration and connections of connecting stations
+        Returns a list of all stations not connected to any route.
+
+        Args:
+            nConnections (bool): Whether the amount of connections of the stations should be given.
+            nUnused (bool): Whether the amount of unused connections should be given. A connection
+                            is unused if the corresponding station node is in a route, but the
+                            connection is not.
+            nUnconnected (bool): Whether the amount of unconnected connections should be given. A
+                               connection is unconnected if the corresponding station node is not
+                               in any route.
+        
+        Returns: A list of lists of The station nodes with the amounts of connections (optional), 
+                 the amount of unused connectiosn (optional) and the amount of unconnected connections
+                (optional) in that order
         """
-        return self.stations[stationName].listConnections()
+        stationList = []
+
+        for _, station in self.stations.items():
+            # skip if station is connected
+            if station.isConnected():
+                continue
+
+            stationPoint = [_, station]
+
+            if nConnections:
+                stationPoint.append(station.connectionAmount())
+            
+            if nUnused:
+                stationPoint.append(station.unusedConnectionAmount())
+            
+            if nUnconnected:
+                stationPoint.append(station.unvistitedConnectionAmount())
+        
+            stationList.append(stationPoint)
+        
+        return stationList
     
     # User methods: Routes
-    def createRoute(self, stationName: str):
+    def createRoute(self, station: Station):
         """
-        Creates an empty route object and adds it to routes
+        Creates an empty route with initial station station and adds it to routes.
         """
-        newRoute = Route(self.stations[stationName])
+        newRoute = Route(station)
         self.routes[newRoute.getID()] = newRoute
     
+    def nRoute(self) -> int:
+        """
+        Returns the amount of routes
+        """
+        return len(self.routes)
+
+    def getRoute(self, routeID: int) -> Route:
+        """
+        returns the route with routeID  
+        """
+        return self.routes[routeID]
+
     def delRoute(self, routeID: int):
         """
         Removes a route from routes
@@ -93,19 +177,11 @@ class RailNetwork:
         self.routes[routeID].empty()
         self.routes.pop(routeID)
 
-    def listRoutes(self) -> List[Tuple[int, List[str]]]:
+    def listRoutes(self) -> List[Route]:
         """
         Returns the list of train routes
         """
-        return [(key, route.listStations()) for key, route in self.routes.items()]
-
-    def routeAppendStation(self, routeID: int, stationName: str):
-        """
-        Append station with stationName to route with routeID
-        """
-        self.routes[routeID].appendStation(self.stations[stationName])
-
-    # TODO: add more route methods
+        return [route for _, route in self.routes.items()]
 
     # Output methods
     def score(self) -> float:
@@ -154,7 +230,7 @@ class RailNetwork:
         points = []
         
         for station in [entry[1] for entry in self.stations.items()]:
-            points.append(station.stationPoint())
+            points.append(station.name(), station.position())
         
         return points
     
@@ -177,22 +253,23 @@ class RailNetwork:
     def checkStationCoverage(self) -> bool:
         """Returns True if all stations have routes going through them, else false"""
         for _, station in self.stations.items():
-            if not station.isVisited():
+            if not station.isConnected():
                 return False
         return True
     
     def checkLegalRoutes(self, tMax: float) -> bool:
         """Returns True if all routes are legal (unbroken and duration < tMax)"""
         for _, route in self.routes.items():
-            if route.brokenConnections() or route.duration() > tMax:
+            if route.brokenConnections() or route.duration() >= tMax:
                 return False
-
+        return True
+    
     def connectionCoverage(self) -> float:
         """Returns the fraction of connections that have routes going over them"""
         usedConnections = 0
 
         for connection in self.connections:
-            if connection.isVisited():
+            if connection.isConnected():
                 usedConnections += 1
         
         return usedConnections / len(self.connections)
