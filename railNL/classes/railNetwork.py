@@ -246,15 +246,18 @@ class RailNetwork:
         return routePointLists
 
     # Check methods
-    def checkValidSolution(self) -> bool:
-        if self.checkStationCoverage(self) and self.checkLegalRoutes(self):
+    def checkValidSolution(self, tMax: float) -> bool:
+        if self.checkStationCoverage(self) and self.checkLegalRoutes(self, tMax):
             return True
+        
+        return False
 
     def checkStationCoverage(self) -> bool:
         """Returns True if all stations have routes going through them, else false"""
         for _, station in self.stations.items():
             if not station.isConnected():
                 return False
+        
         return True
     
     def checkLegalRoutes(self, tMax: float) -> bool:
