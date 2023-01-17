@@ -13,7 +13,7 @@ def test_EmptyStation(name, x, y):
     assert station.name() == name
     assert station.position() == (x, y)
     assert station.connectionAmount() == 0
-    assert station.listConnections() == []
+    assert station.listStations() == []
     assert station.hasConnection(name) == False
 
 def generateConnectionNew(stationA, stationB, time) -> Connection:
@@ -51,7 +51,7 @@ def test_connectionAmount():
 
 
 def test_listConnections():
-    assert stationB.listConnections() == [("AAA", 10, 1), ("CCC", 10, 2), ("DDD", 10, 2)]
+    assert stationB.listStations(True, True, True) == [[stationA, 10.0, 1, 1, 1], [stationC, 10.0, 2, 2, 2], [stationD, 10.0, 2, 2, 2]]
 
 def test_hasConnections():
     assert stationA.hasConnection("BBB") == True
