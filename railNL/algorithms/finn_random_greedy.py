@@ -18,15 +18,8 @@ from classes.railNetwork import RailNetwork
 from classes.route import Route
 from classes.station import Station
 
-def listGreedyOptions(current_station):
-    connection_list = []
-    connection_options = listUnusedConnections()
-    for i in range(len(current_station)):
-        if current_station._connections in connection_options:
-            connection_list.append()
-    return connection_list
+def GreedyRandom(current_station):
 
-def main():
     model = RailNetwork(filename)
     model.newRoute(random.Randomchoice(model.listStations()))
 
@@ -48,5 +41,34 @@ def main():
                     continue
             else:
                 continue
-            
-    exportSolution("random")
+    
+    model
+    connection_list = []
+    connection_options = listUnusedConnections()
+    for i in range(len(current_station)):
+        if current_station._connections in connection_options:
+            connection_list.append()
+    return connection_list
+
+def random():
+    model = RailNetwork(filename)
+    model.newRoute(random.Randomchoice(model.listStations()))
+
+    model.nRoute() =< 7
+
+
+    while not checkValidSolution() and (model.validMoves() and model.nRoutes() <=7):
+        currentRoute = random.Randomchoice(model.listRoutes())
+        current_station = currentRoute.listStations()[-1]
+        new_station = random.Randomchoice(current_station.listConnectedStations())
+        currentRoute.appendStation(new_station)
+
+        if model.nRoute() < 7:
+            if model.validMoves() == True:
+                randomFloat = random.random()
+                if randomFloat <= 0.2
+                    model.newRoute(random.Randomchoice(model.listStatins()))
+                else:
+                    continue
+            else:
+                continue
