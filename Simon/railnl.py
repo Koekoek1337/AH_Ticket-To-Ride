@@ -17,7 +17,7 @@ class Network():
                     x = float(splits[2])
                     if station_name not in self.stations:
                         self.stations[station_name] = Station(station_name)
-
+        print(self.stations)
 
     def load_connections(self, filename: str):
         """ Loads and add all the possible connections with duration to each station. """
@@ -43,6 +43,7 @@ class Station():
 
     def add_connection(self, destination, distance):
         self.connections.append((destination, distance))
+        print(self.connections)
 
 
 
