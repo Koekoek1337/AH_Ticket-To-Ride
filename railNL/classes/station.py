@@ -1,13 +1,10 @@
-from typing import TYPE_CHECKING, List, Tuple, Dict, Optional
+from typing import TYPE_CHECKING, List, Tuple, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from connection import Connection
 
 class Station:
     """
-    TODO
-    - Use connection object for connections
-
     Station object for a rail network
 
     Attributes:
@@ -40,7 +37,7 @@ class Station:
         return self._position
 
     def listStations(self, nConnections = False, nUnused = False, nUnconnected = False) \
-        -> List[List["Station", Optional[int], Optional[int], Optional[int]]]:
+        -> List[List[Union["Station", Optional[int]]]]:
         """
         Returns a list of all connected station nodes with the duration of the connection and
         optional information on the connections
@@ -78,8 +75,8 @@ class Station:
         
         return stationList
 
-    def listConnectedStations(self, nConnections = False, nUnused = False, nUnconnected = False) \
-        -> List[List["Station", Optional[int], Optional[int], Optional[int]]]:
+    def listUnconnectedStations(self, nConnections = False, nUnused = False, nUnconnected = False) \
+        -> List[List[Union["Station", Optional[int]]]]:
         """
         Returns a list of connected station nodes that are not in any route with the duration of the
         connection and optional information on the connections
@@ -121,7 +118,7 @@ class Station:
         return stationList
         
     def listUnusedConnections(self, nConnections = False, nUnused = False, nUnconnected = False) \
-        -> List[List["Station", Optional[int], Optional[int], Optional[int]]]:
+        -> List[List[Union["Station", Optional[int]]]]:
         """
         Returns a list of connected station nodes to which the connections are not in any route
         with the duration of the connection and optional information on the connections
@@ -183,7 +180,7 @@ class Station:
         """
         unvisitedStations = 0
         for name, connection in self._connections.items():
-            if connection.getConnectedStation(name).isConnected():
+            if not connection.getConnectedStation(name).isConnected():
                 unvisitedStations += 1
         
         return unvisitedStations
@@ -194,9 +191,9 @@ class Station:
         is unused if it is not in any routes.
         """
         unusedStations = 0
-        for name, connection in self._connections.items():
-            if connection.isConnected():
-                unusedtations += 1
+        for _, connection in self._connections.items():
+            if not connection.isConnected():
+                unusedStations += 1
         
         return unusedStations
 
