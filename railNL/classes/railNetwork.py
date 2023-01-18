@@ -243,7 +243,7 @@ class RailNetwork:
             resultFile.write("train,stations\n")
 
             for _, route in self.routes.items():
-                resultFile.write(f"{route}\"\n")
+                resultFile.write(f"{route}\n")
             
             resultFile.write(f"score,{self.score()}")
 
