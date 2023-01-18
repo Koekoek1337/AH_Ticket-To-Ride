@@ -12,6 +12,37 @@ class RailNetwork:
     """
     Network of stations connected by rail connections
 
+
+    
+    Quick Guide
+    o ROUTES
+    > Creating a new route:
+        - To create a route, pick one station from self.listStations()
+        - Then create a new route with self.createRoute()
+        - The new route can is returned from createRoute() or can be taken from self.listRoutes().
+
+    > Getting the head and Tail end stations from the Route:
+        - Use route.getStation(0) to get the head end of the station.
+        - Use route.getStation(-1) for the get the tail end of the station.
+    
+    > Adding a station to the head and tail end:
+        - Use route.appendStation(station) to add a station at the tail end of the route
+        - Use route.insertStation(0, station) to add a station to the head end of the route
+        - route.insertStation can also be used to add a station to the middle of the route. However,
+          this will lead to broken connections which will have to be resolved before the route is
+          legal.
+    
+    > Removing a station from the head and tail end:
+        - Use route.popStation() to remove a station from the tail end of the route
+        - Use route.popStation(0) to remove a station from the head end of the route
+        - route.popStation can also be used to remove a station from the middle of te route. However
+          this will lead to unconnected stations, which will have to be resolved before the route is
+          legal.
+
+    O STATIONS
+    > Getting connecting stations
+        - 
+
     Attributes:
         stations (dict[str, Station]): Dictionary of station nodes, keyed by their name.
         connections (List[Connection]): List of all connection nodes, indexed by their id.
