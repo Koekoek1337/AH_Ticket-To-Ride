@@ -278,7 +278,6 @@ class RailNetwork:
             
             resultFile.write(f"score,{self.score()}")
 
-
     def connectionPoints(self) -> List[Tuple[Tuple[int, int], Tuple[int, int]]]:
         """
         Returns coordinate pairs for all rail connections for visualization
@@ -366,7 +365,7 @@ class RailNetwork:
         Returns (bool): True if all routes are legal, else False
         """
         for _, route in self.routes.items():
-            if route.brokenConnections() or route.duration() >= tMax:
+            if not route.isValid():
                 return False
         return True
     
