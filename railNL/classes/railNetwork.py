@@ -34,6 +34,8 @@ class RailNetwork:
 
         self.routes: Dict[int, Route] = dict()
 
+        self.routeID = 0
+
         self.loadStations(filepathStations)
         self.loadConnections(filepathConnections)
 
@@ -162,13 +164,24 @@ class RailNetwork:
         return stationList
     
     # User methods: Routes
-    def createRoute(self, station: Station):
+    def createRoute(self, station: Station) -> Route:
         """
-        Creates an empty route with initial station station and adds it to routes.
+        Creates a route with a root station and no connections and adds it to routes with key 
+        routeID.
+
+        Arguments:
+            station (Station): The root station of the route
+        
+        Returns (Route): The newly created route.
         """
-        newRoute = Route(station)
+        newRoute = Route(station, self.routeID)
+        self.routeID += 1
+        
         self.routes[newRoute.getID()] = newRoute
-    
+
+        return newRoute
+
+
     def nRoute(self) -> int:
         """
         Returns the amount of routes
