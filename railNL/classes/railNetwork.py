@@ -51,7 +51,6 @@ class RailNetwork:
     """
 
     # Initialization functions
-
     def __init__(self, filepathStations: str, filepathConnections: str):
         """
         Initializer function
