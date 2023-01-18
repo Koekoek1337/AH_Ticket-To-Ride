@@ -19,7 +19,7 @@ class Route:
     
     def __repr__(self):
         """representation"""
-        return f"{self._id},\"[{', '.join(self.listStations())}]\"\n"
+        return f"{self._id},\"[{', '.join(self.listStations())}]\""
 
     def getID(self):
         """Returns the id of the route"""
