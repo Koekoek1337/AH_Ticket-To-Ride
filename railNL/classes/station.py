@@ -35,6 +35,14 @@ class Station:
         """Returns the x and y coordinates of the station"""
     
         return self._position
+    
+    def inRoute(self, routeID: int) -> bool:
+        """Returns true if the station is in route routeID, else false"""
+
+        if routeID in self._routes:
+            return True
+        
+        return False
 
     def listStations(self, nConnections = False, nUnused = False, nUnconnected = False) \
         -> List[List[Union["Station", Optional[int]]]]:
@@ -240,3 +248,7 @@ class Station:
     def getConnection(self, stationName: str) -> "Connection":
         """returns the connection object between a connected station"""
         return self._connections[stationName]
+    
+    def listNodeConnections(self) -> List["Connection"]:
+        "returns a list of the connection nodes connected to the station"
+        return [connection for _, connection in self._connections.items()]
