@@ -242,8 +242,8 @@ class RailNetwork:
         with open(f"results/{timeStamp}-{filename}.csv", "w") as resultFile:
             resultFile.write("train,stations\n")
 
-            for id, route in self.routes.items():
-                resultFile.write(f"{id},\"[{', '.join(route.listStations())}]\"\n")
+            for uid, route in self.routes.items():
+                resultFile.write(f"{uid},\"[{', '.join(route.listStations())}]\"\n")
             
             resultFile.write(f"score,{self.score()}")
 
