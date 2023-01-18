@@ -17,6 +17,10 @@ class Route:
 
         rootStation.addRoute(self.getID())
     
+    def __repr__(self):
+        """representation"""
+        return f"{self._id},\"[{', '.join(self.listStations())}]\"\n"
+
     def getID(self):
         """Returns the id of the route"""
         return self._id
