@@ -147,7 +147,7 @@ class Route:
         """Returns the station on stationIndex"""
         return self._stations[index]
 
-    def getOpenStations(self) -> List[int, Station]:
+    def getOpenStations(self) -> List[Tuple[int, Station]]:
         """
         Returns a list of all stations which can make a new connection without breaking an existing
         one.
