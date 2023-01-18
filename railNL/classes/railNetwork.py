@@ -257,19 +257,19 @@ class RailNetwork:
         K is the quality of the service
         p is the fraction of rail connections with 
         """
-        return self.connectionCoverage() * 1000 - (len(self.routes) * 100 + self.totalDuration())
+        return self.connectionCoverage() * 10000 - (len(self.routes) * 100 + self.totalDuration())
 
-    def exportSolution(self, filename: str) -> None:
+    def exportSolution(self, folder: str, filename: str) -> None:
         """
         Exports the current routes to a csv file to /results
         """
-        if not os.path.exists("results/"):
-            os.mkdir("results/")
+        if not os.path.exists(f"{folder}/"):
+            os.mkdir(f"{folder}/")
         
         # enforces unique filenames
         timeStamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
-        with open(f"results/{timeStamp}-{filename}.csv", "w") as resultFile:
+        with open(f"{folder}/{timeStamp}-{filename}.csv", "w") as resultFile:
             resultFile.write("train,stations\n")
 
             for _, route in self.routes.items():
