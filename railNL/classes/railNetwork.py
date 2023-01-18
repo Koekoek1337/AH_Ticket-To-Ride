@@ -181,6 +181,11 @@ class RailNetwork:
 
         return newRoute
 
+    def listRoutesWithLegal(self, tMax: float):
+        """
+        Returns a list of all routes that have legal moves
+        """
+        return [route for _, route in self.routes.items() if route.hasLegalMoves(tMax)]
 
     def nRoute(self) -> int:
         """
@@ -217,7 +222,7 @@ class RailNetwork:
         p is the fraction of rail connections with 
         """
         return self.connectionCoverage() * 1000 - (len(self.routes) * 100 + self.totalDuration())
-    
+
     def exportSolution(self, filename: str) -> None:
         """
         Exports the current routes to a csv file to /results
@@ -271,10 +276,22 @@ class RailNetwork:
 
     # Check methods
     def checkValidSolution(self, tMax: float) -> bool:
+        """Checks if all stations are serviced and all routes are legal"""
         if self.checkStationCoverage(self) and self.checkLegalRoutes(self, tMax):
             return True
         
         return False
+
+    def hasLegalMoves(self, tMax: float, maxRoutes: int) -> bool:
+        """Checks if any route has legal moves"""
+        if len(self.routes) < maxRoutes:
+            return True
+        
+        for _, route in self.routes.items():
+            if not route.hasLegalMoves(tMax):
+                return False
+        
+        return True
 
     def checkStationCoverage(self) -> bool:
         """Returns True if all stations have routes going through them, else false"""
