@@ -236,6 +236,11 @@ class Route:
         return missing
 
     def connectionPoints(self) -> List[Tuple[Tuple[int, int], Tuple[int, int]]]:
+        """
+        Returns a list of point pairs of x and y coordinates for all connections in the route for
+        visualization.
+        """
+
         pointPairs = []
         
         for connection in self._connections:
