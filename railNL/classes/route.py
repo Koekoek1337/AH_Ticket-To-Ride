@@ -71,39 +71,43 @@ class Route:
         station.addRoute(self.getID())
 
         if stationIndex < 0:
-            stationIndex += self.length()
+            stationIndex += len(self._stations)
 
         if stationIndex == 0:
-            self.insertConnection(stationIndex, stationIndex)
-            return
+            connectionIndex = 0
+        else:
+            connectionIndex = stationIndex - 1
 
-        if stationIndex > 0:
-            self.insertConnection(stationIndex, stationIndex - 1)
+        self._insertConnection(stationIndex, connectionIndex)
 
         if stationIndex < len(self._stations) - 1:
-            self.replaceConnection(stationIndex,  stationIndex)
+            self.replaceConnection(stationIndex, stationIndex)
 
-    def insertConnection(self, stationIndex: int, connectionIndex: int) -> int:
+    def _insertConnection(self, stationIndex: int, connectionIndex: int) -> int:
         """
         Insert connections to station at stationIndex on connectionIndex
         """
         
         # Only at stationIndex 0 does a connection have to be inserted that connects to the next
         # station
+
+        stationA = self._stations[stationIndex]
+        stationB = None
+        
         if stationIndex == 0:
-            connection = self.findConnection(self._stations[stationIndex], 
-                                             self._stations[stationIndex + 1])
-
+            stationB = self._stations[stationIndex + 1]
         else:
-            connection = self.findConnection(self._stations[stationIndex], 
-                                             self._stations[stationIndex - 1])
+            stationB = self._stations[stationIndex - 1]
 
+        connection = self._findConnection(stationA, stationB)
+
+        connection.addRoute(self.getID())
 
         self._connections.insert(connectionIndex, connection)
 
     def replaceConnection(self, stationIndex: int, connectionIndex: int):
         """replace connection object on connectioIndex with new connection"""
-        connection = self.findConnection(self._stations[stationIndex], 
+        connection = self._findConnection(self._stations[stationIndex], 
                                          self._stations[stationIndex + 1]
                                         )
 
@@ -112,7 +116,7 @@ class Route:
 
         self._connections[connectionIndex] = connection
 
-    def findConnection(self, station1: Station, station2: Station) -> Union[Connection, None]:
+    def _findConnection(self, station1: Station, station2: Station) -> Union[Connection, None]:
         """
         Returns the connection object between station1 and station2, if it exists
         """
@@ -121,7 +125,6 @@ class Route:
             return None
 
         connection = station1.getConnection(station2.name())
-        connection.addRoute(self.getID())
         
         return connection
     
@@ -163,18 +166,21 @@ class Route:
         """
         Returns (List[Tuple[Station, int]]): A list of tuples of stations and their indexes.
             a station can occur multiple times if it has a broken connection.
+        
+        TODO
+        reimplement brokenConnections
         """
-        brokenConnections = self.brokenConnections()
+        # brokenConnections = self.brokenConnections()
 
         # The station at the head is always open
         openStations = [(self._stations[0], 0)]
 
         # Stations with broken connections are open
-        openStations += [stationA for stationA, stationB in brokenConnections]
-        openStations += [stationB for stationA, stationB in brokenConnections]
+        # openStations += [stationA for stationA, stationB in brokenConnections]
+        # openStations += [stationB for stationA, stationB in brokenConnections]
 
         # Stations at the tail are always open
-        openStations += [(self._stations[self.length() - 1], self.length() - 1)]
+        openStations += [(self._stations[len(self._stations) - 1], len(self._stations) - 1)]
 
         return openStations
     
@@ -189,7 +195,7 @@ class Route:
             return False
 
         for station, _ in self.getOpenStations():
-            for _, duration in station.listStations():
+            for _, duration, _, _, _ in station.listStations():
                 if currentDuration + duration < tMax:
                     return True
         
@@ -210,15 +216,16 @@ class Route:
         for station, index in self.getOpenStations():
             if index in legalMoves:
                 continue
-        
+
             legalStations = []
             
-            for newStation, duration in station.listStations():
+            for newStation, duration, *_ in station.listStations():
                 if currentDuration + duration < tMax:
                     legalStations.append(newStation)
             
-            legalMoves[index] = legalStations
-        
+            if legalStations:
+                legalMoves[index] = legalStations
+    
         return legalMoves
 
     def brokenConnections(self) -> List[Tuple[Tuple[Station, int], Tuple[Station, int]]]:
@@ -255,7 +262,7 @@ class Route:
         connection, is unbroken and is shorter than tMax
         """
         # A route must have 1 connection
-        if len(self.length()) == 0:
+        if self.length() == 0:
             return False
 
         # None in connections meanse a missing connection
