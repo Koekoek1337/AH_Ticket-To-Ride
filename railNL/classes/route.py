@@ -228,6 +228,26 @@ class Route:
                 pointPairs.append(connection.connectionPoints())
         
         return pointPairs
+    
+    def isValid(self, tMax: float = 0.0) -> bool:
+        """
+        Returns True if the route is legal else False. A route is legal if it has at least one
+        connection, is unbroken and is shorter than tMax
+        """
+        # A route must have 1 connection
+        if len(self.length()) == 0:
+            return False
+
+        # None in connections meanse a missing connection
+        if None in self._connections:
+            return False
+        
+        # tMax is optional
+        if tMax == 0:
+            return True
+        
+        # If a tMax is given, duration must be less than tMax
+        return self.duration() < tMax
 
     def empty(self) -> None:
         """
