@@ -1,7 +1,7 @@
 from classes.station import Station
 from classes.connection import Connection
 
-from typing import List, Tuple, Any, Union
+from typing import List, Tuple, Dict, Union
 
 class Route:
     """
@@ -159,16 +159,22 @@ class Route:
         """Returns the station on stationIndex"""
         return self._stations[index]
 
-    def getOpenStations(self) -> List[Tuple[int, Station]]:
+    def getOpenStations(self) -> List[Tuple[Station, int]]:
         """
-        Returns a list of all stations which can make a new connection without breaking an existing
-        one.
+        Returns (List[Tuple[Station, int]]): A list of tuples of stations and their indexes.
+            a station can occur multiple times if it has a broken connection.
         """
-        openStations = \
-        [(0, self._stations[0])] + \
-        [x for t in self.brokenConnections() for x in t]+ \
-        [(self.length() - 1, self._stations[self.length() - 1])] # The station at the end is always open
-        
+        brokenConnections = self.brokenConnections()
+
+        # The station at the head is always open
+        openStations = [(self._stations[0], 0)]
+
+        # Stations with broken connections are open
+        openStations += [stationA for stationA, stationB in brokenConnections]
+        openStations += [stationB for stationA, stationB in brokenConnections]
+
+        # Stations at the tail are always open
+        openStations += [(self._stations[self.length() - 1], self.length() - 1)]
 
         return openStations
     
@@ -182,41 +188,50 @@ class Route:
         if currentDuration >= tMax:
             return False
 
-        for _, station in self.getOpenStations():
-            for duration in [duration for _, duration in station.listStations()]:
+        for station, _ in self.getOpenStations():
+            for _, duration in station.listStations():
                 if currentDuration + duration < tMax:
                     return True
         
         return False
 
-    def getLegalMoves(self, tMax: float) -> List[Tuple[Station, int]]:
+    def getLegalMoves(self, tMax: float) -> Dict[int, List[Station]]:
         """
-        Returns the station and index for stations that have legal moves.
+        Returns a dict keyed with the station indexes with all stations witha connection that can
+        legally be added to the route.
+
+        Args:
+            tMax (float): The maximum duration for the route
         """
         currentDuration = self.duration()
 
-        stations = []
+        legalMoves = dict()
 
-        if currentDuration >= tMax:
-            return stations
-
-        for station in self.getOpenStations():
-            for duration in [duration for _, duration in station.listStations()]:
+        for station, index in self.getOpenStations():
+            if index in legalMoves:
+                continue
+        
+            legalStations = []
+            
+            for newStation, duration in station.listStations():
                 if currentDuration + duration < tMax:
-                    stations.append(station)
+                    legalStations.append(newStation)
+            
+            legalMoves[index] = legalStations
         
-        return stations
+        return legalMoves
 
-    def brokenConnections(self) -> List[Tuple[Tuple[int, Station], Tuple[int, Station]]]:
+    def brokenConnections(self) -> List[Tuple[Tuple[Station, int], Tuple[Station, int]]]:
         """
-        Returns a list of all nonexistent rail connections
-        
+        Returns a list of all nonexistent rail connections.
+
+        Returns (List[Tuple[Tuple[Station, int], Tuple[Station, int]]])
         """
         missing = []
 
         for i in range(self.length()):
             if not self._connections[i]:
-                missing.append(((i, self._stations[i]), (i+1, self._stations[i + 1])))
+                missing.append(((self._stations[i], i), (self._stations[i + 1], i + 1)))
         
         return missing
 
