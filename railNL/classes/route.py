@@ -1,26 +1,17 @@
 from classes.station import Station
 from classes.connection import Connection
 
-from typing import List, Tuple, Any
+from typing import List, Tuple, Any, Union
 
 class Route:
     """
-    TODO
     Route object that tracks rail connections between stations
     """
 
-    counter = -1
-
-    @classmethod
-    def newID(self):
-        """Returns an unique integer for route ID"""
-        self.counter += 1
-        return self.counter
-
-    def __init__(self, rootStation: Station):
+    def __init__(self, rootStation: Station, uid: int):
         """Initializer function"""
 
-        self._id = self.newID()
+        self._id = uid
         self._stations: List[Station] = [rootStation]
         self._connections: List[Connection] = []
 
@@ -50,10 +41,16 @@ class Route:
     
     def listStations(self) -> List[Station]:
         """
-        returns a list of station names
+        returns a list of stations
         """
-        return self._stations
-
+        return [station for station in self._stations]
+    
+    def appendStation(self, station: Station) -> None:
+        """
+        Append a station at the end of stations
+        """
+        self.insertStation(len(self._stations), station)
+    
     def insertStation(self, stationIndex: int, station: Station) -> None:
         """
         Inserts a rail connection at the specified Index (0 for start, -1 end)
@@ -76,35 +73,39 @@ class Route:
 
         if stationIndex < len(self._stations) - 1:
             self.replaceConnection(stationIndex,  stationIndex)
-    
-    def appendStation(self, station: Station) -> None:
+
+    def insertConnection(self, stationIndex: int, connectionIndex: int) -> int:
         """
-        Calls insertStation for the end of self._stations
+        Insert connections to station at stationIndex on connectionIndex
         """
-        self.insertStation(len(self._stations), station)
-    
-    def insertConnection(self, stationIndex: int, connectionIndex: int):
-        """Insert connection to station on connectionIndex"""
-        print(self._stations)
+        
+        # Only at stationIndex 0 does a connection have to be inserted that connects to the next
+        # station
         if stationIndex == 0:
-            connection = self.findConnection(self._stations[stationIndex], self._stations[stationIndex + 1])
+            connection = self.findConnection(self._stations[stationIndex], 
+                                             self._stations[stationIndex + 1])
 
         else:
-            connection = self.findConnection(self._stations[stationIndex], self._stations[stationIndex - 1])
+            connection = self.findConnection(self._stations[stationIndex], 
+                                             self._stations[stationIndex - 1])
 
 
         self._connections.insert(connectionIndex, connection)
 
     def replaceConnection(self, stationIndex: int, connectionIndex: int):
-        """replace connection object on connectiop Index with new connection"""
+        """replace connection object on connectioIndex with new connection"""
         connection = self.findConnection(self._stations[stationIndex], 
                                          self._stations[stationIndex + 1]
                                         )
+
+        if self._connections[connectionIndex]:
+            self._connections[connectionIndex].removeRoute(self.getID())
+
         self._connections[connectionIndex] = connection
 
-    def findConnection(self, station1: Station, station2: Station):
+    def findConnection(self, station1: Station, station2: Station) -> Union[Connection, None]:
         """
-        Returns the connection between station1 and station2 if it exists
+        Returns the connection object between station1 and station2, if it exists
         """
 
         if not station1.hasConnection(station2.name()):
@@ -138,35 +139,72 @@ class Route:
         """
         Removes a connection from Index.
         """
-
-        if self._connections[connectionIndex]:
-            self._connections[connectionIndex].removeRoute(self.getID())
+        self._connections[connectionIndex].removeRoute(self.getID())
 
         self._connections.pop(connectionIndex)
 
-    def insertAfter(self, targetStation: Station, newStation: Station):
-        """
-        TODO
+    def getStation(self, index: int) -> Station:
+        """Returns the station on stationIndex"""
+        return self._stations[index]
 
-        Insert the station after the station with name stationName
+    def getOpenStations(self) -> List[int, Station]:
         """
-        pass
-
-    def insertBefore(self, targetStation: Station, newStation: Station):
+        Returns a list of all stations which can make a new connection without breaking an existing
+        one.
         """
-        TODO
+        openStations = \
+        [(0, self._stations[0])] + \
+        [x for t in self.brokenConnections() for x in t]+ \
+        [(self.length() - 1, self._stations[self.length() - 1])] # The station at the end is always open
+        
 
-        Insert the station before the station with name stationName
+        return openStations
+    
+    def hasLegalMoves(self, tMax: float) -> bool:
         """
-        pass
+        Returns wheter the connection can make any legal moves with the stations it currently
+        has.
+        """
+        currentDuration = self.duration()
 
-    def brokenConnections(self) -> List[Tuple[str,str]]:
-        """Returns a list of all nonexistent rail connections"""
+        if currentDuration >= tMax:
+            return False
+
+        for _, station in self.getOpenStations():
+            for duration in [duration for _, duration in station.listStations()]:
+                if currentDuration + duration < tMax:
+                    return True
+        
+        return False
+
+    def getLegalMoves(self, tMax: float) -> List[Tuple[Station, int]]:
+        """
+        Returns the station and index for stations that have legal moves.
+        """
+        currentDuration = self.duration()
+
+        stations = []
+
+        if currentDuration >= tMax:
+            return stations
+
+        for station in self.getOpenStations():
+            for duration in [duration for _, duration in station.listStations()]:
+                if currentDuration + duration < tMax:
+                    stations.append(station)
+        
+        return stations
+
+    def brokenConnections(self) -> List[Tuple[Tuple[int, Station], Tuple[int, Station]]]:
+        """
+        Returns a list of all nonexistent rail connections
+        
+        """
         missing = []
 
         for i in range(self.length()):
             if not self._connections[i]:
-                missing.append((self._stations[i].name(), self._stations[i + 1].name()))
+                missing.append(((i, self._stations[i]), (i+1, self._stations[i + 1])))
         
         return missing
 
