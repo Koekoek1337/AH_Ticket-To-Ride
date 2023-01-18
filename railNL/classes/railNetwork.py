@@ -296,7 +296,7 @@ class RailNetwork:
         points = []
         
         for station in [entry[1] for entry in self.stations.items()]:
-            points.append(station.name(), station.position())
+            points.append((station.name(), station.position()))
         
         return points
     
