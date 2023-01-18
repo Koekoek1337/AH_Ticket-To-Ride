@@ -25,6 +25,9 @@ class Station:
     def __str__(self):
         """"""
         return f"Station {self._name}"
+    
+    def __repr__(self) -> str:
+        return f"Station({self._name}, {self.connectionAmount()})"
 
     def name(self) -> str:
         """Returns the name of the station"""
