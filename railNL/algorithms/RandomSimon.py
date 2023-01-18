@@ -5,7 +5,7 @@ from classes.station import Station
 import random
 
 tMax = 120
-routeMax = 7
+routeMax = 7    
 
 def Random():
     iterations = 0
@@ -36,7 +36,8 @@ def Random():
                 continue
 
 
-    print(f"total iterations: {iterations}")
-    print(model.listRoutes())
+    #print(f"total iterations: {iterations}")
+    print(model.routes)
 
+    #not working currently, keeping it for reference:
     #exportSolution("random")
