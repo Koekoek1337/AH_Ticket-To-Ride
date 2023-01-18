@@ -22,9 +22,9 @@ class Station:
         self._connections: Dict[str, "Connection"] = dict()
         self._routes = set()
 
-    def __repr__(self):
+    def __str__(self):
         """"""
-        return f"Station({self._name}, {self._position[0]}. {self._position[1]})"
+        return f"Station {self._name}"
 
     def name(self) -> str:
         """Returns the name of the station"""
