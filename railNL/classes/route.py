@@ -6,6 +6,11 @@ from typing import List, Tuple, Any, Union
 class Route:
     """
     Route object that tracks rail connections between stations
+    
+    properties:
+        _id (int): The unique identifier of the Route
+        _stations (List[Station]): The stations in the route in order
+        _connections (List[Connection]): The connections between the stations in order
     """
 
     def __init__(self, rootStation: Station, uid: int):
@@ -19,7 +24,7 @@ class Route:
     
     def __repr__(self):
         """representation"""
-        return f"{self._id},\"[{', '.join(self.listStations())}]\""
+        return f"{self._id},\"[{', '.join([station.name() for station in self.listStations()])}]\""
 
     def getID(self):
         """Returns the id of the route"""
@@ -120,7 +125,7 @@ class Route:
         
         return connection
     
-    def popStation(self, stationIndex: int) -> None:
+    def popStation(self, stationIndex: int = -1) -> None:
         """
         Removes a station from stations at stationIndex
         
