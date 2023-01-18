@@ -45,7 +45,7 @@ class Station:
         return False
 
     def listStations(self, nConnections = False, nUnused = False, nUnconnected = False) \
-        -> List[List[Union["Station", Optional[int]]]]:
+        -> List[Tuple["Station", int, Optional[int], Optional[int], Optional[int]]]:
         """
         Returns a list of all connected station nodes with the duration of the connection and
         optional information on the connections
@@ -68,23 +68,23 @@ class Station:
         for stationName in self._connections.keys():
             station = self.getConnectedStation(stationName)
             
-            stationPoint = [station, self.connectionDuration(stationName)]
+            stationPoint = [station, self.connectionDuration(stationName), None, None, None]
 
             if nConnections:
-                stationPoint.append(station.connectionAmount())
+                stationPoint[2] = station.connectionAmount()
             
             if nUnused:
-                stationPoint.append(station.unusedConnectionAmount())
+                stationPoint[3] = station.unusedConnectionAmount()
             
             if nUnconnected:
-                stationPoint.append(station.unvistitedConnectionAmount())
+                stationPoint[4] = station.unvistitedConnectionAmount()
         
-            stationList.append(stationPoint)
+            stationList.append(tuple(stationPoint))
         
         return stationList
 
     def listUnconnectedStations(self, nConnections = False, nUnused = False, nUnconnected = False) \
-        -> List[List[Union["Station", Optional[int]]]]:
+        -> List[Tuple["Station", int, Optional[int], Optional[int], Optional[int]]]:
         """
         Returns a list of connected station nodes that are not in any route with the duration of the
         connection and optional information on the connections
@@ -102,31 +102,13 @@ class Station:
             connections (optional), the amount of unused connections (optional) and the amount of 
             unconnected connections (optional) in that order
         """
-        stationList = []
+        stationList = self.listStations(nConnections, nUnused, nUnconnected)
         
-        for stationName in self._connections.keys():
-            station = self.getConnectedStation(stationName)
-            
-            if station.isConnected():
-                continue
-
-            stationPoint = [station, self.connectionDuration(stationName)]
-
-            if nConnections:
-                stationPoint.append(station.connectionAmount())
-            
-            if nUnused:
-                stationPoint.append(station.unusedConnectionAmount())
-            
-            if nUnconnected:
-                stationPoint.append(station.unvistitedConnectionAmount())
-        
-            stationList.append(stationPoint)
-        
-        return stationList
+        # from all stations with data, take only those where the station is unconnected
+        return [stationPoint for stationPoint in stationList if not stationPoint[0].isConnected()]
         
     def listUnusedConnections(self, nConnections = False, nUnused = False, nUnconnected = False) \
-        -> List[List[Union["Station", Optional[int]]]]:
+        -> List[Tuple["Station", int, Optional[int], Optional[int], Optional[int]]]:
         """
         Returns a list of connected station nodes to which the connections are not in any route
         with the duration of the connection and optional information on the connections
@@ -144,37 +126,13 @@ class Station:
             connections (optional), the amount of unused connections (optional) and the amount of 
             unconnected connections (optional) in that order
         """
-        unusedStations = []
+        stationList = self.listStations(nConnections, nUnused, nUnconnected)
         
-        for name, connection in self._connections.items():
-            if connection.getConnectedStation(name).isConnected():
-                unusedStations.append(
-                    (name, connection.duration(), 
-                     connection.getConnectedStation(name).unvistitedConnectionAmount())
-                    )
-
-        stationList = []
-        
-        for stationName, connection in self._connections.items():
-            if connection.isConnected():
-                continue
-        
-            station = self.getConnectedStation(stationName)
-
-            stationPoint = [station, self.connectionDuration(stationName)]
-
-            if nConnections:
-                stationPoint.append(station.connectionAmount())
-            
-            if nUnused:
-                stationPoint.append(station.unusedConnectionAmount())
-            
-            if nUnconnected:
-                stationPoint.append(station.unvistitedConnectionAmount())
-        
-            stationList.append(stationPoint)
-        
-        return stationList
+        # From all connected stations, take only the stations have a connection node connected to
+        # self that is not visited by any route.
+        return [stationPoint for stationPoint in stationList 
+                if not stationPoint[0].getConnection(self.name()).isConnected()
+               ]
 
     def connectionAmount(self) -> int: 
         """Returns the amount of stations connected to the station"""
