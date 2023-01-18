@@ -116,16 +116,19 @@ class Route:
         
         return connection
     
-    def removeStation(self, station: Station) -> None:
+    def popStation(self, stationIndex: int) -> None:
         """
-        Removes a station from stations
+        Removes a station from stations at stationIndex
+        
         TODO
-        find replacement connection
+        find replacement connection when not at edges
         """
-        for stationIndex in range(len(self._connections)):
-            if self._stations[stationIndex].name() == station.name():
-                self._stations[stationIndex].removeRoute(self.getID())
-                self.removeConnections(stationIndex)
+        
+        self._stations[stationIndex].removeRoute(self.getID())
+        
+        self.removeConnections(stationIndex)
+        
+        self._stations.pop[stationIndex]
         
     def removeConnections(self, stationIndex: int) -> None:
         """Removes connections around station on Index"""
@@ -140,7 +143,7 @@ class Route:
         Removes a connection from Index.
         """
         self._connections[connectionIndex].removeRoute(self.getID())
-
+        
         self._connections.pop(connectionIndex)
 
     def getStation(self, index: int) -> Station:
