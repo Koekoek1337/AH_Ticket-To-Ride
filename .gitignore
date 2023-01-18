@@ -1,5 +1,6 @@
 # Project specific files
 results/
+algorithms/ramdom_hajo.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
