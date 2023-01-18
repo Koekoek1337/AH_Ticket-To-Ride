@@ -11,8 +11,6 @@ from typing import Optional, List, Tuple, Dict, Union
 class RailNetwork:
     """
     Network of stations connected by rail connections
-
-
     
     Quick Guide
     o ROUTES
@@ -24,6 +22,8 @@ class RailNetwork:
     > Getting the head and Tail end stations from the Route:
         - Use route.getStation(0) to get the head end of the station.
         - Use route.getStation(-1) for the get the tail end of the station.
+        - route.getStation can also get any other station in the route, and can be treated like a
+          list in this regard.
     
     > Adding a station to the head and tail end:
         - Use route.appendStation(station) to add a station at the tail end of the route
