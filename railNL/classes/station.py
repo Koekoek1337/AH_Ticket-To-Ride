@@ -47,7 +47,7 @@ class Station:
         
         return False
 
-    def listStations(self, nConnections = False, nUnused = False, nUnconnected = False) \
+    def listStations(self, nConnections = False, nUnused = False, nUnvisited = False) \
         -> List[Tuple["Station", int, Optional[int], Optional[int], Optional[int]]]:
         """
         Returns a list of all connected station nodes with the duration of the connection and
@@ -58,13 +58,13 @@ class Station:
             nUnused (bool): Whether the amount of unused connections should be given. A connection
                             is unused if the corresponding station node is in a route, but the
                             connection is not.
-            nUnconnected (bool): Whether the amount of unconnected connections should be given. A
-                               connection is unconnected if the corresponding station node is not
+            nUnvisited (bool): Whether the amount of unvisited connections should be given. A
+                               connection is unvisited if the corresponding station node is not
                                in any route.
         
         Returns: A list of lists of The station nodes with the duration of the connection amounts of
             connections (optional), the amount of unused connections (optional) and the amount of 
-            unconnected connections (optional) in that order
+            unvisited connections (optional) in that order
         """
         stationList = []
 
@@ -79,14 +79,14 @@ class Station:
             if nUnused:
                 stationPoint[3] = station.unusedConnectionAmount()
             
-            if nUnconnected:
-                stationPoint[4] = station.unvistitedConnectionAmount()
+            if nUnvisited:
+                stationPoint[4] = station.unvisitedConnectionAmount()
         
             stationList.append(tuple(stationPoint))
         
         return stationList
 
-    def listUnconnectedStations(self, nConnections = False, nUnused = False, nUnconnected = False) \
+    def listUnvisitedStations(self, nConnections = False, nUnused = False, nUnvisited = False) \
         -> List[Tuple["Station", int, Optional[int], Optional[int], Optional[int]]]:
         """
         Returns a list of connected station nodes that are not in any route with the duration of the
@@ -97,20 +97,20 @@ class Station:
             nUnused (bool): Whether the amount of unused connections should be given. A connection
                             is unused if the corresponding station node is in a route, but the
                             connection is not.
-            nUnconnected (bool): Whether the amount of unconnected connections should be given. A
-                               connection is unconnected if the corresponding station node is not
+            nUnvisited (bool): Whether the amount of unvisited connections should be given. A
+                               connection is unvisited if the corresponding station node is not
                                in any route.
         
         Returns: A list of lists of The station nodes with the duration of the connection amounts of
             connections (optional), the amount of unused connections (optional) and the amount of 
-            unconnected connections (optional) in that order
+            unvisited connections (optional) in that order
         """
-        stationList = self.listStations(nConnections, nUnused, nUnconnected)
+        stationList = self.listStations(nConnections, nUnused, nUnvisited)
         
-        # from all stations with data, take only those where the station is unconnected
+        # from all stations with data, take only those where the station is unvisited
         return [stationPoint for stationPoint in stationList if not stationPoint[0].isConnected()]
         
-    def listUnusedConnections(self, nConnections = False, nUnused = False, nUnconnected = False) \
+    def listUnusedConnections(self, nConnections = False, nUnused = False, nUnvisited = False) \
         -> List[Tuple["Station", int, Optional[int], Optional[int], Optional[int]]]:
         """
         Returns a list of connected station nodes to which the connections are not in any route
@@ -121,15 +121,15 @@ class Station:
             nUnused (bool): Whether the amount of unused connections should be given. A connection
                             is unused if the corresponding station node is in a route, but the
                             connection is not.
-            nUnconnected (bool): Whether the amount of unconnected connections should be given. A
-                               connection is unconnected if the corresponding station node is not
+            nUnvisited (bool): Whether the amount of unvisited connections should be given. A
+                               connection is unvisited if the corresponding station node is not
                                in any route.
         
         Returns: A list of lists of The station nodes with the duration of the connection amounts of
             connections (optional), the amount of unused connections (optional) and the amount of 
-            unconnected connections (optional) in that order
+            unvisited connections (optional) in that order
         """
-        stationList = self.listStations(nConnections, nUnused, nUnconnected)
+        stationList = self.listStations(nConnections, nUnused, nUnvisited)
         
         # From all connected stations, take only the stations have a connection node connected to
         # self that is not visited by any route.
@@ -142,7 +142,7 @@ class Station:
 
         return len(self._connections)
     
-    def unvistitedConnectionAmount(self) -> int:
+    def unvisitedConnectionAmount(self) -> int:
         """
         Returns the amount of unvisited stations connected to the station. A station is unvisited if
         it is not in any route.
