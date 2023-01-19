@@ -22,11 +22,14 @@ class Station:
         self._connections: Dict[str, "Connection"] = dict()
         self._routes = set()
 
-    def __str__(self):
-        """"""
+    def __str__(self) -> str:
+        """String representaton"""
+
         return f"Station {self._name}"
     
     def __repr__(self) -> str:
+        """Reprensentation"""
+
         return f"Station({self._name}, {self.connectionAmount()})"
 
     def name(self) -> str:
@@ -40,7 +43,12 @@ class Station:
         return self._position
     
     def inRoute(self, routeID: int) -> bool:
-        """Returns true if the station is in route routeID, else false"""
+        """
+        Returns true if the station is in route routeID, else false
+        
+        Args:
+            routeID (int): The route ID of the route to be checked.
+        """
 
         if routeID in self._routes:
             return True
@@ -62,9 +70,9 @@ class Station:
                                connection is unvisited if the corresponding station node is not
                                in any route.
         
-        Returns: A list of lists of The station nodes with the duration of the connection amounts of
-            connections (optional), the amount of unused connections (optional) and the amount of 
-            unvisited connections (optional) in that order
+        Returns: A list of tuples of The station nodes with the duration of the connection, amounts
+            of connections (optional), the amount of unused connections (optional) and the amount of 
+            unvisited connections (optional) in that order.
         """
         stationList = []
 
@@ -110,7 +118,7 @@ class Station:
         # from all stations with data, take only those where the station is unvisited
         return [stationPoint for stationPoint in stationList if not stationPoint[0].isConnected()]
         
-    def listUnusedConnections(self, nConnections = False, nUnused = False, nUnvisited = False) \
+    def listUnusedStations(self, nConnections = False, nUnused = False, nUnvisited = False) \
         -> List[Tuple["Station", int, Optional[int], Optional[int], Optional[int]]]:
         """
         Returns a list of connected station nodes to which the connections are not in any route
