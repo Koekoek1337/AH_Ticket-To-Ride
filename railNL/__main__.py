@@ -10,10 +10,10 @@ if path.exists("railNL/algorithms/random_hajo.py"):
     BATCH = True
 
 def main():
-    network = RailNetwork("data/StationsHolland.csv", "data/ConnectiesHolland.csv")
+    network = RailNetwork("data/StationsNationaal.csv", "data/ConnectiesNationaal.csv")
     
     if BATCH:
-        random_hajo.main(network, 7, 120)
+        random_hajo.main(network, 20, 180)
         return
     
     network.createRoute(network.getStation("Den Helder"))
