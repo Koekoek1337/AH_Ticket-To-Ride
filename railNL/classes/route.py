@@ -1,7 +1,7 @@
 from classes.station import Station
 from classes.connection import Connection
 
-from typing import List, Tuple, Dict, Union
+from typing import List, Tuple, Dict, Union, Optional
 
 class Route:
     """
@@ -195,13 +195,16 @@ class Route:
             return False
 
         for station, _ in self.getOpenStations():
-            for _, duration, _, _, _ in station.listStations():
+            for _, duration, *_ in station.listStations():
                 if currentDuration + duration < tMax:
                     return True
         
         return False
 
-    def getLegalMoves(self, tMax: float) -> Dict[int, List[Station]]:
+    def getLegalMoves(self, tMax: float, 
+            nConnections = False, nUnused = False, nUnconnected = False, unusedOnly = False,
+            unconnectedOnly = False) \
+            -> Dict[int, List[Tuple[Station, int, Optional[int], Optional[int], Optional[int]]]]:
         """
         Returns a dict keyed with the station indexes with all stations witha connection that can
         legally be added to the route.
@@ -216,10 +219,20 @@ class Route:
         for station, index in self.getOpenStations():
             if index in legalMoves:
                 continue
+            
+            connectionList = []
+
+            if unconnectedOnly:
+                connectionList = station.listUnconnectedStations(nConnections, nUnused, nUnconnected)
+            elif unusedOnly:
+                connectionList = station.listUnusedConnections(nConnections, nUnused, nUnconnected)
+            else:
+                connectionList = station.listStations(nConnections, nUnused, nUnconnected)
 
             legalStations = []
-            
-            for newStation, duration, *_ in station.listStations():
+
+            for newStation in connectionList:
+                duration = newStation[1]
                 if currentDuration + duration < tMax:
                     legalStations.append(newStation)
             
