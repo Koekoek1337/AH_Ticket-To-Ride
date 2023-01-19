@@ -133,9 +133,9 @@ class Station:
                                connection is unvisited if the corresponding station node is not
                                in any route.
         
-        Returns: A list of lists of The station nodes with the duration of the connection amounts of
-            connections (optional), the amount of unused connections (optional) and the amount of 
-            unvisited connections (optional) in that order
+        Returns: A list of fixed-width tuples of The station nodes with the duration of the 
+            connection amounts of connections (optional), the amount of unused connections 
+            (optional) and the amount of unvisited connections (optional) in that order
         """
         stationList = self.listStations(nConnections, nUnused, nUnvisited)
         
