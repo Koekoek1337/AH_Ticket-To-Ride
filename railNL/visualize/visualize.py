@@ -1,10 +1,10 @@
 from typing import List, Tuple
 import matplotlib.pyplot as plt
 
-def visualize(connections: List[Tuple[Tuple[float, float], Tuple[float, float]]], 
-              stations: List[Tuple[str, Tuple[float, float]]], 
-              routePointLists: List[List[Tuple[Tuple[int, int], Tuple[int, int]]]],
-              stationNames: bool = True) -> None:
+def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, float]]], 
+                     stations: List[Tuple[str, Tuple[float, float]]], 
+                     routePointLists: List[List[Tuple[Tuple[int, int], Tuple[int, int]]]],
+                     stationNames: bool = True) -> None:
     """
     Args:
         connections: List of tuples of (x, y) and (x, y)
