@@ -9,6 +9,7 @@ routeMax = 7
 
 def Random():
     iterations = 0
+    score = 0
     model = RailNetwork("StationsNationaal.csv", "ConnectiesNationaal.csv")
     # Starts a route at a random station.
     model.createRoute(random.choice(model.listStations()))
@@ -34,10 +35,6 @@ def Random():
                     continue
             else:
                 continue
-
-
-    #print(f"total iterations: {iterations}")
-    print(model.routes)
-
-    #not working currently, keeping it for reference:
-    #exportSolution("random")
+    
+    # print(f"total iterations: {iterations}")
+    model.exportSolution("results", "random_results")
