@@ -1,5 +1,5 @@
 from classes.railNetwork import RailNetwork
-from visualize.visualize import visualize
+from visualize.visualize import visualizeNetwork
 from os import path
 
 BATCH = False
@@ -21,7 +21,7 @@ def main():
     route.appendStation(network.getStation("Alkmaar"))
     route.appendStation(network.getStation("Castricum"))
 
-    visualize(network.connectionPoints(), network.stationPoints(), network.routePointLists())
+    visualizeNetwork(network.connectionPoints(), network.stationPoints(), network.routePointLists())
 
     network.exportSolution("results", "Nederland")
 
