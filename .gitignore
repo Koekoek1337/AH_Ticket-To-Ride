@@ -1,6 +1,5 @@
 # Project specific files
 results/
-RailNL/algorithms/random_hajo.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
