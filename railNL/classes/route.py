@@ -48,6 +48,12 @@ class Route:
         """
         return len(self._connections)
     
+    def nStations(self) -> int:
+        """
+        returns the amount of stations in the route
+        """
+        return len(self._stations)
+    
     def listStations(self) -> List[Station]:
         """
         returns a list of stations
@@ -58,7 +64,7 @@ class Route:
         """
         Append a station at the end of stations
         """
-        self.insertStation(len(self._stations), station)
+        self.insertStation(self.nStations(), station)
     
     def insertStation(self, stationIndex: int, station: Station) -> None:
         """
@@ -71,7 +77,7 @@ class Route:
         station.addRoute(self.getID())
 
         if stationIndex < 0:
-            stationIndex += len(self._stations)
+            stationIndex += self.nStations()
 
         if stationIndex == 0:
             connectionIndex = 0
@@ -80,7 +86,7 @@ class Route:
 
         self._insertConnection(stationIndex, connectionIndex)
 
-        if stationIndex < len(self._stations) - 1:
+        if stationIndex < self.nStations() - 1:
             self.replaceConnection(stationIndex, stationIndex)
 
     def _insertConnection(self, stationIndex: int, connectionIndex: int) -> int:
@@ -144,7 +150,7 @@ class Route:
         
     def removeConnections(self, stationIndex: int) -> None:
         """Removes connections around station on Index"""
-        if stationIndex < len(self._stations) - 1:
+        if stationIndex < self.nStations() - 1:
             self.removeConnection(stationIndex)
 
         if stationIndex > 0:
@@ -180,7 +186,7 @@ class Route:
         # openStations += [stationB for stationA, stationB in brokenConnections]
 
         # Stations at the tail are always open
-        openStations += [(self._stations[len(self._stations) - 1], len(self._stations) - 1)]
+        openStations += [(self._stations[self.nStations() - 1], self.nStations() - 1)]
 
         return openStations
     
@@ -202,8 +208,8 @@ class Route:
         return False
 
     def getLegalMoves(self, tMax: float, 
-            nConnections = False, nUnused = False, nUnconnected = False, unusedOnly = False,
-            unconnectedOnly = False) \
+            nConnections = False, nUnused = False, nUnvisited = False, unusedOnly = False,
+            unvisitedOnly = False) \
             -> Dict[int, List[Tuple[Station, int, Optional[int], Optional[int], Optional[int]]]]:
         """
         Returns a dict keyed with the station indexes with all stations witha connection that can
@@ -222,12 +228,12 @@ class Route:
             
             connectionList = []
 
-            if unconnectedOnly:
-                connectionList = station.listUnconnectedStations(nConnections, nUnused, nUnconnected)
+            if unvisitedOnly:
+                connectionList = station.listUnvisitedStations(nConnections, nUnused, nUnvisited)
             elif unusedOnly:
-                connectionList = station.listUnusedConnections(nConnections, nUnused, nUnconnected)
+                connectionList = station.listUnusedConnections(nConnections, nUnused, nUnvisited)
             else:
-                connectionList = station.listStations(nConnections, nUnused, nUnconnected)
+                connectionList = station.listStations(nConnections, nUnused, nUnvisited)
 
             legalStations = []
 
