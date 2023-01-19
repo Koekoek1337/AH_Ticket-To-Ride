@@ -1,18 +1,6 @@
-Voor de baseline van ons project "Ticket to ride" hebben we een randomalgoritme geschreven.
-Het idee is dat dit randomalgoritme een aantal kloppende trajecten genereert voor de lijnvoering van een openbaar vervoersbedrijf genaamd "RailNL".
-Ons algoritme kiest een willekeurig traject en vervolgens kiest het vanaf het dan huidige station een volgend station.
-Deze trajectlijsten exporteren we naar een .csv bestand, om daar vervolgens een (grafische) analyse op los te laten.
+Baselineimplementatie
+Ticket to ride
 
-Voor het uitvoeren is er een beperkt tijdsraam. Dit heeft een aantal gevolgen.
-Ten eerste is het niet mogelijk om het algoritme tot in het einde der tijden te laten draaien.
-De gemiddelden die we zouden krijgen als we het oneindig zouden runnen zouden naar alle waarschijnlijkheid niet veel verschillen met onze resultaten.
-Dit komt omdat we het algoritme lang genoeg hebben laten runnen om een tendens te ontdekken in ons algoritme.
-Wel kan het langer laten draaien zorgen voor een hogere maximale score.
-
-Ten tweede hebben we de keuze gemaakt om niet alle resultaten te accepteren.
-De resultaten die we niet accepteren voldoen niet aan de voorwaarden voor het zijn van een geldig traject.
-Een traject is ongeldig wanneer een verbinding wordt aangemaakt die niet geldt als bestaand.
-Ook is een traject ongeldig wanneer het traject de maximum toegestane tijd of aantal trajecten overschrijdt.
-
-Met de gekozen implementatie laat een histogram van de resultaten zien dat er geen pure willekeur zit in ons algoritme.
-Een oorzaak hiervan kan zijn de hoeveelheid data die we beschikbaar hebben. Maar ook kan de implementatie van onze oplossing hebben geleid tot afwijkende resultaten.
+Voor de baseline van ons project "Ticket to ride" hebben we een randomalgoritme geschreven. Het idee is dat dit randomalgoritme een aantal kloppende trajecten genereert voor de lijnvoering van een openbaar vervoersbedrijf genaamd "RailNL". Ons algoritme kiest een willekeurig traject en vervolgens kiest het vanaf het dan huidige station een volgend station. Deze trajectlijsten exporteren we naar een .csv bestand, om daar vervolgens een (grafische) analyse op los te laten.
+	Voor het uitvoeren is er een beperkt tijdsraam. Dit leidt ertoe dat we een aantal aannames doen om ons algoritme te implementeren. De eerste aanname is dat elke valide oplossing niet kan worden verbeterd. Wanneer er een geldige oplossing wordt gevonden, wordt er niet gekeken naar een mogelijke verbetering van diezelfde oplossing. Om verschillende oplossingen te vergelijken hebben we een grotere scope nodig en meer tijd. De tweede aanname is dat stations niet uit trajecten kunnen worden verwijderd wanneer ze zijn toegevoegd. Als we dit zouden implementeren, dan zou hierdoor de state space oneindig groot worden door het herhaaldelijk toevoegen en verwijderen van stations uit trajecten. De derde aanname is dat de hoeveelheid trajecten van te voren, pseudowillekeurig, wordt vastgesteld. Deze hoeveelheid trajecten is een getal tussen 1 en 7. Dit doen we om elke hoeveelheid trajecten evenveel kans te geven. Ook verkleint de state space per oplossing, omdat er geen mogelijkheid is om een traject toe te voegen of te schrappen wanneer dit van te voren is vastgesteld.
+	Met de gekozen implementatie laat een histogram van de resultaten zien dat er geen pure willekeur zit in ons algoritme. Een oorzaak hiervan kan zijn de hoeveelheid data die we beschikbaar hebben. Maar ook kan de implementatie van onze oplossing hebben geleid tot afwijkende resultaten.
