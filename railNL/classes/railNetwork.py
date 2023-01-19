@@ -36,8 +36,11 @@ class RailNetwork:
         - Use route.popStation() to remove a station from the tail end of the route
         - Use route.popStation(0) to remove a station from the head end of the route
         - route.popStation can also be used to remove a station from the middle of te route. However
-          this will lead to unconnected stations, which will have to be resolved before the route is
+          this will lead to unvisited stations, which will have to be resolved before the route is
           legal.
+
+    > Getting legal moves for a route:
+        - With route.getLegalMoves() the legal moves of a system can be 
 
     O STATIONS
     > Getting connecting stations
@@ -117,7 +120,7 @@ class RailNetwork:
         """
         return self.stations[stationName]
 
-    def listStations(self, nConnections = False, nUnused = False, nUnconnected = False) \
+    def listStations(self, nConnections = False, nUnused = False, nUnvisited = False) \
         -> List[Union["Station", Tuple["Station", Optional[int], Optional[int], Optional[int]]]]:
         """
         Returns a list of all station nodes with optional information on their connections
@@ -127,16 +130,16 @@ class RailNetwork:
             nUnused (bool): Whether the amount of unused connections should be given. A connection
                             is unused if the corresponding station node is in a route, but the
                             connection is not.
-            nUnconnected (bool): Whether the amount of unconnected connections should be given. A
-                               connection is unconnected if the corresponding station node is not
+            nUnvisited (bool): Whether the amount of unvisited connections should be given. A
+                               connection is unvisited if the corresponding station node is not
                                in any route.
         
         Returns: A list of lists of The station nodes with the amounts of connections (optional), 
-                 the amount of unused connectiosn (optional) and the amount of unconnected connections
+                 the amount of unused connectiosn (optional) and the amount of unvisited connections
                 (optional) in that order
         """
         # if no extra data is requested, a simple list comprehension can be used
-        if not (nConnections or nUnused or nUnconnected):
+        if not (nConnections or nUnused or nUnvisited):
             return [station for _, station in self.stations.items()]
 
         stationList = []
@@ -153,15 +156,15 @@ class RailNetwork:
             if nUnused:
                 stationPoint[2] = station.unusedConnectionAmount()
             
-            # append the amount of unconnected stations connected to the station if requested.
-            if nUnconnected:
-                stationPoint[3] = station.unvistitedConnectionAmount()
+            # append the amount of unvisited stations connected to the station if requested.
+            if nUnvisited:
+                stationPoint[3] = station.unvisitedConnectionAmount()
         
             stationList.append(tuple(stationPoint))
         
         return stationList
 
-    def listUnconnectedStations(self, nConnections = False, nUnused = False, nUnconnected = False) \
+    def listUnvisitedStations(self, nConnections = False, nUnused = False, nUnvisited = False) \
         -> List[Union["Station", Tuple["Station", Optional[int], Optional[int], Optional[int]]]]:
         """
         Returns a list of all stations not connected to any route.
@@ -171,20 +174,20 @@ class RailNetwork:
             nUnused (bool): Whether the amount of unused connections should be given. A connection
                             is unused if the corresponding station node is in a route, but the
                             connection is not.
-            nUnconnected (bool): Whether the amount of unconnected connections should be given. A
-                               connection is unconnected if the corresponding station node is not
+            nUnvisited (bool): Whether the amount of unvisited connections should be given. A
+                               connection is unvisited if the corresponding station node is not
                                in any route.
         
         Returns: A list of lists of The station nodes with the amounts of connections (optional), 
-                 the amount of unused connectiosn (optional) and the amount of unconnected connections
+                 the amount of unused connectiosn (optional) and the amount of unvisited connections
                 (optional) in that order
         """
-        # get the list of all station and take only the unconnected stations
-        if not (nConnections or nUnused or nUnconnected):
+        # get the list of all station and take only the unvisited stations
+        if not (nConnections or nUnused or nUnvisited):
             return [station for station in self.listStations() if not station.isConnected()]
 
-        # If data is requested, get list of stations with data and take only unconnected stations
-        return [station for station in self.listStations(nConnections, nUnused, nUnconnected) if not
+        # If data is requested, get list of stations with data and take only unvisited stations
+        return [station for station in self.listStations(nConnections, nUnused, nUnvisited) if not
                 station[0].isConnected()]
     
     # User methods: Routes
@@ -261,7 +264,7 @@ class RailNetwork:
 
     def exportSolution(self, folder: str, filename: str) -> None:
         """
-        Exports the current routes to a csv file to /results
+        Exports the current routes to a csv file to /folder
         """
         if not os.path.exists(f"{folder}/"):
             os.mkdir(f"{folder}/")
