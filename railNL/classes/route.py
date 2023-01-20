@@ -3,6 +3,8 @@ from classes.connection import Connection
 
 from typing import List, Tuple, Dict, Union, Optional
 
+import numpy as np
+
 class Route:
     """
     Route object that tracks rail connections between stations
@@ -312,3 +314,9 @@ class Route:
                 connection.removeRoute(self.getID())
         
         self._connections = []
+    
+    def unique(self) -> bool:
+        """
+        Return all stations in route are unique.
+        """
+        return np.unique(self._stations).size == nStations()
