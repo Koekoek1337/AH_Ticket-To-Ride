@@ -319,4 +319,4 @@ class Route:
         """
         Return all stations in route are unique.
         """
-        return np.unique(self._stations).size == nStations()
+        return len(np.unique(self._stations)) == self.nStations()
