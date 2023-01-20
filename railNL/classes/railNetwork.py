@@ -109,6 +109,13 @@ class RailNetwork:
                     
                     self.stations[row["station1"]].addConnection(row["station2"], connection)
                     self.stations[row["station2"]].addConnection(row["station1"], connection)
+    
+    def loadSolution(self, csvFilepath: str) -> None:
+        """
+        TODO
+        load a solution from a csvfile
+        """
+        pass
 
     # User methods: Stations
     def getStation(self, stationName: str) -> Station:
