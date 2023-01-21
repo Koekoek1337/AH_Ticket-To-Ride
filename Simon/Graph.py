@@ -18,6 +18,8 @@ def load_station(filename: str):
                 G.add_node(station_name, pos=(x, y))
                 plt.figure(1,figsize=(12,15))
                 nx.draw(G, nx.get_node_attributes(G, 'pos'), with_labels=True, node_size=50)
+            image = mpimg.imread("kaartNL.jpg")
+            plt.imshow(image)
             plt.savefig("Graph.png", format="PNG")
             plt.show()
 
