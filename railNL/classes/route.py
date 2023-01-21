@@ -3,6 +3,8 @@ from classes.connection import Connection
 
 from typing import List, Tuple, Dict, Union, Optional
 
+import numpy as np
+
 class Route:
     """
     Route object that tracks rail connections between stations
@@ -139,7 +141,8 @@ class Route:
         Removes a station from stations at stationIndex
         
         TODO
-        find replacement connection when not at edges
+        - find replacement connection when not at edges
+        - prevent routeID from being removed if the station or connection is still in the route
         """
         
         self._stations[stationIndex].removeRoute(self.getID())
@@ -174,7 +177,8 @@ class Route:
             a station can occur multiple times if it has a broken connection.
         
         TODO
-        reimplement brokenConnections
+        - reimplement brokenConnections
+
         """
         # brokenConnections = self.brokenConnections()
 
@@ -310,3 +314,9 @@ class Route:
                 connection.removeRoute(self.getID())
         
         self._connections = []
+    
+    def unique(self) -> bool:
+        """
+        Return all stations in route are unique.
+        """
+        return len(np.unique(self._stations)) == self.nStations()
