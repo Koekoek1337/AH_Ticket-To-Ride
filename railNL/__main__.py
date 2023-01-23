@@ -12,11 +12,12 @@ from typing import List, Dict, Union
 o How to run:
 > python railNL jobs/filename.json
     - See jobs/runHolland.json and jobs/runNetherlands.json
+    - **parameters acts like [arg1=A][arg2=b][arg3=c]. In order to build your own job file 
+      in order to run your program from main, you should 
 
 """
 
 def main(stationsFilepath: str, connectionsFilepath: str, jobType: str, **parameters):
-
     network = RailNetwork(stationsFilepath, connectionsFilepath)
 
     if jobType.lower() in ["batch", "b", "bat"]:
@@ -28,20 +29,31 @@ def main(stationsFilepath: str, connectionsFilepath: str, jobType: str, **parame
 
 
 def runBatch(network: RailNetwork, algorithm: str, **parameters):
+    """Runs an algorithm in batch as specified by the given job.json file"""
     algorithm = algorithm.lower()
     
     if algorithm == "random":
         random_hajo.main(network, **parameters)
 
 
-def runVis(network: RailNetwork, **parameters):
-    network.createRoute(network.getStation("Den Helder"))
-    route = network.getRoute(0)
-    route.appendStation(network.getStation("Alkmaar"))
-    route.appendStation(network.getStation("Castricum"))
-
+def runVis(network: RailNetwork, resultFilepath: str, **parameters):
+    """Loads a solution into the network and visualizes it"""
+    network.loadSolution(resultFilepath)
     visualizeNetwork(network.connectionPoints(), network.stationPoints(), network.routePointLists())
-    
+
+def runHist(resultFilepath: str):
+    """
+    TODO
+    plots the score data as a histogram
+    """
+    pass
+
+def runConvergence(resultFilepath: str):
+    """
+    TODO
+    Plots the convergence of an algorithm over iterations
+    """
+    pass
 
 def parseArgv(argv: List[str]) -> Dict[str, Union[str, int, bool]]:
     
