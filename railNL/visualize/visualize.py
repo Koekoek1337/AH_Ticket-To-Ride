@@ -1,45 +1,40 @@
 import os
+import re
 import statistics
-from typing import List, Tuple
+import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import numpy as np
-import re
-from classes.railNetwork import RailNetwork
-import matplotlib
-import bestRandomHolland
+from natsort import natsorted
+from typing import List, Tuple
 
-stations = RailNetwork("StationsNationaal.csv", "ConnectiesNationaal.csv").stationPoints()
-connections = RailNetwork("StationsNationaal.csv", "ConnectiesNationaal.csv").connectionPoints()
-route = RailNetwork("StationsNationaal.csv", "ConnectiesNationaal.csv").routePointLists()
 
 def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, float]]],
                      stations: List[Tuple[str, Tuple[float, float]]],
                      routePointLists: List[List[Tuple[Tuple[int, int], Tuple[int, int]]]],
                      stationNames: bool = True) -> None:
     """
-    Args:
-        connections: List of tuples of (x, y) and (x, y)
-        stations: List of tuples of station name and (x,y)
+    Input: RailNetwork()
+    Gives the connections, stations and routePointLists.
     """
 
     # Print an image of the Netherlands
     image = mpimg.imread("NLkaart.png")
-    # plt.imshow(image)
+
+    # Update figure size based on image size
     dpi = 120
     height, width, band = image.shape
-    # Update figure size based on image size
     figsize = width / float(dpi), height / float(dpi)
 
     # Create a figure of the right size with one axes that takes up the full figure
     fig, ax = plt.subplots(figsize=figsize)
 
     # find the extent
-    longitude_top_left = 3.5
-    longitude_top_right = 7.0
-    latitude_bottom_left = 50.8
-    latitude_top_left = 53.5
-    extent = [longitude_top_left, longitude_top_right, latitude_bottom_left, latitude_top_left]
+    longitudeMin = 3.5
+    longitudeMax = 7.0
+    latitudeMin = 50.8
+    latitudeMax = 53.5
+    extent = [longitudeMin, longitudeMax, latitudeMin, latitudeMax]
 
     # Draw the image
     ax.imshow(image, interpolation='nearest', extent=extent)
@@ -69,37 +64,53 @@ def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, f
 
     plt.savefig("rail1.png", format="PNG")
     plt.show()
+    plt.clear()
 
 
-
-
-def choicesFiles():
+def choicesFiles(targetFolder: str) -> Tuple[List[int], List[int], float]:
+    """
+    Input: ../<Foldername>
+    Selects the folder with the results and scans through them.
+    """
     scores = []
-    iteration = []
+    iterations = []
     # iterate through all file
-    # TODO
-    for file in os.listdir("Ticket-to-Ride\bestRandomHolland"):
+    for file in os.listdir(targetFolder):
         # Check whether file is in text format or not
         if file.endswith(".csv"):
             scores.append(loadScores(file))
-            iteration.append(re.split("[-.]", file)[-3])
+            # gets the amount of iteration from the title in csv file.
+            iterations.append(re.split("[-.]", file)[3])
 
+    #  Orders the lists from low to high.
+    iterations = natsorted(iterations, key=lambda y: str(y).lower())
+    iterations = [int(it) for it in iterations]
     scores.sort()
-    average = statistics.mean(scores)
-    return scores, average, iteration
 
-def loadScores(filename):
-    # Select the scores of the files.
-    with open(filename, 'r') as file:
+    average = statistics.mean(scores)
+    return scores, iterations, average
+
+
+def loadScores (filename: str) -> float:
+    """
+    Select the scores of the file.
+    """
+    with open(f"../bestRandomholland/{filename}", 'r') as file:
         for line in file:
             splits = line.split(',')
             if splits[0] == 'score':
                 return float(splits[1])
 
-def plotHistAverage(scores, average):
-    # Creates a hist with the data.
+
+def plotHistAverage (scores: List[int], _iterations: Any, average: List[int],
+                    runName, algorithmName) -> None:
+    """
+    Input: scores, average from def choicesFiles.
+    Input: scope and algorithm.
+    Creates a hist with the data.
+    """
     counts, bins = np.histogram(scores, 30)
-    plt.title("Baseline Holland, Random-Average")
+    plt.title(f"{runName}, {algorithmName}")
     plt.axvline(average)
     plt.xlabel("scores")
     plt.ylabel("frequency")
@@ -107,14 +118,20 @@ def plotHistAverage(scores, average):
     plt.stairs(counts, bins)
     plt.savefig("hist.png", format="PNG")
     plt.show()
+    plt.clear()
 
-def plotAlgorithm(scocers, iterations):
-    plt.title("Baseline Holland, Random")
+
+def plotAlgorithm (scores: List[int], iterations: List[int], _average: Any,
+                   runName, algorithmName) -> None:
+    """
+    Input: scores, average from def choicesFiles.
+    Input: scope and algorithm.
+    Creates a graph of the applied algorithm.
+    """
+    plt.plot(iterations, scores)
+    plt.title(f"Highest Score: {round(scores[-1], 2)}")
+    plt.suptitle("f"{runName}, {algorithmName}"")
     plt.xlabel("iteration")
-    plt.ylabel("scores")
+    plt.ylabel("points")
     plt.savefig("algorithm.png", format="PNG")
-
-
-if __name__ == '__main__':
-#     # plotHist(*choicesFiles())
-    visualizeNetwork(connections, stations, route)
+    plt.show()
