@@ -1,0 +1,17 @@
+{
+    "jobType": "v",
+
+    "stationsFilepath": "data/StationsHolland.csv",
+    "connectionsFilepath": "data/ConnectiesHolland.csv",
+
+    "algorithm": "random",
+
+    "targetFolder": "results/holland",
+
+    "maxRoutes": 7,
+    "maxDuration": 120,
+    
+    "convergenceLimit": 0,
+    
+    "recordAll": false
+}
