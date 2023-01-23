@@ -130,7 +130,7 @@ def plotAlgorithm (scores: List[int], iterations: List[int], _average: Any,
     """
     plt.plot(iterations, scores)
     plt.title(f"Highest Score: {round(scores[-1], 2)}")
-    plt.suptitle("f"{runName}, {algorithmName}"")
+    plt.suptitle("f{runName}, {algorithmName}")
     plt.xlabel("iteration")
     plt.ylabel("points")
     plt.savefig("algorithm.png", format="PNG")
