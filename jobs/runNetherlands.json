@@ -6,12 +6,13 @@
 
     "algorithm": "random",
     
+    "RunName": "Solution",
     "targetFolder": "results/Netherlands",
 
     "maxRoutes": 20,
     "maxDuration": 180,
     
-    "convergenceLimit": 0,
+    "convergenceLimit": 50000,
     
     "recordAll": false
 }
