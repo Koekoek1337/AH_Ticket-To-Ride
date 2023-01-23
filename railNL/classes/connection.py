@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Tuple, Set
+from typing import TYPE_CHECKING, Tuple, Set, List
 
 if TYPE_CHECKING:
     from station import Station
@@ -65,3 +65,10 @@ class Connection:
 
         return (list(self._connectedStations.items())[0][1].position(), 
                 list(self._connectedStations.items())[1][1].position())
+
+    def getStationNames(self) -> List[str]:
+        """
+        Returns station names of connection
+        """
+        
+        return list(self._connectedStations.keys())
