@@ -15,6 +15,9 @@ class Connection:
         self._duration = float(duration)
         self._routes: Set[int] = set()
 
+    def __lt__(self, other: "Connection"):
+        return self._id < other._id
+
     def getID(self):
         """Returns the unique ID of the connection"""
         return self._id
