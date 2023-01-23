@@ -7,7 +7,7 @@ import numpy as np
 
 class Route:
     """
-    Route object that tracks rail connections between stations
+    Route node that tracks rail connections between stations
     
     properties:
         _id (int): The unique identifier of the Route
@@ -119,7 +119,7 @@ class Route:
         self._connections.insert(connectionIndex, connection)
 
     def replaceConnection(self, stationIndex: int, connectionIndex: int):
-        """replace connection object on connectioIndex with new connection"""
+        """replace connection node on connectioIndex with new connection"""
         oldConnection = self._connections[connectionIndex]
         newConnection = self._findConnection(self._stations[stationIndex], 
                                          self._stations[stationIndex + 1]
@@ -134,7 +134,7 @@ class Route:
 
     def _findConnection(self, station1: Station, station2: Station) -> Union[Connection, None]:
         """
-        Returns the connection object between station1 and station2, if it exists
+        Returns the connection node between station1 and station2, if it exists
         """
 
         if not station1.hasConnection(station2.name()):
