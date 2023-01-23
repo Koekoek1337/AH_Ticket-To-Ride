@@ -1,6 +1,7 @@
 import os
 import csv
 import datetime
+from math import ceil
 
 from classes.station import Station
 from classes.route import Route
@@ -308,6 +309,25 @@ class RailNetwork:
         p is the fraction of rail connections with
         """
         return self.connectionCoverage() * 10000 - (self.nRoute() * 100 + self.totalDuration())
+
+    def minimumTotalDuration(self) -> float:
+        """Returns the sum of all railConnections"""
+
+        duration = 0
+
+        for connection in self.connections:
+            duration += connection.duration()
+        
+        return duration
+
+    def theoreticalMaxScore(self, maxDuration: float) -> float:
+        """
+        Returns the theoretically maximum score if all connections are driven with the minimum
+        possible routes.
+        """
+        minimumTotalDuration = self.minimumTotalDuration()
+
+        return 10000 - (100 * ceil(minimumTotalDuration / maxDuration) + minimumTotalDuration)
 
     def exportSolution(self, folder: str, filename: str) -> None:
         """
