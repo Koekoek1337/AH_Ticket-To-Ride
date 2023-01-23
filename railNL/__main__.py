@@ -9,14 +9,8 @@ from sys import argv
 from typing import List, Dict, Union
 
 
-def main(
-    stationsFilepath: str, 
-    connectionsFilepath: str, 
-    jobType: str,
-
-    **parameters
-    ):
-
+def main(stationsFilepath: str, connectionsFilepath: str, jobType: str, **parameters):
+    
     network = RailNetwork(stationsFilepath, connectionsFilepath)
 
     if jobType.lower() in ["batch", "b", "bat"]:
@@ -26,23 +20,21 @@ def main(
     elif jobType.lower() in ["visualize", "vis", "v"]:
         runVis(network, **parameters)
 
-    visualizeNetwork(network.connectionPoints(), network.stationPoints(), network.routePointLists())
 
-    network.exportSolution(targetFolder, "Nederland")
-
-
-def runBatch(network, algorithm: str, **parameters):
+def runBatch(network: RailNetwork, algorithm: str, **parameters):
     algorithm = algorithm.lower()
     
     if algorithm == "random":
         random_hajo.main(network, **parameters)
 
 
-def runVis(network, **parameters):
+def runVis(network: RailNetwork, **parameters):
     network.createRoute(network.getStation("Den Helder"))
     route = network.getRoute(0)
     route.appendStation(network.getStation("Alkmaar"))
     route.appendStation(network.getStation("Castricum"))
+
+    visualizeNetwork(network.connectionPoints(), network.stationPoints(), network.routePointLists())
     
 
 def parseArgv(argv: List[str]) -> Dict[str, Union[str, int, bool]]:
