@@ -9,25 +9,41 @@ from sys import argv
 from typing import List, Dict, Union
 
 
-def main(stationsFilepath: str, connectionsFilepath: str, recordAll: bool,
-         convergenceLimit: int, targetFolder: int, jobType: str, maxRoutes: int, maxTime: float):
+def main(
+    stationsFilepath: str, 
+    connectionsFilepath: str, 
+    jobType: str,
+
+    **parameters
+    ):
 
     network = RailNetwork(stationsFilepath, connectionsFilepath)
 
-    if jobType == "batch":
-        random_hajo.main(network, maxRoutes, maxTime, targetFolder, convergenceLimit=convergenceLimit, 
-                         recordAll = recordAll)
+    if jobType.lower() in ["batch", "b", "bat"]:
+        runBatch(network, **parameters)
         return
     
-    network.createRoute(network.getStation("Den Helder"))
-    route = network.getRoute(0)
-    route.appendStation(network.getStation("Alkmaar"))
-    route.appendStation(network.getStation("Castricum"))
+    elif jobType.lower() in ["visualize", "vis", "v"]:
+        runVis(network, **parameters)
 
     visualizeNetwork(network.connectionPoints(), network.stationPoints(), network.routePointLists())
 
     network.exportSolution(targetFolder, "Nederland")
 
+
+def runBatch(network, algorithm: str, **parameters):
+    algorithm = algorithm.lower()
+    
+    if algorithm == "random":
+        random_hajo.main(network, **parameters)
+
+
+def runVis(network, **parameters):
+    network.createRoute(network.getStation("Den Helder"))
+    route = network.getRoute(0)
+    route.appendStation(network.getStation("Alkmaar"))
+    route.appendStation(network.getStation("Castricum"))
+    
 
 def parseArgv(argv: List[str]) -> Dict[str, Union[str, int, bool]]:
     
