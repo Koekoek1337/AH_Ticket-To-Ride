@@ -1,5 +1,5 @@
 from classes.railNetwork import RailNetwork
-from visualize.visualize import visualizeNetwork
+# from visualize.visualize import visualizeNetwork
 from algorithms import random_hajo
 
 import json
