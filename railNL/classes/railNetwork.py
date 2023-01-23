@@ -84,6 +84,8 @@ class RailNetwork:
         Post:
             Station objects are created and stored in self.stations, keyed by name.
         """
+        if not os.path.exists(csvFilepath):
+            raise ValueError(f"File {csvFilepath} not found")
 
         with open(csvFilepath) as csvFile:
             reader = csv.DictReader(csvFile)
@@ -100,6 +102,9 @@ class RailNetwork:
         Args:
             csvFilepath (str): The path to the file containing connections between stations
         """
+        if not os.path.exists(csvFilepath):
+            raise ValueError(f"File {csvFilepath} not found")
+
         with open(csvFilepath) as csvFile:
             for row in csv.DictReader(csvFile):
                 if row["station1"] in self.stations and row["station2"] in self.stations:
@@ -197,6 +202,11 @@ class RailNetwork:
         return [station for station in self.listStations(nConnections, nUnused, nUnvisited) if not
                 station[0].isConnected()]
     
+    def nConnections(self):
+        """Returns the amount of connections in the network"""
+
+        return len(self.connections)
+
     # User methods: Routes
     def createRoute(self, station: Station) -> Route:
         """
@@ -257,6 +267,12 @@ class RailNetwork:
         Returns a list of all route objects.
         """
         return [route for _, route in self.routes.items()]
+    
+    def getLongestDuration(self) -> float:
+        """
+        Returns the longest duration of all connections
+        """
+        return max([connection.duration() for connection in self.connections])
 
     # Output methods
     def score(self) -> float:
