@@ -6,7 +6,7 @@
 
     "algorithm": "random",
 
-    "targetFolder": "results/holland",
+    "resultFilepath": "results/holland/20230123-140103-solution-59221.csv",
 
     "maxRoutes": 7,
     "maxDuration": 120,
