@@ -1,0 +1,15 @@
+{
+    "jobType": "batch",
+
+    "stationsFilepath": "data/StationsNationaal.csv",
+    "connectionsFilepath": "data/ConnectiesNationaal.csv",
+
+    "targetFolder": "results/Netherlands",
+
+    "maxRoutes": 20,
+    "maxTime": 180,
+    
+    "convergenceLimit": 0,
+    
+    "recordAll": false
+}
