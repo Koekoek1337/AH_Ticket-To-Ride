@@ -80,30 +80,28 @@ def randomRoute(network: RailNetwork, maxDuration: float):
     return
 
 
-def randomAlgorithmOld(network: RailNetwork, maxRoutes: int, maxDuration: int):
-    
-    nRoutes = random.randint(1, maxRoutes)
+def randomSolution(network: RailNetwork, maxRoutes: int, maxDuration: float,
+    convergenceLimit: int = 50000) -> RailNetwork:
+    """
+    Returns a randomly solved railNetwork for optimization
+    """
+    bestNetwork = network
 
-    for _ in range(nRoutes):
-        route = network.createRoute(random.choice(network.listStations()))
+    convergence = 0
+    attempt = 1
+    highest = 0
 
-        route.appendStation(
-                            random.choice(
-                                          [station for station, *_ in route.listStations()[0].listStations()]
-                                        )
-                          )
+    while convergence <= convergenceLimit:
+        workNetwork = deepcopy(network)
 
-    while network.hasLegalMoves(maxDuration, nRoutes):
-        route = random.choice(network.listRoutesWithLegal(maxDuration))
+        randomAlgorithm(workNetwork, maxRoutes, maxDuration)
 
-        moves = route.getLegalMoves(maxDuration)
-        
-        index = random.choice(list(moves.keys()))
+        newScore = workNetwork.score()
+        if highest < newScore:
+            highest = newScore
+            bestNetwork = workNetwork
+            convergence = 0
 
-        if index == 0:
-            route.insertStation(index, random.choice(moves[index])[0])
-        
-        else:
-            route.appendStation(random.choice(moves[index])[0])
-    
-    return network
+        convergence += 1
+
+    return bestNetwork
