@@ -1,5 +1,5 @@
 from classes.railNetwork import RailNetwork
-# from visualize.visualize import visualizeNetwork
+from visualize.visualize import visualizeNetwork
 from algorithms import random_hajo
 
 import json
@@ -8,6 +8,12 @@ from sys import argv
 
 from typing import List, Dict, Union
 
+"""
+o How to run:
+> python railNL jobs/filename.json
+    - See jobs/runHolland.json and jobs/runNetherlands.json
+
+"""
 
 def main(stationsFilepath: str, connectionsFilepath: str, jobType: str, **parameters):
 
