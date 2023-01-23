@@ -5,7 +5,7 @@ from classes.railNetwork import RailNetwork
 from classes.route import Route
 from classes.station import Station
 
-def main(network: RailNetwork, maxRoutes: int, tMax: float, targetFolder: str ="results", 
+def main(network: RailNetwork, maxRoutes: int, maxDuration: float, targetFolder: str ="results", 
          runName: str = "solution", convergenceLimit: int = 10000, recordAll: bool = False, 
          **_):
     
@@ -13,14 +13,12 @@ def main(network: RailNetwork, maxRoutes: int, tMax: float, targetFolder: str ="
     attempt = 1
     highest = 0
 
-
-
     while convergence <= convergenceLimit:
         print(f"attempt: {attempt}")
 
         workNetwork = deepcopy(network)
 
-        randomAlgorithm(workNetwork, maxRoutes, tMax)
+        randomAlgorithm(workNetwork, maxRoutes, maxDuration)
 
         newScore = workNetwork.score()
         if highest < newScore:
@@ -40,23 +38,23 @@ def main(network: RailNetwork, maxRoutes: int, tMax: float, targetFolder: str ="
 
         print("retrying")
 
-def randomAlgorithm(network: RailNetwork, maxRoutes: int, tMax: int):
+def randomAlgorithm(network: RailNetwork, maxRoutes: int, maxDuration: int):
     
     nRoutes = random.randint(1, maxRoutes)
 
     for _ in range(nRoutes):
-        randomRoute(network, tMax)
+        randomRoute(network, maxDuration)
     
     return network
 
 
-def randomRoute(network: RailNetwork, tMax: float):
+def randomRoute(network: RailNetwork, maxDuration: float):
     longestConnection = network.getLongestDuration()
 
     route = network.createRoute(random.choice(network.listStations()))
 
     while route.routeScore(network.nConnections()) <= 0:
-        tTarget = random.randrange(round(longestConnection), round(tMax))
+        tTarget = random.randrange(round(longestConnection), round(maxDuration))
 
         route.empty()
 
@@ -82,7 +80,7 @@ def randomRoute(network: RailNetwork, tMax: float):
     return
 
 
-def randomAlgorithmOld(network: RailNetwork, maxRoutes: int, tMax: int):
+def randomAlgorithmOld(network: RailNetwork, maxRoutes: int, maxDuration: int):
     
     nRoutes = random.randint(1, maxRoutes)
 
@@ -95,10 +93,10 @@ def randomAlgorithmOld(network: RailNetwork, maxRoutes: int, tMax: int):
                                         )
                           )
 
-    while network.hasLegalMoves(tMax, nRoutes):
-        route = random.choice(network.listRoutesWithLegal(tMax))
+    while network.hasLegalMoves(maxDuration, nRoutes):
+        route = random.choice(network.listRoutesWithLegal(maxDuration))
 
-        moves = route.getLegalMoves(tMax)
+        moves = route.getLegalMoves(maxDuration)
         
         index = random.choice(list(moves.keys()))
 
