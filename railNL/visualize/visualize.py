@@ -4,8 +4,10 @@ from typing import List, Tuple
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import numpy as np
+import re
 from classes.railNetwork import RailNetwork
 import matplotlib
+import bestRandomHolland
 
 stations = RailNetwork("StationsNationaal.csv", "ConnectiesNationaal.csv").stationPoints()
 connections = RailNetwork("StationsNationaal.csv", "ConnectiesNationaal.csv").connectionPoints()
@@ -73,15 +75,18 @@ def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, f
 
 def choicesFiles():
     scores = []
+    iteration = []
     # iterate through all file
     # TODO
-    for file in os.listdir():
+    for file in os.listdir("Ticket-to-Ride\bestRandomHolland"):
         # Check whether file is in text format or not
         if file.endswith(".csv"):
             scores.append(loadScores(file))
+            iteration.append(re.split("[-.]", file)[-3])
+
     scores.sort()
     average = statistics.mean(scores)
-    return scores, average
+    return scores, average, iteration
 
 def loadScores(filename):
     # Select the scores of the files.
@@ -94,7 +99,7 @@ def loadScores(filename):
 def plotHistAverage(scores, average):
     # Creates a hist with the data.
     counts, bins = np.histogram(scores, 30)
-    plt.title("Baseline Holland, Random")
+    plt.title("Baseline Holland, Random-Average")
     plt.axvline(average)
     plt.xlabel("scores")
     plt.ylabel("frequency")
@@ -103,7 +108,11 @@ def plotHistAverage(scores, average):
     plt.savefig("hist.png", format="PNG")
     plt.show()
 
-def plotHillClimber():
+def plotAlgorithm(scocers, iterations):
+    plt.title("Baseline Holland, Random")
+    plt.xlabel("iteration")
+    plt.ylabel("scores")
+    plt.savefig("algorithm.png", format="PNG")
 
 
 if __name__ == '__main__':
