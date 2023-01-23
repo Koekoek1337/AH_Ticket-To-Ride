@@ -28,6 +28,7 @@ class Route:
         """representation"""
         return f"{self._id},\"[{', '.join([station.name() for station in self.listStations()])}]\""
 
+    # getters
     def getID(self):
         """Returns the id of the route"""
         return self._id
@@ -55,7 +56,8 @@ class Route:
         returns the amount of stations in the route
         """
         return len(self._stations)
-    
+
+    # Stations
     def listStations(self) -> List[Station]:
         """
         returns a list of stations
@@ -76,6 +78,7 @@ class Route:
             station (Station): The station node to connect to
         """
         self._stations.insert(stationIndex, station)
+
         station.addRoute(self.getID())
 
         if len(self._stations) == 1:
@@ -91,62 +94,14 @@ class Route:
 
         self._insertConnection(stationIndex, connectionIndex)
 
-        if stationIndex < self.nStations() - 1:
+        if stationIndex < self.nStations() - 1 and stationIndex != 0:
             connectionIndex = stationIndex
 
-            self.replaceConnection(stationIndex, connectionIndex)
-
-    def _insertConnection(self, stationIndex: int, connectionIndex: int) -> int:
-        """
-        Insert connections to station at stationIndex on connectionIndex
-        """
-        
-        # Only at stationIndex 0 does a connection have to be inserted that connects to the next
-        # station
-
-        stationA = self._stations[stationIndex]
-        stationB = None
-        
-        if stationIndex == 0:
-            stationB = self._stations[stationIndex + 1]
-        else:
-            stationB = self._stations[stationIndex - 1]
-
-        connection = self._findConnection(stationA, stationB)
-
-        connection.addRoute(self.getID())
-
-        self._connections.insert(connectionIndex, connection)
-
-    def replaceConnection(self, stationIndex: int, connectionIndex: int):
-        """replace connection node on connectioIndex with new connection"""
-        oldConnection = self._connections[connectionIndex]
-        newConnection = self._findConnection(self._stations[stationIndex], 
-                                         self._stations[stationIndex + 1]
-                                        )
-       
-        self._connections[connectionIndex] = newConnection
-
-        # Only attempt to remove routeID if oldConnection not None
-        # Do not remove routeID from connection if it is still in the route
-        if oldConnection and oldConnection not in self._connections:
-            self._connections[connectionIndex].removeRoute(self.getID())
-
-    def _findConnection(self, station1: Station, station2: Station) -> Union[Connection, None]:
-        """
-        Returns the connection node between station1 and station2, if it exists
-        """
-
-        if not station1.hasConnection(station2.name()):
-            return None
-
-        connection = station1.getConnection(station2.name())
-        
-        return connection
+            self._replaceConnection(stationIndex, connectionIndex)
     
     def popStation(self, stationIndex: int = -1) -> None:
         """
-        Removes a station from stations at stationIndex
+        Removes the station at stationIndex from the route.
         """
         
         station = self._stations.pop(stationIndex)
@@ -335,3 +290,53 @@ class Route:
         score = self.uniqueConnections() / totalConnections * 10000 - (100 + self.duration())
 
         return score
+
+    # Connections
+    def _insertConnection(self, stationIndex: int, connectionIndex: int) -> int:
+        """
+        Insert connections to station at stationIndex on connectionIndex
+        """
+        
+        # Only at stationIndex 0 does a connection have to be inserted that connects to the next
+        # station
+
+        stationA = self._stations[stationIndex]
+        stationB = None
+        
+        if stationIndex == 0:
+            stationB = self._stations[stationIndex + 1]
+        else:
+            stationB = self._stations[stationIndex - 1]
+
+        connection = self._findConnection(stationA, stationB)
+        
+        if connection:
+            connection.addRoute(self.getID())
+
+        self._connections.insert(connectionIndex, connection)
+
+    def _replaceConnection(self, stationIndex: int, connectionIndex: int):
+        """replace connection node on connectioIndex with new connection"""
+        oldConnection = self._connections[connectionIndex]
+        newConnection = self._findConnection(self._stations[stationIndex], 
+                                         self._stations[stationIndex + 1]
+                                        )
+       
+        self._connections[connectionIndex] = newConnection
+
+        # Only attempt to remove routeID if oldConnection not None
+        # Do not remove routeID from connection if it is still in the route
+        if oldConnection and oldConnection not in self._connections:
+            self._connections[connectionIndex].removeRoute(self.getID())
+
+    def _findConnection(self, station1: Station, station2: Station) -> Union[Connection, None]:
+        """
+        Returns the connection node between station1 and station2, if it exists
+        """
+
+        if not station1.hasConnection(station2.name()):
+            return None
+
+        connection = station1.getConnection(station2.name())
+        
+        return connection
