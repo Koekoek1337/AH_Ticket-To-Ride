@@ -82,7 +82,7 @@ class RailNetwork:
             csvFilepath: The path of the CSV file containing the fields [station, x, y] in any order.
 
         Post:
-            Station objects are created and stored in self.stations, keyed by name.
+            Station nodes are created and stored in self.stations, keyed by name.
         """
         if not os.path.exists(csvFilepath):
             raise ValueError(f"File {csvFilepath} not found")
@@ -97,7 +97,7 @@ class RailNetwork:
 
     def loadConnections(self, csvFilepath: str) -> None:
         """
-        Adds rail connections to station objects from csv file
+        Adds rail connections to station nodes from csv file
 
         Args:
             csvFilepath (str): The path to the file containing connections between stations
@@ -108,7 +108,7 @@ class RailNetwork:
         with open(csvFilepath) as csvFile:
             for row in csv.DictReader(csvFile):
                 if row["station1"] in self.stations and row["station2"] in self.stations:
-                    # make new connection object and add it to both stations
+                    # make new connection node and add it to both stations
                     connection = Connection(len(self.connections), self.stations[row["station1"]], self.stations[row["station2"]], float(row["distance"]))
                     self.connections.append(connection)
 
@@ -117,7 +117,6 @@ class RailNetwork:
     
     def loadSolution(self, csvFilepath: str) -> None:
         """
-        TODO
         load a solution from a csvfile
         """
         pass
@@ -263,7 +262,7 @@ class RailNetwork:
 
     def listRoutes(self) -> List[Route]:
         """
-        Returns a list of all route objects.
+        Returns a list of all route nodes.
         """
         return [route for _, route in self.routes.items()]
     
@@ -416,6 +415,6 @@ class RailNetwork:
 
     def getConnectedStation(self, fromStation, toStation) -> Station:
         """
-        Returns the connected station object of a station
+        Returns the connected station node of a station
         """
         return self.stations[fromStation].getConnectedStation(toStation)
