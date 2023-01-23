@@ -325,7 +325,13 @@ class RailNetwork:
             for _, route in self.routes.items():
                 resultFile.write(f"{route}\n")
 
-            resultFile.write(f"score,{self.score()}")
+            resultFile.write(f"score,{self.score()}\n")
+            connections: List[Connection] = self.getUnusedConnections()
+            listConnections: List[List[str]] = []
+            for connection in connections:
+                listConnections.append(connection.getStationNames())
+            connectionsAsString = str(listConnections).replace(",", ":")
+            resultFile.write(f"connections missing,{connectionsAsString}")
 
     def connectionPoints(self) -> List[Tuple[Tuple[int, int], Tuple[int, int]]]:
         """
@@ -444,3 +450,13 @@ class RailNetwork:
         Returns the connected station node of a station
         """
         return self.stations[fromStation].getConnectedStation(toStation)
+
+    def getUnusedConnections(self) -> List[Connection]:
+        """
+        Returns list of unused connections
+        """
+        listConnections = []
+        for connection in self.connections:
+            if not connection.isConnected():
+                listConnections.append(connection)
+        return listConnections
