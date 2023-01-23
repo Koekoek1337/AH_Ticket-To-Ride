@@ -2,12 +2,14 @@ import os
 import statistics
 from typing import List, Tuple
 import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 import numpy as np
-from classes.RailNetwork import Railnework
+from classes.railNetwork import RailNetwork
+import matplotlib
 
-stations = RailNetwork().stationPoints()
-connections = RailNetwork().connectionPoints()
-route = RailNetwork().routePointLists()
+stations = RailNetwork("StationsNationaal.csv", "ConnectiesNationaal.csv").stationPoints()
+connections = RailNetwork("StationsNationaal.csv", "ConnectiesNationaal.csv").connectionPoints()
+route = RailNetwork("StationsNationaal.csv", "ConnectiesNationaal.csv").routePointLists()
 
 def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, float]]],
                      stations: List[Tuple[str, Tuple[float, float]]],
@@ -19,14 +21,32 @@ def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, f
         stations: List of tuples of station name and (x,y)
     """
 
+    # Print an image of the Netherlands
+    image = mpimg.imread("NLkaart.png")
+    # plt.imshow(image)
+    dpi = 120
+    height, width, band = image.shape
+    # Update figure size based on image size
+    figsize = width / float(dpi), height / float(dpi)
+
+    # Create a figure of the right size with one axes that takes up the full figure
+    fig, ax = plt.subplots(figsize=figsize)
+
+    # find the extent
+    longitude_top_left = 3.5
+    longitude_top_right = 7.0
+    latitude_bottom_left = 50.8
+    latitude_top_left = 53.5
+    extent = [longitude_top_left, longitude_top_right, latitude_bottom_left, latitude_top_left]
+
+    # Draw the image
+    ax.imshow(image, interpolation='nearest', extent=extent)
+
     # draw rail connections
     for pointPair in connections:
         plt.plot([point[0] for point in pointPair], [point[1] for point in pointPair], marker=" ",
-        color="black", zorder=0)
+        color="grey", zorder=0)
 
-    # TODO try to put on cart Netherlands
-    image = mpimg.imread("kaartNL.jpg")
-    plt.imshow(image)
     # draw routes
     for routePointPairs in routePointLists:
         # TODO routepointpairs colours red
@@ -45,6 +65,7 @@ def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, f
             name = station[0]
             plt.annotate(name, (x, y))
 
+    plt.savefig("rail1.png", format="PNG")
     plt.show()
 
 
@@ -70,7 +91,7 @@ def loadScores(filename):
             if splits[0] == 'score':
                 return float(splits[1])
 
-def plotHist(scores, average):
+def plotHistAverage(scores, average):
     # Creates a hist with the data.
     counts, bins = np.histogram(scores, 30)
     plt.title("Baseline Holland, Random")
@@ -81,6 +102,8 @@ def plotHist(scores, average):
     plt.stairs(counts, bins)
     plt.savefig("hist.png", format="PNG")
     plt.show()
+
+def plotHillClimber():
 
 
 if __name__ == '__main__':
