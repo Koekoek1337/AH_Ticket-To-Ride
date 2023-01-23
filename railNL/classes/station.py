@@ -5,7 +5,7 @@ if TYPE_CHECKING:
 
 class Station:
     """
-    Station object for a rail network
+    Station node for a rail network
 
     Attributes:
         name (str): The name of the station
@@ -175,7 +175,7 @@ class Station:
         return unusedStations
 
     def getConnectedStation(self, stationName: str) -> "Station":
-        """returns the station object of a connected station."""
+        """returns the station node of a connected station."""
         return self._connections[stationName].getConnectedStation(stationName)
 
     def connectionDuration(self, stationName: str) -> int:
@@ -215,7 +215,7 @@ class Station:
         return bool(self._routes)
 
     def getConnection(self, stationName: str) -> "Connection":
-        """returns the connection object between a connected station"""
+        """returns the connection node between a connected station"""
         return self._connections[stationName]
     
     def listNodeConnections(self) -> List["Connection"]:

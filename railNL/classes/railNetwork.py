@@ -82,8 +82,10 @@ class RailNetwork:
             csvFilepath: The path of the CSV file containing the fields [station, x, y] in any order.
 
         Post:
-            Station objects are created and stored in self.stations, keyed by name.
+            Station nodes are created and stored in self.stations, keyed by name.
         """
+        if not os.path.exists(csvFilepath):
+            raise ValueError(f"File {csvFilepath} not found")
 
         with open(csvFilepath) as csvFile:
             reader = csv.DictReader(csvFile)
@@ -95,15 +97,18 @@ class RailNetwork:
 
     def loadConnections(self, csvFilepath: str) -> None:
         """
-        Adds rail connections to station objects from csv file
+        Adds rail connections to station nodes from csv file
 
         Args:
             csvFilepath (str): The path to the file containing connections between stations
         """
+        if not os.path.exists(csvFilepath):
+            raise ValueError(f"File {csvFilepath} not found")
+
         with open(csvFilepath) as csvFile:
             for row in csv.DictReader(csvFile):
                 if row["station1"] in self.stations and row["station2"] in self.stations:
-                    # make new connection object and add it to both stations
+                    # make new connection node and add it to both stations
                     connection = Connection(len(self.connections), self.stations[row["station1"]], self.stations[row["station2"]], float(row["distance"]))
                     self.connections.append(connection)
 
@@ -112,11 +117,33 @@ class RailNetwork:
     
     def loadSolution(self, csvFilepath: str) -> None:
         """
-        TODO
         load a solution from a csvfile
-        """
-        pass
 
+        Args:
+            csvFilepath (str): The filepath of an exported csv file
+        """
+        if not os.path.exists(csvFilepath):
+            raise ValueError(f"File {csvFilepath} not found")
+        
+        with open(csvFilepath) as csvFile:
+            for row in csv.DictReader(csvFile):
+                if row["train"] == "score":
+                    return
+                
+                stationsString = row["stations"]
+                stationNames = stationsString[1:-1].split(',')
+
+                self.loadRoute(stationNames)
+
+    def loadRoute(self, stationNames: List[str]):
+        firstStation = self.getStation(stationNames.pop(0))
+        route = self.createRoute(firstStation)
+
+        for stationName in stationNames:
+            station = self.getStation(stationName)
+
+            route.appendStation(station)
+    
     # User methods: Stations
     def getStation(self, stationName: str) -> Station:
         """
@@ -196,6 +223,10 @@ class RailNetwork:
         # If data is requested, get list of stations with data and take only unvisited stations
         return [station for station in self.listStations(nConnections, nUnused, nUnvisited) if not
                 station[0].isConnected()]
+    def nConnections(self):
+        """Returns the amount of connections in the network"""
+
+        return len(self.connections)
 
     # User methods: Routes
     def createRoute(self, station: Station) -> Route:
@@ -254,9 +285,15 @@ class RailNetwork:
 
     def listRoutes(self) -> List[Route]:
         """
-        Returns a list of all route objects.
+        Returns a list of all route nodes.
         """
         return [route for _, route in self.routes.items()]
+    
+    def getLongestDuration(self) -> float:
+        """
+        Returns the longest duration of all connections
+        """
+        return max([connection.duration() for connection in self.connections])
 
     # Output methods
     def score(self) -> float:
@@ -331,7 +368,7 @@ class RailNetwork:
         Returns (bool): True if all stations have a route and all routes are shorter than tMax and
                         are continuous.
         """
-        if self.checkStationCoverage() and self.checkLegalRoutes(tMax):
+        if self.checkLegalRoutes(tMax):
             return True
 
         return False
@@ -401,6 +438,6 @@ class RailNetwork:
 
     def getConnectedStation(self, fromStation, toStation) -> Station:
         """
-        Returns the connected station object of a station
+        Returns the connected station node of a station
         """
         return self.stations[fromStation].getConnectedStation(toStation)

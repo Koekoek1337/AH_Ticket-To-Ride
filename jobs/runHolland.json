@@ -1,0 +1,15 @@
+{
+    "jobType": "batch",
+
+    "stationsFilepath": "data/StationsHolland.csv",
+    "connectionsFilepath": "data/ConnectiesHolland.csv",
+
+    "targetFolder": "results/holland",
+
+    "maxRoutes": 7,
+    "maxTime": 120,
+    
+    "convergenceLimit": 0,
+    
+    "recordAll": false
+}

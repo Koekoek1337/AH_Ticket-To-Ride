@@ -15,6 +15,9 @@ class Connection:
         self._duration = float(duration)
         self._routes: Set[int] = set()
 
+    def __lt__(self, other: "Connection"):
+        return self._id < other._id
+
     def getID(self):
         """Returns the unique ID of the connection"""
         return self._id
@@ -38,7 +41,7 @@ class Connection:
 
     def getConnectedStation(self, name: str) -> "Station":
         """
-        Returns the Station object in self._connectedStations with key name.
+        Returns the Station node in self._connectedStations with key name.
 
         Args:
             Station(str): the name of the station
@@ -47,7 +50,7 @@ class Connection:
 
     def stationConnectionAmount(self, name:str) -> int:
         """
-        Returns the amount of connections he Station object in self._connectedStations with key 
+        Returns the amount of connections the Station node in self._connectedStations with key 
         name.
 
         Args:

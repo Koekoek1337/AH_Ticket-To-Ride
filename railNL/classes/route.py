@@ -7,7 +7,7 @@ import numpy as np
 
 class Route:
     """
-    Route object that tracks rail connections between stations
+    Route node that tracks rail connections between stations
     
     properties:
         _id (int): The unique identifier of the Route
@@ -78,6 +78,9 @@ class Route:
         self._stations.insert(stationIndex, station)
         station.addRoute(self.getID())
 
+        if len(self._stations) == 1:
+            return
+
         if stationIndex < 0:
             stationIndex += self.nStations()
 
@@ -89,7 +92,9 @@ class Route:
         self._insertConnection(stationIndex, connectionIndex)
 
         if stationIndex < self.nStations() - 1:
-            self.replaceConnection(stationIndex, stationIndex)
+            connectionIndex = stationIndex
+
+            self.replaceConnection(stationIndex, connectionIndex)
 
     def _insertConnection(self, stationIndex: int, connectionIndex: int) -> int:
         """
@@ -114,19 +119,22 @@ class Route:
         self._connections.insert(connectionIndex, connection)
 
     def replaceConnection(self, stationIndex: int, connectionIndex: int):
-        """replace connection object on connectioIndex with new connection"""
-        connection = self._findConnection(self._stations[stationIndex], 
+        """replace connection node on connectioIndex with new connection"""
+        oldConnection = self._connections[connectionIndex]
+        newConnection = self._findConnection(self._stations[stationIndex], 
                                          self._stations[stationIndex + 1]
                                         )
+       
+        self._connections[connectionIndex] = newConnection
 
-        if self._connections[connectionIndex]:
+        # Only attempt to remove routeID if oldConnection not None
+        # Do not remove routeID from connection if it is still in the route
+        if oldConnection and oldConnection not in self._connections:
             self._connections[connectionIndex].removeRoute(self.getID())
-
-        self._connections[connectionIndex] = connection
 
     def _findConnection(self, station1: Station, station2: Station) -> Union[Connection, None]:
         """
-        Returns the connection object between station1 and station2, if it exists
+        Returns the connection node between station1 and station2, if it exists
         """
 
         if not station1.hasConnection(station2.name()):
@@ -139,17 +147,20 @@ class Route:
     def popStation(self, stationIndex: int = -1) -> None:
         """
         Removes a station from stations at stationIndex
-        
-        TODO
-        - find replacement connection when not at edges
-        - prevent routeID from being removed if the station or connection is still in the route
         """
         
-        self._stations[stationIndex].removeRoute(self.getID())
+        station = self._stations.pop(stationIndex)
         
+        # Do not remove the routeID from station if it still occurs in the route
+        if station not in self._stations:
+            station.removeRoute(self.getID())
+
+
         self.removeConnections(stationIndex)
-        
-        self._stations.pop[stationIndex]
+
+        # Insert a new connection if possible if the removed station was not at the head or tail end
+        if stationIndex not in [0, self.nStations()]:
+            self._insertConnection(stationIndex, stationIndex - 1)
         
     def removeConnections(self, stationIndex: int) -> None:
         """Removes connections around station on Index"""
@@ -161,11 +172,13 @@ class Route:
 
     def removeConnection(self, connectionIndex: int):
         """
-        Removes a connection from Index.
+        Removes the connection on connectionIndex.
         """
-        self._connections[connectionIndex].removeRoute(self.getID())
-        
-        self._connections.pop(connectionIndex)
+        connection = self._connections.pop(connectionIndex)
+
+        # Do not remove routeID from connection if it is still in the route
+        if connection not in self._connections:
+            connection.removeRoute(self.getID())
 
     def getStation(self, index: int) -> Station:
         """Returns the station on stationIndex"""
@@ -175,21 +188,10 @@ class Route:
         """
         Returns (List[Tuple[Station, int]]): A list of tuples of stations and their indexes.
             a station can occur multiple times if it has a broken connection.
-        
-        TODO
-        - reimplement brokenConnections
 
         """
-        # brokenConnections = self.brokenConnections()
-
-        # The station at the head is always open
         openStations = [(self._stations[0], 0)]
 
-        # Stations with broken connections are open
-        # openStations += [stationA for stationA, stationB in brokenConnections]
-        # openStations += [stationB for stationA, stationB in brokenConnections]
-
-        # Stations at the tail are always open
         openStations += [(self._stations[self.nStations() - 1], self.nStations() - 1)]
 
         return openStations
@@ -301,9 +303,8 @@ class Route:
 
     def empty(self) -> None:
         """
-        Remove all stations and connections and remove route from them.
+        Remove all stations and connections from the route and remove routeID from them.
         """
-
         for station in self._stations:
             station.removeRoute(self.getID())
         
@@ -315,8 +316,22 @@ class Route:
         
         self._connections = []
     
-    def unique(self) -> bool:
+    def uniqueStations(self) -> int:
         """
-        Return all stations in route are unique.
+        Returns the amount of stations in route that are unique.
         """
-        return len(np.unique(self._stations)) == self.nStations()
+        return len(np.unique(self._stations))
+    
+    def uniqueConnections(self) -> int:
+        """
+        Returns the amount of connections in the route that are unique.
+        """
+        return len(np.unique(self._connections))
+    
+    def routeScore(self, totalConnections: int) -> float:
+        """
+        Returns the score of the route in an empty system
+        """
+        score = self.uniqueConnections() / totalConnections * 10000 - (100 + self.duration())
+
+        return score
