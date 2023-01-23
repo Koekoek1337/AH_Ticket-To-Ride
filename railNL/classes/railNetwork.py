@@ -40,11 +40,14 @@ class RailNetwork:
           legal.
 
     > Getting legal moves for a route:
-        - With route.getLegalMoves() the legal moves of a system can be
+        - With route.getLegalMoves(), the station nodes for for the head and tail ends of the route
+          to which the route legally can connect to for a given tMax. If requested, certain
+          lookahead properties can be requested.
 
     O STATIONS
     > Getting connecting stations
-        -
+        - if wanted, connecting stations can also be returned from stations using the getConnected
+          station method, with optional lookahead methods
 
     Attributes:
         stations (dict[str, Station]): Dictionary of station nodes, keyed by their name.
