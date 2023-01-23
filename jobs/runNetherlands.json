@@ -9,7 +9,7 @@
     "targetFolder": "results/Netherlands",
 
     "maxRoutes": 20,
-    "maxTime": 180,
+    "maxDuration": 180,
     
     "convergenceLimit": 0,
     
