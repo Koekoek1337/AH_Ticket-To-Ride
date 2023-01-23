@@ -6,7 +6,8 @@ from classes.route import Route
 from classes.station import Station
 
 def main(network: RailNetwork, maxRoutes: int, tMax: float, targetFolder: str ="results", 
-         runName: str = "solution", convergenceLimit: int = 10000, recordAll: bool = False):
+         runName: str = "solution", convergenceLimit: int = 10000, recordAll: bool = False, 
+         **_):
     
     convergence = 0
     attempt = 1
