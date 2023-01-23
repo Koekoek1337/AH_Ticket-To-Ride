@@ -118,8 +118,9 @@ class RailNetwork:
     def loadSolution(self, csvFilepath: str) -> None:
         """
         load a solution from a csvfile
-        
-        TODO
+
+        Args:
+            csvFilepath (str): The filepath of an exported csv file
         """
         if not os.path.exists(csvFilepath):
             raise ValueError(f"File {csvFilepath} not found")
