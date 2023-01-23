@@ -3,6 +3,11 @@ import statistics
 from typing import List, Tuple
 import matplotlib.pyplot as plt
 import numpy as np
+from classes.RailNetwork import Railnework
+
+stations = RailNetwork().stationPoints()
+connections = RailNetwork().connectionPoints()
+route = RailNetwork().routePointLists()
 
 def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, float]]],
                      stations: List[Tuple[str, Tuple[float, float]]],
@@ -13,13 +18,18 @@ def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, f
         connections: List of tuples of (x, y) and (x, y)
         stations: List of tuples of station name and (x,y)
     """
+
     # draw rail connections
     for pointPair in connections:
         plt.plot([point[0] for point in pointPair], [point[1] for point in pointPair], marker=" ",
         color="black", zorder=0)
 
+    # TODO try to put on cart Netherlands
+    image = mpimg.imread("kaartNL.jpg")
+    plt.imshow(image)
     # draw routes
     for routePointPairs in routePointLists:
+        # TODO routepointpairs colours red
         for pointPair in routePointPairs:
             plt.plot([point[0] for point in pointPair], [point[1] for point in pointPair],
             marker=" ", color="red", zorder=1)
@@ -43,6 +53,7 @@ def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, f
 def choicesFiles():
     scores = []
     # iterate through all file
+    # TODO
     for file in os.listdir():
         # Check whether file is in text format or not
         if file.endswith(".csv"):
@@ -52,6 +63,7 @@ def choicesFiles():
     return scores, average
 
 def loadScores(filename):
+    # Select the scores of the files.
     with open(filename, 'r') as file:
         for line in file:
             splits = line.split(',')
@@ -59,6 +71,7 @@ def loadScores(filename):
                 return float(splits[1])
 
 def plotHist(scores, average):
+    # Creates a hist with the data.
     counts, bins = np.histogram(scores, 30)
     plt.title("Baseline Holland, Random")
     plt.axvline(average)
@@ -71,4 +84,5 @@ def plotHist(scores, average):
 
 
 if __name__ == '__main__':
-    plotHist(*choicesFiles())
+#     # plotHist(*choicesFiles())
+    visualizeNetwork(connections, stations, route)
