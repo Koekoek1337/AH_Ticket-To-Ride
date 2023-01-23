@@ -51,7 +51,7 @@ def test_connectionAmount():
 
 
 def test_listConnections():
-    assert stationB.listStations(True, True, True) == [[stationA, 10.0, 1, 1, 1], [stationC, 10.0, 2, 2, 2], [stationD, 10.0, 2, 2, 2]]
+    assert stationB.listStations(True, True, True) == [(stationA, 10.0, 1, 1, 1), (stationC, 10.0, 2, 2, 2), (stationD, 10.0, 2, 2, 2)]
 
 def test_hasConnections():
     assert stationA.hasConnection("BBB") == True

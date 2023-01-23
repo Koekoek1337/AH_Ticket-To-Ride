@@ -9,7 +9,7 @@
     "targetFolder": "results/holland",
 
     "maxRoutes": 7,
-    "maxTime": 120,
+    "maxDuration": 120,
     
     "convergenceLimit": 0,
     
