@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import numpy as np
 from natsort import natsorted
-from typing import List, Tuple
+from typing import List, Tuple, Any
 
 
 def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, float]]],
@@ -19,7 +19,7 @@ def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, f
     """
 
     # Print an image of the Netherlands
-    image = mpimg.imread("NLkaart.png")
+    image = mpimg.imread("railNL/resources/NLkaart.png")
 
     # Update figure size based on image size
     dpi = 120
@@ -64,7 +64,7 @@ def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, f
 
     plt.savefig("rail1.png", format="PNG")
     plt.show()
-    plt.clear()
+    plt.clf()
 
 
 def choicesFiles(targetFolder: str) -> Tuple[List[int], List[int], float]:
@@ -118,7 +118,7 @@ def plotHistAverage (scores: List[int], _iterations: Any, average: List[int],
     plt.stairs(counts, bins)
     plt.savefig("hist.png", format="PNG")
     plt.show()
-    plt.clear()
+    plt.clf()
 
 
 def plotAlgorithm (scores: List[int], iterations: List[int], _average: Any,
