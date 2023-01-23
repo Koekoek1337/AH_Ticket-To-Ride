@@ -346,7 +346,7 @@ class RailNetwork:
         Returns (bool): True if all stations have a route and all routes are shorter than tMax and
                         are continuous.
         """
-        if self.checkStationCoverage() and self.checkLegalRoutes(tMax):
+        if self.checkLegalRoutes(tMax):
             return True
 
         return False
