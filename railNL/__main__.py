@@ -10,7 +10,7 @@ from typing import List, Dict, Union
 
 
 def main(stationsFilepath: str, connectionsFilepath: str, jobType: str, **parameters):
-    
+
     network = RailNetwork(stationsFilepath, connectionsFilepath)
 
     if jobType.lower() in ["batch", "b", "bat"]:
@@ -51,7 +51,6 @@ def parseArgv(argv: List[str]) -> Dict[str, Union[str, int, bool]]:
         with open(jsonPath) as jsonFile:
             parms = json.load(jsonFile)
             return parms
-    
 
 
 if __name__ == "__main__":
