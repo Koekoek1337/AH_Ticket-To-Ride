@@ -4,6 +4,8 @@
     "stationsFilepath": "data/StationsNationaal.csv",
     "connectionsFilepath": "data/ConnectiesNationaal.csv",
 
+    "algorithm": "random",
+    
     "targetFolder": "results/Netherlands",
 
     "maxRoutes": 20,

@@ -4,6 +4,8 @@
     "stationsFilepath": "data/StationsHolland.csv",
     "connectionsFilepath": "data/ConnectiesHolland.csv",
 
+    "algorithm": "random",
+
     "targetFolder": "results/holland",
 
     "maxRoutes": 7,
