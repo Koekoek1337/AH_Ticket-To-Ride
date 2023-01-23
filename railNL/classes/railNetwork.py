@@ -118,9 +118,31 @@ class RailNetwork:
     def loadSolution(self, csvFilepath: str) -> None:
         """
         load a solution from a csvfile
+        
+        TODO
         """
-        pass
+        if not os.path.exists(csvFilepath):
+            raise ValueError(f"File {csvFilepath} not found")
+        
+        with open(csvFilepath) as csvFile:
+            for row in csv.DictReader(csvFile):
+                if row["train"] == "score":
+                    return
+                
+                stationsString = row["stations"]
+                stationNames = stationsString[1:-1].split(',')
 
+                self.loadRoute(stationNames)
+
+    def loadRoute(self, stationNames: List[str]):
+        firstStation = self.getStation(stationNames.pop(0))
+        route = self.createRoute(firstStation)
+
+        for stationName in stationNames:
+            station = self.getStation(stationName)
+
+            route.appendStation(station)
+    
     # User methods: Stations
     def getStation(self, stationName: str) -> Station:
         """
