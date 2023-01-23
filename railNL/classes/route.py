@@ -78,6 +78,9 @@ class Route:
         self._stations.insert(stationIndex, station)
         station.addRoute(self.getID())
 
+        if len(self._stations) == 1:
+            return
+
         if stationIndex < 0:
             stationIndex += self.nStations()
 
@@ -301,9 +304,8 @@ class Route:
 
     def empty(self) -> None:
         """
-        Remove all stations and connections and remove route from them.
+        Remove all stations and connections from the route and remove routeID from them.
         """
-
         for station in self._stations:
             station.removeRoute(self.getID())
         
@@ -315,8 +317,22 @@ class Route:
         
         self._connections = []
     
-    def unique(self) -> bool:
+    def uniqueStations(self) -> int:
         """
-        Return all stations in route are unique.
+        Returns the amount of stations in route that are unique.
         """
-        return len(np.unique(self._stations)) == self.nStations()
+        return len(np.unique(self._stations))
+    
+    def uniqueConnections(self) -> int:
+        """
+        Returns the amount of connections in the route that are unique.
+        """
+        return len(np.unique(self._connections))
+    
+    def routeScore(self, totalConnections: int) -> float:
+        """
+        Returns the score of the route in an empty system
+        """
+        score = self.uniqueConnections() / totalConnections * 10000 - (100 + self.duration())
+
+        return score
