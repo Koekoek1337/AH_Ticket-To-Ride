@@ -134,11 +134,11 @@ class RailNetwork:
                     return
                 
                 stationsString = row["stations"]
-                stationNames = stationsString[1:-1].split(',')
+                stationNames = stationsString[1:-1].split(', ')
 
-                self.loadRoute(stationNames)
+                self._loadRoute(stationNames)
 
-    def loadRoute(self, stationNames: List[str]):
+    def _loadRoute(self, stationNames: List[str]):
         firstStation = self.getStation(stationNames.pop(0))
         route = self.createRoute(firstStation)
 
@@ -307,7 +307,7 @@ class RailNetwork:
         K is the quality of the service
         p is the fraction of rail connections with
         """
-        return self.connectionCoverage() * 10000 - (len(self.routes) * 100 + self.totalDuration())
+        return self.connectionCoverage() * 10000 - (self.nRoute() * 100 + self.totalDuration())
 
     def exportSolution(self, folder: str, filename: str) -> None:
         """
