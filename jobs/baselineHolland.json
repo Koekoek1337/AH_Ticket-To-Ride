@@ -1,0 +1,18 @@
+{
+    "jobType": "batch",
+
+    "stationsFilepath": "data/StationsHolland.csv",
+    "connectionsFilepath": "data/ConnectiesHolland.csv",
+
+    "algorithm": "random",
+
+    "runName": "random",
+    "targetFolder": "results/holland/baseline",
+
+    "maxRoutes": 7,
+    "maxDuration": 120,
+    
+    "convergenceLimit": 100000,
+    
+    "recordAll": true
+}
