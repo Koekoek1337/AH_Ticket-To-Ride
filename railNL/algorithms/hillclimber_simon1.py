@@ -34,10 +34,8 @@ class HillClimber():
             randomFloat = random.random()
             if randomFloat < 0.5:
                 self.mutateLastStation(route)
-                print("ok")
             else:
                 self.mutateFirstStation(route)
-                print("ok")
 
 
     def mutateLastStation(self, route) -> List[str]:
@@ -52,11 +50,9 @@ class HillClimber():
         # new last station connects to a new station
         if randomFloat < 0.5:
             newRoute.appendStation(random.choice(newRoute.listStations()))
-            print("check")
         # or add new station as first station
         else:
             newRoute.insertStation(0, random.choice(newRoute.listStations()))
-            print("check")
 
         #  Checks if the newRoute is still valid, if not returns old route
         # if Railnetwork().checkValidSolution(newRoute):
@@ -78,11 +74,9 @@ class HillClimber():
         # add new station to last station
         if randomFloat < 0.5:
             newRoute.appendStation(random.choice(newRoute.listStations()))
-            print("check")
         # or add new station as first station
         else:
             newRoute.insertStation(0, random.choice(newRoute.listStations()))
-            print("check")
 
         # if newRoute.checkValidSolution():
         #     return newRoute
@@ -123,7 +117,7 @@ class HillClimber():
         print(self.workModel)
 
 
-    def run(self, iterations: int = 5000, verbose=False, mutate_nodes_number=1) -> None:
+    def run(self, iterations: int = 50000, verbose=False, mutate_nodes_number=1) -> None:
         """
         Runs the hillclimber algorithm for a specific amount of iterations.
         """
