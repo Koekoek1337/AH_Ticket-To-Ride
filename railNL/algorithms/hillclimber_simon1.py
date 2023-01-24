@@ -14,7 +14,7 @@ class HillClimber():
         # Check if there is a valid solution
         # if not routes.checkValidSolution():
         #     raise Exception("HillClimber requires a complete solution.")
-        model = randomSolution(RailNetwork("data/StationsHolland.csv", "data/ConnectiesHolland.csv"), 7, 120, 50)
+        model = randomSolution(RailNetwork("data/StationsNationaal.csv", "data/ConnectiesNationaal.csv"), 20, 180, 50)
         workModel = deepcopy(model)
         self.previousModel = deepcopy(workModel)
         self.workModel = workModel
@@ -48,15 +48,14 @@ class HillClimber():
         newRoute = route
         # pop last station
         newRoute.popStation()
-        options = newRoute.getLegalMoves(120)
         randomFloat = random.random()
         # new last station connects to a new station
         if randomFloat < 0.5:
-            newRoute.appendStation(random.choice(options.keys()[0]))
+            newRoute.appendStation(random.choice(newRoute.listStations()))
             print("check")
         # or add new station as first station
         else:
-            newRoute.insertStation(0, random.choice(options.keys()[0]))
+            newRoute.insertStation(0, random.choice(newRoute.listStations()))
             print("check")
 
         #  Checks if the newRoute is still valid, if not returns old route
@@ -75,15 +74,14 @@ class HillClimber():
         newRoute = route
         # pop first station
         newRoute.popStation(0)
-        options = newRoute.getLegalMoves(120)
         randomFloat = random.random()
         # add new station to last station
         if randomFloat < 0.5:
-            newRoute.appendStation(random.choice(options.keys()[0]))
+            newRoute.appendStation(random.choice(newRoute.listStations()))
             print("check")
         # or add new station as first station
         else:
-            newRoute.insertStation(0, random.choice(options.keys()[0]))
+            newRoute.insertStation(0, random.choice(newRoute.listStations()))
             print("check")
 
         # if newRoute.checkValidSolution():
@@ -125,7 +123,7 @@ class HillClimber():
         print(self.workModel)
 
 
-    def run(self, iterations: int = 500, verbose=False, mutate_nodes_number=1) -> None:
+    def run(self, iterations: int = 5000, verbose=False, mutate_nodes_number=1) -> None:
         """
         Runs the hillclimber algorithm for a specific amount of iterations.
         """
