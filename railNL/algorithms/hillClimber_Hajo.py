@@ -54,7 +54,7 @@ def routeHillclimber(network: RailNetwork, maxRoutes: int, maxDuration: float,
         print(f"iteration: {iteration}")
 
         workNetwork = deepcopy(bestNetwork)
-        climbStep(workNetwork, maxDuration)
+        climbStep(workNetwork, maxRoutes, maxDuration)
 
         newScore = workNetwork.score()
         
@@ -74,6 +74,10 @@ def routeHillclimber(network: RailNetwork, maxRoutes: int, maxDuration: float,
         # If all scores are to be tracked, append iteration and score to scores
         elif recordAll:
             scores.append({"iteration":iteration, "score":newScore})
+        
+        iteration += 1
+        convergence += 1
+    
     return bestNetwork
 
 
@@ -88,7 +92,7 @@ def climbStep(network: RailNetwork, maxRoutes: int, maxDuration: float) -> None:
     
     post: The argument network will have a route replaced, added or removed.
     """
-    randomNum = random.random
+    randomNum = random.random()
 
     if randomNum <= 0.25 and network.nRoute() > 1:
         removeRoute(network)
@@ -101,7 +105,7 @@ def climbStep(network: RailNetwork, maxRoutes: int, maxDuration: float) -> None:
 
     removeRoute(network)
     randomAlgorithm.randomRoute(network, maxDuration)
-
+    
     return
 
 
