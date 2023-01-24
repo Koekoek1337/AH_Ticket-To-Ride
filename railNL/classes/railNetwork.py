@@ -473,10 +473,16 @@ class RailNetwork:
 
     def getUnusedConnections(self) -> List[Connection]:
         """
-        Returns list of unused connections
+        Returns a list of unused connections
         """
         listConnections = []
         for connection in self._connections:
             if not connection.isConnected():
                 listConnections.append(connection)
         return listConnections
+    
+    def getNonUniqueConnections(self) -> List[Connection]:
+        """
+        Returns a list of connections that occur more than once
+        """
+        pass
