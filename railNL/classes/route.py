@@ -111,21 +111,21 @@ class Route:
             station.removeRoute(self.getID())
 
 
-        self.removeConnections(stationIndex)
+        self._removeConnections(stationIndex)
 
         # Insert a new connection if possible if the removed station was not at the head or tail end
         if stationIndex not in [0, self.nStations()]:
             self._insertConnection(stationIndex, stationIndex - 1)
         
-    def removeConnections(self, stationIndex: int) -> None:
+    def _removeConnections(self, stationIndex: int) -> None:
         """Removes connections around station on Index"""
         if stationIndex < self.nStations() - 1:
-            self.removeConnection(stationIndex)
+            self._removeConnection(stationIndex)
 
         if stationIndex > 0:
-            self.removeConnection(stationIndex - 1)
+            self._removeConnection(stationIndex - 1)
 
-    def removeConnection(self, connectionIndex: int):
+    def _removeConnection(self, connectionIndex: int):
         """
         Removes the connection on connectionIndex.
         """
