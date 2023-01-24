@@ -18,15 +18,35 @@ import algorithms.random_hajo as randomAlgorithm
 
 START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
-def standardHillclimber(network: RailNetwork, maxRoutes: int, maxDuration: float, 
-    targetFolder: str ="results", runName: str = "solution", convergenceLimit: int = 5000, 
-    recordAll: bool = False):
+def routeHillclimber(network: RailNetwork, maxRoutes: int, maxDuration: float, 
+    targetFolder: str ="results", runName: str = "soluionHill", convergenceLimit: int = 5000, 
+    recordAll: bool = False) -> RailNetwork:
+    """
+    A hillclimber that takes any network and attempts to optimize it by adding, removing or 
+    replacing random routes.
+
+    Args:
+        network (RailNetwork):
+        maxRoutes (int):
+        maxDuration (float):
+        targetFolder (str):
+        runName (str):
+        convergenceLimit (int):
+        recordAll (bool):
     
+    Returns: The optimized network
+    """
+
     convergence = 0
     iteration = 1
-    highest = 0
 
-    bestNetwork = randomAlgorithm.randomSolution(network, maxRoutes, maxDuration, 5000)
+    bestNetwork = network
+    highestScore = bestNetwork.score()
+
+    if highestScore == 0:
+        print("generating random solution")
+        bestNetwork = randomAlgorithm.randomSolution(network, maxRoutes, maxDuration, 1000)
+        highestScore = bestNetwork.score()
 
     scores: List[Dict[str, Union[int, float]]] = []
 
@@ -36,23 +56,55 @@ def standardHillclimber(network: RailNetwork, maxRoutes: int, maxDuration: float
         workNetwork = deepcopy(bestNetwork)
         climbStep(workNetwork, maxDuration)
 
+        newScore = workNetwork.score()
         
-def climbStep(network: RailNetwork, maxDuration: float):
+        # When a new highscore is found, print to terminal, export the solution and append the score
+        # to the scorelist.
+        # Convergence set back to zero.
+        if newScore > highestScore:
+            print(f"new best found: {newScore}")
+            highestScore = newScore
+
+            workNetwork.exportSolution(targetFolder, f"{runName}-{iteration}")
+            
+            convergence = 0
+            
+            scores.append({"iteration":iteration, "score":newScore})
+        
+        # If all scores are to be tracked, append iteration and score to scores
+        elif recordAll:
+            scores.append({"iteration":iteration, "score":newScore})
+    return bestNetwork
+
+
+def climbStep(network: RailNetwork, maxRoutes: int, maxDuration: float) -> None:
     """
     Either adds, removes or replaces a random route.
+
+    Args:
+        network (RailNetwork):
+        maxRoutes (maxRoutes):
+        maxDuration (maxDuration):
+    
+    post: The argument network will have a route replaced, added or removed.
     """
     randomNum = random.random
 
-    if randomNum <= 0.25:
-        # Remove
-        pass
-    elif randomNum <= 0.50:
-        # Add
-        pass
-    else:
-        # Replace
-        pass
+    if randomNum <= 0.25 and network.nRoute() > 1:
+        removeRoute(network)
+        return
     
+    # add a random route if 0.25 < randomNum <=0.50 or if a route could not be removed
+    if randomNum <= 0.50 and network.nRoute() < maxRoutes:
+        randomAlgorithm.randomRoute(network, maxDuration)
+        return
 
-def addRoute(Network: RailNetwork, maxDuration: float, maxDuration: float):
-    pass
+    removeRoute(network)
+    randomAlgorithm.randomRoute(network, maxDuration)
+
+    return
+
+
+def removeRoute(network: RailNetwork):
+    randomRoute = random.choice(network.listRoutes())
+    network.delRoute(randomRoute.getID())
