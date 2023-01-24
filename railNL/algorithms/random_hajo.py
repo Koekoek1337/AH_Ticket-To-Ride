@@ -16,8 +16,7 @@ START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
 
 def main(network: RailNetwork, maxRoutes: int, maxDuration: float, targetFolder: str ="results", 
-         runName: str = "solution", convergenceLimit: int = 5000, recordAll: bool = False, 
-         **_):
+         runName: str = "solution", convergenceLimit: int = 5000, recordAll: bool = False,**_):
     """
     Random solver for Train routing problem.
 
@@ -144,7 +143,7 @@ def randomRoute(network: RailNetwork, maxDuration: float):
 
 
 def randomSolution(network: RailNetwork, maxRoutes: int, maxDuration: float,
-    convergenceLimit: int = 5000) -> RailNetwork:
+    randomIterations: int = 10000) -> RailNetwork:
     """
     Returns a randomly solved railNetwork for optimization.
 
@@ -153,10 +152,10 @@ def randomSolution(network: RailNetwork, maxRoutes: int, maxDuration: float,
 
     minimumoutes = network.minimumRoutes(maxDuration)
 
-    convergence = 0
+    iteration = 0
     highest = 0
 
-    while convergence <= convergenceLimit:
+    while iteration <= randomIterations:
         workNetwork = deepcopy(network)
 
         randomAlgorithm(workNetwork, maxRoutes, maxDuration, minimumoutes)
@@ -165,9 +164,8 @@ def randomSolution(network: RailNetwork, maxRoutes: int, maxDuration: float,
         if highest < newScore:
             highest = newScore
             bestNetwork = workNetwork
-            convergence = 0
 
-        convergence += 1
+        iteration += 1
 
     return bestNetwork
 
