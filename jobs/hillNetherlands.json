@@ -1,0 +1,18 @@
+{
+    "jobType": "batch",
+
+    "stationsFilepath": "data/StationsNationaal.csv",
+    "connectionsFilepath": "data/ConnectiesNationaal.csv",
+
+    "algorithm": "hillclimber_hajo",
+    
+    "runName": "hillSolution",
+    "targetFolder": "results/Netherlands",
+
+    "maxRoutes": 20,
+    "maxDuration": 180,
+    
+    "convergenceLimit": 10000,
+    
+    "recordAll": false
+}
