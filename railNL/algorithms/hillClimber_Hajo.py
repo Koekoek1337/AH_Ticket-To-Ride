@@ -19,8 +19,8 @@ import algorithms.random_hajo as randomAlgorithm
 START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
 def routeHillclimber(network: RailNetwork, maxRoutes: int, maxDuration: float, 
-    targetFolder: str ="results", runName: str = "soluionHill", convergenceLimit: int = 5000, 
-    recordAll: bool = False) -> RailNetwork:
+    targetFolder: str ="results", runName: str = "soluionHill", convergenceLimit: int = 5000,
+    randomIterations: int = 5000, recordAll: bool = False) -> RailNetwork:
     """
     A hillclimber that takes any network and attempts to optimize it by adding, removing or 
     replacing random routes.
@@ -32,6 +32,7 @@ def routeHillclimber(network: RailNetwork, maxRoutes: int, maxDuration: float,
         targetFolder (str):
         runName (str):
         convergenceLimit (int):
+        randomIterations (int):
         recordAll (bool):
     
     Returns: The optimized network
@@ -41,15 +42,22 @@ def routeHillclimber(network: RailNetwork, maxRoutes: int, maxDuration: float,
     iteration = 1
 
     bestNetwork = network
-    highestScore = bestNetwork.score()
 
-    if highestScore == 0:
+    if randomIterations:
         print("generating random solution")
-        bestNetwork = randomAlgorithm.randomSolution(network, maxRoutes, maxDuration, 1000)
+        bestNetwork = randomAlgorithm.randomSolution(network,
+                                                     maxRoutes,
+                                                     maxDuration,
+                                                     randomIterations
+                                                    )
         highestScore = bestNetwork.score()
 
     scores: List[Dict[str, Union[int, float]]] = []
 
+    highestScore = bestNetwork.score()
+    
+    scores.append({"iteration":iteration, "score":highestScore})
+    
     while convergence <= convergenceLimit:
         print(f"iteration: {iteration}")
 
@@ -98,7 +106,7 @@ def climbStep(network: RailNetwork, maxRoutes: int, maxDuration: float) -> None:
         return
     
     # add a random route if 0.25 < randomNum <=0.50 or if a route could not be removed
-    if randomNum <= 0.50 and network.nRoute() < maxRoutes:
+    if (randomNum <= 0.50 and network.nRoute() < maxRoutes) or network.nRoute() == 0:
         randomAlgorithm.randomRoute(network, maxDuration)
         return
 
