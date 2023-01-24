@@ -84,7 +84,9 @@ def routeHillclimber(network: RailNetwork, maxRoutes: int, maxDuration: float,
 
         iteration += 1
         convergence += 1
-    
+
+        randomAlgorithm.exportScores(scores, targetFolder, runName, START_TIMESTAMP)
+
     return bestNetwork
 
 
