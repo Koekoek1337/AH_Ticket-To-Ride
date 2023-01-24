@@ -1,6 +1,8 @@
 from classes.railNetwork import RailNetwork
 from visualize.visualize import visualizeNetwork
+
 from algorithms import random_hajo
+from algorithms import hillClimber_Hajo
 
 import json
 from os import path
@@ -34,6 +36,8 @@ def runBatch(network: RailNetwork, algorithm: str, **parameters):
     
     if algorithm == "random":
         random_hajo.main(network, **parameters)
+    elif algorithm == "hillclimber_hajo":
+        hillClimber_Hajo.routeHillclimber(network, **parameters)
 
 
 def runVis(network: RailNetwork, resultFilepath: str, **parameters):
