@@ -1,10 +1,5 @@
-from visualize.visualize import visualizeNetwork
-from visualize.visualize import plotAlgorithm
 from classes.railNetwork import RailNetwork
-from visualize.visualize import choicesFiles
+import algorithms.hillclimber_simon
 
-
-
-visualizeNetwork(RailNetwork("StationsNationaal.csv", "ConnectiesNationaal.csv"))
-
-plotAlgorithm(*choicesFiles())
+model = HillClimber()
+model.checkSolution(combine_newRoute(mutateRoute()))
