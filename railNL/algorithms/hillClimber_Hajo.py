@@ -26,7 +26,7 @@ def standardHillclimber(network: RailNetwork, maxRoutes: int, maxDuration: float
     iteration = 1
     highest = 0
 
-    bestNetwork = network
+    bestNetwork = randomAlgorithm.randomSolution(network, maxRoutes, maxDuration, 5000)
 
     scores: List[Dict[str, Union[int, float]]] = []
 
@@ -34,6 +34,25 @@ def standardHillclimber(network: RailNetwork, maxRoutes: int, maxDuration: float
         print(f"iteration: {iteration}")
 
         workNetwork = deepcopy(bestNetwork)
+        climbStep(workNetwork, maxDuration)
 
         
-def climbStep
+def climbStep(network: RailNetwork, maxDuration: float):
+    """
+    Either adds, removes or replaces a random route.
+    """
+    randomNum = random.random
+
+    if randomNum <= 0.25:
+        # Remove
+        pass
+    elif randomNum <= 0.50:
+        # Add
+        pass
+    else:
+        # Replace
+        pass
+    
+
+def addRoute(Network: RailNetwork, maxDuration: float, maxDuration: float):
+    pass
