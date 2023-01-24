@@ -1,0 +1,10 @@
+train,stations
+0,"[Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Zuid, Schiphol Airport, Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout]"
+1,"[Rotterdam Centraal, Rotterdam Alexander, Rotterdam Centraal, Dordrecht, Rotterdam Centraal, Schiedam Centrum, Delft, Den Haag Centraal, Gouda, Alphen a/d Rijn]"
+2,"[Castricum, Alkmaar, Den Helder, Alkmaar]"
+3,"[Alkmaar, Hoorn, Zaandam, Castricum, Alkmaar, Castricum]"
+4,"[Amsterdam Sloterdijk, Zaandam, Beverwijk, Haarlem]"
+5,"[Amsterdam Zuid, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Centraal]"
+6,"[Leiden Centraal, Alphen a/d Rijn, Gouda, Rotterdam Alexander, Gouda]"
+score,7394.428571428571
+connections missing,[['Amsterdam Sloterdijk': 'Haarlem']: ['Amsterdam Zuid': 'Amsterdam Sloterdijk']: ['Beverwijk': 'Castricum']: ['Den Haag Centraal': 'Leiden Centraal']]
