@@ -53,7 +53,7 @@ class RailNetwork:
     Attributes:
         stations (dict[str, Station]): Dictionary of station nodes, keyed by their name.
         connections (List[Connection]): List of all connection nodes, indexed by their id.
-        routes (List[Route]): List of all used routes.
+        routes (Dict[Route]): Dictionary of all used routes keyed by ID.
         routeID (int): The first free unique identifier for routes
     """
 
@@ -66,19 +66,19 @@ class RailNetwork:
             filepathStations (str): The path to the station data csv file.
             filepathConnections (str): The path to the connection data csv file.
         """
-        self.stations: Dict[str, Station] = dict()
+        self._stations: Dict[str, Station] = dict()
 
-        self.connections: List[Connection] = []
+        self._connections: List[Connection] = []
 
-        self.routes: Dict[int, Route] = dict()
+        self._routes: Dict[int, Route] = dict()
 
         self.routeID = 0
 
-        self.loadStations(filepathStations)
-        self.loadConnections(filepathConnections)
+        self._loadStations(filepathStations)
+        self._loadConnections(filepathConnections)
 
 
-    def loadStations(self, csvFilepath: str) -> None:
+    def _loadStations(self, csvFilepath: str) -> None:
         """
         Loads stations in memory from csv file
 
@@ -86,7 +86,7 @@ class RailNetwork:
             csvFilepath: The path of the CSV file containing the fields [station, x, y] in any order.
 
         Post:
-            Station nodes are created and stored in self.stations, keyed by name.
+            Station nodes are created and stored in self._stations, keyed by name.
         """
         if not os.path.exists(csvFilepath):
             raise ValueError(f"File {csvFilepath} not found")
@@ -97,9 +97,9 @@ class RailNetwork:
             for row in reader:
                 station = Station(row["station"], float(row["x"]), float(row["y"]))
 
-                self.stations[station.name()] = station
+                self._stations[station.name()] = station
 
-    def loadConnections(self, csvFilepath: str) -> None:
+    def _loadConnections(self, csvFilepath: str) -> None:
         """
         Adds rail connections to station nodes from csv file
 
@@ -111,13 +111,13 @@ class RailNetwork:
 
         with open(csvFilepath) as csvFile:
             for row in csv.DictReader(csvFile):
-                if row["station1"] in self.stations and row["station2"] in self.stations:
+                if row["station1"] in self._stations and row["station2"] in self._stations:
                     # make new connection node and add it to both stations
-                    connection = Connection(len(self.connections), self.stations[row["station1"]], self.stations[row["station2"]], float(row["distance"]))
-                    self.connections.append(connection)
+                    connection = Connection(len(self._connections), self._stations[row["station1"]], self._stations[row["station2"]], float(row["distance"]))
+                    self._connections.append(connection)
 
-                    self.stations[row["station1"]].addConnection(row["station2"], connection)
-                    self.stations[row["station2"]].addConnection(row["station1"], connection)
+                    self._stations[row["station1"]].addConnection(row["station2"], connection)
+                    self._stations[row["station2"]].addConnection(row["station1"], connection)
     
     def loadSolution(self, csvFilepath: str) -> None:
         """
@@ -156,7 +156,7 @@ class RailNetwork:
         Args:
             stationName (str): the name of the station
         """
-        return self.stations[stationName]
+        return self._stations[stationName]
 
     def listStations(self, nConnections = False, nUnused = False, nUnvisited = False) \
         -> List[Union["Station", Tuple["Station", Optional[int], Optional[int], Optional[int]]]]:
@@ -178,12 +178,12 @@ class RailNetwork:
         """
         # if no extra data is requested, a simple list comprehension can be used
         if not (nConnections or nUnused or nUnvisited):
-            return [station for _, station in self.stations.items()]
+            return [station for _, station in self._stations.items()]
 
         stationList = []
 
         # Loop through all station nodes in the stations dictionary
-        for _, station in self.stations.items():
+        for _, station in self._stations.items():
             stationPoint = [station, None, None, None]
 
             # Append the amount of connections of the station if requested.
@@ -230,7 +230,7 @@ class RailNetwork:
     def nConnections(self):
         """Returns the amount of connections in the network"""
 
-        return len(self.connections)
+        return len(self._connections)
 
     # User methods: Routes
     def createRoute(self, station: Station) -> Route:
@@ -246,7 +246,7 @@ class RailNetwork:
         newRoute = Route(station, self.routeID)
         self.routeID += 1
 
-        self.routes[newRoute.getID()] = newRoute
+        self._routes[newRoute.getID()] = newRoute
 
         return newRoute
 
@@ -258,13 +258,13 @@ class RailNetwork:
             tMax: The maximum time a route can have.
         """
         # get all routes from the list of routes and take only those with legal moves
-        return [route for _, route in self.routes.items() if route.hasLegalMoves(tMax)]
+        return [route for _, route in self._routes.items() if route.hasLegalMoves(tMax)]
 
     def nRoute(self) -> int:
         """
         Returns (int) the amount of currently active routes
         """
-        return len(self.routes)
+        return len(self._routes)
 
     def getRoute(self, routeID: int) -> Route:
         """
@@ -273,7 +273,7 @@ class RailNetwork:
         Args:
             routeID (int): the unique identifier of the route.
         """
-        return self.routes[routeID]
+        return self._routes[routeID]
 
     def delRoute(self, routeID: int):
         """
@@ -283,21 +283,21 @@ class RailNetwork:
             routeID (int): the unique identifier of the route.
         """
         # remove all routeID's from all stations and routes in route
-        self.routes[routeID].empty()
+        self._routes[routeID].empty()
 
-        self.routes.pop(routeID)
+        self._routes.pop(routeID)
 
     def listRoutes(self) -> List[Route]:
         """
         Returns a list of all route nodes.
         """
-        return [route for _, route in self.routes.items()]
+        return [route for _, route in self._routes.items()]
     
     def getLongestDuration(self) -> float:
         """
         Returns the longest duration of all connections
         """
-        return max([connection.duration() for connection in self.connections])
+        return max([connection.duration() for connection in self._connections])
 
     # Output methods
     def score(self) -> float:
@@ -315,7 +315,7 @@ class RailNetwork:
 
         duration = 0
 
-        for connection in self.connections:
+        for connection in self._connections:
             duration += connection.duration()
         
         return duration
@@ -342,7 +342,7 @@ class RailNetwork:
         with open(f"{folder}/{timeStamp}-{filename}.csv", "w") as resultFile:
             resultFile.write("train,stations\n")
 
-            for _, route in self.routes.items():
+            for _, route in self._routes.items():
                 resultFile.write(f"{route}\n")
 
             resultFile.write(f"score,{self.score()}\n")
@@ -359,7 +359,7 @@ class RailNetwork:
         """
         pointPairs = []
 
-        for connection in self.connections:
+        for connection in self._connections:
             pointPairs.append(connection.connectionPoints())
 
         return pointPairs
@@ -370,7 +370,7 @@ class RailNetwork:
         """
         points = []
 
-        for station in [entry[1] for entry in self.stations.items()]:
+        for station in [entry[1] for entry in self._stations.items()]:
             points.append((station.name(), station.position()))
 
         return points
@@ -381,7 +381,7 @@ class RailNetwork:
         """
         routePointLists = []
 
-        for _, route in self.routes.items():
+        for _, route in self._routes.items():
             routePointLists.append(route.connectionPoints())
 
         return routePointLists
@@ -414,10 +414,10 @@ class RailNetwork:
         Returns (bool): True if the amount of routes is below maxRoutes or if any route has legal
                         moves. Else false
         """
-        if len(self.routes) < maxRoutes:
+        if len(self._routes) < maxRoutes:
             return True
 
-        for _, route in self.routes.items():
+        for _, route in self._routes.items():
             if not route.hasLegalMoves(tMax):
                 return False
 
@@ -427,7 +427,7 @@ class RailNetwork:
         """
         Returns True if all stations have routes going through them, else false
         """
-        for _, station in self.stations.items():
+        for _, station in self._stations.items():
             if not station.isConnected():
                 return False
 
@@ -439,7 +439,7 @@ class RailNetwork:
 
         Returns (bool): True if all routes are legal, else False
         """
-        for _, route in self.routes.items():
+        for _, route in self._routes.items():
             if not route.isValid():
                 return False
         return True
@@ -450,17 +450,17 @@ class RailNetwork:
         """
         usedConnections = 0
 
-        for connection in self.connections:
+        for connection in self._connections:
             if connection.isConnected():
                 usedConnections += 1
 
-        return usedConnections / len(self.connections)
+        return usedConnections / len(self._connections)
 
     def totalDuration(self) -> float:
         """returns (float): the total duration of the routes"""
         totalDuration = 0
 
-        for _, route in self.routes.items():
+        for _, route in self._routes.items():
             totalDuration += route.duration()
 
         return totalDuration
@@ -469,14 +469,14 @@ class RailNetwork:
         """
         Returns the connected station node of a station
         """
-        return self.stations[fromStation].getConnectedStation(toStation)
+        return self._stations[fromStation].getConnectedStation(toStation)
 
     def getUnusedConnections(self) -> List[Connection]:
         """
         Returns list of unused connections
         """
         listConnections = []
-        for connection in self.connections:
+        for connection in self._connections:
             if not connection.isConnected():
                 listConnections.append(connection)
         return listConnections
