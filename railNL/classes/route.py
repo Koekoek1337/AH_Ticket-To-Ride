@@ -171,7 +171,7 @@ class Route:
     def getLegalMoves(self, tMax: float, 
             nConnections = False, nUnused = False, nUnvisited = False, unusedOnly = False,
             unvisitedOnly = False) \
-            -> Dict[int, List[Tuple[Station, int, Optional[int], Optional[int], Optional[int]]]]:
+            -> Dict[int, List[Tuple[Station, float, Optional[int], Optional[int], Optional[int]]]]:
         """
         Returns a dict keyed with the station indexes with all stations witha connection that can
         legally be added to the route.
