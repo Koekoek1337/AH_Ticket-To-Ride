@@ -49,14 +49,15 @@ class HillClimber():
         # pop last station
         newRoute.popStation()
         options = newRoute.getLegalMoves(120)
+        index = random.choice(list(options.keys()))
         randomFloat = random.random()
         # new last station connects to a new station
         if randomFloat < 0.5:
-            newRoute.appendStation(random.choice(options.keys()[0]))
+            newRoute.appendStation(random.choice(options[index])[0])
             print("check")
         # or add new station as first station
         else:
-            newRoute.insertStation(0, random.choice(options.keys()[0]))
+            newRoute.insertStation(0, random.choice(options[index])[0])
             print("check")
 
         #  Checks if the newRoute is still valid, if not returns old route
@@ -76,14 +77,16 @@ class HillClimber():
         # pop first station
         newRoute.popStation(0)
         options = newRoute.getLegalMoves(120)
+        index = random.choice(list(options.keys()))
+
         randomFloat = random.random()
         # add new station to last station
         if randomFloat < 0.5:
-            newRoute.appendStation(random.choice(options.keys()[0]))
+            newRoute.appendStation(random.choice(options[index])[0])
             print("check")
         # or add new station as first station
         else:
-            newRoute.insertStation(0, random.choice(options.keys()[0]))
+            newRoute.insertStation(0, random.choice(options[index])[0])
             print("check")
 
         # if newRoute.checkValidSolution():
