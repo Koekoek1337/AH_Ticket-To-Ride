@@ -11,7 +11,7 @@
     "maxRoutes": 7,
     "maxDuration": 120,
     
-    "convergenceLimit": 0,
+    "convergenceLimit": 5000,
     
-    "recordAll": false
+    "recordAll": true
 }
