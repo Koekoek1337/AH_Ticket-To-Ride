@@ -320,14 +320,24 @@ class RailNetwork:
         
         return duration
 
+    def minimumRoutes(self, maxDuration: float) -> float:
+        """
+        Returns the mimimum amount of routes required to satisfy all connections
+
+        Args:
+            maxDuration (float): The maximum duration of a single route.
+        """
+        return ceil(self.minimumTotalDuration() / maxDuration)
+
     def theoreticalMaxScore(self, maxDuration: float) -> float:
         """
         Returns the theoretically maximum score if all connections are driven with the minimum
         possible routes.
+        
+        Args:
+            maxDuration (float): The maximum duration of a single route.
         """
-        minimumTotalDuration = self.minimumTotalDuration()
-
-        return 10000 - (100 * ceil(minimumTotalDuration / maxDuration) + minimumTotalDuration)
+        return 10000 - (100 * self.minimumRoutes(maxDuration) + self.minimumTotalDuration())
 
     def exportSolution(self, folder: str, filename: str) -> None:
         """
