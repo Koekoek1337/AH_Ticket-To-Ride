@@ -2,6 +2,7 @@ import os
 import csv
 import datetime
 from math import ceil
+from collections import Counter
 
 from classes.station import Station
 from classes.route import Route
@@ -352,6 +353,7 @@ class RailNetwork:
                 listConnections.append(connection.getStationNames())
             connectionsAsString = str(listConnections).replace(",", ":")
             resultFile.write(f"connections missing,{connectionsAsString}")
+            
 
     def connectionPoints(self) -> List[Tuple[Tuple[int, int], Tuple[int, int]]]:
         """
@@ -483,6 +485,12 @@ class RailNetwork:
     
     def getNonUniqueConnections(self) -> List[Connection]:
         """
+        WORK IN PROGRESS!!
         Returns a list of connections that occur more than once
+        Current bug: uses memory address for reference instead of names
         """
-        pass
+        nonUniqueConnections = []
+        for (entry, occurence) in Counter(self.connections).items():
+            if occurence > 1:
+                nonUniqueConnections.append()
+        return nonUniqueConnections
