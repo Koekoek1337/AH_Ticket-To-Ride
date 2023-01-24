@@ -63,18 +63,17 @@ def routeHillclimber(network: RailNetwork, maxRoutes: int, maxDuration: float,
         # Convergence set back to zero.
         if newScore > highestScore:
             print(f"new best found: {newScore}")
+
             highestScore = newScore
+            convergence = 0
 
             workNetwork.exportSolution(targetFolder, f"{runName}-{iteration}")
-            
-            convergence = 0
-            
             scores.append({"iteration":iteration, "score":newScore})
-        
+
         # If all scores are to be tracked, append iteration and score to scores
         elif recordAll:
             scores.append({"iteration":iteration, "score":newScore})
-        
+
         iteration += 1
         convergence += 1
     
