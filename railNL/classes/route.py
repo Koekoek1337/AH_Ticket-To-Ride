@@ -132,7 +132,7 @@ class Route:
         connection = self._connections.pop(connectionIndex)
 
         # Do not remove routeID from connection if it is still in the route
-        if connection not in self._connections:
+        if connection and connection not in self._connections:
             connection.removeRoute(self.getID())
 
     def getStation(self, index: int) -> Station:
