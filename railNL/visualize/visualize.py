@@ -91,11 +91,11 @@ def choicesFiles(targetFolder: str) -> Tuple[List[int], List[int], float]:
     return scores, iterations, average
 
 
-def loadScores (filename: str) -> float:
+def loadScores (targetFolder: str, filename: str) -> float:
     """
     Select the scores of the file.
     """
-    with open(f"../bestRandomholland/{filename}", 'r') as file:
+    with open(f"../{targetFolder}/{filename}", 'r') as file:
         for line in file:
             splits = line.split(',')
             if splits[0] == 'score':
@@ -130,7 +130,7 @@ def plotAlgorithm (scores: List[int], iterations: List[int], _average: Any,
     """
     plt.plot(iterations, scores)
     plt.title(f"Highest Score: {round(scores[-1], 2)}")
-    plt.suptitle("f{runName}, {algorithmName}")
+    plt.suptitle(f"{runName}, {algorithmName}")
     plt.xlabel("iteration")
     plt.ylabel("points")
     plt.savefig("algorithm.png", format="PNG")
