@@ -20,19 +20,19 @@ import algorithms.random_hajo as randomAlgorithm
 START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
 def routeHillclimber(
-        network: RailNetwork, 
-        maxRoutes: int, 
-        maxDuration: float, 
+    network: RailNetwork, 
+    maxRoutes: int, 
+    maxDuration: float, 
 
-        targetFolder: str ="results", 
-        runName: str = "solutionHill", 
+    targetFolder: str ="results", 
+    runName: str = "solutionHill", 
 
-        convergenceLimit: int = 5000,
-        randomIterations: int = 5000, 
+    convergenceLimit: int = 5000,
+    randomIterations: int = 5000, 
 
-        recordAll: bool = False,
-        **_
-    ) -> RailNetwork:
+    recordAll: bool = False,
+    **_
+) -> RailNetwork:
     """Runs the annealing climber as a standard hillclimber"""
 
     annealingClimber(
@@ -41,7 +41,7 @@ def routeHillclimber(
         maxDuration = maxDuration,
 
         stepfunction = routeClimb, 
-        annealingFunction=hillClimbCoolingScheme, 
+        annealingFunction = hillClimbCoolingScheme, 
 
         targetFolder = targetFolder, 
         runName = runName, 
@@ -49,7 +49,7 @@ def routeHillclimber(
         convergenceLimit = convergenceLimit, 
         randomIterations = randomIterations, 
         recordAll = recordAll
-        )
+    )
 
 
 def annealingClimber(
@@ -178,6 +178,15 @@ def hillClimbCoolingScheme(*_):
 
 
 def annealingProbability(scoreDiff: float, temperature: float):
+    """
+    Determines whether an inferior score is accepted based on score difference and temperature.
+
+    Source:
+    Mahdi, W.; Medjahed, S. A.; Ouali, M. Performance Analysis of Simulated Annealing Cooling 
+    Schedules in the Context of Dense Image Matching. Computación y Sistemas, 2017, 21. 
+    https://doi.org/10.13053/cys-21-3-2553.
+    """
+
     probability = exp(-(scoreDiff / temperature))
     if random.random() <= probability:
         return True
