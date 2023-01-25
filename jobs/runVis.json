@@ -1,0 +1,17 @@
+{
+    "jobType": "v",
+
+    "stationsFilepath": "data/StationsNationaal.csv",
+    "connectionsFilepath": "data/ConnectiesNationaal.csv",
+
+    "algorithm": "random",
+
+    "resultFilepath": "results/Netherlands/baseline2/20230125-031629-solution-606905.csv",
+
+    "maxRoutes": 7,
+    "maxDuration": 120,
+    
+    "convergenceLimit": 0,
+    
+    "recordAll": false
+}
