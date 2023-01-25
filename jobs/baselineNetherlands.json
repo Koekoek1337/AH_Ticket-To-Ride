@@ -7,12 +7,12 @@
     "algorithm": "random",
     
     "RunName": "random",
-    "targetFolder": "results/Netherlands/baseline",
+    "targetFolder": "results/Netherlands/baseline2",
 
     "maxRoutes": 20,
     "maxDuration": 180,
     
-    "convergenceLimit": 100000,
+    "convergenceLimit": 1000000,
     
     "recordAll": true
 }
