@@ -1,25 +1,29 @@
 import random
 from copy import deepcopy
-from typing import List, Tuple, Any
+from typing import List, Tuple, Any, Dict, Union
+import datetime
 
 from classes.railNetwork import RailNetwork
 from classes.route import Route
 from classes.station import Station
-from algorithms.random_hajo import randomSolution
+from algorithms.random_hajo import randomSolution, exportScores
 
+START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
 class HillClimber():
 
+
     def __init__(self):
-        # Check if there is a valid solution
-        # if not routes.checkValidSolution():
-        #     raise Exception("HillClimber requires a complete solution.")
-        model = randomSolution(RailNetwork("data/StationsHolland.csv", "data/ConnectiesHolland.csv"), 7, 120, 50)
+        model = randomSolution(RailNetwork("data/StationsNationaal.csv", "data/ConnectiesNationaal.csv"), 20, 180, 50)
         workModel = deepcopy(model)
         self.previousModel = deepcopy(workModel)
         self.workModel = workModel
         self.routes = workModel.listRoutes()
         self.score = workModel.score()
+        self.scores: List[Dict[str, Union[int, float]]] = []
+
+        self.iteration = 0
+
         print(self.workModel)
 
 
@@ -32,12 +36,13 @@ class HillClimber():
         self.previousModel = deepcopy(self.workModel)
         for route in self.routes:
             randomFloat = random.random()
-            if randomFloat < 0.5:
+            if randomFloat < 0.33:
                 self.mutateLastStation(route)
-                print("ok")
-            else:
+            elif randomFloat > 0.67:
                 self.mutateFirstStation(route)
-                print("ok")
+            else:
+                self.lengthenRoute(route)
+
 
 
     def mutateLastStation(self, route) -> List[str]:
@@ -48,23 +53,27 @@ class HillClimber():
         newRoute = route
         # pop last station
         newRoute.popStation()
-        options = newRoute.getLegalMoves(120)
+    
+        if newRoute.nStations() == 0:
+            self.workModel.delRoute(newRoute.getID())
+
+        if not newRoute.hasLegalMoves(180):
+            return
+
+        options = newRoute.getLegalMoves(180)
         index = random.choice(list(options.keys()))
         randomFloat = random.random()
         # new last station connects to a new station
-        if randomFloat < 0.5:
-            newRoute.appendStation(random.choice(options[index])[0])
-            print("check")
-        # or add new station as first station
-        else:
-            newRoute.insertStation(0, random.choice(options[index])[0])
-            print("check")
 
-        #  Checks if the newRoute is still valid, if not returns old route
-        # if Railnetwork().checkValidSolution(newRoute):
-        #     return newRoute
-        # else:
-        #     return route
+        if index > 0:
+            newRoute.appendStation(random.choice(options[index])[0])
+
+        # or add new station as first station
+        elif index <= 0:
+            newRoute.insertStation(0, random.choice(options[index])[0])
+        else:
+            return
+
         return newRoute
 
 
@@ -76,35 +85,51 @@ class HillClimber():
         newRoute = route
         # pop first station
         newRoute.popStation(0)
-        options = newRoute.getLegalMoves(120)
+        if newRoute.nStations() == 0:
+            self.workModel.delRoute(newRoute.getID())
+
+        if not newRoute.hasLegalMoves(180):
+            return
+
+        options = newRoute.getLegalMoves(180)
         index = random.choice(list(options.keys()))
 
-        randomFloat = random.random()
         # add new station to last station
-        if randomFloat < 0.5:
+        if index > 0:
             newRoute.appendStation(random.choice(options[index])[0])
-            print("check")
-        # or add new station as first station
-        else:
-            newRoute.insertStation(0, random.choice(options[index])[0])
-            print("check")
 
-        # if newRoute.checkValidSolution():
-        #     return newRoute
-        # else:
-        #     return route
+        # or add new station as first station
+        elif index == 0:
+            newRoute.insertStation(0, random.choice(options[index])[0])
+
+        else:
+            return
+
         print(newRoute)
         return newRoute
 
+    def lengthenRoute(self, route):
+        """
+        Adds a station to the route, if it is still under tMax.
+        """
+        newRoute = route
+        if not newRoute.hasLegalMoves(180):
+            return
 
-    # def combine_newRoute(self, newRoute: List[str]) -> List[List[str]]:
-    #     """
-    #     Creates a list of all the new Routes.
-    #     """
-    #     newRoutes = []
-    #     newRoutes.append(newRoute)
-    #     print(newRoutes)
-    #     return newRoutes
+        options = newRoute.getLegalMoves(180)
+        index = random.choice(list(options.keys()))
+
+        if index > 0:
+            newRoute.appendStation(random.choice(options[index])[0])
+
+        # or add new station as first station
+        elif index <= 0:
+            newRoute.insertStation(0, random.choice(options[index])[0])
+
+        else:
+            return
+
+        return newRoute
 
 
     def checkSolution(self, newRoutes: List[List[str]]) -> None:
@@ -120,6 +145,8 @@ class HillClimber():
         # We are looking for the highest possible K
         if newScore >= oldScore:
             self.score = newScore
+            self.scores.append({"iteration":self.iteration, "score":newScore})
+            self.workModel.exportSolution("hillClimberSimon", "snakeClimber")
         else:
             self.workModel = self.previousModel
             self.routes = self.previousModel.listRoutes()
@@ -128,7 +155,7 @@ class HillClimber():
         print(self.workModel)
 
 
-    def run(self, iterations: int = 500, verbose=False, mutate_nodes_number=1) -> None:
+    def run(self, iterations: int = 50000, verbose=False, mutate_nodes_number=1) -> None:
         """
         Runs the hillclimber algorithm for a specific amount of iterations.
         """
@@ -142,3 +169,6 @@ class HillClimber():
 
             # Accept it if it is better
             self.checkSolution(self.mutateRoute())
+            self.iteration += 1
+
+        exportScores(self.scores, "hillClimberSimon", "snakeClimber", START_TIMESTAMP)

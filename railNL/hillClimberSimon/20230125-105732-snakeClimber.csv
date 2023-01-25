@@ -1,0 +1,20 @@
+train,stations
+0,"[Arnhem Centraal, Ede-Wageningen, Utrecht Centraal, Gouda, Rotterdam Alexander, Gouda, Rotterdam Alexander, Gouda, Alphen a/d Rijn]"
+1,"[Roosendaal, Etten-Leur, Breda, Dordrecht, Rotterdam Centraal, Rotterdam Alexander, Gouda, Den Haag Centraal, Delft]"
+2,"[Dordrecht, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Blaak, Dordrecht, Roosendaal, Etten-Leur, Breda, Etten-Leur]"
+3,"[Alkmaar, Castricum, Beverwijk, Castricum, Zaandam, Hoorn]"
+4,"[Delft, Den Haag HS, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal, Alphen a/d Rijn, Utrecht Centraal]"
+5,"[Assen, Groningen, Assen, Groningen, Leeuwarden, Heerenveen]"
+6,"[Deventer, Apeldoorn, Deventer, Zwolle, Amersfoort, Utrecht Centraal]"
+7,"[Weert, Roermond, Sittard, Heerlen, Sittard, Maastricht, Sittard, Maastricht, Sittard, Heerlen]"
+8,"[Leiden Centraal, Heemstede-Aerdenhout, Leiden Centraal, Alphen a/d Rijn, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Leiden Centraal]"
+9,"[Deventer, Apeldoorn, Deventer, Zutphen, Dieren, Zutphen, Apeldoorn, Amersfoort, Apeldoorn, Amersfoort]"
+10,"[Hilversum, Amsterdam Amstel, Almere Centrum, Lelystad Centrum, Almere Centrum, Lelystad Centrum, Almere Centrum]"
+11,"[Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal, Den Haag Centraal, Delft, Schiedam Centrum, Delft, Den Haag Laan v NOI, Delft]"
+12,"[Apeldoorn, Deventer, Apeldoorn, Deventer, Zwolle, Amersfoort, Utrecht Centraal, Hilversum, Utrecht Centraal]"
+13,"[Beverwijk, Zaandam, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Amstel, Utrecht Centraal, Amsterdam Amstel, Amsterdam Zuid]"
+14,"[Weert, Eindhoven, Helmond, Venlo, Helmond, Eindhoven, Tilburg, Breda, Etten-Leur, Breda, Tilburg, Breda]"
+15,"[Den Haag HS, Gouda, Den Haag Centraal, Leiden Centraal, Alphen a/d Rijn, Utrecht Centraal, s-Hertogenbosch, Oss]"
+16,"[Hengelo, Enschede, Hengelo, Almelo, Deventer, Zwolle]"
+score,4088.044943820225
+connections missing,[['Alkmaar': 'Den Helder']: ['Amsterdam Centraal': 'Amsterdam Sloterdijk']: ['Arnhem Centraal': 'Dieren']: ['Assen': 'Zwolle']: ['Den Haag Laan v NOI': 'Gouda']: ['Haarlem': 'Beverwijk']: ['Nijmegen': 'Arnhem Centraal']: ['Oss': 'Nijmegen']: ['Roosendaal': 'Vlissingen']: ['Rotterdam Blaak': 'Schiedam Centrum']: ['s-Hertogenbosch': 'Tilburg']]
