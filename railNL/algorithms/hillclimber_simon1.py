@@ -32,10 +32,12 @@ class HillClimber():
         self.previousModel = deepcopy(self.workModel)
         for route in self.routes:
             randomFloat = random.random()
-            if randomFloat < 0.5:
+            if randomFloat < 0.33:
                 self.mutateLastStation(route)
-            else:
+            elif randomFloat > 0.67:
                 self.mutateFirstStation(route)
+            else:
+                self.lengthenRoute(route)
 
 
     def mutateLastStation(self, route) -> List[str]:
@@ -49,10 +51,10 @@ class HillClimber():
         randomFloat = random.random()
         # new last station connects to a new station
         if randomFloat < 0.5:
-            newRoute.appendStation(random.choice(newRoute.listStations()))
+            newRoute.appendStation(random.choice(newRoute.getLegalMoves(180)))
         # or add new station as first station
         else:
-            newRoute.insertStation(0, random.choice(newRoute.listStations()))
+            newRoute.insertStation(0, random.choice(newRoute.getLegalMoves(180)))
 
         #  Checks if the newRoute is still valid, if not returns old route
         # if Railnetwork().checkValidSolution(newRoute):
@@ -73,10 +75,10 @@ class HillClimber():
         randomFloat = random.random()
         # add new station to last station
         if randomFloat < 0.5:
-            newRoute.appendStation(random.choice(newRoute.listStations()))
+            newRoute.appendStation(random.choice(newRoute.getLegalMoves(180)))
         # or add new station as first station
         else:
-            newRoute.insertStation(0, random.choice(newRoute.listStations()))
+            newRoute.insertStation(0, random.choice(newRoute.getLegalMoves(180)))
 
         # if newRoute.checkValidSolution():
         #     return newRoute
@@ -84,6 +86,22 @@ class HillClimber():
         #     return route
         print(newRoute)
         return newRoute
+
+    def lengthenRoute(self, route):
+        """
+        Adds a station to the route, if it is still under tMax.
+        """
+        newRoute = route
+        if newRoute.hasLegalMoves(180):
+            randomFloat = random.random()
+            if randomFloat < 0.5:
+                newRoute.appendStation(random.choice(newRoute.getLegalMoves(180)))
+            else:
+                newRoute.insertStation(0, random.choice(newRoute.getLegalMoves(180)))
+
+        return newRoute
+
+
 
 
     # def combine_newRoute(self, newRoute: List[str]) -> List[List[str]]:

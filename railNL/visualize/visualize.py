@@ -5,6 +5,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import numpy as np
+import csv
 from natsort import natsorted
 from typing import List, Tuple, Any
 
@@ -44,12 +45,24 @@ def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, f
         plt.plot([point[0] for point in pointPair], [point[1] for point in pointPair], marker=" ",
         color="grey", zorder=0)
 
+    colours = ["red", "blue"]
+
+    NUM_COLORS = 20
+
+cm = plt.get_cmap('gist_rainbow')
+
+fig.savefig('moreColors.png')
+plt.show()
+    routeNumber = 0
     # draw routes
     for routePointPairs in routePointLists:
         # TODO routepointpairs colours red
+
         for pointPair in routePointPairs:
             plt.plot([point[0] for point in pointPair], [point[1] for point in pointPair],
-            marker=" ", color="red", zorder=1)
+            marker=" ", color = cm(1.*i/routeNumber), zorder=1)
+
+        routeNumber += 1
 
     # draw stations
     for station in stations:
@@ -95,11 +108,32 @@ def loadScores (targetFolder: str, filename: str) -> float:
     """
     Select the scores of the file.
     """
-    with open(f"../{targetFolder}/{filename}", 'r') as file:
-        for line in file:
-            splits = line.split(',')
-            if splits[0] == 'score':
-                return float(splits[1])
+    with open(f"../{targetFolder}/{filename}", newline = '') as csvFile:
+        reader = csv.dictreader(csvFile)
+
+        for row in reader:
+            if row["train"] == "score":
+                return float(row["stations"])
+
+def loadSummary (targetFolder: str, filename: str) -> Tuple[List[int], List[Float], Optional[float]]:
+    """
+    Shows the scores with the amount of iterations needed.
+    """
+    with open(f"../{targetFolder}/{filename}", newline = '') as csvFile:
+        reader = csv.dictreader(csvFile)
+
+        iterations = []
+        scores = []
+
+        for row in reader:
+            if row["iteration"] == "Theoretical max"
+                return iterations, score, float(row["score"])
+
+            iterations.append(int(row["iteration"]))
+            scores.append(float(row["score"]))
+
+        return iterations, score, None
+
 
 
 def plotHistAverage (scores: List[int], _iterations: Any, average: List[int],
