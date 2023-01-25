@@ -4,15 +4,16 @@
     "stationsFilepath": "data/StationsNationaal.csv",
     "connectionsFilepath": "data/ConnectiesNationaal.csv",
 
-    "algorithm": "random",
+    "algorithm": "hillclimber_hajo",
     
-    "RunName": "Solution",
-    "targetFolder": "results/Netherlands",
+    "RunName": "hillSolution",
+    "targetFolder": "results/Netherlands/hill",
 
     "maxRoutes": 20,
     "maxDuration": 180,
     
     "convergenceLimit": 50000,
+    "randomIterations": 1000,
     
     "recordAll": false
 }
