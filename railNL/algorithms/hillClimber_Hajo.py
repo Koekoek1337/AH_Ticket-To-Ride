@@ -37,10 +37,10 @@ def routeHillclimber(
 
     annealingClimber(
         network = network, 
-        maxRoutes = maxRoutes, 
+        maxRoutes =  maxRoutes, 
         maxDuration = maxDuration,
 
-        stepfunction = routeClimb, 
+        stepFunction = routeClimb, 
         annealingFunction = hillClimbCoolingScheme, 
 
         targetFolder = targetFolder, 
@@ -152,12 +152,12 @@ def routeClimb(network: RailNetwork, maxRoutes: int, maxDuration: float) -> None
     """
     randomNum = random.random()
 
-    if randomNum <= 0.25 and network.nRoute() > 1:
+    if randomNum <= 0.125 and network.nRoute() > 1:
         removeRoute(network)
         return
     
     # add a random route if 0.25 < randomNum <=0.50 or if a route could not be removed
-    if (randomNum <= 0.50 and network.nRoute() < maxRoutes) or network.nRoute() == 0:
+    if (randomNum <= 0.25 and network.nRoute() < maxRoutes) or network.nRoute() == 0:
         randomAlgorithm.randomRoute(network, maxDuration)
         return
 
