@@ -119,6 +119,9 @@ class Route:
         
     def _removeConnections(self, stationIndex: int) -> None:
         """Removes connections around station on Index"""
+        if self.length() == 0:
+            return
+        
         if stationIndex < self.nStations() - 1:
             self._removeConnection(stationIndex)
 
