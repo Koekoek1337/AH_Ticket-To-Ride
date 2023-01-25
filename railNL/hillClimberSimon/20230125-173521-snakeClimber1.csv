@@ -1,0 +1,14 @@
+train,stations
+0,"[Assen, Groningen, Leeuwarden, Groningen, Leeuwarden, Heerenveen]"
+1,"[Den Haag Centraal, Gouda, Den Haag Centraal, Delft, Schiedam Centrum, Delft, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Gouda, Utrecht Centraal, Amsterdam Centraal, Amsterdam Sloterdijk]"
+2,"[Hilversum, Amsterdam Amstel, Amsterdam Zuid, Amsterdam Amstel, Amsterdam Zuid, Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout, Haarlem]"
+3,"[Arnhem Centraal, Dieren, Zutphen, Dieren, Zutphen, Deventer, Zutphen, Deventer, Almelo, Hengelo, Enschede, Hengelo, Enschede, Hengelo, Almelo, Hengelo]"
+4,"[Alkmaar, Castricum, Beverwijk, Zaandam, Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Centraal, Almere Centrum, Amsterdam Amstel, Amsterdam Zuid]"
+5,"[Arnhem Centraal, Ede-Wageningen, Utrecht Centraal, Schiphol Airport, Leiden Centraal, Den Haag Laan v NOI, Delft, Schiedam Centrum, Delft, Den Haag HS, Leiden Centraal]"
+6,"[Hengelo, Enschede, Hengelo, Almelo, Hengelo, Almelo, Deventer, Zwolle, Steenwijk, Heerenveen]"
+7,"[Utrecht Centraal, Alphen a/d Rijn, Leiden Centraal, Den Haag Laan v NOI, Delft, Schiedam Centrum, Rotterdam Blaak, Dordrecht, Rotterdam Centraal, Rotterdam Alexander, Gouda, Alphen a/d Rijn]"
+8,"[Heerlen, Sittard, Roermond, Sittard, Roermond, Sittard, Maastricht, Sittard, Heerlen, Sittard]"
+9,"[Almelo, Deventer, Apeldoorn, Zutphen, Dieren, Arnhem Centraal, Nijmegen, Oss, Nijmegen, Arnhem Centraal, Dieren]"
+10,"[Eindhoven, s-Hertogenbosch, Oss, s-Hertogenbosch, Utrecht Centraal, Amersfoort, Apeldoorn, Zutphen, Dieren, Arnhem Centraal]"
+score,3927.9325842696626
+connections missing,[['Alkmaar': 'Hoorn']: ['Alkmaar': 'Den Helder']: ['Almere Centrum': 'Lelystad Centrum']: ['Assen': 'Zwolle']: ['Breda': 'Etten-Leur']: ['Breda': 'Dordrecht']: ['Den Haag HS': 'Gouda']: ['Den Haag Laan v NOI': 'Gouda']: ['Eindhoven': 'Helmond']: ['Eindhoven': 'Tilburg']: ['Etten-Leur': 'Roosendaal']: ['Haarlem': 'Beverwijk']: ['Helmond': 'Venlo']: ['Hilversum': 'Almere Centrum']: ['Leiden Centraal': 'Heemstede-Aerdenhout']: ['Roermond': 'Weert']: ['Roosendaal': 'Vlissingen']: ['Roosendaal': 'Dordrecht']: ['Rotterdam Blaak': 'Rotterdam Alexander']: ['Tilburg': 'Breda']: ['Utrecht Centraal': 'Amsterdam Amstel']: ['Utrecht Centraal': 'Hilversum']: ['Weert': 'Eindhoven']: ['Zaandam': 'Hoorn']: ['Zaandam': 'Castricum']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Almelo']: ['s-Hertogenbosch': 'Tilburg']]

@@ -53,7 +53,7 @@ class HillClimber():
         newRoute = route
         # pop last station
         newRoute.popStation()
-    
+
         if newRoute.nStations() == 0:
             self.workModel.delRoute(newRoute.getID())
 
@@ -146,7 +146,7 @@ class HillClimber():
         if newScore >= oldScore:
             self.score = newScore
             self.scores.append({"iteration":self.iteration, "score":newScore})
-            self.workModel.exportSolution("hillClimberSimon", "snakeClimber")
+            self.workModel.exportSolution("hillClimberSimon", "snakeClimber1")
         else:
             self.workModel = self.previousModel
             self.routes = self.previousModel.listRoutes()
@@ -155,7 +155,7 @@ class HillClimber():
         print(self.workModel)
 
 
-    def run(self, iterations: int = 50000, verbose=False, mutate_nodes_number=1) -> None:
+    def run(self, iterations: int = 500000, verbose=False, mutate_nodes_number=1) -> None:
         """
         Runs the hillclimber algorithm for a specific amount of iterations.
         """
@@ -171,4 +171,4 @@ class HillClimber():
             self.checkSolution(self.mutateRoute())
             self.iteration += 1
 
-        exportScores(self.scores, "hillClimberSimon", "snakeClimber", START_TIMESTAMP)
+        exportScores(self.scores, "hillClimberSimon", "snakeClimber1", START_TIMESTAMP)
