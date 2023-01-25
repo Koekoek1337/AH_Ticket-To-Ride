@@ -114,7 +114,7 @@ class Route:
         self._removeConnections(stationIndex)
 
         # Insert a new connection if possible if the removed station was not at the head or tail end
-        if stationIndex not in [0, self.nStations()]:
+        if stationIndex not in [0, self.nStations()] and self.nStations > 1:
             self._insertConnection(stationIndex, stationIndex - 1)
         
     def _removeConnections(self, stationIndex: int) -> None:
