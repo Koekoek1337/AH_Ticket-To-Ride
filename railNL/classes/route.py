@@ -148,6 +148,9 @@ class Route:
             a station can occur multiple times if it has a broken connection.
 
         """
+        if self.nStations() == 0:
+            raise Exception("route has no stations")
+    
         openStations = [(self._stations[0], 0)]
 
         openStations += [(self._stations[self.nStations() - 1], self.nStations() - 1)]
