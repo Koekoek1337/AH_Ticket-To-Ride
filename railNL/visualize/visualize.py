@@ -45,12 +45,24 @@ def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, f
         plt.plot([point[0] for point in pointPair], [point[1] for point in pointPair], marker=" ",
         color="grey", zorder=0)
 
+    colours = ["red", "blue"]
+
+    NUM_COLORS = 20
+
+cm = plt.get_cmap('gist_rainbow')
+
+fig.savefig('moreColors.png')
+plt.show()
+    routeNumber = 0
     # draw routes
     for routePointPairs in routePointLists:
         # TODO routepointpairs colours red
+
         for pointPair in routePointPairs:
             plt.plot([point[0] for point in pointPair], [point[1] for point in pointPair],
-            marker=" ", color="red", zorder=1)
+            marker=" ", color = cm(1.*i/routeNumber), zorder=1)
+
+        routeNumber += 1
 
     # draw stations
     for station in stations:
