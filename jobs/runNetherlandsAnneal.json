@@ -9,9 +9,9 @@
     "coolingScheme": "logarithmic",
 
     "initialTemperature": 50,
-    "coolingConstant": 500,
+    "coolingConstant": 125,
     
-    "runName": "annealLogc500",
+    "runName": "annealLogc250",
     "targetFolder": "results/Netherlands/annealLog",
     "exportImprovements": false,
 
