@@ -1,7 +1,8 @@
-from typing import TYPE_CHECKING, List, Tuple, Dict, Optional, Union
+from typing import TYPE_CHECKING, List, Tuple, Dict, Optional
 
 if TYPE_CHECKING:
     from connection import Connection
+
 
 class Station:
     """
@@ -26,7 +27,7 @@ class Station:
         """String representaton"""
 
         return f"Station {self._name}"
-    
+
     def __repr__(self) -> str:
         """Reprensentation"""
 
