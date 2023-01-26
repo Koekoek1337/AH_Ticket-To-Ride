@@ -20,6 +20,7 @@ class HillClimber():
         self.routes = self.workModel.listRoutes()
         
         self.previousModel = deepcopy(self.workModel)
+        self.score = self.previousModel.score()
 
 
     def getLowestScoringRoute(self):
@@ -36,40 +37,36 @@ class HillClimber():
         return lowestRoute.getID()
         
         
-    def removeLowestRoute(self):
+    def removeLowestRoute(self, routeID):
         """
         Removes the route from the list with the lowest score.
         """
-        print(self.calculateScore())
-        self.workModel.delRoute(self.calculateScore())
-        print(self.routes)
-        # if list empty, yeet
+        self.workModel.delRoute(routeID)
         
-    def makeNewRoute(self):
+    def makeNewRoute(self, routeID):
         """
-        Creates a newRoute with as many stations until there is no legal move left.
+        Creates a new route with a legal amount of stations.
         """
-        newRoute = RailNetwork()
-        newRoute.createRoute(random.choice(newRoute.listStations()))
-        while newRoute < hasLegalMoves(tMax):
-            newRoute.appendStation(random.choice(newRoute.getLegalMoves(tMax)))
+        # get id of emptied route
+        # insert into emptied list while possible
+        
+        newRoute = Route((random.choice(self.workModel.listUnvisitedStations())), routeID)
+        self.workModel._routes[newRoute.getID()] = newRoute
+        options = newRoute.getLegalMoves(tMax)
+        index = random.choice(list(options.keys()))
+        while newRoute.hasLegalMoves(tMax) and random.random() < 0.15:
+            # currentStation = newRoute.listStations()[-1]
+            # newRoute.appendStation(random.choice(currentStation.listStations()))
+            newRoute.appendStation(random.choice(options[index])[0])
 
-        return newRoute
 
-    def addNewRoute(self, newRoute):
-        """
-        Adds the newRoute the list of routes.
-        """
-        self.routes.append(newRoute)
-
-
-    def checkSolution(self, newRoute: List[List[str]]) -> None:
+    def checkSolution(self) -> None:
         """
         Checks and accepts better solutions than current solution.
         """
 
         newScore = self.workModel.score()
-        oldScore = self.score
+        oldScore = self.previousModel.score()
 
          # We are looking for the highest possible K
         if newScore > oldScore:
@@ -84,5 +81,7 @@ class HillClimber():
         """        
         
         while 1: 
-            print("hello, world")
-            self.addNewRoute(self.generateNewRoute())
+            routeID = self.getLowestScoringRoute()
+            self.removeLowestRoute(routeID)
+            self.makeNewRoute(routeID)
+            self.checkSolution()
