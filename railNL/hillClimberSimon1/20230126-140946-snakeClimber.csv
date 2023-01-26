@@ -1,0 +1,16 @@
+train,stations
+0,"[Den Haag Laan v NOI, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Beverwijk, Zaandam, Beverwijk, Haarlem, Heemstede-Aerdenhout, Leiden Centraal]"
+1,"[Etten-Leur, Breda, Etten-Leur, Breda, Tilburg, s-Hertogenbosch, Eindhoven, Helmond, Eindhoven]"
+2,"[Heerenveen, Leeuwarden, Heerenveen, Steenwijk, Zwolle, Steenwijk, Heerenveen]"
+3,"[Almere Centrum, Amsterdam Centraal, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Sloterdijk, Amsterdam Centraal, Utrecht Centraal, Gouda, Den Haag HS, Delft]"
+4,"[Rotterdam Alexander, Gouda, Den Haag Laan v NOI, Gouda, Alphen a/d Rijn, Gouda, Den Haag Centraal]"
+5,"[Rotterdam Blaak, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal, Dordrecht, Roosendaal, Dordrecht, Roosendaal, Etten-Leur, Breda]"
+6,"[Arnhem Centraal, Nijmegen, Arnhem Centraal, Dieren, Zutphen, Dieren, Zutphen, Apeldoorn, Zutphen, Deventer, Zutphen, Deventer, Apeldoorn]"
+7,"[Den Helder, Alkmaar, Castricum, Zaandam, Hoorn, Alkmaar]"
+8,"[Amsterdam Zuid, Schiphol Airport, Utrecht Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Amstel, Utrecht Centraal]"
+9,"[Almelo, Deventer, Apeldoorn, Amersfoort, Utrecht Centraal, Amsterdam Centraal]"
+10,"[Amsterdam Centraal, Amsterdam Amstel, Utrecht Centraal, Hilversum, Amsterdam Amstel, Hilversum]"
+11,"[Rotterdam Centraal, Rotterdam Alexander, Gouda, Alphen a/d Rijn, Leiden Centraal, Den Haag HS, Leiden Centraal, Alphen a/d Rijn, Gouda, Den Haag Laan v NOI, Delft]"
+12,"[Heerlen, Sittard, Maastricht, Sittard, Roermond, Sittard]"
+score,4380.52808988764
+connections missing,[['Almelo': 'Hengelo']: ['Almere Centrum': 'Lelystad Centrum']: ['Amsterdam Sloterdijk': 'Haarlem']: ['Assen': 'Zwolle']: ['Breda': 'Dordrecht']: ['Dordrecht': 'Rotterdam Blaak']: ['Eindhoven': 'Tilburg']: ['Groningen': 'Assen']: ['Hengelo': 'Enschede']: ['Leeuwarden': 'Groningen']: ['Leiden Centraal': 'Schiphol Airport']: ['Oss': 'Nijmegen']: ['Roosendaal': 'Vlissingen']: ['Utrecht Centraal': 's-Hertogenbosch']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Deventer']: ['Zwolle': 'Almelo']: ['s-Hertogenbosch': 'Oss']]

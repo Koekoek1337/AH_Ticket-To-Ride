@@ -32,7 +32,7 @@ class HillClimber():
         self.previousModel = deepcopy(self.workModel)
 
         # mutate every route in the workModel
-        for route in self.routes:
+        for route in self.workModel.listRoutes():
             randomFloat = random.random()
             if randomFloat < 0.33:
                 self.mutateLastStation(route)
@@ -55,7 +55,6 @@ class HillClimber():
 
         # if trainroute is empty, deletes route
         if newRoute.nStations() == 0:
-            self.workModel.delRoute(newRoute.getID())
             return
 
         # pop last station
@@ -63,7 +62,6 @@ class HillClimber():
 
         # if trainroute is empty, deletes route
         if newRoute.nStations() == 0:
-            self.workModel.delRoute(newRoute.getID())
             return
 
         # if there are no legal moves possible, skips this function
@@ -96,7 +94,6 @@ class HillClimber():
 
         # if trainroute is empty, deletes route
         if newRoute.nStations() == 0:
-            self.workModel.delRoute(newRoute.getID())
             return
 
         # pop first station
@@ -104,7 +101,6 @@ class HillClimber():
 
         # if trainroute is empty, deletes route
         if newRoute.nStations() == 0:
-            self.workModel.delRoute(newRoute.getID())
             return
 
         # if there are no legal moves possible, skips this function
@@ -134,7 +130,6 @@ class HillClimber():
         """
         newRoute = route
         if newRoute.nStations() == 0:
-            self.workModel.delRoute(newRoute.getID())
             return
 
         if not newRoute.hasLegalMoves(180):
@@ -168,7 +163,7 @@ class HillClimber():
         if newScore >= oldScore:
             self.score = newScore
             self.scores.append({"iteration":self.iteration, "score":newScore})
-            self.workModel.exportSolution("hillClimberSimon1", "snake2Climber")
+            self.workModel.exportSolution("hillClimber1Simon", "snake1Climber")
         else:
             self.workModel = self.previousModel
             self.routes = self.previousModel.listRoutes()
@@ -187,4 +182,4 @@ class HillClimber():
             self.iteration += 1
 
         # exports scores
-        exportScores(self.scores, "hillClimberSimon1", "snake2Climber", START_TIMESTAMP)
+        exportScores(self.scores, "hillClimber1Simon", "snake1Climber", START_TIMESTAMP)
