@@ -14,8 +14,7 @@ from typing import List, Dict, Union, Callable, Optional
 
 import algorithms.random_hajo as randomAlgorithm
 
-"""
-This module contains functions for a simulated annealing hillclimber.
+"""methods for Simulated annealing hillclimber
 
 
 """
@@ -221,7 +220,7 @@ def routeClimb(network: RailNetwork, maxRoutes: int, maxDuration: float) -> None
         removeRoute(network)
         return
     
-    # add a random route if 0.25 < randomNum <=0.50 or if a route could not be removed
+    # add a random route if 0.125 < randomNum <=0.25 or if a route could not be removed
     if (randomNum <= 0.25 and network.nRoute() < maxRoutes) or network.nRoute() == 0:
         randomAlgorithm.randomRoute(network, maxDuration)
         return
