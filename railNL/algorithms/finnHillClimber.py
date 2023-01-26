@@ -1,10 +1,11 @@
-from algorithms.random_hajo import randomSolution, randomRoute
+from algorithms.random_hajo import randomSolution, randomRoute, exportScores
 
 from classes.railNetwork import RailNetwork
 from classes.route import Route
 from classes.station import Station
+import datetime
 
-from typing import List, Tuple, Any
+from typing import List, Tuple, Any, Dict, Union
 
 import random
 from copy import deepcopy
@@ -12,23 +13,27 @@ from copy import deepcopy
 tMax = 180
 routeMax = 20
 
+START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+
 class HillClimber():
 
-    def __init__(self):
-        self.workModel = randomSolution(RailNetwork("data/StationsNationaal.csv", "data/ConnectiesNationaal.csv"), routeMax, tMax, 50)
-        self.routes = self.workModel.listRoutes()
+    def __init__(self) -> None:
+        self.workModel: RailNetwork = randomSolution(RailNetwork("data/StationsNationaal.csv", "data/ConnectiesNationaal.csv"), routeMax, tMax, 50)
+        self.routes: List[Route] = self.workModel.listRoutes()
+        self.score: float = self.workModel.score()
         
-        self.previousModel = deepcopy(self.workModel)
-        self.score = self.workModel.score()
+        self.previousModel: RailNetwork = deepcopy(self.workModel)
+        self.scores: List[Dict[str, Union[int, float]]] = []
+        self.iteration: int = 0
 
 
-    def getLowestScoringRoute(self):
+    def getLowestScoringRoute(self) -> int:
         """
         Returns lowest scoring route in railNetwork
         """
         self.previousModel = deepcopy(self.workModel)
-        lowestScore = 10000
-        lowestRoute = self.routes[0].routeScore(len(self.workModel._connections))
+        lowestScore: float = 10000
+        lowestRoute: Route = self.routes[0]
         for route in self.workModel.listRoutes():
             if route.routeScore(len(self.workModel._connections)) < lowestScore:
                 lowestScore = route.routeScore(len(self.workModel._connections))
@@ -37,14 +42,14 @@ class HillClimber():
         return lowestRoute.getID()
         
         
-    def removeLowestRoute(self, routeID):
+    def removeLowestRoute(self, routeID: int) -> None:
         """
         Removes the route from the list with the lowest score.
         """
         
         self.workModel.delRoute(routeID)
         
-    def makeNewRoute(self, routeID):
+    def makeNewRoute(self, routeID: int) -> None:
         """
         Creates a new route with a legal amount of stations.
         """
@@ -63,11 +68,14 @@ class HillClimber():
          # We are looking for the highest possible K
         if newScore > oldScore:
             self.score = newScore
+            self.scores.append({"iteration":self.iteration, "score":newScore})
+            self.workModel.exportSolution("finnHillClimber", "hillClimber")
+
         else:
             self.workModel = self.previousModel
             self.routes = self.previousModel.listRoutes()
 
-    def run(self, iterations: int = 100, verbose=False) -> None:
+    def run(self, iterations: int = 100000, verbose: bool = False) -> None:
         """
         run
         """        
@@ -76,5 +84,6 @@ class HillClimber():
             self.removeLowestRoute(routeID)
             self.makeNewRoute(routeID)
             self.checkSolution()
-            print(self.previousModel.score())
-        print(self.routes)
+            self.iteration += 1
+            
+        exportScores(self.scores, "finnHillClimber", "hillClimber", START_TIMESTAMP)
