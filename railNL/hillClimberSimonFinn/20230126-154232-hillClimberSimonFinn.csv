@@ -1,0 +1,13 @@
+train,stations
+0,"[Castricum, Alkmaar, Hoorn, Zaandam, Beverwijk, Haarlem]"
+1,"[Zaandam]"
+3,"[Ede-Wageningen]"
+4,"[Haarlem]"
+5,"[Helmond, Eindhoven, Helmond]"
+6,"[Amersfoort]"
+7,"[Amersfoort, Utrecht Centraal, Gouda, Den Haag Centraal, Gouda, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Dordrecht, Breda, Etten-Leur, Roosendaal]"
+8,"[Heerenveen, Leeuwarden, Groningen, Assen]"
+9,"[Schiphol Airport]"
+10,"[Rotterdam Blaak, Dordrecht, Roosendaal, Etten-Leur, Breda, Tilburg, Eindhoven, Weert, Roermond]"
+score,5075.168539325843
+connections missing,[['Alkmaar': 'Den Helder']: ['Amsterdam Amstel': 'Almere Centrum']: ['Amsterdam Amstel': 'Hilversum']: ['Den Haag HS': 'Gouda']: ['Den Haag Laan v NOI': 'Gouda']: ['Heerenveen': 'Steenwijk']: ['Oss': 'Nijmegen']: ['Roosendaal': 'Vlissingen']: ['Rotterdam Blaak': 'Rotterdam Alexander']: ['Sittard': 'Heerlen']: ['Utrecht Centraal': 'Amsterdam Amstel']: ['Utrecht Centraal': 'Ede-Wageningen']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Utrecht Centraal': 'Schiphol Airport']: ['Utrecht Centraal': 's-Hertogenbosch']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Almelo']: ['s-Hertogenbosch': 'Oss']: ['s-Hertogenbosch': 'Tilburg']]
