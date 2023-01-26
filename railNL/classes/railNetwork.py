@@ -343,15 +343,19 @@ class RailNetwork:
         """
         return 10000 - (100 * self.minimumRoutes(maxDuration) + self.minimumTotalDuration())
 
-    def exportSolution(self, folder: str, filename: str) -> None:
+    def exportSolution(self, folder: str, filename: str, timeStamp: Optional[str] = None) -> None:
         """
         Exports the current routes to a csv file to /folder
+
+        Args:
+            folder (str)
         """
         if not os.path.exists(f"{folder}/"):
             os.mkdir(f"{folder}/")
 
         # enforces unique filenames
-        timeStamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+        if not timeStamp:
+            timeStamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
         with open(f"{folder}/{timeStamp}-{filename}.csv", "w") as resultFile:
             resultFile.write("train,stations\n")
