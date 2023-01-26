@@ -1,0 +1,12 @@
+{
+    "jobType": "v",
+    "plotType": "network",
+
+    "stationsFilepath": "data/StationsNationaal.csv",
+    "connectionsFilepath": "data/ConnectiesNationaal.csv",
+
+    "title": "Snake algorithm oplossing Nederland met score 4414.12",
+
+    "resultFilepath": "railNL/hillClimberSimon/20230125-105823-snakeClimber.csv",
+    "stationNames": false
+}

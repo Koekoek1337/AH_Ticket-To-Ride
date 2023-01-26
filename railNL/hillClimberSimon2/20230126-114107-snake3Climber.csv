@@ -1,0 +1,19 @@
+train,stations
+0,"[Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Rotterdam Blaak, Dordrecht, Rotterdam Centraal, Rotterdam Alexander, Gouda, Utrecht Centraal]"
+1,"[Den Haag Centraal, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk, Haarlem, Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Centraal, Almere Centrum, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Sloterdijk, Zaandam]"
+2,"[Alphen a/d Rijn, Utrecht Centraal, Ede-Wageningen, Arnhem Centraal, Dieren, Arnhem Centraal, Ede-Wageningen, Arnhem Centraal, Dieren]"
+3,"[Schiedam Centrum, Rotterdam Blaak, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Delft, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Gouda]"
+4,"[Hengelo, Almelo, Zwolle, Steenwijk, Heerenveen, Leeuwarden, Groningen]"
+5,"[Utrecht Centraal, Amersfoort, Apeldoorn, Deventer, Apeldoorn, Zutphen, Deventer, Almelo, Hengelo, Enschede]"
+6,"[Utrecht Centraal, Amersfoort, Utrecht Centraal, Gouda, Rotterdam Alexander, Rotterdam Blaak]"
+7,"[Dordrecht, Roosendaal, Etten-Leur, Breda, Etten-Leur, Breda, Etten-Leur, Breda, Etten-Leur, Breda]"
+8,"[Amsterdam Centraal, Amsterdam Sloterdijk, Amsterdam Centraal, Utrecht Centraal, Hilversum]"
+9,"[Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Delft, Den Haag Laan v NOI, Delft, Den Haag HS]"
+10,"[Castricum, Beverwijk, Haarlem, Beverwijk, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Alphen a/d Rijn, Gouda, Den Haag HS, Leiden Centraal]"
+11,"[Utrecht Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Amstel, Amsterdam Centraal]"
+12,"[Dordrecht, Breda, Tilburg, s-Hertogenbosch, Oss, s-Hertogenbosch]"
+13,"[Sittard, Roermond, Weert, Roermond, Sittard, Roermond, Sittard, Roermond, Weert]"
+14,"[Sittard, Heerlen, Sittard, Maastricht, Sittard, Maastricht, Sittard, Roermond, Weert, Eindhoven]"
+15,"[Schiedam Centrum, Rotterdam Blaak, Dordrecht, Breda, Dordrecht, Rotterdam Blaak, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Delft]"
+score,3913.606741573034
+connections missing,[['Alkmaar': 'Hoorn']: ['Alkmaar': 'Den Helder']: ['Almere Centrum': 'Lelystad Centrum']: ['Assen': 'Zwolle']: ['Castricum': 'Alkmaar']: ['Den Haag Laan v NOI': 'Leiden Centraal']: ['Eindhoven': 'Tilburg']: ['Helmond': 'Venlo']: ['Nijmegen': 'Arnhem Centraal']: ['Oss': 'Nijmegen']: ['Roosendaal': 'Vlissingen']: ['Zaandam': 'Hoorn']: ['Zaandam': 'Beverwijk']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Deventer']]

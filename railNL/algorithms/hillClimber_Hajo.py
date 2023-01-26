@@ -143,6 +143,15 @@ def routeClimb(network: RailNetwork, maxRoutes: int, maxDuration: float) -> None
     """
     Either adds, removes or replaces a random route.
 
+    TODO
+    deepcopy
+    kies random routeID
+    voeg route toe, sla nieuwe ID op -> voeg toe
+    deepcopy
+    haal gekozen route weg -> replace
+    deepcopu
+    haal nieuwe route weg -> remove
+
     Args:
         network (RailNetwork):
         maxRoutes (maxRoutes):

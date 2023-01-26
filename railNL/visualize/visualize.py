@@ -7,13 +7,16 @@ import matplotlib.image as mpimg
 import numpy as np
 import csv
 from natsort import natsorted
-from typing import List, Tuple, Any
+from typing import List, Tuple, Any, Optional
 
 
-def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, float]]],
-                     stations: List[Tuple[str, Tuple[float, float]]],
-                     routePointLists: List[List[Tuple[Tuple[int, int], Tuple[int, int]]]],
-                     stationNames: bool = True) -> None:
+def visualizeNetwork(
+        connections: List[Tuple[Tuple[float, float], Tuple[float, float]]],
+        stations: List[Tuple[str, Tuple[float, float]]],
+        routePointLists: List[List[Tuple[Tuple[int, int], Tuple[int, int]]]],
+        stationNames: bool = True,
+        title: str = ""
+        ) -> None:
     """
     Input: RailNetwork()
     Gives the connections, stations and routePointLists.
@@ -30,6 +33,8 @@ def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, f
     # Create a figure of the right size with one axes that takes up the full figure
     fig, ax = plt.subplots(figsize=figsize)
 
+    plt.title(title)
+
     # find the extent
     longitudeMin = 3.5
     longitudeMax = 7.0
@@ -45,7 +50,6 @@ def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, f
         plt.plot([point[0] for point in pointPair], [point[1] for point in pointPair], marker=" ",
         color="grey", zorder=0)
 
-
     NUM_COLORS = 20
 
     cm = plt.get_cmap('gist_rainbow')
@@ -57,7 +61,7 @@ def visualizeNetwork(connections: List[Tuple[Tuple[float, float], Tuple[float, f
 
         for pointPair in routePointPairs:
             plt.plot([point[0] for point in pointPair], [point[1] for point in pointPair],
-            marker=" ", color = cm(1.*i/routeNumber), zorder=1)
+            marker=" ", color = cm(1.*routeNumber/NUM_COLORS), zorder=1)
 
         routeNumber += 1
 
@@ -106,62 +110,68 @@ def loadScores (targetFolder: str, filename: str) -> float:
     Select the scores of the file.
     """
     with open(f"../{targetFolder}/{filename}", newline = '') as csvFile:
-        reader = csv.dictreader(csvFile)
+        reader = csv.DictReader(csvFile)
 
         for row in reader:
             if row["train"] == "score":
                 return float(row["stations"])
 
-def loadSummary (targetFolder: str, filename: str) -> Tuple[List[int], List[Float], Optional[float]]:
+def loadSummary (resultFilepath: str) -> Tuple[List[int], List[float], Optional[float]]:
     """
     Shows the scores with the amount of iterations needed.
     """
-    with open(f"../{targetFolder}/{filename}", newline = '') as csvFile:
-        reader = csv.dictreader(csvFile)
+    with open(resultFilepath, newline = '') as csvFile:
+        reader = csv.DictReader(csvFile)
 
         iterations = []
         scores = []
 
         for row in reader:
-            if row["iteration"] == "Theoretical max"
-                return iterations, score, float(row["score"])
+            if row["iteration"] == "Theoretical max":
+                return iterations, scores, float(row["score"])
 
             iterations.append(int(row["iteration"]))
             scores.append(float(row["score"]))
 
-        return iterations, score, None
+        return iterations, scores, None
 
 
 
-def plotHistAverage (scores: List[int], _iterations: Any, average: List[int],
-                    runName, algorithmName) -> None:
+def plotHistAverage (scores: List[float], title: str = "", binCount: int = 30) -> None:
     """
     Input: scores, average from def choicesFiles.
     Input: scope and algorithm.
     Creates a hist with the data.
     """
-    counts, bins = np.histogram(scores, 30)
-    plt.title(f"{runName}, {algorithmName}")
+    average = statistics.mean(scores)
+
+    counts, bins = np.histogram(scores, binCount)
+
+    plt.title(title)
     plt.axvline(average)
     plt.xlabel("scores")
     plt.ylabel("frequency")
-    plt.xticks([average], [f'{average:.2f}'])
+    plt.annotate(f'{average:.2f}', (average, 0), ha='center')
     plt.stairs(counts, bins)
     plt.savefig("hist.png", format="PNG")
     plt.show()
     plt.clf()
 
 
-def plotAlgorithm (scores: List[int], iterations: List[int], _average: Any,
-                   runName, algorithmName) -> None:
+def plotAlgorithm (iterations: List[int], scores: List[int], theoreticalBest: float, 
+                   title: str) -> None:
     """
     Input: scores, average from def choicesFiles.
     Input: scope and algorithm.
     Creates a graph of the applied algorithm.
     """
     plt.plot(iterations, scores)
-    plt.title(f"Highest Score: {round(scores[-1], 2)}")
-    plt.suptitle(f"{runName}, {algorithmName}")
+    plt.title(title)
+    plt.suptitle(f"Highest Score: {round(scores[-1], 2)}")
+    
+    if theoreticalBest:
+        plt.axhline(theoreticalBest)
+        
     plt.xlabel("iteration")
     plt.ylabel("points")
     plt.savefig("algorithm.png", format="PNG")

@@ -1,0 +1,11 @@
+{
+    "jobType": "v",
+    "plotType": "algorithm",
+
+    "stationsFilepath": "data/StationsHolland.csv",
+    "connectionsFilepath": "data/ConnectiesHolland.csv",
+
+    "title": "Snake algorithme",
+
+    "resultFilepath": "railNL/hillClimberSimon/20230125-104706-summary-snakeClimber.csv"
+}
