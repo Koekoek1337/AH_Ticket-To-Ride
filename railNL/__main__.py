@@ -19,56 +19,112 @@ o How to run:
 
 """
 
-def main(stationsFilepath: str, connectionsFilepath: str, jobType: str, **parameters):
-    network = RailNetwork(stationsFilepath, connectionsFilepath)
+def main(jobType: str, **parameters):
+    jobType = jobType.lower()
 
-    if jobType.lower() in ["batch", "b", "bat"]:
-        runBatch(network, **parameters)
+    if jobType in ["batch", "b", "bat"]:
+        batch(**parameters)
         return
     
-    elif jobType.lower() in ["visualize", "vis", "v"]:
-        runVis(network, **parameters)
+    elif jobType in ["visualize", "vis", "v"]:
+        visualize(**parameters)
+    
+    return
 
 
-def runBatch(network: RailNetwork, algorithm: str, **parameters):
-    """Runs an algorithm in batch as specified by the given job.json file"""
+def batch(stationsFilepath: str, connectionsFilepath: str, algorithm: str, **parameters):
+    """
+    Runs an algorithm in batch as specified by the given job.json file
+    """
+    network = RailNetwork(stationsFilepath, connectionsFilepath)
     algorithm = algorithm.lower()
     
     if algorithm == "random":
-        random_hajo.main(network, **parameters)
+        runRandom(network, **parameters)
     elif algorithm == "hillclimber_hajo":
-        hillClimber_Hajo.routeHillclimber(network, **parameters)
+        runHillclimberHajo(network, **parameters)
+    elif algorithm == "annealing":
+        runAnnealing(network, **parameters)
+
+    return
 
 
-def runVis(network: RailNetwork, resultFilepath: str, plotType: str= "algorithm", **parameters):
+def runRandom(network: RailNetwork, **parameters):
+    """
+    Runs a random algorithm until the highest score converges.
+
+    Args:
+        network (RailNetwork):
+        maxRoutes (int):
+        maxDuration (float):
+        targetFolder (str): T
+        runName (str): The human readable part of the fileName.
+        convergenceLimit (int): How many iterations with no score improvement should be ran before
+            the algorithm is considered converged.
+        recordAll (bool): Whether the scores of all permutations should be recorded in the score
+            summary.
+
+    """
+    random_hajo.main(network, **parameters)
+
+    return
+
+
+def runHillclimberHajo(network: RailNetwork, **parameters) -> None:
+    """
+    Runs the annealing hillclimber as a normal hillclimber
+    """
+    hillClimber_Hajo.routeHillclimber(network, **parameters)
+    
+
+def runAnnealing(network: RailNetwork, **parameters):
+    hillClimber_Hajo.runAnnealing(network = network, **parameters)
+
+    return
+
+
+def visualize(resultFilepath: str, plotType: str= "algorithm", **parameters):
     """Loads a solution into the network and visualizes it"""
     if plotType == "algorithm":
-        runAlgConvergence(resultFilepath, **parameters)
-        
+        plotAlgConvergence(resultFilepath, **parameters)
+
     elif plotType == "network":
-        network.loadSolution(resultFilepath)
-        vis.visualizeNetwork(network.connectionPoints(), network.stationPoints(), network.routePointLists(), **parameters)
-    
+        plotNetwork(**parameters)
+
     elif plotType == "hist":
-        runHist(resultFilepath, **parameters)
+        plotHist(resultFilepath, **parameters)
+    
+    return
 
 
-def runHist(resultFilepath: str, title = "", binCount = 30, **_):
+def plotHist(resultFilepath: str, title = "", binCount = 30, **_):
     """
     plots the score data as a histogram
     """
     summary = vis.loadSummary(resultFilepath)
-
     vis.plotHistAverage(summary[1], title=title, binCount=binCount)
 
+    return
 
-def runAlgConvergence(resultFilepath: str, title: str, **_):
+
+def plotAlgConvergence(resultFilepath: str, title: str, **_):
     """
     Plots the convergence of an algorithm over iterations
     """
     summary = vis.loadSummary(resultFilepath)
 
     vis.plotAlgorithm(*summary, title)
+    
+    return
+
+
+def plotNetwork(stationsFilepath: str, connectionsFilepath: str, resultFilepath: str, *_):
+    """
+    
+    """
+    network = RailNetwork(stationsFilepath, connectionsFilepath)
+    network.loadSolution(resultFilepath)
+    pass
 
 
 def parseArgv(argv: List[str]) -> Dict[str, Union[str, int, bool]]:
