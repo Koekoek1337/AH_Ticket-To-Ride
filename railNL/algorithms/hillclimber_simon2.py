@@ -26,7 +26,7 @@ class HillClimber():
 
     def mutateRoute(self) -> None:
         """
-        Random choice between removing first or last station for every route taken.
+        Random choice between removing first three or last three station for every route taken.
         Than adds a new station to the route.
         """
         self.previousModel = deepcopy(self.workModel)
@@ -36,10 +36,17 @@ class HillClimber():
             randomFloat = random.random()
             if randomFloat < 0.33:
                 self.mutateLastStation(route)
+                self.mutateLastStation(route)
+                self.mutateLastStation(route)
             elif randomFloat > 0.67:
                 self.mutateFirstStation(route)
+                self.mutateFirstStation(route)
+                self.mutateLastStation(route)
             else:
                 self.lengthenRoute(route)
+                self.lengthenRoute(route)
+                self.lengthenRoute(route)
+
 
 
     def mutateLastStation(self, route) -> List[str]:
@@ -164,7 +171,7 @@ class HillClimber():
         if newScore >= oldScore:
             self.score = newScore
             self.scores.append({"iteration":self.iteration, "score":newScore})
-            self.workModel.exportSolution("hillClimberSimon", "snakeClimber")
+            self.workModel.exportSolution("hillClimberSimon2", "snake3Climber")
         else:
             self.workModel = self.previousModel
             self.routes = self.previousModel.listRoutes()
@@ -183,4 +190,4 @@ class HillClimber():
             self.iteration += 1
 
         # exports scores
-        exportScores(self.scores, "hillClimberSimon", "snakeClimber", START_TIMESTAMP)
+        exportScores(self.scores, "hillClimberSimon2", "snake3Climber", START_TIMESTAMP)
