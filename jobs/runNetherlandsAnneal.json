@@ -4,7 +4,9 @@
     "stationsFilepath": "data/StationsNationaal.csv",
     "connectionsFilepath": "data/ConnectiesNationaal.csv",
 
-    "algorithm": "hillclimber_hajo",
+    "algorithm": "annealing",
+    "stepFunction": "route",
+    "coolingScheme": "log",
     
     "RunName": "hillSolution",
     "targetFolder": "results/Netherlands/hill",
@@ -12,7 +14,7 @@
     "maxRoutes": 20,
     "maxDuration": 180,
     
-    "convergenceLimit": 50000,
+    "convergenceLimit": 20000,
     "randomIterations": 1000,
     
     "recordAll": false
