@@ -32,7 +32,7 @@ class HillClimber():
         self.previousModel = deepcopy(self.workModel)
 
         # mutate every route in the workModel
-        for route in self.routes:
+        for route in self.workModel.listRoutes():
             randomFloat = random.random()
             if randomFloat < 0.33:
                 self.mutateLastStation(route)
@@ -41,7 +41,7 @@ class HillClimber():
             elif randomFloat > 0.67:
                 self.mutateFirstStation(route)
                 self.mutateFirstStation(route)
-                self.mutateLastStation(route)
+                self.mutateFirstStation(route)
             else:
                 self.lengthenRoute(route)
                 self.lengthenRoute(route)
