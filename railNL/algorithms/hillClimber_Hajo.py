@@ -122,6 +122,7 @@ def annealingClimber(
             print(f"new best found: {newScore}")
 
             highestScore = newScore
+            bestNetwork = workNetwork
             convergence = 0
 
             workNetwork.exportSolution(targetFolder, f"{runName}-{iteration}")
