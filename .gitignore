@@ -1,6 +1,9 @@
 # Project specific files
 results/*
 
+# Flake8 settings
+tox.ini
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
