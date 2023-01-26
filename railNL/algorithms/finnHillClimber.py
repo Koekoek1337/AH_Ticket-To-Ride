@@ -1,4 +1,4 @@
-from algorithms.random_hajo import randomSolution
+from algorithms.random_hajo import randomSolution, randomRoute
 
 from classes.railNetwork import RailNetwork
 from classes.route import Route
@@ -11,7 +11,6 @@ from copy import deepcopy
 
 tMax = 180
 routeMax = 20
-iterations = 0
 
 class HillClimber():
 
@@ -20,13 +19,14 @@ class HillClimber():
         self.routes = self.workModel.listRoutes()
         
         self.previousModel = deepcopy(self.workModel)
-        self.score = self.previousModel.score()
+        self.score = self.workModel.score()
 
 
     def getLowestScoringRoute(self):
         """
         Returns lowest scoring route in railNetwork
         """
+        self.previousModel = deepcopy(self.workModel)
         lowestScore = 10000
         lowestRoute = self.routes[0].routeScore(len(self.workModel._connections))
         for route in self.routes:
@@ -47,17 +47,8 @@ class HillClimber():
         """
         Creates a new route with a legal amount of stations.
         """
-        # get id of emptied route
-        # insert into emptied list while possible
         
-        newRoute = Route((random.choice(self.workModel.listUnvisitedStations())), routeID)
-        self.workModel._routes[newRoute.getID()] = newRoute
-        options = newRoute.getLegalMoves(tMax)
-        index = random.choice(list(options.keys()))
-        while newRoute.hasLegalMoves(tMax) and random.random() < 0.15:
-            # currentStation = newRoute.listStations()[-1]
-            # newRoute.appendStation(random.choice(currentStation.listStations()))
-            newRoute.appendStation(random.choice(options[index])[0])
+        randomRoute(self.workModel, tMax)
 
 
     def checkSolution(self) -> None:
@@ -66,7 +57,7 @@ class HillClimber():
         """
 
         newScore = self.workModel.score()
-        oldScore = self.previousModel.score()
+        oldScore = self.score
 
          # We are looking for the highest possible K
         if newScore > oldScore:
@@ -75,13 +66,14 @@ class HillClimber():
             self.workModel = self.previousModel
             self.routes = self.previousModel.listRoutes()
 
-    def run(self, iterations: int = 500, verbose=False) -> None:
+    def run(self, iterations: int = 100, verbose=False) -> None:
         """
         run
         """        
-        
-        while 1: 
+        for _ in range(iterations): 
             routeID = self.getLowestScoringRoute()
             self.removeLowestRoute(routeID)
             self.makeNewRoute(routeID)
             self.checkSolution()
+            print(self.previousModel.score())
+        print(self.routes)
