@@ -15,8 +15,15 @@ from typing import List, Dict, Union
 START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
 
-def main(network: RailNetwork, maxRoutes: int, maxDuration: float, targetFolder: str ="results", 
-         runName: str = "solution", convergenceLimit: int = 5000, recordAll: bool = False,**_):
+def main(
+    network: RailNetwork, 
+    maxRoutes: int, 
+    maxDuration: float, 
+    targetFolder: str ="results", 
+    runName: str = "solution", 
+    convergenceLimit: int = 5000, 
+    recordAll: bool = False
+    ):
     """
     Random solver for Train routing problem.
 
