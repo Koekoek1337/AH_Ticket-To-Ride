@@ -6,15 +6,19 @@
 
     "algorithm": "annealing",
     "stepFunction": "route",
-    "coolingScheme": "log",
+    "coolingScheme": "logarithmic",
+
+    "initialTemperature": 50,
+    "coolingConstant": 500,
     
-    "RunName": "hillSolution",
-    "targetFolder": "results/Netherlands/hill",
+    "runName": "annealLogc500",
+    "targetFolder": "results/Netherlands/annealLog",
+    "exportImprovements": false,
 
     "maxRoutes": 20,
     "maxDuration": 180,
     
-    "convergenceLimit": 20000,
+    "convergenceLimit": 5000,
     "randomIterations": 1000,
     
     "recordAll": false
