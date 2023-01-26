@@ -12,12 +12,12 @@ from copy import deepcopy
 tMax = 180
 routeMax = 20
 
-class HillClimber():
+class HillClimber1():
 
     def __init__(self):
         self.workModel = randomSolution(RailNetwork("data/StationsNationaal.csv", "data/ConnectiesNationaal.csv"), routeMax, tMax, 50)
         self.routes = self.workModel.listRoutes()
-        
+
         self.previousModel = deepcopy(self.workModel)
         self.score = self.workModel.score()
 
@@ -33,22 +33,22 @@ class HillClimber():
             if route.routeScore(len(self.workModel._connections)) < lowestScore:
                 lowestScore = route.routeScore(len(self.workModel._connections))
                 lowestRoute = route
-                
+
         return lowestRoute.getID()
-        
-        
+
+
     def removeLowestRoute(self, routeID):
         """
         Removes the route from the list with the lowest score.
         """
-        
+
         self.workModel.delRoute(routeID)
-        
+
     def makeNewRoute(self, routeID):
         """
         Creates a new route with a legal amount of stations.
         """
-        
+
         randomRoute(self.workModel, tMax)
 
 
@@ -70,8 +70,8 @@ class HillClimber():
     def run(self, iterations: int = 100, verbose=False) -> None:
         """
         run
-        """        
-        for _ in range(iterations): 
+        """
+        for _ in range(iterations):
             routeID = self.getLowestScoringRoute()
             self.removeLowestRoute(routeID)
             self.makeNewRoute(routeID)

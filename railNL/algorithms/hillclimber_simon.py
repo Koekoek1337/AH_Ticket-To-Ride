@@ -32,7 +32,7 @@ class HillClimber():
         self.previousModel = deepcopy(self.workModel)
 
         # mutate every route in the workModel
-        for route in self.routes:
+        for route in self.workModel.listRoutes():
             randomFloat = random.random()
             if randomFloat < 0.33:
                 self.mutateLastStation(route)
@@ -68,7 +68,6 @@ class HillClimber():
 
         options = newRoute.getLegalMoves(180)
         index = random.choice(list(options.keys()))
-        randomFloat = random.random()
 
         # add new station as last station
         if index > 0:
@@ -164,7 +163,7 @@ class HillClimber():
         if newScore >= oldScore:
             self.score = newScore
             self.scores.append({"iteration":self.iteration, "score":newScore})
-            self.workModel.exportSolution("hillClimberSimon", "snakeClimber")
+            self.workModel.exportSolution("hillClimberSimon3", "snakeClimber")
         else:
             self.workModel = self.previousModel
             self.routes = self.previousModel.listRoutes()
@@ -183,4 +182,4 @@ class HillClimber():
             self.iteration += 1
 
         # exports scores
-        exportScores(self.scores, "hillClimberSimon", "snakeClimber", START_TIMESTAMP)
+        exportScores(self.scores, "hillClimberSimon3", "snakeClimber", START_TIMESTAMP)

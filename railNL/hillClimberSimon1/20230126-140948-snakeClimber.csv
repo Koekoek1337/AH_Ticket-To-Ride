@@ -1,0 +1,16 @@
+train,stations
+0,"[Den Haag Laan v NOI, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Beverwijk, Zaandam, Beverwijk, Haarlem, Heemstede-Aerdenhout, Leiden Centraal]"
+1,"[Dordrecht, Breda, Etten-Leur, Breda, Etten-Leur, Breda, Tilburg, s-Hertogenbosch, Eindhoven, Helmond]"
+2,"[Heerenveen, Leeuwarden, Heerenveen, Steenwijk, Zwolle, Steenwijk, Heerenveen]"
+3,"[Almere Centrum, Amsterdam Centraal, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Sloterdijk, Amsterdam Centraal, Utrecht Centraal, Gouda]"
+4,"[Rotterdam Alexander, Gouda, Den Haag Laan v NOI, Gouda, Alphen a/d Rijn, Gouda]"
+5,"[Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal, Dordrecht, Roosendaal, Dordrecht, Roosendaal, Etten-Leur, Breda, Etten-Leur]"
+6,"[Nijmegen, Arnhem Centraal, Dieren, Zutphen, Dieren, Zutphen, Apeldoorn, Zutphen, Deventer, Zutphen, Deventer, Apeldoorn]"
+7,"[Castricum, Alkmaar, Castricum, Zaandam, Hoorn, Alkmaar, Den Helder]"
+8,"[Alphen a/d Rijn, Utrecht Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Amstel, Utrecht Centraal]"
+9,"[Hengelo, Almelo, Deventer, Apeldoorn, Amersfoort, Utrecht Centraal]"
+10,"[Amsterdam Centraal, Amsterdam Amstel, Utrecht Centraal, Hilversum, Amsterdam Amstel, Hilversum]"
+11,"[Rotterdam Centraal, Rotterdam Alexander, Gouda, Alphen a/d Rijn, Leiden Centraal, Den Haag HS, Leiden Centraal, Alphen a/d Rijn, Gouda, Den Haag Laan v NOI, Delft]"
+12,"[Sittard, Maastricht, Sittard, Roermond, Sittard]"
+score,4489.887640449438
+connections missing,[['Almere Centrum': 'Lelystad Centrum']: ['Amsterdam Sloterdijk': 'Haarlem']: ['Assen': 'Zwolle']: ['Dordrecht': 'Rotterdam Blaak']: ['Eindhoven': 'Tilburg']: ['Groningen': 'Assen']: ['Hengelo': 'Enschede']: ['Leeuwarden': 'Groningen']: ['Leiden Centraal': 'Schiphol Airport']: ['Oss': 'Nijmegen']: ['Roosendaal': 'Vlissingen']: ['Sittard': 'Heerlen']: ['Utrecht Centraal': 's-Hertogenbosch']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Deventer']: ['Zwolle': 'Almelo']: ['s-Hertogenbosch': 'Oss']]

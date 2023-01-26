@@ -1,5 +1,5 @@
 from classes.railNetwork import RailNetwork
-from algorithms.hillclimber_simon2 import HillClimber
+from algorithms.hillClimber_Finn_Simon import HillClimber
 
 model = HillClimber()
 # model.checkSolution(model.mutateRoute())
