@@ -10,9 +10,9 @@ from classes.connection import Connection
 
 from typing import Optional, List, Tuple, Dict, Union
 
+
 class RailNetwork:
-    """
-    Network of stations connected by rail connections
+    """Network of station nodes connected via connection nodes for train route optimization problem
 
     Quick Guide
     o ROUTES
@@ -52,13 +52,14 @@ class RailNetwork:
     O STATIONS
     > Getting connecting stations
         - if wanted, connecting stations can also be returned from stations using the getConnected
-          station method, with optional lookahead methods
+          station method, with optional lookahead methods.
+
 
     Attributes:
-        stations (dict[str, Station]): Dictionary of station nodes, keyed by their name.
-        connections (List[Connection]): List of all connection nodes, indexed by their id.
-        routes (Dict[Route]): Dictionary of all used routes keyed by ID.
-        routeID (int): The first free unique identifier for routes
+        _stations (dict[str, Station]): Dictionary of station nodes, keyed by their name.
+        _connections (List[Connection]): List of all connection nodes, indexed by their id.
+        _routes (Dict[Route]): Dictionary of all used routes keyed by ID.
+        _routeID (int): The next free unique identifier for routes.
     """
 
     # Initialization functions
@@ -71,23 +72,20 @@ class RailNetwork:
             filepathConnections (str): The path to the connection data csv file.
         """
         self._stations: Dict[str, Station] = dict()
-
         self._connections: List[Connection] = []
-
         self._routes: Dict[int, Route] = dict()
-
-        self.routeID = 0
+        self._routeID = 0
 
         self._loadStations(filepathStations)
         self._loadConnections(filepathConnections)
 
-
     def _loadStations(self, csvFilepath: str) -> None:
         """
-        Loads stations in memory from csv file
+        Loads station nodes from csv-file.
 
         Args:
-            csvFilepath: The path of the CSV file containing the fields [station, x, y] in any order.
+            csvFilepath (str): The path of the CSV file containing the fields [station, x, y] in any
+                order.
 
         Post:
             Station nodes are created and stored in self._stations, keyed by name.
@@ -105,7 +103,7 @@ class RailNetwork:
 
     def _loadConnections(self, csvFilepath: str) -> None:
         """
-        Adds rail connections to station nodes from csv file
+        Creates connection nodes from csv-file and links them to their associated station nodes.
 
         Args:
             csvFilepath (str): The path to the file containing connections between stations
@@ -117,12 +115,14 @@ class RailNetwork:
             for row in csv.DictReader(csvFile):
                 if row["station1"] in self._stations and row["station2"] in self._stations:
                     # make new connection node and add it to both stations
-                    connection = Connection(len(self._connections), self._stations[row["station1"]], self._stations[row["station2"]], float(row["distance"]))
+                    connection = Connection(len(self._connections), self._stations[row["station1"]],
+                                            self._stations[row["station2"]], float(row["distance"]))
+
                     self._connections.append(connection)
 
                     self._stations[row["station1"]].addConnection(row["station2"], connection)
                     self._stations[row["station2"]].addConnection(row["station1"], connection)
-    
+
     def loadSolution(self, csvFilepath: str) -> None:
         """
         load a solution from a csvfile
@@ -132,18 +132,24 @@ class RailNetwork:
         """
         if not os.path.exists(csvFilepath):
             raise ValueError(f"File {csvFilepath} not found")
-        
+
         with open(csvFilepath) as csvFile:
             for row in csv.DictReader(csvFile):
                 if row["train"] == "score":
                     return
-                
+
                 stationsString = row["stations"]
                 stationNames = stationsString[1:-1].split(', ')
 
                 self._loadRoute(stationNames)
 
     def _loadRoute(self, stationNames: List[str]):
+        """
+        Creates a new route object from a list of station names from an exported solution.
+
+        Args:
+            stationNames (List[str]): List of station names of the route in order of travel.
+        """
         firstStation = self.getStation(stationNames.pop(0))
         route = self.createRoute(firstStation)
 
@@ -151,21 +157,21 @@ class RailNetwork:
             station = self.getStation(stationName)
 
             route.appendStation(station)
-    
+
     # User methods: Stations
     def getStation(self, stationName: str) -> Station:
         """
-        Returns the station node with key stationName
+        Returns the station node with name stationName.
 
         Args:
             stationName (str): the name of the station
         """
         return self._stations[stationName]
 
-    def listStations(self, nConnections = False, nUnused = False, nUnvisited = False) \
-        -> List[Union["Station", Tuple["Station", Optional[int], Optional[int], Optional[int]]]]:
+    def listStations(self, nConnections=False, nUnused=False, nUnvisited=False
+    ) -> List[Union["Station", Tuple["Station", Optional[int], Optional[int], Optional[int]]]]:
         """
-        Returns a list of all station nodes with optional information on their connections
+        Returns a list of all station nodes with optional information on their connections.
 
         Args:
             nConnections (bool): Whether the amount of connections of the stations should be given.
@@ -206,8 +212,8 @@ class RailNetwork:
 
         return stationList
 
-    def listUnvisitedStations(self, nConnections = False, nUnused = False, nUnvisited = False) \
-        -> List[Union["Station", Tuple["Station", Optional[int], Optional[int], Optional[int]]]]:
+    def listUnvisitedStations(self, nConnections=False, nUnused=False, nUnvisited=False
+    ) -> List[Union["Station", Tuple["Station", Optional[int], Optional[int], Optional[int]]]]:
         """
         Returns a list of all stations not connected to any route.
 
@@ -231,7 +237,8 @@ class RailNetwork:
         # If data is requested, get list of stations with data and take only unvisited stations
         return [station for station in self.listStations(nConnections, nUnused, nUnvisited) if not
                 station[0].isConnected()]
-    def nConnections(self):
+
+    def nConnections(self) -> int:
         """Returns the amount of connections in the network"""
 
         return len(self._connections)
@@ -239,22 +246,24 @@ class RailNetwork:
     # User methods: Routes
     def createRoute(self, station: Station) -> Route:
         """
-        Creates a route with a root station and no connections and adds it to routes with key
-        routeID.
+        Creates a route with a root station and no connections and adds it to the routes in the
+        network.
 
         Arguments:
             station (Station): The root station of the route
 
         Returns (Route): The newly created route.
+
+        Post: The route is stored in self._routes keyed by it's id
         """
-        newRoute = Route(station, self.routeID)
-        self.routeID += 1
+        newRoute = Route(station, self._routeID)
+        self._routeID += 1
 
         self._routes[newRoute.getID()] = newRoute
 
         return newRoute
 
-    def listRoutesWithLegal(self, tMax: float):
+    def listRoutesWithLegal(self, tMax: float) -> List[Route]:
         """
         Returns a list of all routes that have legal moves.
 
@@ -265,9 +274,8 @@ class RailNetwork:
         return [route for _, route in self._routes.items() if route.hasLegalMoves(tMax)]
 
     def nRoute(self) -> int:
-        """
-        Returns (int) the amount of currently active routes
-        """
+        """Returns the amount of routes in the system"""
+
         return len(self._routes)
 
     def getRoute(self, routeID: int) -> Route:
@@ -292,15 +300,13 @@ class RailNetwork:
         self._routes.pop(routeID)
 
     def listRoutes(self) -> List[Route]:
-        """
-        Returns a list of all route nodes.
-        """
+        """Returns a list of all route nodes"""
+
         return [route for _, route in self._routes.items()]
-    
+
     def getLongestDuration(self) -> float:
-        """
-        Returns the longest duration of all connections
-        """
+        """Returns the longest duration of all connections"""
+
         return max([connection.duration() for connection in self._connections])
 
     # Output methods
@@ -309,19 +315,20 @@ class RailNetwork:
         Returns the score of the solution for the solution with the current routes according to
         score function:
             K = p*10000 - (T*100 + Min)
-        K is the quality of the service
-        p is the fraction of rail connections with
+        where:
+            K is the quality of the service
+            p is the fraction of connection nodes with routes registered to them
         """
         return self.connectionCoverage() * 10000 - (self.nRoute() * 100 + self.totalDuration())
 
     def minimumTotalDuration(self) -> float:
-        """Returns the sum of all railConnections"""
+        """Returns the sum of durations from all connection nodes"""
 
         duration = 0
 
         for connection in self._connections:
             duration += connection.duration()
-        
+
         return duration
 
     def minimumRoutes(self, maxDuration: float) -> float:
@@ -337,7 +344,7 @@ class RailNetwork:
         """
         Returns the theoretically maximum score if all connections are driven with the minimum
         possible routes.
-        
+
         Args:
             maxDuration (float): The maximum duration of a single route.
         """
@@ -348,7 +355,12 @@ class RailNetwork:
         Exports the current routes to a csv file to /folder
 
         Args:
-            folder (str)
+            folder (str): The target folder for the exported result.
+            filename (str): The human readable part of the filename.
+            timestamp (optional[str]): A custom timestamp if required.
+
+        Post: A file will be added to folder containing the stations of every route in order, as
+            well as the score and connections that were not used.
         """
         if not os.path.exists(f"{folder}/"):
             os.mkdir(f"{folder}/")
@@ -365,17 +377,18 @@ class RailNetwork:
 
             resultFile.write(f"score,{self.score()}\n")
             connections: List[Connection] = self.getUnusedConnections()
+
             listConnections: List[List[str]] = []
             for connection in connections:
                 listConnections.append(connection.getStationNames())
+
             connectionsAsString = str(listConnections).replace(",", ":")
+
             resultFile.write(f"connections missing,{connectionsAsString}")
-            
 
     def connectionPoints(self) -> List[Tuple[Tuple[int, int], Tuple[int, int]]]:
-        """
-        Returns coordinate pairs for all rail connections for visualization
-        """
+        """Returns coordinate pairs from all connection nodes for visualization"""
+
         pointPairs = []
 
         for connection in self._connections:
@@ -384,9 +397,8 @@ class RailNetwork:
         return pointPairs
 
     def stationPoints(self) -> List[Tuple[str, Tuple[float, float]]]:
-        """
-        Returns name coordinate pairs for all stations for visualization
-        """
+        """Returns a list of all names and coordinates of all stations for visualization"""
+
         points = []
 
         for station in [entry[1] for entry in self._stations.items()]:
@@ -408,13 +420,13 @@ class RailNetwork:
     # Check methods
     def checkValidSolution(self, tMax: float) -> bool:
         """
-        Checks if all stations are serviced and all routes are legal
+        Checks if all routes are legal. A route is legal if it is no longer than tMax and
+        continuous.
 
         Args:
             tMax (float): The maximum duration of a route.
 
-        Returns (bool): True if all stations have a route and all routes are shorter than tMax and
-                        are continuous.
+        Returns (bool): True if all stations are legal, else false.
         """
         if self.checkLegalRoutes(tMax):
             return True
@@ -443,9 +455,8 @@ class RailNetwork:
         return True
 
     def checkStationCoverage(self) -> bool:
-        """
-        Returns True if all stations have routes going through them, else false
-        """
+        """Returns True if all stations are registered to a route, else false"""
+
         for _, station in self._stations.items():
             if not station.isConnected():
                 return False
@@ -464,9 +475,8 @@ class RailNetwork:
         return True
 
     def connectionCoverage(self) -> float:
-        """
-        Returns (float): the fraction of connections that have routes going over them
-        """
+        """Returns the fraction of connections that are registered to a route"""
+
         usedConnections = 0
 
         for connection in self._connections:
@@ -476,7 +486,7 @@ class RailNetwork:
         return usedConnections / len(self._connections)
 
     def totalDuration(self) -> float:
-        """returns (float): the total duration of the routes"""
+        """returns the total duration of the routes"""
         totalDuration = 0
 
         for _, route in self._routes.items():
@@ -484,30 +494,34 @@ class RailNetwork:
 
         return totalDuration
 
-    def getConnectedStation(self, fromStation, toStation) -> Station:
+    def getConnectedStation(self, fromStation: str, toStation: str) -> Station:
         """
         Returns the connected station node of a station
+
+        Args:
+            fromStation (str): The name of the station the connection has to come from.
+            toStaion (str): The name of the station the connection has to go to.
         """
         return self._stations[fromStation].getConnectedStation(toStation)
 
     def getUnusedConnections(self) -> List[Connection]:
-        """
-        Returns a list of unused connections
-        """
+        """Returns a list of unused connections"""
+
         listConnections = []
         for connection in self._connections:
             if not connection.isConnected():
                 listConnections.append(connection)
         return listConnections
-    
+
     def getNonUniqueConnections(self) -> List[Connection]:
         """
+        TODO
         WORK IN PROGRESS!!
         Returns a list of connections that occur more than once
         Current bug: uses memory address for reference instead of names
         """
         nonUniqueConnections = []
-        for (entry, occurence) in Counter(self.connections).items():
+        for (entry, occurence) in Counter(self._connections).items():
             if occurence > 1:
                 nonUniqueConnections.append()
         return nonUniqueConnections
