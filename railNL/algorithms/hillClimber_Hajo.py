@@ -92,6 +92,7 @@ def annealingClimber(
     iteration = 0
 
     bestNetwork = network
+
     scores: List[Dict[str, Union[int, float]]] = []
 
     if randomIterations:
@@ -102,31 +103,40 @@ def annealingClimber(
                                                      randomIterations
                                                     )
 
+    currentNetwork = bestNetwork
+
     highestScore = bestNetwork.score()
     scores.append({"iteration":iteration, "score":highestScore})
     
     while convergence <= convergenceLimit:
         print(f"iteration: {iteration}")
 
-        workNetwork = deepcopy(bestNetwork)
+        workNetwork = deepcopy(currentNetwork)
         stepFunction(workNetwork, maxRoutes, maxDuration)
 
         newScore = workNetwork.score()
         
         # score >= highest or annealingFunction returns True
-        if newScore >= highestScore or annealingFunction((highestScore - newScore), 
-                                                          initialTemperature,
-                                                          iteration,
-                                                          coolingConstant,
-                                                          ):
+        if newScore > highestScore:
             print(f"new best found: {newScore}")
 
             highestScore = newScore
             bestNetwork = workNetwork
+            currentNetwork = workNetwork
+            
             convergence = 0
 
             workNetwork.exportSolution(targetFolder, f"{runName}-{iteration}")
             scores.append({"iteration":iteration, "score":newScore})
+        
+        elif newScore == highestScore or annealingFunction((highestScore - newScore), 
+                                                          initialTemperature,
+                                                          iteration,
+                                                          coolingConstant,
+                                                        ):
+            currentNetwork = workNetwork
+            scores.append({"iteration":iteration, "score":newScore})
+
 
         # If all scores are to be tracked, append iteration and score to scores
         elif recordAll:
@@ -143,15 +153,6 @@ def annealingClimber(
 def routeClimb(network: RailNetwork, maxRoutes: int, maxDuration: float) -> None:
     """
     Either adds, removes or replaces a random route.
-
-    TODO
-    deepcopy
-    kies random routeID
-    voeg route toe, sla nieuwe ID op -> voeg toe
-    deepcopy
-    haal gekozen route weg -> replace
-    deepcopu
-    haal nieuwe route weg -> remove
 
     Args:
         network (RailNetwork):
