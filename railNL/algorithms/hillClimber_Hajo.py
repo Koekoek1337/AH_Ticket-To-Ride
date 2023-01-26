@@ -9,7 +9,7 @@ from classes.railNetwork import RailNetwork
 from classes.route import Route
 from classes.station import Station
 
-from typing import List, Dict, Union
+from typing import List, Dict, Union, Callable
 
 
 import algorithms.random_hajo as randomAlgorithm
@@ -21,57 +21,61 @@ START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
 def routeHillclimber(
     network: RailNetwork, 
-    maxRoutes: int, 
-    maxDuration: float, 
-
-    targetFolder: str ="results", 
-    runName: str = "solutionHill", 
-
-    convergenceLimit: int = 5000,
-    randomIterations: int = 5000, 
-
-    recordAll: bool = False,
-    **_
+    **parameters
 ) -> RailNetwork:
-    """Runs the annealing climber as a standard hillclimber"""
-
-    annealingClimber(
-        network = network, 
-        maxRoutes =  maxRoutes, 
-        maxDuration = maxDuration,
-
-        stepFunction = routeClimb, 
+    """
+    Runs the annealing climber as a standard hillclimber
+    """
+    return annealingClimber(
+        network, 
+        stepFunction = routeClimb,
         annealingFunction = hillClimbCoolingScheme, 
+        initialTemperature = 0,
+        coolingConstant = 0,
+        **parameters
+    )
 
-        targetFolder = targetFolder, 
-        runName = runName, 
 
-        convergenceLimit = convergenceLimit, 
-        randomIterations = randomIterations, 
-        recordAll = recordAll
+def runAnnealing(network: RailNetwork, stepFunction: str, coolingScheme: str, **parameters
+) -> RailNetwork:
+    """
+    Runs the annealing hillclimber with the selected stepfunction and cooling scheme
+    """
+    COOLING_SCHEMES: Dict[str, Callable[[float, float, int, float], bool]] = \
+    {
+        "logarithmic": logarithmicCooling,
+        "geometric": geometricCooling,
+        "linear": linearCooling,
+    }
+
+    STEP_FUNCTIONS: Dict[str, Callable[[RailNetwork, int, float]]] = \
+    {
+        "route": routeClimb
+    }
+    
+    return annealingClimber(
+        network, 
+        stepFunction = STEP_FUNCTIONS[stepFunction], 
+        annealingFunction = COOLING_SCHEMES[coolingScheme], 
+        **parameters
     )
 
 
 def annealingClimber(
-        network: RailNetwork, 
-        maxRoutes: int, 
-        maxDuration: float,
-
-        stepFunction: callable,
-
-        annealingFunction: callable,
-
-        initialTemperature: float = 0,
-        coolingConstant: float = 0,
-
-        targetFolder: str ="results", 
-        runName: str = "soluionHill", 
-
-        convergenceLimit: int = 5000,
-        randomIterations: int = 5000, 
-
-        recordAll: bool = False
-    ) -> RailNetwork:
+    network: RailNetwork, 
+    maxRoutes: int, 
+    maxDuration: float,
+    stepFunction: Callable[[RailNetwork, int, float], None],
+    annealingFunction: Callable[[float, float, int, float], bool],
+    initialTemperature: float = 0,
+    coolingConstant: float = 0,
+    targetFolder: str ="results", 
+    runName: str = "soluionHill", 
+    convergenceLimit: int = 5000,
+    randomIterations: int = 5000, 
+    recordAll: bool = False,
+    exportImprovements: bool = True
+) -> RailNetwork:
     """
     A hillclimber that takes any network and attempts to optimize it by adding, removing or 
     replacing random routes. Base for a simulated annealing algorithm
@@ -92,28 +96,30 @@ def annealingClimber(
     iteration = 0
 
     bestNetwork = network
-
     scores: List[Dict[str, Union[int, float]]] = []
-
+    
     if randomIterations:
         print("generating random solution")
-        bestNetwork = randomAlgorithm.randomSolution(network,
-                                                     maxRoutes,
-                                                     maxDuration,
-                                                     randomIterations
-                                                    )
+        bestNetwork = randomAlgorithm.randomSolution(
+            network,
+            maxRoutes,
+            maxDuration,
+            randomIterations
+        )
 
     currentNetwork = bestNetwork
-
     highestScore = bestNetwork.score()
+    currentScore = highestScore
+
     scores.append({"iteration":iteration, "score":highestScore})
     
+    iteration = 1
+
     while convergence <= convergenceLimit:
         print(f"iteration: {iteration}")
 
         workNetwork = deepcopy(currentNetwork)
         stepFunction(workNetwork, maxRoutes, maxDuration)
-
         newScore = workNetwork.score()
         
         # score >= highest or annealingFunction returns True
@@ -122,21 +128,25 @@ def annealingClimber(
 
             highestScore = newScore
             bestNetwork = workNetwork
-            currentNetwork = workNetwork
-            
-            convergence = 0
 
-            workNetwork.exportSolution(targetFolder, f"{runName}-{iteration}")
+            workNetwork.exportSolution(targetFolder, f"{runName}-{iteration}") if exportImprovements\
+                else None
+            
+        if newScore >= currentScore:
+            currentNetwork = workNetwork
+            currentScore = newScore
+            convergence = 0
+            
             scores.append({"iteration":iteration, "score":newScore})
         
-        elif newScore == highestScore or annealingFunction((highestScore - newScore), 
-                                                          initialTemperature,
-                                                          iteration,
-                                                          coolingConstant,
-                                                        ):
+        elif annealingFunction(
+                (highestScore - newScore), 
+                initialTemperature,
+                iteration,
+                coolingConstant,
+            ):
             currentNetwork = workNetwork
             scores.append({"iteration":iteration, "score":newScore})
-
 
         # If all scores are to be tracked, append iteration and score to scores
         elif recordAll:
@@ -145,8 +155,13 @@ def annealingClimber(
         convergence += 1
         iteration += 1
 
+    bestNetwork.exportSolution(targetFolder, runName + "_best", START_TIMESTAMP)
+
+    scores.append({"iteration":"Best", "score":highestScore})
+    scores.append({"iteration":"Theoretical max", "score": network.theoreticalMaxScore(maxDuration)})
     randomAlgorithm.exportScores(scores, targetFolder, runName, START_TIMESTAMP)
 
+    print(f"Terminating with highest score {highestScore}")
     return bestNetwork
 
 # Stepfunction
@@ -205,7 +220,7 @@ def annealingProbability(scoreDiff: float, temperature: float):
     return False
 
 
-def logarithmic(scoreDiff:float, _, iteration: int, constant: float):
+def logarithmicCooling(scoreDiff:float, _: float, iteration: int, constant: float):
     """
     Decreases temperature logarithmically over iterations.
 
@@ -219,7 +234,7 @@ def logarithmic(scoreDiff:float, _, iteration: int, constant: float):
     return annealingProbability(scoreDiff, currentTemperature)
 
 
-def geometricCooling(scoreDiff:float, initialTemp: float, iteration: int, powerBase: float) -> float:
+def geometricCooling(scoreDiff:float, initialTemp: float, iteration: int, powerBase: float) -> bool:
     """
     Decreases temperature geometrically over iterations.
     
@@ -237,7 +252,8 @@ def geometricCooling(scoreDiff:float, initialTemp: float, iteration: int, powerB
 
     return annealingProbability(scoreDiff, currentTemperature)
 
-def linearCooling(scoreDiff:float, initialTemp: float, iteration: int, coolingSpeed: float):
+
+def linearCooling(scoreDiff:float, initialTemp: float, iteration: int, coolingSpeed: float) -> bool:
     """
     Decreases temperature linearily over iterations.
 
