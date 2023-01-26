@@ -29,7 +29,7 @@ class HillClimber():
         self.previousModel = deepcopy(self.workModel)
         lowestScore = 10000
         lowestRoute = self.routes[0].routeScore(len(self.workModel._connections))
-        for route in self.routes:
+        for route in self.workModel.listRoutes():
             if route.routeScore(len(self.workModel._connections)) < lowestScore:
                 lowestScore = route.routeScore(len(self.workModel._connections))
                 lowestRoute = route
@@ -41,6 +41,7 @@ class HillClimber():
         """
         Removes the route from the list with the lowest score.
         """
+        
         self.workModel.delRoute(routeID)
         
     def makeNewRoute(self, routeID):
