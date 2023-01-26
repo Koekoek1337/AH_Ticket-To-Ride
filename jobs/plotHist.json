@@ -1,0 +1,12 @@
+{
+    "jobType": "v",
+    "plotType": "hist",
+
+    "stationsFilepath": "data/StationsHolland.csv",
+    "connectionsFilepath": "data/ConnectiesHolland.csv",
+
+    "title": "Baseline Nederland Random",
+    "binCount": 150,
+
+    "resultFilepath": "results/Netherlands/baseline2/20230125-005129-summary-solution.csv"
+}

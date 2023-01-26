@@ -1,5 +1,5 @@
 from classes.railNetwork import RailNetwork
-from visualize.visualize import visualizeNetwork
+import visualize.visualize as vis
 
 from algorithms import random_hajo
 from algorithms import hillClimber_Hajo
@@ -40,24 +40,36 @@ def runBatch(network: RailNetwork, algorithm: str, **parameters):
         hillClimber_Hajo.routeHillclimber(network, **parameters)
 
 
-def runVis(network: RailNetwork, resultFilepath: str, **parameters):
+def runVis(network: RailNetwork, resultFilepath: str, plotType: str= "algorithm", **parameters):
     """Loads a solution into the network and visualizes it"""
-    network.loadSolution(resultFilepath)
-    visualizeNetwork(network.connectionPoints(), network.stationPoints(), network.routePointLists())
+    if plotType == "algorithm":
+        runAlgConvergence(resultFilepath, **parameters)
+        
+    elif plotType == "network":
+        network.loadSolution(resultFilepath)
+        vis.visualizeNetwork(network.connectionPoints(), network.stationPoints(), network.routePointLists(), **parameters)
+    
+    elif plotType == "hist":
+        runHist(resultFilepath, **parameters)
 
-def runHist(resultFilepath: str):
+
+def runHist(resultFilepath: str, title = "", binCount = 30, **_):
     """
-    TODO
     plots the score data as a histogram
     """
-    pass
+    summary = vis.loadSummary(resultFilepath)
 
-def runConvergence(resultFilepath: str):
+    vis.plotHistAverage(summary[1], title=title, binCount=binCount)
+
+
+def runAlgConvergence(resultFilepath: str, title: str, **_):
     """
-    TODO
     Plots the convergence of an algorithm over iterations
     """
-    pass
+    summary = vis.loadSummary(resultFilepath)
+
+    vis.plotAlgorithm(*summary, title)
+
 
 def parseArgv(argv: List[str]) -> Dict[str, Union[str, int, bool]]:
     
