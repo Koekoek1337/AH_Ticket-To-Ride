@@ -52,18 +52,6 @@ def batch(stationsFilepath: str, connectionsFilepath: str, algorithm: str, **par
 def runRandom(network: RailNetwork, **parameters):
     """
     Runs a random algorithm until the highest score converges.
-
-    Args:
-        network (RailNetwork):
-        maxRoutes (int):
-        maxDuration (float):
-        targetFolder (str): T
-        runName (str): The human readable part of the fileName.
-        convergenceLimit (int): How many iterations with no score improvement should be ran before
-            the algorithm is considered converged.
-        recordAll (bool): Whether the scores of all permutations should be recorded in the score
-            summary.
-
     """
     random_hajo.main(network, **parameters)
 
