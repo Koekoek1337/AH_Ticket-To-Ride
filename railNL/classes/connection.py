@@ -3,6 +3,7 @@ from typing import TYPE_CHECKING, Tuple, Set, List
 if TYPE_CHECKING:
     from station import Station
 
+
 class Connection:
     """
     Connection Node for rain network graph
@@ -12,7 +13,7 @@ class Connection:
         _connectedStations (Dict[str, Station]): A dictionary containing the two stations connected
             by this connection node, keyed by their name.
         _duration (float): The duration of the connection associated with the node.
-        _routes (Set[int]): Set of route unique identifiers for all routes registered to the 
+        _routes (Set[int]): Set of route unique identifiers for all routes registered to the
             connection.
     """
 
@@ -20,7 +21,7 @@ class Connection:
         """Initializer function"""
 
         self._id = uid
-        self._connectedStations = {stationA.name():stationA, stationB.name():stationB}
+        self._connectedStations = {stationA.name(): stationA, stationB.name(): stationB}
         self._duration = float(duration)
         self._routes: Set[int] = set()
 
@@ -38,25 +39,25 @@ class Connection:
         """Returns the duration of the connection"""
 
         return self._duration
-    
+
     def addRoute(self, routeID: int) -> None:
         """
         Adds a registers a route to the connection.
-        
+
         Args:
             routeID (int): The route ID to to be registered.
 
         Post: routeID is added to self._routes.
         """
         self._routes.add(routeID)
-    
+
     def removeRoute(self, routeID: int) -> None:
         """
         Unregistes a route from the connection.
 
         Args:
             routeID (int): The ID of the route to be unregistered.
-        
+
         post: routeID is removed from self._routes.
         """
 
@@ -77,7 +78,7 @@ class Connection:
         """
         return self._connectedStations[stationName]
 
-    def stationConnectionAmount(self, stationName:str) -> int:
+    def stationConnectionAmount(self, stationName: str) -> int:
         """
         Returns the amount of connections the station with name stationName has.
 
@@ -85,11 +86,11 @@ class Connection:
             Station(str): the name of the station to get connection amounts from.
         """
         return self._connectedStations[stationName].connectionAmount()
-    
+
     def connectionPoints(self) -> Tuple[Tuple[float, float], Tuple[float, float]]:
         """Returns the positions of both connected stations for visualization"""
 
-        return (list(self._connectedStations.items())[0][1].position(), 
+        return (list(self._connectedStations.items())[0][1].position(),
                 list(self._connectedStations.items())[1][1].position())
 
     def getStationNames(self) -> List[str]:
