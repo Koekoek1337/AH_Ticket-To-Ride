@@ -5,82 +5,105 @@ from algorithms import random_hajo
 from algorithms import hillClimber_Hajo
 
 import json
+import datetime
+
 from os import path
 from sys import argv
+from copy import deepcopy
 
-from typing import List, Dict, Union
+from typing import List, Dict, Union, Any, Callable
 
 """
 o How to run:
 > python railNL jobs/filename.json
     - See jobs/runHolland.json and jobs/runNetherlands.json
-    - **parameters acts like [arg1=A][arg2=b][arg3=c]. In order to build your own job file 
+    - **arguments acts like [arg1=A][arg2=b][arg3=c]. In order to build your own job file 
       in order to run your program from main, you should 
 
 """
 
-def main(jobType: str, **parameters):
+def main(jobType: str, **arguments):
     jobType = jobType.lower()
 
     if jobType in ["batch", "b", "bat"]:
-        batch(**parameters)
+        batch(**arguments)
         return
     
     elif jobType in ["visualize", "vis", "v"]:
-        visualize(**parameters)
+        visualize(**arguments)
     
     return
 
 
-def batch(stationsFilepath: str, connectionsFilepath: str, algorithm: str, **parameters):
+def batch(
+    stationsFilepath: str, 
+    connectionsFilepath: str, 
+    algorithm: str, 
+    runs: int = 1, 
+    targetFolder: str = "results",
+    runName: str = "solution",
+    **arguments
+) -> None:
     """
     Runs an algorithm in batch as specified by the given job.json file
     """
+    ALGORITHMS: Dict[str, Callable[[RailNetwork, Any], RailNetwork]] = {
+        "random": random_hajo.main,
+        "hillclimber_hajo": hillClimber_Hajo.routeHillclimber,
+        "annealing": hillClimber_Hajo.runAnnealing,
+    }
+
+    START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+
     network = RailNetwork(stationsFilepath, connectionsFilepath)
     algorithm = algorithm.lower()
-    
+
     if algorithm == "random":
-        runRandom(network, **parameters)
-    elif algorithm == "hillclimber_hajo":
-        runHillclimberHajo(network, **parameters)
-    elif algorithm == "annealing":
-        runAnnealing(network, **parameters)
-
-    return
-
-
-def runRandom(network: RailNetwork, **parameters):
-    """
-    Runs a random algorithm until the highest score converges.
-    """
-    random_hajo.main(network, **parameters)
-
-    return
-
-
-def runHillclimberHajo(network: RailNetwork, **parameters) -> None:
-    """
-    Runs the annealing hillclimber as a normal hillclimber
-    """
-    hillClimber_Hajo.routeHillclimber(network, **parameters)
+        ALGORITHMS[algorithm](
+            deepcopy(network), 
+            targetFolder=targetFolder, 
+            runName=runName, 
+            **arguments
+        )
     
+        return
+    
+    currentRunName = runName
+    
+    scores: List[Dict[str, float]] = []
 
-def runAnnealing(network: RailNetwork, **parameters):
-    hillClimber_Hajo.runAnnealing(network = network, **parameters)
+    if runs > 1:
+        currentRunName = runName + str(0)
+    
+    for run in range(runs):
+        network: RailNetwork = ALGORITHMS[algorithm](
+            deepcopy(network), 
+            targetFolder=targetFolder, 
+            runName=currentRunName, 
+            **arguments
+        )
+
+        scores.append({"run":run, "score":network.score()})
+
+        currentRunName = runName + str(run + 1)
+
+    if runs > 1:
+        summaryName = f"{runName} - {str(runs)} runs"
+        random_hajo.exportScores(scores, targetFolder, summaryName, START_TIMESTAMP)
 
     return
 
 
-def visualize(resultFilepath: str, plotType: str= "algorithm", **parameters):
+def visualize(resultFilepath: str, plotType: str= "algorithm", **arguments):
     """Loads a solution into the network and visualizes it"""
     if plotType == "algorithm":
-        plotAlgConvergence(resultFilepath, **parameters)
+        plotAlgConvergence(resultFilepath, **arguments)
 
     elif plotType == "network":
-        plotNetwork(**parameters)
+        plotNetwork(**arguments)
 
     elif plotType == "hist":
-        plotHist(resultFilepath, **parameters)
+        plotHist(resultFilepath, **arguments)
     
     return
 
