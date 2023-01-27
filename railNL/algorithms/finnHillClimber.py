@@ -29,7 +29,8 @@ class routeHillClimber():
 
     def getLowestScoringRoute(self) -> int:
         """
-        Returns lowest scoring route in railNetwork
+        Returns route with only one station or
+        lowest scoring route in railNetwork.
         """
         self.previousModel = deepcopy(self.workModel)
         lowestScore: float = 10000
@@ -46,7 +47,7 @@ class routeHillClimber():
         
     def removeLowestRoute(self, routeID: int) -> None:
         """
-        Removes the route from the list with the lowest score.
+        Removes route from the railNetwork with the lowest score.
         """
         
         self.workModel.delRoute(routeID)
@@ -61,13 +62,14 @@ class routeHillClimber():
 
     def checkSolution(self) -> None:
         """
-        Checks and accepts better solutions than current solution.
+        Checks current railNetwork against the previous best railNetwork.
+        Replaces previous best railNetwork if the current is better.
         """
 
         newScore = self.workModel.score()
         oldScore = self.score
 
-         # We are looking for the highest possible K
+        # Goal: highest K value
         if newScore > oldScore:
             print(f"New High Score: {newScore}")
             self.score = newScore
@@ -80,7 +82,7 @@ class routeHillClimber():
 
     def run(self, iterations: int = 10000, verbose: bool = False) -> None:
         """
-        run
+        Runs a route-based Hill Climber algorithm and exports the results.
         """        
         for _ in range(iterations): 
             routeID = self.getLowestScoringRoute()
