@@ -15,7 +15,7 @@ routeMax = 20
 
 START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
-class HillClimber():
+class routeHillClimber():
 
     def __init__(self) -> None:
         self.workModel: RailNetwork = randomSolution(RailNetwork("data/StationsNationaal.csv", "data/ConnectiesNationaal.csv"), routeMax, tMax, 50)
@@ -23,7 +23,7 @@ class HillClimber():
         self.score: float = self.workModel.score()
         
         self.previousModel: RailNetwork = deepcopy(self.workModel)
-        self.scores: List[Dict[str, Union[int, float]]] = []
+        self.scoreList: List[Dict[str, Union[int, float]]] = []
         self.iteration: int = 0
 
 
@@ -35,6 +35,8 @@ class HillClimber():
         lowestScore: float = 10000
         lowestRoute: Route = self.routes[0]
         for route in self.workModel.listRoutes():
+            if route.nStations == 1:
+                return route.getID()
             if route.routeScore(len(self.workModel._connections)) < lowestScore:
                 lowestScore = route.routeScore(len(self.workModel._connections))
                 lowestRoute = route
@@ -67,15 +69,16 @@ class HillClimber():
 
          # We are looking for the highest possible K
         if newScore > oldScore:
+            print(f"New High Score: {newScore}")
             self.score = newScore
-            self.scores.append({"iteration":self.iteration, "score":newScore})
+            self.scoreList.append({"iteration":self.iteration, "score":newScore})
             self.workModel.exportSolution("finnHillClimber", "hillClimber")
 
         else:
             self.workModel = self.previousModel
             self.routes = self.previousModel.listRoutes()
 
-    def run(self, iterations: int = 100000, verbose: bool = False) -> None:
+    def run(self, iterations: int = 10000, verbose: bool = False) -> None:
         """
         run
         """        
@@ -86,4 +89,4 @@ class HillClimber():
             self.checkSolution()
             self.iteration += 1
             
-        exportScores(self.scores, "finnHillClimber", "hillClimber", START_TIMESTAMP)
+        exportScores(self.scoreList, "finnHillClimber", "hillClimber", START_TIMESTAMP)
