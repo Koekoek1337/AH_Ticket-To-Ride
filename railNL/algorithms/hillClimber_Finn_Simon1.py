@@ -7,7 +7,7 @@ from classes.railNetwork import RailNetwork
 from classes.route import Route
 from classes.station import Station
 from algorithms.random_hajo import randomSolution, exportScores
-from algorithms.finnHillClimber import HillClimber1
+from algorithms.finnHillClimber import routeHillClimber
 
 
 START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -37,13 +37,13 @@ class HillClimber():
             self.removeLowestRoute(routeID)
             self.makeNewRoute(routeID)
 
-        randomFloat = random.random()
-        if randomFloat < 0.5:
-            self.mutateRoute()
         else:
-            routeID = self.getLowestScoringRoute()
-            self.removeLowestRoute(routeID)
-            self.makeNewRoute(routeID)
+            if random.random() < 0.5:
+                self.mutateRoute()
+            else:
+                routeID = self.getLowestScoringRoute()
+                self.removeLowestRoute(routeID)
+                self.makeNewRoute(routeID)
 
 
     def mutateRoute(self) -> None:
@@ -57,17 +57,14 @@ class HillClimber():
         for route in self.workModel.listRoutes():
             randomFloat = random.random()
             if randomFloat < 0.33:
-                self.mutateLastStation(route)
-                self.mutateLastStation(route)
-                self.mutateLastStation(route)
+                for _ in range(random.randint(1,3)):
+                    self.mutateLastStation(route)
             elif randomFloat > 0.67:
-                self.mutateFirstStation(route)
-                self.mutateFirstStation(route)
-                self.mutateFirstStation(route)
+                for _ in range(random.randint(1,3)):
+                    self.mutateFirstStation(route)
             else:
-                self.lengthenRoute(route)
-                self.lengthenRoute(route)
-                self.lengthenRoute(route)
+                for _ in range(random.randint(1,3)):
+                    self.lengthenRoute(route)
 
 
 
@@ -187,6 +184,7 @@ class HillClimber():
         # We are looking for the highest possible K
         if newScore >= oldScore:
             self.score = newScore
+            print(self.score)
             self.scores.append({"iteration":self.iteration, "score":newScore})
             self.workModel.exportSolution("hillClimber1SimonFinn", "hillClimber1SimonFinn")
         else:

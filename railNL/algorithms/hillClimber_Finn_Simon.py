@@ -7,7 +7,7 @@ from classes.railNetwork import RailNetwork
 from classes.route import Route
 from classes.station import Station
 from algorithms.random_hajo import randomSolution, exportScores
-from algorithms.finnHillClimber import HillClimber1
+from algorithms.finnHillClimber import routeHillClimber
 
 START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
