@@ -14,9 +14,11 @@ from typing import List, Dict, Union, Callable, Optional
 
 import algorithms.random_hajo as randomAlgorithm
 
-"""methods for Simulated annealing hillclimber
+"""Module for a Simulated Annealing Hillclimber Algorithm
 
-
+The algorithm can be ran via either runAnnealing to have acccess to the specified stepfunction and
+cooling scheme, or via routeHillclimber to run the algorithm as a pure hillclimber with the route 
+stepfunction.
 """
 
 
@@ -26,8 +28,8 @@ START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 # Run macros
 def runAnnealing(
         network: RailNetwork, 
-        stepFunction: str, 
-        coolingScheme: str, 
+        stepFunction: str = "route", 
+        coolingScheme: str = "logarithmic", 
         **arguments
     ) -> RailNetwork:
     """
@@ -95,13 +97,14 @@ def annealingClimber(
         targetFolder: str ="results", 
         runName: str = "soluionHill", 
         convergenceLimit: int = 5000,
-        randomIterations: int = 5000, 
+        randomIterations: int = 1000, 
         recordAll: bool = False,
         exportImprovements: bool = True
     ) -> RailNetwork:
     """
-    A hillclimber that takes any network and attempts to optimize it by adding, removing or 
-    replacing random routes. Base for a simulated annealing algorithm
+    Annealing hillclimber algorithm. Takes a stepfunction and an annealingFunction (analagous to
+    cooling scheme) as arguments. Exports a score summary file, as well as the best solution 
+    produced.
 
     Args:
         network (RailNetwork): The railnetwork for which an optimized solution has to be found.
@@ -114,12 +117,16 @@ def annealingClimber(
             logarithmic cooling.
         coolingConstant (float): A constant parameter that is defined in the annealingFunction. See
             logarithmicCooling(), geometricCooling() and linearCooling() for more information. 
-
-        targetFolder (str):
-        runName (str):
-        convergenceLimit (int):
-        randomIterations (int):
-        recordAll (bool):
+        targetFolder (str): The folder where all output files are to be saved to.
+        runName (str): The readable part of the filenames for the exported files and the score
+            summary file.
+        convergenceLimit (int): The maximum amount of iterations to run for without improvement
+            before terminating the algorithm.
+        randomIterations (int): For how many iterations the random algorithm should be ran for the
+            best initial solution.
+        recordAll (bool): Whether all scores should be recorded for the the score summary files or
+            only the accepted states of the network.
+        exportImprovements (bool): Whether to export every improvement
     
     Returns (RailNetwork): The optimized network
     """
@@ -231,7 +238,8 @@ def routeClimb(network: RailNetwork, maxRoutes: int, maxDuration: float) -> None
     return
 
 
-def removeRoute(network: RailNetwork):
+def removeRoute(network: RailNetwork) -> None:
+    """Removes a random route from the RailNetwork"""
     randomRoute = random.choice(network.listRoutes())
     network.delRoute(randomRoute.getID())
 
