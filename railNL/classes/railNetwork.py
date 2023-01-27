@@ -168,7 +168,8 @@ class RailNetwork:
         """
         return self._stations[stationName]
 
-    def listStations(self, nConnections=False, nUnused=False, nUnvisited=False
+    def listStations(
+        self, nConnections=False, nUnused=False, nUnvisited=False
     ) -> List[Union["Station", Tuple["Station", Optional[int], Optional[int], Optional[int]]]]:
         """
         Returns a list of all station nodes with optional information on their connections.
@@ -212,7 +213,8 @@ class RailNetwork:
 
         return stationList
 
-    def listUnvisitedStations(self, nConnections=False, nUnused=False, nUnvisited=False
+    def listUnvisitedStations(
+        self, nConnections=False, nUnused=False, nUnvisited=False
     ) -> List[Union["Station", Tuple["Station", Optional[int], Optional[int], Optional[int]]]]:
         """
         Returns a list of all stations not connected to any route.
@@ -386,7 +388,7 @@ class RailNetwork:
 
             resultFile.write(f"connections missing,{connectionsAsString}")
 
-    def connectionPoints(self) -> List[Tuple[Tuple[int, int], Tuple[int, int]]]:
+    def connectionPoints(self) -> List[Tuple[Tuple[float, float], Tuple[float, float]]]:
         """Returns coordinate pairs from all connection nodes for visualization"""
 
         pointPairs = []
@@ -470,7 +472,7 @@ class RailNetwork:
         Returns (bool): True if all routes are legal, else False
         """
         for _, route in self._routes.items():
-            if not route.isValid():
+            if not route.isValid(tMax):
                 return False
         return True
 

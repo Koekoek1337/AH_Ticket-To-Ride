@@ -21,7 +21,7 @@ class Route:
 
         self._id = uid
         self._stations: List[Station] = [rootStation]
-        self._connections: List[Connection] = []
+        self._connections: List[Optional[Connection]] = []
 
         rootStation.addRoute(self.getID())
 
@@ -37,7 +37,7 @@ class Route:
     def duration(self) -> float:
         """Returns the total duration of the route"""
 
-        totalDuration = 0
+        totalDuration = 0.0
 
         for connection in self._connections:
             if connection:
@@ -170,7 +170,8 @@ class Route:
 
         return False
 
-    def getLegalMoves(self,
+    def getLegalMoves(
+        self,
         tMax: float,
         nConnections=False,
         nUnused=False,
@@ -234,7 +235,7 @@ class Route:
 
         return missing
 
-    def connectionPoints(self) -> List[Tuple[Tuple[int, int], Tuple[int, int]]]:
+    def connectionPoints(self) -> List[Tuple[Tuple[float, float], Tuple[float, float]]]:
         """
         Returns a list of point pairs of x and y coordinates for all connections in the route for
         visualization formatted as [(xA, yA), (xB, yB)].
@@ -289,12 +290,12 @@ class Route:
     def uniqueStations(self) -> int:
         """Returns the amount of stations in route that occur only once"""
 
-        return len(np.unique(self._stations))
+        return len(np.unique(self._stations)) # type: ignore
 
     def uniqueConnections(self) -> int:
         """Returns the amount of connections in the route that occur only once unique"""
 
-        return len(np.unique(self._connections))
+        return len(np.unique(self._connections)) # type: ignore
 
     def routeScore(self, totalConnections: int) -> float:
         """
@@ -343,7 +344,7 @@ class Route:
         if connection and connection not in self._connections:
             connection.removeRoute(self.getID())
 
-    def _insertConnection(self, stationIndex: int, connectionIndex: int) -> int:
+    def _insertConnection(self, stationIndex: int, connectionIndex: int) -> None:
         """
         Insert connections to station at stationIndex on connectionIndex
         """
@@ -379,7 +380,7 @@ class Route:
         # Only attempt to remove routeID if oldConnection not None
         # Do not remove routeID from connection if it is still in the route
         if oldConnection and oldConnection not in self._connections:
-            self._connections[connectionIndex].removeRoute(self.getID())
+            self._connections[connectionIndex].removeRoute(self.getID()) # type: ignore
 
     def _findConnection(self, station1: Station, station2: Station) -> Union[Connection, None]:
         """

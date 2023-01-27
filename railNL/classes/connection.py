@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING, Tuple, Set, List
 
 if TYPE_CHECKING:
-    from station import Station
+    from classes.station import Station
 
 
 class Connection:
