@@ -12,6 +12,23 @@ from classes.station import Station
 
 from typing import List, Dict, Union
 
+"""Module for generating random solutions for Train routing problem
+
+Main runs a random algorithm on a given empty RailNetwork graph until converged after an amount of
+iterations. The algorithm Attempts to fill the RailNetwork with random routes and will export any
+network with a new better score to CSV, as well as a score summary file that documents the score per
+every iteration if recordAll is true, or score improvements per iteration.
+
+The module also contains the following functions which can be applied for other problems:
+    - randomRoute(): Generates a random route in the RailNetwork graph, that scores more than 0 
+        points in an isolated system.
+    - randomSolution(): Returns the best random solution for a given amount of random iterations for
+        optimization algorithms.
+    - exportSCores(): Exports a score summary csv file from a list of dictionaries containing the
+        iteration and score per stored iteration.
+"""
+
+
 START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
 
@@ -28,7 +45,7 @@ def main(
     Random solver for Train routing problem.
 
     Args:
-        network (RailNetwork): The object containing all nodes and routes of the system.
+        network (RailNetwork): Empty graph consisting of station and connection nodes.
         maxRoutes (int): The maximum amount of train routes that can be utilized.
         maxDuration (float): The maximum duration a single route may have.
         targetFolder (str): The folder where solutions should be saved to
