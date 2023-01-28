@@ -163,7 +163,7 @@ class HillClimber():
         if newScore >= oldScore:
             self.score = newScore
             self.scores.append({"iteration":self.iteration, "score":newScore})
-            self.workModel.exportSolution("hillClimberSimon3", "snakeClimber")
+            self.workModel.exportSolution("hillClimberSimon5", "snakeClimber")
         else:
             self.workModel = self.previousModel
             self.routes = self.previousModel.listRoutes()
@@ -182,4 +182,4 @@ class HillClimber():
             self.iteration += 1
 
         # exports scores
-        exportScores(self.scores, "hillClimberSimon3", "snakeClimber", START_TIMESTAMP)
+        exportScores(self.scores, "hillClimberSimon5", "snakeClimber", START_TIMESTAMP)

@@ -1,0 +1,21 @@
+train,stations
+0,"[Deventer, Zwolle, Steenwijk, Heerenveen]"
+1,"[Groningen, Leeuwarden, Heerenveen, Steenwijk]"
+2,"[Eindhoven, Helmond, Eindhoven, Helmond, Venlo, Helmond, Eindhoven, Weert]"
+3,"[Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Delft, Den Haag HS, Delft]"
+4,"[Zaandam, Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Sloterdijk, Zaandam, Beverwijk, Haarlem, Beverwijk, Zaandam, Amsterdam Sloterdijk]"
+5,"[Utrecht Centraal, Schiphol Airport, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal, Den Haag Centraal]"
+6,"[Amsterdam Centraal, Amsterdam Amstel, Utrecht Centraal, Amsterdam Amstel, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Schiphol Airport]"
+7,"[Dordrecht, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Blaak, Rotterdam Alexander, Gouda, Den Haag HS, Gouda, Utrecht Centraal]"
+8,"[Etten-Leur, Breda, Tilburg, Eindhoven, Weert]"
+9,"[Alkmaar, Castricum, Alkmaar, Den Helder, Alkmaar, Hoorn, Zaandam]"
+10,"[Oss, s-Hertogenbosch, Oss, s-Hertogenbosch, Tilburg, Breda, Tilburg, Breda, Dordrecht, Rotterdam Blaak]"
+11,"[Schiedam Centrum, Delft, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Delft, Schiedam Centrum, Delft, Den Haag HS]"
+12,"[Enschede, Hengelo, Almelo, Deventer, Zutphen, Deventer, Apeldoorn, Zutphen, Dieren, Arnhem Centraal, Dieren, Arnhem Centraal, Ede-Wageningen]"
+13,"[Almere Centrum, Amsterdam Amstel, Hilversum, Almere Centrum, Hilversum]"
+14,"[Etten-Leur, Breda, Etten-Leur, Roosendaal, Etten-Leur, Breda, Tilburg]"
+15,"[Haarlem, Heemstede-Aerdenhout, Haarlem, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Den Haag HS]"
+16,"[Heerlen, Sittard, Roermond, Sittard, Maastricht, Sittard]"
+17,"[Amersfoort, Utrecht Centraal, s-Hertogenbosch, Oss, s-Hertogenbosch, Oss, Nijmegen, Arnhem Centraal, Ede-Wageningen, Arnhem Centraal, Ede-Wageningen]"
+score,4375.842696629214
+connections missing,[['Almere Centrum': 'Lelystad Centrum']: ['Amsterdam Centraal': 'Almere Centrum']: ['Apeldoorn': 'Amersfoort']: ['Assen': 'Zwolle']: ['Roosendaal': 'Vlissingen']: ['Zwolle': 'Amersfoort']]

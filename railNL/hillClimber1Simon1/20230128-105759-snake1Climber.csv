@@ -1,0 +1,17 @@
+train,stations
+0,"[Deventer, Apeldoorn, Deventer, Zutphen, Apeldoorn]"
+1,"[Zwolle, Almelo]"
+2,"[Almere Centrum, Lelystad Centrum, Almere Centrum, Amsterdam Amstel, Hilversum, Utrecht Centraal, Amsterdam Amstel, Amsterdam Centraal, Almere Centrum]"
+3,"[Etten-Leur, Roosendaal, Etten-Leur, Breda, Tilburg, Eindhoven, s-Hertogenbosch, Eindhoven, Tilburg, Breda, Etten-Leur, Breda]"
+4,"[Breda, Etten-Leur, Breda, Tilburg, Eindhoven]"
+5,"[Ede-Wageningen, Arnhem Centraal, Nijmegen, Arnhem Centraal, Nijmegen]"
+6,"[Rotterdam Blaak, Dordrecht, Roosendaal, Etten-Leur, Roosendaal, Etten-Leur]"
+7,"[Amsterdam Centraal, Amsterdam Sloterdijk, Amsterdam Zuid, Schiphol Airport, Leiden Centraal, Den Haag Laan v NOI, Delft, Den Haag Laan v NOI, Gouda]"
+8,"[Hoorn, Alkmaar, Castricum, Beverwijk]"
+9,"[Den Haag HS, Delft, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Delft, Den Haag HS, Gouda, Den Haag Centraal]"
+10,"[Schiedam Centrum, Rotterdam Blaak, Schiedam Centrum, Delft, Den Haag Centraal, Delft, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Rotterdam Blaak, Dordrecht, Breda, Etten-Leur, Breda]"
+11,"[Roermond, Weert, Eindhoven, s-Hertogenbosch, Eindhoven, s-Hertogenbosch, Utrecht Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk]"
+12,"[]"
+13,"[Den Haag HS, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Schiphol Airport, Amsterdam Zuid]"
+score,4055.52808988764
+connections missing,[['Alkmaar': 'Den Helder']: ['Apeldoorn': 'Amersfoort']: ['Gouda': 'Alphen a/d Rijn']: ['Helmond': 'Venlo']: ['Hilversum': 'Almere Centrum']: ['Leeuwarden': 'Groningen']: ['Leiden Centraal': 'Alphen a/d Rijn']: ['Maastricht': 'Sittard']: ['Roosendaal': 'Vlissingen']: ['Sittard': 'Heerlen']: ['Sittard': 'Roermond']: ['Utrecht Centraal': 'Amsterdam Centraal']: ['Utrecht Centraal': 'Gouda']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Zaandam': 'Hoorn']: ['Zaandam': 'Castricum']: ['Zaandam': 'Beverwijk']: ['Zwolle': 'Amersfoort']]
