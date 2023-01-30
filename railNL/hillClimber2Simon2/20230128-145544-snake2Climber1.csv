@@ -1,0 +1,15 @@
+train,stations
+0,"[Breda, Etten-Leur, Roosendaal, Dordrecht, Breda, Tilburg, s-Hertogenbosch, Tilburg, s-Hertogenbosch]"
+1,"[]"
+2,"[]"
+3,"[]"
+4,"[]"
+5,"[Steenwijk, Heerenveen, Leeuwarden, Heerenveen, Steenwijk, Heerenveen, Steenwijk, Zwolle]"
+6,"[]"
+7,"[Zaandam, Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem]"
+8,"[Alphen a/d Rijn, Leiden Centraal, Den Haag Centraal, Delft, Schiedam Centrum, Rotterdam Blaak]"
+9,"[]"
+10,"[]"
+11,"[]"
+score,4310.449438202247
+connections missing,[['Alkmaar': 'Hoorn']: ['Almelo': 'Hengelo']: ['Amsterdam Amstel': 'Hilversum']: ['Assen': 'Zwolle']: ['Deventer': 'Almelo']: ['Gouda': 'Alphen a/d Rijn']: ['Groningen': 'Assen']: ['Hengelo': 'Enschede']: ['Maastricht': 'Sittard']: ['Oss': 'Nijmegen']: ['Roosendaal': 'Vlissingen']: ['Sittard': 'Heerlen']: ['Utrecht Centraal': 'Amsterdam Centraal']: ['Utrecht Centraal': 'Hilversum']: ['Utrecht Centraal': 'Ede-Wageningen']: ['Utrecht Centraal': 'Gouda']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Utrecht Centraal': 'Schiphol Airport']: ['Zaandam': 'Hoorn']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Almelo']]

@@ -197,7 +197,7 @@ class HillClimber():
         for iteration in range(iterations):
 
             # Accept it if it is better
-            self.checkSolution(self.mutateRoute())
+            self.checkSolution(self.ReplaceOrMutate())
             self.iteration += 1
 
         # exports scores

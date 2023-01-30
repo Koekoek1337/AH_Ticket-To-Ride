@@ -1,0 +1,17 @@
+train,stations
+0,"[Deventer, Apeldoorn, Deventer, Zutphen, Apeldoorn, Deventer, Zwolle]"
+1,"[Enschede, Hengelo, Almelo, Hengelo, Enschede]"
+2,"[Utrecht Centraal, Amsterdam Centraal, Almere Centrum, Lelystad Centrum, Almere Centrum, Amsterdam Amstel, Hilversum, Utrecht Centraal]"
+3,"[Etten-Leur, Breda, Etten-Leur, Roosendaal, Etten-Leur, Breda, Tilburg, Eindhoven, s-Hertogenbosch, Eindhoven, Tilburg, Breda]"
+4,"[Breda, Etten-Leur, Breda, Tilburg, Eindhoven, Helmond, Eindhoven]"
+5,"[Ede-Wageningen, Arnhem Centraal, Nijmegen, Arnhem Centraal, Nijmegen]"
+6,"[Roosendaal, Etten-Leur, Breda, Dordrecht, Roosendaal, Etten-Leur, Roosendaal, Etten-Leur, Roosendaal, Etten-Leur]"
+7,"[Amsterdam Amstel, Amsterdam Centraal, Amsterdam Sloterdijk, Amsterdam Zuid, Schiphol Airport, Leiden Centraal, Den Haag Laan v NOI, Delft, Den Haag Laan v NOI, Gouda, Rotterdam Alexander]"
+8,"[Hoorn, Alkmaar, Castricum, Beverwijk, Haarlem, Heemstede-Aerdenhout]"
+9,"[Utrecht Centraal, Gouda, Den Haag HS, Delft, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Delft, Schiedam Centrum, Rotterdam Centraal]"
+10,"[Dordrecht, Rotterdam Blaak, Schiedam Centrum, Delft, Schiedam Centrum, Rotterdam Blaak, Schiedam Centrum, Delft, Den Haag Centraal, Delft, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Rotterdam Blaak]"
+11,"[Roermond, Weert, Eindhoven, s-Hertogenbosch, Eindhoven, s-Hertogenbosch, Utrecht Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk]"
+12,"[Leeuwarden, Heerenveen]"
+13,"[Den Haag HS, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Schiphol Airport, Amsterdam Zuid]"
+score,3979.168539325843
+connections missing,[['Alkmaar': 'Den Helder']: ['Apeldoorn': 'Amersfoort']: ['Den Haag Centraal': 'Gouda']: ['Gouda': 'Alphen a/d Rijn']: ['Helmond': 'Venlo']: ['Hilversum': 'Almere Centrum']: ['Leeuwarden': 'Groningen']: ['Leiden Centraal': 'Alphen a/d Rijn']: ['Maastricht': 'Sittard']: ['Roosendaal': 'Vlissingen']: ['Sittard': 'Heerlen']: ['Sittard': 'Roermond']: ['Utrecht Centraal': 'Amsterdam Amstel']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Zaandam': 'Hoorn']: ['Zaandam': 'Castricum']: ['Zaandam': 'Beverwijk']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Almelo']]

@@ -1,0 +1,18 @@
+train,stations
+0,"[Amsterdam Amstel, Utrecht Centraal, s-Hertogenbosch, Utrecht Centraal, Alphen a/d Rijn, Leiden Centraal, Schiphol Airport, Leiden Centraal]"
+1,"[Zaandam, Amsterdam Sloterdijk, Zaandam, Castricum, Alkmaar, Hoorn, Zaandam, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Amstel, Hilversum, Utrecht Centraal]"
+2,"[Delft, Den Haag Centraal, Gouda, Rotterdam Alexander, Gouda, Rotterdam Alexander, Gouda]"
+3,"[Den Haag HS, Gouda, Rotterdam Alexander, Gouda, Rotterdam Alexander, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Delft, Schiedam Centrum, Delft]"
+4,"[]"
+5,"[Heemstede-Aerdenhout, Haarlem, Beverwijk, Zaandam, Amsterdam Sloterdijk, Haarlem]"
+6,"[Heemstede-Aerdenhout, Haarlem, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Amstel, Hilversum]"
+7,"[]"
+8,"[]"
+9,"[Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum]"
+10,"[]"
+11,"[Heerenveen, Steenwijk, Zwolle, Amersfoort, Utrecht Centraal]"
+12,"[Schiedam Centrum, Rotterdam Blaak, Dordrecht, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Dordrecht, Breda, Etten-Leur, Breda, Etten-Leur]"
+13,"[Oss, s-Hertogenbosch, Tilburg, s-Hertogenbosch, Tilburg, Breda, Dordrecht, Rotterdam Blaak, Dordrecht]"
+14,"[Oss, Nijmegen, Arnhem Centraal]"
+score,4220.966292134832
+connections missing,[['Alkmaar': 'Den Helder']: ['Apeldoorn': 'Amersfoort']: ['Apeldoorn': 'Zutphen']: ['Eindhoven': 'Helmond']: ['Eindhoven': 'Tilburg']: ['Helmond': 'Venlo']: ['Leeuwarden': 'Groningen']: ['Maastricht': 'Sittard']: ['Roermond': 'Weert']: ['Roosendaal': 'Vlissingen']: ['Sittard': 'Heerlen']: ['Sittard': 'Roermond']: ['Utrecht Centraal': 'Gouda']: ['Weert': 'Eindhoven']]

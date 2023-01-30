@@ -34,6 +34,8 @@ class HillClimber():
         # mutate every route in the workModel
         for route in self.workModel.listRoutes():
             randomFloat = random.random()
+            if route.nStations() < 2:
+                self.lengthenRoute(route)
             if randomFloat < 0.33:
                 self.mutateLastStation(route)
                 self.mutateLastStation(route)
@@ -166,7 +168,7 @@ class HillClimber():
         if newScore >= oldScore:
             self.score = newScore
             self.scores.append({"iteration":self.iteration, "score":newScore})
-            self.workModel.exportSolution("hillClimber2Simon", "snake2Climber")
+            self.workModel.exportSolution("hillClimber2Simon2", "snake2Climber1")
         else:
             self.workModel = self.previousModel
             self.routes = self.previousModel.listRoutes()
@@ -185,4 +187,4 @@ class HillClimber():
             self.iteration += 1
 
         # exports scores
-        exportScores(self.scores, "hillClimber2Simon", "snake2Climber", START_TIMESTAMP)
+        exportScores(self.scores, "hillClimber2Simon2", "snake2Climber1", START_TIMESTAMP)

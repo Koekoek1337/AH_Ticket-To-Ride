@@ -6,11 +6,14 @@ import datetime
 from classes.railNetwork import RailNetwork
 from classes.route import Route
 from classes.station import Station
-from algorithms.random_hajo import randomSolution, exportScores
-from algorithms.finnHillClimber import routeHillClimber
+from algorithms.random_hajo import randomSolution, exportScores, randomRoute
+# from algorithms.finnHillClimber import routeHillClimber
 
 
 START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+
+tMax = 180
+routeMax = 20
 
 class HillClimber():
 
@@ -32,7 +35,7 @@ class HillClimber():
         """
         self.previousModel = deepcopy(self.workModel)
 
-        if self.workModel.nRoutes() < 7:
+        if self.workModel.nRoute() < 7:
             routeID = self.getLowestScoringRoute()
             self.removeLowestRoute(routeID)
             self.makeNewRoute(routeID)
@@ -44,6 +47,38 @@ class HillClimber():
                 routeID = self.getLowestScoringRoute()
                 self.removeLowestRoute(routeID)
                 self.makeNewRoute(routeID)
+                print ("ok")
+
+
+    def getLowestScoringRoute(self) -> int:
+        """
+        Returns route with only one station or
+        lowest scoring route in railNetwork.
+        """
+        self.previousModel = deepcopy(self.workModel)
+        lowestScore: float = 10000
+        lowestRoute: Route = self.routes[0]
+        for route in self.workModel.listRoutes():
+            if route.nStations == 1:
+                return route.getID()
+            if route.routeScore(len(self.workModel._connections)) < lowestScore:
+                lowestScore = route.routeScore(len(self.workModel._connections))
+                lowestRoute = route
+        return lowestRoute.getID()
+
+    def removeLowestRoute(self, routeID: int) -> None:
+        """
+        Removes route from the railNetwork with the lowest score.
+        """
+
+        self.workModel.delRoute(routeID)
+
+    def makeNewRoute(self, routeID: int) -> None:
+        """
+        Creates a new route with a legal amount of stations.
+        """
+
+        randomRoute(self.workModel, tMax)
 
 
     def mutateRoute(self) -> None:
@@ -51,10 +86,12 @@ class HillClimber():
         Random choice between removing first three or last three station for every route taken.
         Than adds a new station to the route.
         """
-        self.previousModel = deepcopy(self.workModel)
+        # self.previousModel = deepcopy(self.workModel)
 
         # mutate every route in the workModel
         for route in self.workModel.listRoutes():
+            if route.nStations() < 2:
+                self.lengthenRoute(route)
             randomFloat = random.random()
             if randomFloat < 0.33:
                 for _ in range(random.randint(1,3)):
@@ -186,7 +223,7 @@ class HillClimber():
             self.score = newScore
             print(self.score)
             self.scores.append({"iteration":self.iteration, "score":newScore})
-            self.workModel.exportSolution("hillClimber1SimonFinn", "hillClimber1SimonFinn")
+            self.workModel.exportSolution("hillClimber1SimonFinn2", "hillClimber1SimonFinn1")
         else:
             self.workModel = self.previousModel
             self.routes = self.previousModel.listRoutes()
@@ -201,8 +238,8 @@ class HillClimber():
         for iteration in range(iterations):
 
             # Accept it if it is better
-            self.checkSolution(self.mutateRoute())
+            self.checkSolution(self.ReplaceOrMutate())
             self.iteration += 1
 
         # exports scores
-        exportScores(self.scores, "hillClimber1SimonFinn", "hillClimber1SimonFinn", START_TIMESTAMP)
+        exportScores(self.scores, "hillClimber1SimonFinn2", "hillClimber1SimonFinn1", START_TIMESTAMP)

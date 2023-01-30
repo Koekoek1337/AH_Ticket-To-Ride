@@ -1,0 +1,18 @@
+train,stations
+0,"[Apeldoorn, Amersfoort, Utrecht Centraal, Hilversum, Almere Centrum, Hilversum, Utrecht Centraal]"
+1,"[Zaandam, Castricum, Alkmaar, Hoorn, Alkmaar, Castricum, Alkmaar, Castricum, Beverwijk]"
+2,"[s-Hertogenbosch, Oss, s-Hertogenbosch, Tilburg, Breda, Etten-Leur, Roosendaal, Dordrecht]"
+3,"[Roermond, Weert, Roermond, Sittard, Maastricht, Sittard, Heerlen, Sittard, Maastricht, Sittard, Maastricht]"
+4,"[Ede-Wageningen, Utrecht Centraal, s-Hertogenbosch, Tilburg, Eindhoven, Weert, Eindhoven, Helmond]"
+5,"[Assen, Groningen, Assen, Zwolle, Amersfoort, Apeldoorn, Deventer, Apeldoorn, Deventer]"
+6,"[Steenwijk, Heerenveen, Leeuwarden, Groningen, Assen, Groningen]"
+7,"[Almere Centrum, Amsterdam Amstel, Amsterdam Zuid, Amsterdam Sloterdijk, Haarlem, Beverwijk, Zaandam, Amsterdam Sloterdijk, Haarlem]"
+8,"[Dieren, Zutphen, Deventer, Zutphen, Deventer, Apeldoorn, Zutphen, Deventer]"
+9,"[Rotterdam Alexander, Gouda, Rotterdam Alexander, Gouda, Alphen a/d Rijn, Leiden Centraal, Alphen a/d Rijn, Utrecht Centraal, Amsterdam Centraal, Amsterdam Amstel]"
+10,"[Zutphen, Apeldoorn, Deventer, Zwolle, Almelo, Hengelo, Almelo, Hengelo, Enschede, Hengelo, Enschede, Hengelo]"
+11,"[Zaandam, Amsterdam Sloterdijk, Amsterdam Centraal, Almere Centrum, Lelystad Centrum, Almere Centrum, Lelystad Centrum]"
+12,"[Rotterdam Blaak, Rotterdam Alexander, Gouda, Den Haag HS, Leiden Centraal, Den Haag Centraal, Leiden Centraal, Schiphol Airport, Leiden Centraal, Den Haag Laan v NOI, Gouda, Rotterdam Alexander]"
+13,"[Helmond, Eindhoven, s-Hertogenbosch, Tilburg, Eindhoven, Tilburg, s-Hertogenbosch, Oss, Nijmegen, Arnhem Centraal, Ede-Wageningen, Arnhem Centraal]"
+14,"[Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Den Haag HS, Delft, Den Haag Laan v NOI, Leiden Centraal, Den Haag Centraal, Delft, Den Haag Centraal, Delft, Den Haag Laan v NOI, Leiden Centraal]"
+score,4453.3258426966295
+connections missing,[['Alkmaar': 'Den Helder']: ['Amsterdam Amstel': 'Hilversum']: ['Amsterdam Zuid': 'Schiphol Airport']: ['Arnhem Centraal': 'Dieren']: ['Breda': 'Dordrecht']: ['Deventer': 'Almelo']: ['Dordrecht': 'Rotterdam Centraal']: ['Dordrecht': 'Rotterdam Blaak']: ['Helmond': 'Venlo']: ['Rotterdam Blaak': 'Schiedam Centrum']: ['Schiedam Centrum': 'Delft']: ['Steenwijk': 'Zwolle']: ['Utrecht Centraal': 'Schiphol Airport']]
