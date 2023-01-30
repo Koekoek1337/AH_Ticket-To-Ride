@@ -6,6 +6,7 @@ from algorithms import hillClimber_Hajo
 
 import json
 import datetime
+import statistics
 
 from os import path
 from sys import argv
@@ -88,7 +89,10 @@ def batch(
         currentRunName = runName + str(run + 1)
 
     if runs > 1:
-        summaryName = f"{runName} - {str(runs)} runs"
+        average = statistics.mean([score["score"] for score in scores])
+        scores.append({"run":"average", "score": average})
+
+        summaryName = f"{runName}-{str(runs)}runs"
         random_hajo.exportScores(scores, targetFolder, summaryName, START_TIMESTAMP)
 
     return
