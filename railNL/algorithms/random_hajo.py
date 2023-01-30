@@ -208,7 +208,7 @@ def exportScores(scoreList: List[Dict[str, Union[int, float]]], targetFolder: st
     if not os.path.exists(f"{targetFolder}/"):
             os.mkdir(f"{targetFolder}/")
     
-    with open(f"{targetFolder}/{timestamp}-summary-{runName}.csv", "w") as resultFile:
+    with open(f"{targetFolder}/{timestamp}-summary-{runName}.csv", "w", newline='') as resultFile:
         fieldnames = scoreList[0].keys()
         
         writer = csv.DictWriter(resultFile, fieldnames=fieldnames)
