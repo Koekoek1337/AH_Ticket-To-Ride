@@ -59,6 +59,7 @@ def batch(
     network = RailNetwork(stationsFilepath, connectionsFilepath)
     algorithm = algorithm.lower()
 
+    # Random does not need to utilize multiple runs
     if algorithm == "random":
         ALGORITHMS[algorithm](
             deepcopy(network), 
@@ -73,18 +74,19 @@ def batch(
     
     scores: List[Dict[str, float]] = []
 
+    # if multiple runs are utilized
     if runs > 1:
         currentRunName = runName + str(0)
     
     for run in range(runs):
-        network: RailNetwork = ALGORITHMS[algorithm](
+        newNetwork: RailNetwork = ALGORITHMS[algorithm](
             deepcopy(network), 
             targetFolder=targetFolder, 
             runName=currentRunName, 
             **arguments
         )
 
-        scores.append({"run":run, "score":network.score()})
+        scores.append({"run":run, "score":newNetwork.score()})
 
         currentRunName = runName + str(run + 1)
 
