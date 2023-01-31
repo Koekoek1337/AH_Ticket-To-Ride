@@ -7,6 +7,7 @@ from algorithms import hillClimber_Hajo
 import json
 import datetime
 import statistics
+import time
 
 from os import path
 from sys import argv
@@ -56,6 +57,9 @@ def batch(
 
     START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
+    # Guarantees that the summary file will have a lower timestamp than the first result
+    time.sleep(1)
+
     network = RailNetwork(stationsFilepath, connectionsFilepath)
     algorithm = algorithm.lower()
 
@@ -100,21 +104,21 @@ def batch(
     return
 
 
-def visualize(resultFilepath: str, plotType: str= "algorithm", **arguments):
+def visualize(plotType: str= "algorithm", **arguments):
     """Loads a solution into the network and visualizes it"""
     if plotType == "algorithm":
-        plotAlgConvergence(resultFilepath, **arguments)
+        plotAlgConvergence(**arguments)
 
     elif plotType == "network":
-        plotNetwork(resultFilepath=resultFilepath, **arguments)
+        plotNetwork(**arguments)
 
     elif plotType == "hist":
-        plotHist(resultFilepath, **arguments)
+        plotHist(**arguments)
     
     return
 
 
-def plotHist(resultFilepath: str, title = "", binCount = 30, **_):
+def plotHist(resultFilepath: str, title = "", binCount = 30):
     """
     plots the score data as a histogram
     """
@@ -124,12 +128,11 @@ def plotHist(resultFilepath: str, title = "", binCount = 30, **_):
     return
 
 
-def plotAlgConvergence(resultFilepath: str, title: str, **_):
+def plotAlgConvergence(resultFilepath: str, title: str):
     """
     Plots the convergence of an algorithm over iterations
     """
     summary = vis.loadSummary(resultFilepath)
-
     vis.plotAlgorithm(*summary, title)
     
     return
@@ -154,12 +157,18 @@ def plotNetwork(
         network.routePointLists(),
         stationNames,
         title
-        )
+    )
 
 
 def parseArgv(argv: List[str]) -> Dict[str, Union[str, int, bool]]:
+    """
+    Takes a .JSON filepath from argv and returns it as dict
+
+    Args:
+        argv (List[str]): List of user input arguments.
+    """
     
-    USAGEMESSAGE = "Usage: railNL [-b] [-a] dataName [convergenceLimit] [targetFolder]"
+    USAGEMESSAGE = "Usage: railNL [jobfile.json]"
 
     if len(argv) == 1 or len(argv) > 2:
         print(USAGEMESSAGE)
@@ -167,10 +176,13 @@ def parseArgv(argv: List[str]) -> Dict[str, Union[str, int, bool]]:
     
     jsonPath = argv[1]
 
-    if path.exists(jsonPath):
-        with open(jsonPath) as jsonFile:
-            parms = json.load(jsonFile)
-            return parms
+    if not path.exists(jsonPath):
+        print(f"Error: File {jsonPath} not found")
+        return
+
+    with open(jsonPath) as jsonFile:
+        parms = json.load(jsonFile)
+        return parms
 
 
 if __name__ == "__main__":
