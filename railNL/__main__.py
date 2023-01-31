@@ -3,7 +3,12 @@ import visualize.visualize as vis
 
 from algorithms import random_hajo
 from algorithms import hillClimber_Hajo
+<<<<<<< HEAD
+from algorithms import hillclimber_simon, hillclimber_simon1, hillclimber_simon2
+from algorithms import hillClimber_Finn_Simon
+=======
 from algorithms import finnHillClimber
+>>>>>>> e83d9dfa11c433504db777205edf3ac5d65296d8
 
 import json
 import datetime
@@ -20,8 +25,8 @@ from typing import List, Dict, Union, Any, Callable
 o How to run:
 > python railNL jobs/filename.json
     - See jobs/runHolland.json and jobs/runNetherlands.json
-    - **arguments acts like [arg1=A][arg2=b][arg3=c]. In order to build your own job file 
-      in order to run your program from main, you should 
+    - **arguments acts like [arg1=A][arg2=b][arg3=c]. In order to build your own job file
+      in order to run your program from main, you should
 
 """
 
@@ -31,18 +36,18 @@ def main(jobType: str, **arguments):
     if jobType in ["batch", "b", "bat"]:
         batch(**arguments)
         return
-    
+
     elif jobType in ["visualize", "vis", "v"]:
         visualize(**arguments)
-    
+
     return
 
 
 def batch(
-    stationsFilepath: str, 
-    connectionsFilepath: str, 
-    algorithm: str, 
-    runs: int = 1, 
+    stationsFilepath: str,
+    connectionsFilepath: str,
+    algorithm: str,
+    runs: int = 1,
     targetFolder: str = "results",
     runName: str = "solution",
     **arguments
@@ -54,7 +59,14 @@ def batch(
         "random": random_hajo.main,
         "hillclimber_hajo": hillClimber_Hajo.routeHillclimber,
         "annealing": hillClimber_Hajo.runAnnealing,
+<<<<<<< HEAD
+        "snakeclimber": hillclimber_simon.main,
+        "snakeclimber1": hillclimber_simon1.main,
+        "snakeclimber2": hillclimber_simon2.main,
+        "routesnakeclimber": hillClimber_Finn_Simon.main,
+=======
         "routeclimber_finn": finnHillClimber.main,
+>>>>>>> e83d9dfa11c433504db777205edf3ac5d65296d8
     }
 
     START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -68,27 +80,27 @@ def batch(
     # Random does not need to utilize multiple runs
     if algorithm == "random":
         ALGORITHMS[algorithm](
-            deepcopy(network), 
-            targetFolder=targetFolder, 
-            runName=runName, 
+            deepcopy(network),
+            targetFolder=targetFolder,
+            runName=runName,
             **arguments
         )
-    
+
         return
-    
+
     currentRunName = runName
-    
+
     scores: List[Dict[str, float]] = []
 
     # if multiple runs are utilized
     if runs > 1:
         currentRunName = runName + str(0)
-    
+
     for run in range(runs):
         newNetwork: RailNetwork = ALGORITHMS[algorithm](
-            deepcopy(network), 
-            targetFolder=targetFolder, 
-            runName=currentRunName, 
+            deepcopy(network),
+            targetFolder=targetFolder,
+            runName=currentRunName,
             **arguments
         )
 
@@ -116,7 +128,7 @@ def visualize(plotType: str= "algorithm", **arguments):
 
     elif plotType == "hist":
         plotHist(**arguments)
-    
+
     return
 
 
@@ -136,26 +148,26 @@ def plotAlgConvergence(resultFilepath: str, title: str):
     """
     summary = vis.loadSummary(resultFilepath)
     vis.plotAlgorithm(*summary, title)
-    
+
     return
 
 
 def plotNetwork(
-    stationsFilepath: str, 
-    connectionsFilepath: str, 
-    resultFilepath: str, 
+    stationsFilepath: str,
+    connectionsFilepath: str,
+    resultFilepath: str,
     title:str,
     stationNames: bool = False
 ):
     """
-    
+
     """
     network = RailNetwork(stationsFilepath, connectionsFilepath)
     network.loadSolution(resultFilepath)
-    
+
     vis.visualizeNetwork(
         network.connectionPoints(),
-        network.stationPoints(), 
+        network.stationPoints(),
         network.routePointLists(),
         stationNames,
         title
@@ -169,13 +181,13 @@ def parseArgv(argv: List[str]) -> Dict[str, Union[str, int, bool]]:
     Args:
         argv (List[str]): List of user input arguments.
     """
-    
+
     USAGEMESSAGE = "Usage: railNL [jobfile.json]"
 
     if len(argv) == 1 or len(argv) > 2:
         print(USAGEMESSAGE)
         return
-    
+
     jsonPath = argv[1]
 
     if not path.exists(jsonPath):

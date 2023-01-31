@@ -33,7 +33,7 @@ def visualizeNetwork(
     # Create a figure of the right size with one axes that takes up the full figure
     fig, ax = plt.subplots(figsize=figsize)
 
-    plt.title(title)
+    plt.suptitle(title)
 
     # find the extent
     longitudeMin = 3.5
@@ -57,7 +57,6 @@ def visualizeNetwork(
     routeNumber = 0
     # draw routes
     for routePointPairs in routePointLists:
-        # TODO routepointpairs colours red
 
         for pointPair in routePointPairs:
             plt.plot([point[0] for point in pointPair], [point[1] for point in pointPair],
@@ -75,6 +74,8 @@ def visualizeNetwork(
         if stationNames:
             name = station[0]
             plt.annotate(name, (x, y))
+
+    plt.title(f"Amount Routs: {routeNumber}")
 
     plt.savefig("results/railNetwork.png", format="PNG")
     plt.show()
@@ -116,6 +117,7 @@ def loadScores (targetFolder: str, filename: str) -> float:
             if row["train"] == "score":
                 return float(row["stations"])
 
+
 def loadSummary (
     resultFilepath: str
 ) -> Tuple[List[int], List[float], Optional[float], Optional[float]]:
@@ -144,7 +146,6 @@ def loadSummary (
         return iterations, scores, None, None
 
 
-
 def plotHistAverage (scores: List[float], title: str = "", binCount: int = 30) -> None:
     """
     Input: scores, average from def choicesFiles.
@@ -167,12 +168,11 @@ def plotHistAverage (scores: List[float], title: str = "", binCount: int = 30) -
 
 
 def plotAlgorithm (
-    iterations: List[int], 
-    scores: List[int], 
-    theoreticalBest: float = None, 
+    iterations: List[int],
+    scores: List[int],
+    theoreticalBest: float = None,
     bestScore: float = None,
-    title: str = ""
-) -> None:
+    title: str = "" ) -> None:
     """
     Input: scores, average from def choicesFiles.
     Input: scope and algorithm.
@@ -182,11 +182,11 @@ def plotAlgorithm (
 
     if not bestScore:
         bestScore = max(scores)
-    
+
     subtitle = f"Best: {bestScore}"
 
     plt.axhline(bestScore, linestyle="dashed", label="Best score")
-    
+
     if theoreticalBest:
         plt.axhline(theoreticalBest, linestyle="dotted", color='orange', label="Theoretical best")
         subtitle += f"; Theoretical best: {theoreticalBest}"
