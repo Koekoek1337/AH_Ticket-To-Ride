@@ -1,7 +1,11 @@
 # RailNL Ticket-To-Ride
 - Introduction
 
-This module allows the user to optimize train routing for a rail network consisting of train stations and connections in batch mode. Obtained results can then be visualized using the visualization tools supplied in visualization mode.
+This module allows the user to optimize train routing for a rail network consisting of train stations and connections in batch mode with user-defined parameters.
+
+Obtained results can then be visualized using the visualization tools supplied in visualization mode.
+
+User-defined parameters are initialized from a .json file specified in the command line arguments.
 
 By Simon de Jong, Finn Leurs and Hajo Groen
 
@@ -19,7 +23,7 @@ By Simon de Jong, Finn Leurs and Hajo Groen
     * [Logarithmic Cooling](#logarithmic-cooling)
     * [Linear Cooling](#linear-cooling)
     * [Geometric Cooling](#geometric-cooling)
-
+* [Usage](#usage)
 ---
 
 ## Overview
@@ -127,7 +131,7 @@ From this, it was taken that initial temperature `64` had a more variable spread
 ### Geometric Cooling
 The final cooling scheme to be tuned was the geometric cooling scheme. 64 was taken as initial temperature, as it performed well with the linear cooling scheme. It was decided that the geometric cooling constant should be of nines. Therefore 4 batches of 10 runs were done with varying geometric constants as seen below (Note that the x-axis has a logarithmic scale)
 
-![annealing_geometic](docs/annealing_geoConstant.png)
+![annealing_geometric](docs/annealing_geoConstant.png)
 
 The geometric cooling scheme was taken to be outperformed by the linear cooling scheme, with initial temperature 64 and linear cooling constant `64 * 10^-4`, in all cases. For this reason, the linear cooling scheme was chosen as the best suitable for this problem.
 
@@ -141,20 +145,48 @@ These instances were both evaluated over 10 runsusing the simulated annealing al
 
 All the resulting rail systems contained all rail connections, with a high scoring system with 9035 points, as displayed below.
 
+![solution_holland](docs/holland_score9035.png)
+
+As all 10 runs resulted in a high scoring system with all routes, it can be assumed that an optimal rail system in holland uses all rail connections. It was also observed that all optimized systems used either 5, 6 or 7 routes, but no less. The score is also very close to the theoretical maximum score of 9219, indicating that there is very little left that can be optimized for this network.
+
+---
 
 ### Random Baseline
-- 1.6 mil random solutions
-- Figure of histogram
+In order to judge a developed algorithm on it's effectiveness, a large baseline calculation from 1.6 million valid solutions was made using the random algorithm, which has been displayed in the histogram below.
 
-#### Snake
+![baseline_netherlands](docs/random_hist.png)
+
+From this, it was determined that the random algorithm had an average score of 2212.11, with most scores falling between 300 and 4000 points with a slight bias towards lower scores.
+
+---
+
+### Snake
 - Baseline fig
 - Hoogste score
 
-#### GreedyHill
+---
+
+### GreedyHill
 - Baseline fig
 - Hoogste score
 
-#### Anneal
+---
+
+### Simulated Annealing
+In order to determine whether the linear cooling scheme of the simulated annealing algorithm would be effective, a baseline of the simulated annealing algorithm with the hillclimber cooling scheme was taken over 100 runs, which has been displayed in the histogram below.
+
+![annealing_baselineHill](docs/annealing_baselineHill.png)
+
+From this, it can be concluded that the algorit without any cooling scheme already far outperforms the random algorithm, both in it's average score of 6165.99 and overall score spread.
+
+The same baseline was made for the simulated annealing algorithm with the linear cooling scheme, with initial temperature 64 and linear cooling constant 64 * 10^-4, which has been displayed below.
+
+![annealing_baselineLin](docs/annealing_baseline_linearCooling.png)
+
+The results from this baseline are interesting, as it shows a worse overall spread and lower average score of 6050.45, but also having a better median score and is more likely to obtain results with more than 6400 points overall. It is therefore preferrable to run with the linear cooling scheme when performing multiple runs over a longer period of time.
+
+The overall score for the netherlands was also recorded using the algorithm with the same cooling schedule and parameters.
+
 - Baseline fig
 - Hoogste score
 
@@ -179,4 +211,46 @@ All the resulting rail systems contained all rail connections, with a high scori
 - Does not result in major score differences with
     simulated annealing algorithm
 
-## 
+## Usage
+In order to optimize rail networks in batch mode, call the module, call the module like
+`python .\railNL [FILENAME].json`
+
+.json properties and their valid values are explained below.
+
+### Main batch properties
+`"jobType":` Whether an optimization algorithm has to be ran or if data has to be visualized. Valid values are `["batch" , "bat", "b"]` for batch mode and `["visualize", "vis", "v"]` for visualization mode.
+
+`"stationsFilepath":` The filepath of the .CSV file containing station names and coordinates. Most commonly `"data/StationsNationaal.csv"` for the Netherlands and `"data/StationsHolland.csv"` for Holland
+
+`"connectionsFilepath":` The filepath of the .CSV file containing rail connections and durations. Most commonly `"data/ConnectiesNationaal.csv"` for the Netherlands and `"data/ConnectiesHolland.csv"` for Holland
+
+`"runs":` The amout of times the algorithm has to be ran in batch. Must be an integer equal to or more than 1.
+
+`"algorithm":` The name of the chosen algorithm. Current options are:
+- `"random"`
+- `"hillclimber_hajo"`
+- `"annealing"`
+- `"snakeclimber"`
+- `"snakeclimber1"`
+- `"snakeclimber2"`
+- `"routesnakeclimber"`
+- `"routeclimber_finn"`
+
+`"runName":` The human readable part of the result filename.
+
+`"targetFolder":` The folder to where results should be exported.
+
+`"maxRoutes":` The maximum amount of routes allowed in the rail system. 7 for Holland, 20 for the Netherlands
+
+`"maxDuration":` The maximum duration a route is allowed to have. 120 for Holland, 180 for the Netherlands
+
+### Algorithm specific properties
+#### annealing
+`"coolingScheme":` The name of the cooling scheme to be used. Current options are:
+- `"Logarithmic"`
+- `"Linear"`
+- `"Geometric"`
+
+`"initialTemperature":`: The initial temperature for the simulated Annealing algorithm. 64 for the best tested linear annealing scheme. Redundant for logarithmic
+`"coolingConstant":` The constant in the cooling scheme. 0.0064 for the best tested linear annealing scheme.
+    

@@ -152,7 +152,9 @@ def annealingClimber(
     iteration = 1
 
     while convergence <= convergenceLimit:
-        print(f"iteration: {iteration}")
+        
+        if not iteration % 1000:
+            print(f"iteration: {iteration}")
 
         workNetwork = deepcopy(currentNetwork)
         stepFunction(workNetwork, maxRoutes, maxDuration)
