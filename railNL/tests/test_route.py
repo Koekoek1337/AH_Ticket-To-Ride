@@ -1,5 +1,6 @@
 import pytest
 from classes.railNetwork import RailNetwork
+from classes.connection import Connection
 from classes.route import Route
 from copy import deepcopy
 
@@ -145,3 +146,51 @@ def test_routeBroken():
 
     testRoute.appendStation(stationD)
     assert testRoute.brokenConnections() == [((stationC, 0), (stationA, 1)), ((stationA, 1), (stationD, 2))]
+
+def test_popAppend():
+    testNetwork, stationA, stationB, stationC, stationD = initializeNetwork()
+    
+    testRoute = testNetwork.createRoute(stationA)
+    testRoute.appendStation(stationB)
+
+    # A - B
+    assert stationA.getConnection(stationB.name())._routes == {0}
+    assert testRoute.length() == 1
+
+    testRoute.popStation()
+
+    # A
+    assert stationA.getConnection(stationB.name())._routes == set()
+    assert testRoute.length() == 0
+
+    testRoute.appendStation(stationB)
+    testRoute.appendStation(stationC)
+
+    testRoute.popStation()
+
+    assert testRoute.length() == 1
+
+    testRoute.appendStation(stationC)
+
+    # A - B - C
+    assert stationA.getConnection(stationB.name())._routes == {0}
+    assert stationB.getConnection(stationC.name())._routes == {0}
+    assert testRoute.length() == 2
+
+    testRoute.popStation(0)
+    
+    # B - C
+    assert stationA.getConnection(stationB.name())._routes == set()
+    assert testRoute.length() == 1
+
+    # B - C - B
+    testRoute.appendStation(stationB)
+    assert testRoute.length() == 2
+
+    # B - C -
+    testRoute.popStation()
+
+    print(testRoute._connections)
+    print(testRoute._stations)
+    assert stationB.getConnection(stationC.name())._routes == {0}
+    assert testRoute.length() == 1
