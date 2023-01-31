@@ -75,7 +75,7 @@ def visualizeNetwork(
             name = station[0]
             plt.annotate(name, (x, y))
 
-    plt.title(f"Amount Routs: {routeNumber}")
+    plt.title(f"Amount of Routes: {routeNumber}")
 
     plt.savefig("results/railNetwork.png", format="PNG")
     plt.show()
