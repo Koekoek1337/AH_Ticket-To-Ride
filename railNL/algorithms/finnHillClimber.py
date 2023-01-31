@@ -8,25 +8,22 @@ from typing import List, Dict, Union
 
 from copy import deepcopy
 
-tMax = 180
-routeMax = 20
-
-START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-
 
 class routeHillClimber():
 
-    def __init__(self) -> None:
-        self.workModel: RailNetwork = randomSolution(
-            RailNetwork("data/StationsNationaal.csv",
-                        "data/ConnectiesNationaal.csv"),
-            routeMax, tMax, 50)
+    def __init__(self, network: RailNetwork, maxDuration, maxRoutes, runName, targetFolder, randomIterations) -> None:
+        self.workModel: RailNetwork = randomSolution(network, maxRoutes, maxDuration, randomIterations)
         self.routes: List[Route] = self.workModel.listRoutes()
         self.score: float = self.workModel.score()
         self.previousModel: RailNetwork = deepcopy(self.workModel)
         self.iteration: int = 0
         self.attempts: int = 0
         self.scoreList: List[Dict[str, Union[int, float]]] = []
+        self.tMax = maxDuration
+        self.routeMax = maxRoutes
+        self.runName = runName
+        self.targetFolder = targetFolder
+        self.START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
     def getLowestScoringRoute(self) -> int:
         """
@@ -56,7 +53,7 @@ class routeHillClimber():
         Creates a new route with a legal amount of stations.
         """
 
-        randomRoute(self.workModel, tMax)
+        randomRoute(self.workModel, self.tMax)
 
     def checkSolution(self) -> None:
         """
@@ -72,7 +69,6 @@ class routeHillClimber():
             print(f"New High Score: {newScore}")
             self.score = newScore
             self.scoreList.append({"iteration": self.iteration, "score": newScore})
-            self.workModel.exportSolution("finnHillClimber", "routeHillClimber")
             self.attempts = 0
 
         else:
@@ -84,12 +80,20 @@ class routeHillClimber():
         """
         Runs a route-based Hill Climber algorithm and exports the results.
         """
-        while self.attempts < 5000:
+        print("New attempt")
+        while self.attempts < 15000:
             routeID = self.getLowestScoringRoute()
             self.removeLowestRoute(routeID)
             self.makeNewRoute(routeID)
             self.checkSolution()
             self.iteration += 1
 
-        exportScores(self.scoreList, "finnHillClimber", "routeHillClimber",
-                     START_TIMESTAMP)
+        print(f"Final Score: {self.workModel.score()}")
+        self.workModel.exportSolution(self.targetFolder, self.runName)
+        exportScores(self.scoreList, self.targetFolder, self.runName,
+                     self.START_TIMESTAMP)
+
+def main(network, runName, targetFolder, maxRoutes, maxDuration, randomIterations=50) -> RailNetwork:
+    model = routeHillClimber(network, maxDuration, maxRoutes, runName, targetFolder, randomIterations)
+    model.run()
+    return model.workModel
