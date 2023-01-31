@@ -1,10 +1,10 @@
 {
     "jobType": "v",
-    "plotType": "alg",
+    "plotType": "algorithm",
 
 
 
-    "title": "Best snakeClimber",
+    "title": "Best routeSnakeClimber",
 
-    "resultFilepath": "results/snakeClimber/20230131-132013-summary-snakeClimber.csv"
+    "resultFilepath": "results/routeSnakeClimber/20230131-141934-summary-snakeClimber.csv"
 }
