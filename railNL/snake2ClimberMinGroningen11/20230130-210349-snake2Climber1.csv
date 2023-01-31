@@ -1,0 +1,14 @@
+train,stations
+0,"[]"
+1,"[Utrecht Centraal, Hilversum, Utrecht Centraal, s-Hertogenbosch, Eindhoven, Weert, Roermond, Weert, Eindhoven, Helmond, Venlo]"
+2,"[Delft, Den Haag HS, Delft, Schiedam Centrum]"
+3,"[]"
+4,"[Apeldoorn, Deventer, Zutphen]"
+5,"[]"
+6,"[Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Centraal, Rotterdam Alexander]"
+7,"[Rotterdam Alexander]"
+8,"[Den Haag HS, Leiden Centraal, Den Haag Centraal, Delft, Schiedam Centrum, Rotterdam Blaak, Schiedam Centrum, Delft]"
+9,"[Zaandam, Amsterdam Sloterdijk, Zaandam]"
+10,"[]"
+score,4005.4942528735637
+connections missing,[['Alkmaar': 'Den Helder']: ['Almelo': 'Hengelo']: ['Amsterdam Amstel': 'Hilversum']: ['Assen': 'Zwolle']: ['Breda': 'Etten-Leur']: ['Breda': 'Dordrecht']: ['Deventer': 'Almelo']: ['Eindhoven': 'Tilburg']: ['Etten-Leur': 'Roosendaal']: ['Heerenveen': 'Steenwijk']: ['Hengelo': 'Enschede']: ['Hilversum': 'Almere Centrum']: ['Leeuwarden': 'Heerenveen']: ['Maastricht': 'Sittard']: ['Roosendaal': 'Vlissingen']: ['Roosendaal': 'Dordrecht']: ['Sittard': 'Heerlen']: ['Sittard': 'Roermond']: ['Steenwijk': 'Zwolle']: ['Tilburg': 'Breda']: ['Utrecht Centraal': 'Gouda']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Deventer']: ['Zwolle': 'Almelo']: ['s-Hertogenbosch': 'Tilburg']]

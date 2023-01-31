@@ -1,0 +1,12 @@
+train,stations
+2,"[Amsterdam Sloterdijk, Zaandam, Beverwijk, Haarlem, Beverwijk, Castricum, Beverwijk, Castricum, Alkmaar, Castricum, Zaandam, Amsterdam Sloterdijk, Amsterdam Centraal]"
+3,"[]"
+4,"[Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Gouda, Den Haag Laan v NOI, Leiden Centraal, Den Haag Centraal, Delft, Den Haag HS, Delft, Den Haag HS]"
+5,"[Den Haag HS, Delft, Den Haag Centraal, Gouda, Rotterdam Alexander, Rotterdam Blaak]"
+6,"[Hengelo, Enschede, Hengelo, Almelo, Deventer, Zwolle, Amersfoort]"
+12,"[Utrecht Centraal, Amsterdam Amstel, Hilversum, Utrecht Centraal, s-Hertogenbosch, Eindhoven, s-Hertogenbosch, Oss]"
+15,"[Lelystad Centrum, Almere Centrum, Hilversum, Almere Centrum, Amsterdam Amstel, Amsterdam Centraal, Utrecht Centraal, Gouda, Rotterdam Alexander]"
+16,"[Rotterdam Centraal, Dordrecht, Rotterdam Blaak, Dordrecht, Rotterdam Blaak, Schiedam Centrum, Delft, Den Haag HS, Leiden Centraal, Den Haag Centraal, Delft, Den Haag HS, Delft, Den Haag Laan v NOI, Leiden Centraal, Alphen a/d Rijn]"
+17,"[Maastricht, Sittard, Heerlen, Sittard, Roermond, Weert, Eindhoven, Helmond, Venlo, Helmond]"
+score,4590.651685393258
+connections missing,[['Alkmaar': 'Hoorn']: ['Alkmaar': 'Den Helder']: ['Amsterdam Centraal': 'Almere Centrum']: ['Apeldoorn': 'Amersfoort']: ['Apeldoorn': 'Zutphen']: ['Arnhem Centraal': 'Ede-Wageningen']: ['Arnhem Centraal': 'Dieren']: ['Assen': 'Zwolle']: ['Den Haag HS': 'Gouda']: ['Deventer': 'Apeldoorn']: ['Deventer': 'Zutphen']: ['Eindhoven': 'Tilburg']: ['Etten-Leur': 'Roosendaal']: ['Gouda': 'Alphen a/d Rijn']: ['Groningen': 'Assen']: ['Heerenveen': 'Steenwijk']: ['Leeuwarden': 'Heerenveen']: ['Leeuwarden': 'Groningen']: ['Roosendaal': 'Vlissingen']: ['Roosendaal': 'Dordrecht']: ['Steenwijk': 'Zwolle']: ['Utrecht Centraal': 'Ede-Wageningen']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Zaandam': 'Hoorn']: ['Zutphen': 'Dieren']: ['Zwolle': 'Almelo']]

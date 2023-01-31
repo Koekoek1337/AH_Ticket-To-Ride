@@ -1,0 +1,17 @@
+train,stations
+0,"[Castricum, Alkmaar, Hoorn, Zaandam, Amsterdam Sloterdijk, Haarlem, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Sloterdijk]"
+1,"[Oss, Nijmegen, Arnhem Centraal, Dieren, Zutphen, Deventer, Almelo, Hengelo, Enschede, Hengelo, Enschede, Hengelo, Enschede]"
+2,"[Schiedam Centrum, Delft, Schiedam Centrum, Delft, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander]"
+3,"[Amsterdam Centraal, Amsterdam Amstel, Hilversum, Amsterdam Amstel, Almere Centrum, Lelystad Centrum, Almere Centrum, Lelystad Centrum]"
+4,"[Oss, s-Hertogenbosch, Eindhoven, Tilburg, Breda, Tilburg, Eindhoven, Helmond, Eindhoven, Tilburg, Breda]"
+5,"[Castricum, Beverwijk, Zaandam, Castricum, Zaandam, Castricum, Zaandam, Amsterdam Sloterdijk, Amsterdam Centraal]"
+6,"[]"
+7,"[Assen, Groningen, Leeuwarden]"
+8,"[Amsterdam Sloterdijk, Amsterdam Centraal, Almere Centrum, Lelystad Centrum, Almere Centrum, Lelystad Centrum, Almere Centrum, Hilversum]"
+9,"[Den Haag Laan v NOI, Gouda, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Delft, Den Haag Centraal, Leiden Centraal, Den Haag Centraal, Gouda, Rotterdam Alexander, Gouda, Rotterdam Alexander]"
+10,"[Den Haag Centraal, Leiden Centraal, Den Haag HS, Delft, Den Haag HS, Gouda, Den Haag Centraal, Delft, Den Haag Centraal, Leiden Centraal]"
+11,"[Groningen, Assen, Zwolle, Steenwijk, Heerenveen, Steenwijk, Zwolle, Almelo]"
+12,"[Deventer, Zwolle, Steenwijk, Zwolle, Amersfoort, Apeldoorn]"
+13,"[Rotterdam Blaak, Schiedam Centrum, Delft, Den Haag HS, Gouda, Alphen a/d Rijn, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk, Zaandam, Amsterdam Sloterdijk]"
+score,4494.0
+connections missing,[['Alkmaar': 'Den Helder']: ['Arnhem Centraal': 'Ede-Wageningen']: ['Deventer': 'Apeldoorn']: ['Haarlem': 'Beverwijk']: ['Heemstede-Aerdenhout': 'Haarlem']: ['Helmond': 'Venlo']: ['Leiden Centraal': 'Heemstede-Aerdenhout']: ['Maastricht': 'Sittard']: ['Roermond': 'Weert']: ['Roosendaal': 'Dordrecht']: ['Sittard': 'Heerlen']: ['Sittard': 'Roermond']: ['Weert': 'Eindhoven']]

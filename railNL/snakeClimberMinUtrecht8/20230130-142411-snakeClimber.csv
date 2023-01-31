@@ -1,0 +1,18 @@
+train,stations
+0,"[Heerenveen, Steenwijk, Zwolle, Almelo, Hengelo, Almelo, Deventer, Zutphen, Dieren, Zutphen]"
+1,"[Leiden Centraal, Alphen a/d Rijn, Leiden Centraal, Den Haag Laan v NOI, Gouda, Alphen a/d Rijn, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Schiphol Airport]"
+2,"[Castricum, Beverwijk, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Den Haag Centraal, Gouda, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Delft, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum]"
+3,"[Helmond, Eindhoven, Weert, Roermond, Sittard]"
+4,"[Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Alphen a/d Rijn, Gouda, Den Haag HS, Delft, Schiedam Centrum, Rotterdam Centraal]"
+5,"[Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Schiphol Airport]"
+6,"[Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk, Zaandam, Hoorn, Alkmaar]"
+7,"[Etten-Leur, Roosendaal, Dordrecht, Rotterdam Blaak, Schiedam Centrum, Rotterdam Blaak, Schiedam Centrum]"
+8,"[Apeldoorn, Zutphen, Deventer, Zutphen]"
+9,"[Amsterdam Amstel, Amsterdam Centraal, Almere Centrum, Lelystad Centrum, Almere Centrum, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem]"
+10,"[Etten-Leur, Breda, Etten-Leur, Breda, Tilburg]"
+11,"[Den Haag HS, Gouda, Den Haag HS, Gouda, Den Haag HS, Delft, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal]"
+12,"[Zaandam, Amsterdam Sloterdijk, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid]"
+13,"[Alkmaar, Castricum, Alkmaar]"
+14,"[Tilburg, Eindhoven, Weert, Eindhoven, s-Hertogenbosch, Oss]"
+score,4760.0
+connections missing,[['Arnhem Centraal': 'Ede-Wageningen']: ['Arnhem Centraal': 'Dieren']: ['Breda': 'Dordrecht']: ['Groningen': 'Assen']: ['Helmond': 'Venlo']: ['Leeuwarden': 'Heerenveen']: ['Leeuwarden': 'Groningen']: ['Maastricht': 'Sittard']: ['Roosendaal': 'Vlissingen']]

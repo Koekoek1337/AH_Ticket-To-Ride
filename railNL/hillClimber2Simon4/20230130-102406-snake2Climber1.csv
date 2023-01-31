@@ -1,0 +1,20 @@
+train,stations
+0,"[]"
+1,"[]"
+2,"[]"
+3,"[]"
+4,"[]"
+5,"[Zutphen, Deventer, Almelo, Hengelo]"
+6,"[]"
+7,"[]"
+8,"[]"
+9,"[Rotterdam Centraal, Rotterdam Alexander, Gouda, Rotterdam Alexander, Gouda, Rotterdam Alexander, Rotterdam Blaak, Dordrecht, Roosendaal, Etten-Leur, Roosendaal]"
+10,"[]"
+11,"[]"
+12,"[]"
+13,"[]"
+14,"[]"
+15,"[]"
+16,"[]"
+score,4319.76404494382
+connections missing,[['Arnhem Centraal': 'Dieren']: ['Eindhoven': 'Helmond']: ['Eindhoven': 'Tilburg']: ['Helmond': 'Venlo']: ['Leeuwarden': 'Groningen']: ['Maastricht': 'Sittard']: ['Oss': 'Nijmegen']: ['Roosendaal': 'Vlissingen']: ['Zwolle': 'Amersfoort']]

@@ -1,0 +1,14 @@
+train,stations
+0,"[]"
+1,"[Amsterdam Sloterdijk, Amsterdam Centraal, Almere Centrum, Amsterdam Centraal, Utrecht Centraal, Amsterdam Amstel]"
+2,"[]"
+3,"[Deventer, Almelo, Zwolle, Steenwijk, Heerenveen, Leeuwarden, Heerenveen]"
+4,"[Schiedam Centrum, Rotterdam Centraal]"
+5,"[Venlo, Helmond, Eindhoven, Tilburg, Breda]"
+6,"[]"
+7,"[]"
+8,"[]"
+9,"[Breda, Dordrecht, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Centraal]"
+10,"[Den Haag Laan v NOI, Leiden Centraal]"
+score,4465.089887640449
+connections missing,[['Alkmaar': 'Hoorn']: ['Alkmaar': 'Den Helder']: ['Almelo': 'Hengelo']: ['Almere Centrum': 'Lelystad Centrum']: ['Amsterdam Amstel': 'Almere Centrum']: ['Amsterdam Amstel': 'Hilversum']: ['Amsterdam Sloterdijk': 'Zaandam']: ['Apeldoorn': 'Amersfoort']: ['Assen': 'Zwolle']: ['Castricum': 'Alkmaar']: ['Den Haag Centraal': 'Leiden Centraal']: ['Gouda': 'Alphen a/d Rijn']: ['Groningen': 'Assen']: ['Hengelo': 'Enschede']: ['Hilversum': 'Almere Centrum']: ['Leeuwarden': 'Groningen']: ['Leiden Centraal': 'Alphen a/d Rijn']: ['Roosendaal': 'Vlissingen']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Zaandam': 'Hoorn']: ['Zaandam': 'Castricum']: ['Zwolle': 'Amersfoort']]

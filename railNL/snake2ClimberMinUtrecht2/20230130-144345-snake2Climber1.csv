@@ -1,0 +1,16 @@
+train,stations
+0,"[s-Hertogenbosch, Tilburg, Breda, Etten-Leur, Breda, Dordrecht, Roosendaal, Dordrecht, Breda, Etten-Leur, Breda, Etten-Leur, Breda, Dordrecht]"
+1,"[Breda, Etten-Leur, Roosendaal, Etten-Leur, Roosendaal, Dordrecht, Breda, Tilburg, Eindhoven, Weert]"
+2,"[Dieren, Zutphen, Dieren, Zutphen, Apeldoorn, Deventer, Almelo, Deventer, Apeldoorn, Deventer, Almelo]"
+3,"[Breda, Tilburg, Eindhoven, Helmond, Venlo, Helmond, Eindhoven, Tilburg, Breda, Etten-Leur]"
+4,"[Schiphol Airport, Amsterdam Zuid, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Amstel, Hilversum, Amsterdam Amstel, Amsterdam Centraal, Almere Centrum, Lelystad Centrum]"
+5,"[Delft, Den Haag HS, Gouda, Rotterdam Alexander, Rotterdam Centraal, Rotterdam Alexander, Gouda, Alphen a/d Rijn, Leiden Centraal, Den Haag Centraal, Gouda, Rotterdam Alexander, Rotterdam Centraal]"
+6,"[Eindhoven, Helmond, Eindhoven, Helmond, Eindhoven]"
+7,"[Hengelo, Enschede, Hengelo, Almelo, Hengelo, Enschede, Hengelo, Enschede, Hengelo, Almelo, Deventer, Zwolle]"
+8,"[Amsterdam Amstel, Amsterdam Zuid, Amsterdam Sloterdijk, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem, Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout]"
+9,"[Delft, Den Haag HS, Leiden Centraal, Alphen a/d Rijn, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Amstel, Almere Centrum, Lelystad Centrum, Almere Centrum]"
+10,"[Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Blaak, Dordrecht, Rotterdam Centraal, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Delft, Den Haag Centraal, Leiden Centraal, Heemstede-Aerdenhout, Haarlem]"
+11,"[Arnhem Centraal, Nijmegen, Oss, s-Hertogenbosch, Oss, Nijmegen, Oss, s-Hertogenbosch]"
+12,"[Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Sloterdijk, Zaandam, Castricum, Alkmaar, Castricum, Beverwijk, Zaandam, Castricum, Alkmaar, Hoorn]"
+score,4265.0
+connections missing,[['Alkmaar': 'Den Helder']: ['Apeldoorn': 'Amersfoort']: ['Arnhem Centraal': 'Ede-Wageningen']: ['Arnhem Centraal': 'Dieren']: ['Assen': 'Zwolle']: ['Delft': 'Den Haag Laan v NOI']: ['Den Haag Laan v NOI': 'Leiden Centraal']: ['Den Haag Laan v NOI': 'Gouda']: ['Groningen': 'Assen']: ['Hilversum': 'Almere Centrum']: ['Leeuwarden': 'Heerenveen']: ['Leeuwarden': 'Groningen']: ['Maastricht': 'Sittard']: ['Roosendaal': 'Vlissingen']: ['Sittard': 'Heerlen']: ['Sittard': 'Roermond']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Almelo']]

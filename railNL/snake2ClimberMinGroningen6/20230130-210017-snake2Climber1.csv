@@ -1,0 +1,23 @@
+train,stations
+0,"[Haarlem, Beverwijk, Zaandam, Hoorn, Zaandam, Amsterdam Sloterdijk]"
+1,"[Eindhoven, Helmond, Eindhoven, Tilburg, s-Hertogenbosch, Eindhoven, Helmond, Eindhoven, Weert]"
+2,"[]"
+3,"[Nijmegen, Oss, s-Hertogenbosch, Tilburg, Eindhoven, Weert, Eindhoven]"
+4,"[Rotterdam Centraal, Rotterdam Alexander, Gouda, Den Haag HS, Delft, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Centraal]"
+5,"[]"
+6,"[Rotterdam Centraal, Schiedam Centrum, Delft, Den Haag Centraal, Leiden Centraal, Alphen a/d Rijn, Utrecht Centraal, Ede-Wageningen, Arnhem Centraal]"
+7,"[Almere Centrum, Amsterdam Amstel]"
+8,"[Etten-Leur, Roosendaal, Etten-Leur, Breda, Tilburg, s-Hertogenbosch, Utrecht Centraal, Amersfoort, Apeldoorn, Zutphen, Deventer, Zwolle]"
+9,"[Almere Centrum, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk, Zaandam, Amsterdam Sloterdijk, Zaandam, Amsterdam Sloterdijk, Zaandam, Amsterdam Sloterdijk, Zaandam]"
+10,"[Schiedam Centrum, Delft, Den Haag Laan v NOI, Delft, Den Haag Laan v NOI, Gouda, Utrecht Centraal, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Amstel]"
+11,"[Gouda, Rotterdam Alexander]"
+12,"[Apeldoorn, Deventer, Apeldoorn, Deventer, Almelo, Hengelo, Enschede, Hengelo, Enschede, Hengelo, Enschede, Hengelo]"
+13,"[Almelo, Hengelo, Enschede, Hengelo]"
+14,"[Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout]"
+15,"[Heerenveen, Steenwijk, Zwolle, Deventer, Zutphen, Apeldoorn, Zutphen, Dieren, Zutphen, Deventer, Zutphen, Dieren, Arnhem Centraal]"
+16,"[Roosendaal, Etten-Leur, Roosendaal, Dordrecht, Rotterdam Centraal, Rotterdam Alexander, Gouda, Utrecht Centraal, Amersfoort]"
+17,"[Beverwijk, Castricum, Zaandam, Castricum, Alkmaar, Den Helder, Alkmaar, Castricum, Alkmaar, Castricum]"
+18,"[Deventer, Zutphen, Dieren, Zutphen, Deventer, Zwolle]"
+19,"[Heemstede-Aerdenhout, Haarlem, Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Sloterdijk]"
+score,4137.229885057472
+connections missing,[['Alkmaar': 'Hoorn']: ['Den Haag HS': 'Leiden Centraal']: ['Leeuwarden': 'Heerenveen']: ['Roosendaal': 'Vlissingen']]

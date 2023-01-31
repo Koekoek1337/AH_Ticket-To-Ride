@@ -1,0 +1,20 @@
+train,stations
+0,"[Etten-Leur]"
+1,"[Delft, Den Haag Centraal, Leiden Centraal, Den Haag Centraal, Leiden Centraal, Heemstede-Aerdenhout, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal, Den Haag Laan v NOI, Delft]"
+2,"[Weert, Roermond, Weert, Eindhoven, Helmond, Eindhoven]"
+3,"[Zaandam, Castricum, Alkmaar, Castricum, Alkmaar, Castricum, Zaandam, Amsterdam Sloterdijk, Amsterdam Zuid]"
+4,"[Zutphen, Dieren, Zutphen, Dieren, Arnhem Centraal, Nijmegen, Arnhem Centraal, Ede-Wageningen, Utrecht Centraal, Hilversum, Almere Centrum]"
+5,"[Den Haag Laan v NOI, Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem, Amsterdam Sloterdijk, Zaandam, Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Sloterdijk]"
+6,"[Almere Centrum, Amsterdam Centraal, Amsterdam Sloterdijk, Zaandam]"
+7,"[Zwolle, Amersfoort, Apeldoorn, Deventer, Almelo, Hengelo, Enschede, Hengelo]"
+8,"[Helmond, Eindhoven, Helmond, Venlo, Helmond, Eindhoven, Tilburg, s-Hertogenbosch]"
+9,"[Leeuwarden, Heerenveen, Steenwijk, Heerenveen, Leeuwarden, Heerenveen, Steenwijk]"
+10,"[Rotterdam Alexander, Rotterdam Centraal, Dordrecht, Rotterdam Blaak, Rotterdam Alexander, Gouda, Utrecht Centraal, Alphen a/d Rijn, Gouda]"
+11,"[Utrecht Centraal, Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Leiden Centraal, Den Haag Centraal, Delft]"
+12,"[Hoorn, Zaandam, Castricum, Alkmaar, Castricum, Zaandam, Amsterdam Sloterdijk, Zaandam, Amsterdam Sloterdijk, Amsterdam Centraal]"
+13,"[Beverwijk, Castricum]"
+14,"[Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Rotterdam Blaak, Dordrecht, Rotterdam Centraal, Schiedam Centrum, Delft, Den Haag HS, Leiden Centraal, Schiphol Airport, Leiden Centraal]"
+15,"[Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Leiden Centraal, Alphen a/d Rijn, Gouda, Utrecht Centraal, Amsterdam Centraal, Amsterdam Amstel]"
+16,"[Lelystad Centrum, Almere Centrum, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Zuid, Amsterdam Amstel]"
+score,4421.459770114943
+connections missing,[['Assen': 'Zwolle']: ['Maastricht': 'Sittard']: ['Roosendaal': 'Vlissingen']: ['Sittard': 'Heerlen']: ['Sittard': 'Roermond']: ['Utrecht Centraal': 'Amsterdam Amstel']: ['Zwolle': 'Deventer']: ['Zwolle': 'Almelo']]

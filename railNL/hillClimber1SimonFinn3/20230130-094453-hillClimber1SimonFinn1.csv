@@ -1,0 +1,12 @@
+train,stations
+2,"[Amsterdam Sloterdijk, Zaandam, Beverwijk, Haarlem, Beverwijk, Castricum, Beverwijk, Castricum, Alkmaar, Castricum, Zaandam, Amsterdam Sloterdijk, Amsterdam Centraal]"
+3,"[Den Haag Laan v NOI, Leiden Centraal, Heemstede-Aerdenhout, Haarlem]"
+4,"[Utrecht Centraal, Gouda, Den Haag Laan v NOI, Leiden Centraal, Den Haag Centraal, Delft, Den Haag HS, Delft, Den Haag HS, Delft, Den Haag Centraal]"
+5,"[Delft, Den Haag Centraal, Gouda, Rotterdam Alexander, Rotterdam Blaak, Dordrecht, Breda, Tilburg, Breda, Etten-Leur]"
+6,"[Hengelo, Enschede, Hengelo, Almelo, Deventer, Zwolle, Amersfoort]"
+7,"[Ede-Wageningen, Arnhem Centraal, Dieren, Arnhem Centraal, Dieren, Zutphen, Deventer, Zutphen, Apeldoorn]"
+10,"[Leiden Centraal, Den Haag Laan v NOI, Delft, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Delft, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Delft, Schiedam Centrum, Rotterdam Blaak, Schiedam Centrum, Delft, Schiedam Centrum, Delft, Den Haag HS, Leiden Centraal]"
+12,"[Utrecht Centraal, Amsterdam Amstel, Hilversum, Utrecht Centraal, s-Hertogenbosch, Eindhoven, s-Hertogenbosch, Oss]"
+15,"[Lelystad Centrum, Almere Centrum, Hilversum, Almere Centrum, Amsterdam Amstel, Amsterdam Centraal, Utrecht Centraal, Gouda, Rotterdam Alexander]"
+score,4469.292134831461
+connections missing,[['Alkmaar': 'Hoorn']: ['Alkmaar': 'Den Helder']: ['Amsterdam Centraal': 'Almere Centrum']: ['Assen': 'Zwolle']: ['Den Haag HS': 'Gouda']: ['Dordrecht': 'Rotterdam Centraal']: ['Eindhoven': 'Helmond']: ['Eindhoven': 'Tilburg']: ['Etten-Leur': 'Roosendaal']: ['Gouda': 'Alphen a/d Rijn']: ['Groningen': 'Assen']: ['Heerenveen': 'Steenwijk']: ['Helmond': 'Venlo']: ['Leeuwarden': 'Heerenveen']: ['Leeuwarden': 'Groningen']: ['Maastricht': 'Sittard']: ['Roermond': 'Weert']: ['Roosendaal': 'Vlissingen']: ['Roosendaal': 'Dordrecht']: ['Sittard': 'Heerlen']: ['Sittard': 'Roermond']: ['Steenwijk': 'Zwolle']: ['Utrecht Centraal': 'Ede-Wageningen']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Weert': 'Eindhoven']: ['Zaandam': 'Hoorn']: ['Zwolle': 'Almelo']]

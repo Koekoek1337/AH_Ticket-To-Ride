@@ -14,7 +14,7 @@ class HillClimber():
 
 
     def __init__(self):
-        model = randomSolution(RailNetwork("data/StationsNationaal.csv", "data/ConnectiesNationaal.csv"), 20, 180, 50)
+        model = randomSolution(RailNetwork("data/StationsMinGroningen.csv", "data/ConnectiesMinGroningen.csv"), 20, 180, 50)
         workModel = deepcopy(model)
         self.previousModel = deepcopy(workModel)
         self.workModel = workModel
@@ -168,13 +168,13 @@ class HillClimber():
         if newScore >= oldScore:
             self.score = newScore
             self.scores.append({"iteration":self.iteration, "score":newScore})
-            self.workModel.exportSolution("hillClimber2Simon2", "snake2Climber1")
+            self.workModel.exportSolution("snake2ClimberMinGroningen11", "snake2Climber1")
         else:
             self.workModel = self.previousModel
             self.routes = self.previousModel.listRoutes()
 
 
-    def run(self, iterations: int = 500000, verbose=False, mutate_nodes_number=1) -> None:
+    def run(self, iterations: int = 30000, verbose=False, mutate_nodes_number=1) -> None:
         """
         Runs the hillclimber algorithm for a specific amount of iterations.
         """
@@ -187,4 +187,4 @@ class HillClimber():
             self.iteration += 1
 
         # exports scores
-        exportScores(self.scores, "hillClimber2Simon2", "snake2Climber1", START_TIMESTAMP)
+        exportScores(self.scores, "snake2ClimberMinGroningen11", "snake2Climber1", START_TIMESTAMP)

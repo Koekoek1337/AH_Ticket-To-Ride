@@ -1,0 +1,20 @@
+train,stations
+0,"[Eindhoven, Helmond, Eindhoven, s-Hertogenbosch, Oss, Nijmegen]"
+1,"[Amsterdam Amstel, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Sloterdijk, Haarlem, Amsterdam Sloterdijk]"
+2,"[Den Haag HS, Delft, Den Haag Centraal, Leiden Centraal, Alphen a/d Rijn, Gouda, Den Haag Laan v NOI, Delft, Den Haag HS, Delft, Schiedam Centrum, Delft]"
+3,"[Venlo, Helmond, Eindhoven, s-Hertogenbosch, Oss]"
+4,"[Den Haag HS, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal, Schiphol Airport, Leiden Centraal, Alphen a/d Rijn, Gouda]"
+5,"[Beverwijk, Castricum, Alkmaar, Castricum, Beverwijk]"
+6,"[Deventer, Zutphen, Dieren, Zutphen, Apeldoorn, Deventer, Almelo, Hengelo, Enschede, Hengelo]"
+7,"[Etten-Leur, Breda, Etten-Leur, Roosendaal, Etten-Leur, Breda, Etten-Leur, Breda]"
+8,"[Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Delft, Schiedam Centrum, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Delft, Den Haag Laan v NOI, Delft, Den Haag HS, Leiden Centraal, Alphen a/d Rijn, Leiden Centraal]"
+9,"[Etten-Leur, Breda, Tilburg, s-Hertogenbosch, Tilburg]"
+10,"[Hengelo, Almelo, Deventer, Zwolle]"
+11,"[Alkmaar, Hoorn, Zaandam, Amsterdam Sloterdijk, Zaandam, Beverwijk, Haarlem, Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout]"
+12,"[Breda, Tilburg, Eindhoven, Helmond, Venlo, Helmond, Eindhoven, Helmond, Eindhoven, Helmond]"
+13,"[Haarlem, Beverwijk, Castricum, Zaandam, Amsterdam Sloterdijk, Zaandam, Amsterdam Sloterdijk, Amsterdam Centraal, Almere Centrum, Lelystad Centrum, Almere Centrum, Amsterdam Amstel, Amsterdam Zuid]"
+14,"[Almere Centrum, Lelystad Centrum, Almere Centrum, Amsterdam Centraal, Amsterdam Sloterdijk]"
+15,"[Eindhoven, Helmond]"
+16,"[Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Dordrecht, Rotterdam Blaak, Schiedam Centrum]"
+score,3850.0
+connections missing,[['Alkmaar': 'Den Helder']: ['Apeldoorn': 'Amersfoort']: ['Arnhem Centraal': 'Ede-Wageningen']: ['Heerenveen': 'Steenwijk']: ['Leeuwarden': 'Heerenveen']: ['Leeuwarden': 'Groningen']: ['Roosendaal': 'Vlissingen']: ['Sittard': 'Heerlen']: ['Sittard': 'Roermond']: ['Steenwijk': 'Zwolle']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Almelo']]

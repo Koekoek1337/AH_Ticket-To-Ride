@@ -1,0 +1,16 @@
+train,stations
+1,"[Dordrecht, Rotterdam Blaak, Dordrecht, Breda, Dordrecht, Rotterdam Centraal, Rotterdam Alexander, Gouda]"
+3,"[Leiden Centraal, Schiphol Airport, Leiden Centraal, Den Haag HS, Delft]"
+5,"[Etten-Leur, Roosendaal, Etten-Leur, Roosendaal, Dordrecht, Breda, Tilburg, s-Hertogenbosch, Tilburg, Eindhoven, Helmond, Venlo]"
+8,"[Zaandam, Amsterdam Sloterdijk, Amsterdam Centraal, Almere Centrum, Hilversum, Amsterdam Amstel, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk, Haarlem]"
+9,"[Amsterdam Sloterdijk, Zaandam, Beverwijk, Castricum, Zaandam, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Amstel, Almere Centrum, Lelystad Centrum, Almere Centrum]"
+10,"[Den Haag Laan v NOI, Delft, Schiedam Centrum, Delft, Den Haag HS, Delft, Den Haag Centraal, Delft, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Centraal, Dordrecht, Breda, Etten-Leur]"
+11,"[Rotterdam Centraal, Schiedam Centrum, Delft, Den Haag HS, Gouda, Alphen a/d Rijn, Leiden Centraal, Den Haag Centraal, Gouda, Den Haag Centraal]"
+12,"[Beverwijk, Haarlem, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Amstel, Hilversum, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Centraal]"
+13,"[Arnhem Centraal, Dieren, Zutphen, Deventer, Almelo, Zwolle, Deventer, Apeldoorn, Deventer]"
+18,"[Helmond, Eindhoven, s-Hertogenbosch, Oss, s-Hertogenbosch, Oss, Nijmegen, Arnhem Centraal, Nijmegen, Arnhem Centraal, Ede-Wageningen, Arnhem Centraal]"
+26,"[Assen, Groningen, Leeuwarden, Heerenveen, Steenwijk, Zwolle, Deventer, Almelo, Hengelo, Almelo]"
+27,"[Beverwijk, Castricum, Alkmaar, Den Helder, Alkmaar, Hoorn, Zaandam, Amsterdam Sloterdijk]"
+28,"[Eindhoven, Weert, Roermond, Sittard, Heerlen, Sittard, Maastricht]"
+score,5932.0
+connections missing,[['Apeldoorn': 'Amersfoort']: ['Assen': 'Zwolle']: ['Hengelo': 'Enschede']: ['Roosendaal': 'Vlissingen']: ['Zwolle': 'Amersfoort']]

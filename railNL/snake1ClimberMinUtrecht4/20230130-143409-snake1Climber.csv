@@ -1,0 +1,20 @@
+train,stations
+0,"[Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Amsterdam Amstel, Amsterdam Centraal]"
+1,"[Etten-Leur, Roosendaal, Dordrecht, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum]"
+2,"[Heerenveen, Leeuwarden, Heerenveen, Leeuwarden, Heerenveen]"
+3,"[Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Rotterdam Blaak, Dordrecht, Rotterdam Centraal, Rotterdam Alexander]"
+4,"[Deventer, Zutphen, Dieren, Arnhem Centraal, Dieren, Zutphen, Dieren, Zutphen, Apeldoorn, Deventer, Zwolle]"
+5,"[Hengelo, Enschede, Hengelo, Enschede, Hengelo, Almelo]"
+6,"[Zaandam, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Amstel, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Beverwijk, Castricum]"
+7,"[Etten-Leur, Breda, Tilburg, s-Hertogenbosch, Oss, Nijmegen, Oss, s-Hertogenbosch, Eindhoven, Helmond, Venlo]"
+8,"[Den Haag Centraal, Leiden Centraal, Den Haag HS, Delft, Den Haag Centraal, Gouda, Den Haag HS, Leiden Centraal]"
+9,"[Amsterdam Centraal, Amsterdam Sloterdijk, Zaandam, Amsterdam Sloterdijk, Haarlem, Beverwijk, Zaandam, Castricum, Zaandam, Hoorn, Alkmaar]"
+10,"[Helmond, Eindhoven, Helmond, Eindhoven, Weert, Roermond, Sittard, Heerlen]"
+11,"[Den Haag Laan v NOI, Leiden Centraal, Alphen a/d Rijn, Gouda, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal]"
+12,"[Zutphen, Dieren, Zutphen, Dieren]"
+13,"[]"
+14,"[Rotterdam Blaak, Dordrecht, Breda, Tilburg, s-Hertogenbosch, Eindhoven, Tilburg, Breda, Etten-Leur, Breda, Etten-Leur]"
+15,"[Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Leiden Centraal, Den Haag Laan v NOI, Delft, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Gouda, Den Haag Laan v NOI, Leiden Centraal]"
+16,"[]"
+score,4877.0
+connections missing,[['Alkmaar': 'Den Helder']: ['Amsterdam Amstel': 'Almere Centrum']: ['Arnhem Centraal': 'Ede-Wageningen']: ['Roosendaal': 'Vlissingen']]

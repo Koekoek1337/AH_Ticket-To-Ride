@@ -1,0 +1,16 @@
+train,stations
+0,"[Roosendaal, Etten-Leur, Roosendaal, Dordrecht, Roosendaal, Etten-Leur, Roosendaal, Etten-Leur, Breda]"
+1,"[Amsterdam Sloterdijk, Haarlem, Amsterdam Sloterdijk, Amsterdam Centraal, Almere Centrum, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Amstel, Hilversum, Almere Centrum]"
+2,"[Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Delft, Den Haag Centraal, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal, Den Haag Centraal, Leiden Centraal, Alphen a/d Rijn, Leiden Centraal]"
+3,"[Apeldoorn, Zutphen, Dieren, Zutphen, Deventer, Zutphen, Apeldoorn, Deventer, Almelo, Hengelo, Enschede]"
+4,"[]"
+5,"[Heerlen, Sittard, Maastricht, Sittard, Roermond, Weert, Eindhoven, s-Hertogenbosch, Utrecht Centraal, Amsterdam Amstel, Amsterdam Centraal]"
+6,"[Haarlem, Beverwijk, Haarlem, Heemstede-Aerdenhout, Haarlem, Beverwijk, Zaandam, Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout]"
+7,"[s-Hertogenbosch, Tilburg, s-Hertogenbosch, Utrecht Centraal, Gouda, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal]"
+8,"[Den Haag HS, Leiden Centraal, Schiphol Airport, Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Beverwijk, Castricum, Beverwijk, Castricum, Zaandam, Hoorn]"
+9,"[Arnhem Centraal, Nijmegen, Oss, s-Hertogenbosch, Oss, Nijmegen, Oss, s-Hertogenbosch, Oss, Nijmegen, Arnhem Centraal, Nijmegen]"
+10,"[Amsterdam Centraal, Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Utrecht Centraal, Ede-Wageningen, Arnhem Centraal]"
+11,"[Amsterdam Centraal, Amsterdam Sloterdijk, Amsterdam Centraal, Utrecht Centraal, Amersfoort, Apeldoorn, Deventer, Apeldoorn, Deventer]"
+12,"[Rotterdam Centraal, Schiedam Centrum, Rotterdam Blaak, Schiedam Centrum, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Gouda, Den Haag HS, Delft, Schiedam Centrum]"
+score,4598.919540229885
+connections missing,[['Alkmaar': 'Hoorn']: ['Alkmaar': 'Den Helder']: ['Amsterdam Zuid': 'Amsterdam Sloterdijk']: ['Breda': 'Dordrecht']: ['Den Haag Centraal': 'Gouda']: ['Dordrecht': 'Rotterdam Blaak']: ['Eindhoven': 'Helmond']: ['Eindhoven': 'Tilburg']: ['Gouda': 'Alphen a/d Rijn']: ['Helmond': 'Venlo']: ['Roosendaal': 'Vlissingen']: ['Utrecht Centraal': 'Hilversum']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Deventer']: ['Zwolle': 'Almelo']]

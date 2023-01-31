@@ -1,0 +1,21 @@
+train,stations
+0,"[Enschede, Hengelo, Almelo, Hengelo, Almelo, Deventer, Apeldoorn, Zutphen, Deventer, Zutphen]"
+1,"[Eindhoven, Helmond, Venlo, Helmond, Eindhoven, Weert, Roermond, Weert, Roermond]"
+2,"[Den Haag Centraal, Delft, Den Haag HS, Leiden Centraal]"
+3,"[]"
+4,"[Heerenveen, Steenwijk, Zwolle, Deventer, Zwolle, Assen]"
+5,"[Vlissingen, Roosendaal, Etten-Leur, Breda, Etten-Leur]"
+6,"[Castricum, Zaandam, Hoorn, Zaandam, Castricum, Alkmaar, Castricum, Alkmaar, Castricum]"
+7,"[Breda, Etten-Leur]"
+8,"[]"
+9,"[]"
+10,"[]"
+11,"[Amsterdam Centraal, Amsterdam Sloterdijk, Zaandam, Castricum, Alkmaar, Castricum]"
+12,"[]"
+13,"[Breda, Etten-Leur, Roosendaal, Dordrecht, Breda, Dordrecht, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Blaak, Rotterdam Alexander, Gouda, Den Haag Centraal]"
+14,"[]"
+15,"[Ede-Wageningen, Arnhem Centraal, Nijmegen, Oss, Nijmegen, Oss, Nijmegen, Arnhem Centraal, Ede-Wageningen]"
+16,"[Hoorn]"
+17,"[Gouda, Den Haag HS, Leiden Centraal, Den Haag HS, Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal, Den Haag HS]"
+score,4559.0
+connections missing,[['Leeuwarden': 'Heerenveen']: ['Leeuwarden': 'Groningen']: ['Maastricht': 'Sittard']]

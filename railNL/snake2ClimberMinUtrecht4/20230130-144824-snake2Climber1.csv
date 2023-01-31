@@ -1,0 +1,18 @@
+train,stations
+0,"[Amsterdam Centraal, Amsterdam Sloterdijk, Haarlem, Amsterdam Sloterdijk, Haarlem, Amsterdam Sloterdijk, Zaandam, Amsterdam Sloterdijk, Haarlem, Beverwijk]"
+1,"[Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Schiphol Airport]"
+2,"[]"
+3,"[Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Centraal]"
+4,"[]"
+5,"[]"
+6,"[]"
+7,"[]"
+8,"[Amsterdam Centraal, Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Den Haag Centraal, Leiden Centraal, Den Haag Centraal, Gouda, Alphen a/d Rijn, Gouda, Den Haag Centraal]"
+9,"[Castricum, Alkmaar]"
+10,"[]"
+11,"[]"
+12,"[]"
+13,"[Etten-Leur, Breda, Etten-Leur, Breda, Etten-Leur, Roosendaal, Etten-Leur, Breda, Tilburg, Breda, Etten-Leur, Roosendaal, Etten-Leur, Roosendaal, Etten-Leur, Breda]"
+14,"[Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Sloterdijk, Amsterdam Zuid, Schiphol Airport, Leiden Centraal, Den Haag HS, Leiden Centraal, Den Haag Laan v NOI, Delft, Den Haag HS]"
+score,4545.0
+connections missing,[['Alkmaar': 'Den Helder']: ['Amsterdam Amstel': 'Hilversum']: ['Assen': 'Zwolle']: ['Den Haag Laan v NOI': 'Gouda']: ['Dordrecht': 'Rotterdam Centraal']: ['Helmond': 'Venlo']: ['Leiden Centraal': 'Alphen a/d Rijn']: ['Roosendaal': 'Vlissingen']: ['Rotterdam Alexander': 'Gouda']: ['Zwolle': 'Deventer']: ['Zwolle': 'Almelo']]
