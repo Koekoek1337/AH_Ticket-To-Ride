@@ -185,10 +185,11 @@ The same baseline was made for the simulated annealing algorithm with the linear
 
 The results from this baseline are interesting, as it shows a worse overall spread and lower average score of 6050.45, but also having a better median score and is more likely to obtain results with more than 6400 points overall. It is therefore preferrable to run with the linear cooling scheme when performing multiple runs over a longer period of time.
 
-The overall score for the netherlands was also recorded using the algorithm with the same cooling schedule and parameters.
+The overall score for the netherlands was also recorded using the algorithm with the same cooling schedule and parameters. This network had a score of 6605.0 and is displayed below.
 
-- Baseline fig
-- Hoogste score
+![bestSolution](docs/annealing_best_overall.png)
+
+Interesting about this solution is that it utilizes all possible connections in the Netherlands whilst still scoring higher than any other solution discovered.
 
 ### Station Removal
 #### Utrecht Centraal
