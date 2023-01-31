@@ -197,6 +197,7 @@ def annealingClimber(
     bestNetwork.exportSolution(targetFolder, runName + "_best", START_TIMESTAMP)
 
     # append two final datapoints
+    scores.append({"iteration": iteration, "score": currentNetwork.score()})
     scores.append({"iteration":"Best", "score":highestScore})
     scores.append({"iteration":"Theoretical max", "score": network.theoreticalMaxScore(maxDuration)})
     

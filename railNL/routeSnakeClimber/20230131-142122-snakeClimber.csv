@@ -1,0 +1,14 @@
+train,stations
+0,"[Deventer, Apeldoorn, Amersfoort, Utrecht Centraal, Gouda, Den Haag Centraal, Gouda, Alphen a/d Rijn, Utrecht Centraal, Ede-Wageningen]"
+2,"[Amsterdam Centraal, Amsterdam Amstel, Amsterdam Zuid, Schiphol Airport, Utrecht Centraal, Amsterdam Amstel, Hilversum, Utrecht Centraal, Amsterdam Centraal, Amsterdam Sloterdijk, Amsterdam Zuid, Schiphol Airport]"
+7,"[Almere Centrum, Amsterdam Amstel, Amsterdam Centraal, Almere Centrum, Lelystad Centrum, Almere Centrum, Hilversum, Amsterdam Amstel, Amsterdam Zuid, Amsterdam Sloterdijk, Haarlem]"
+12,"[Assen, Zwolle, Deventer, Apeldoorn, Zutphen, Dieren, Zutphen, Dieren, Zutphen, Deventer, Zutphen, Dieren, Arnhem Centraal]"
+13,"[Amsterdam Centraal, Amsterdam Sloterdijk, Zaandam, Beverwijk, Castricum, Alkmaar, Den Helder, Alkmaar, Castricum, Zaandam, Hoorn]"
+14,"[Enschede, Hengelo, Almelo, Deventer, Zutphen, Deventer, Zwolle, Steenwijk, Heerenveen, Leeuwarden, Heerenveen, Leeuwarden]"
+15,"[Arnhem Centraal, Ede-Wageningen, Arnhem Centraal, Nijmegen, Oss, s-Hertogenbosch, Eindhoven, Weert, Roermond, Sittard, Heerlen, Sittard, Maastricht]"
+16,"[Alphen a/d Rijn, Leiden Centraal, Den Haag HS, Delft, Schiedam Centrum, Rotterdam Centraal, Dordrecht, Rotterdam Centraal, Schiedam Centrum, Rotterdam Blaak, Dordrecht, Breda, Etten-Leur, Roosendaal, Dordrecht]"
+17,"[Den Haag HS, Leiden Centraal, Den Haag Laan v NOI, Delft, Den Haag Centraal, Leiden Centraal, Den Haag Laan v NOI, Gouda, Rotterdam Alexander, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Blaak, Rotterdam Alexander, Gouda]"
+21,"[Den Haag HS, Delft, Den Haag HS, Gouda, Den Haag Laan v NOI, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Amstel, Almere Centrum, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Amstel]"
+27,"[Venlo, Helmond, Eindhoven, Helmond, Eindhoven, Tilburg, Breda, Tilburg, s-Hertogenbosch, Utrecht Centraal]"
+score,6245.402298850575
+connections missing,[['Alkmaar': 'Hoorn']: ['Haarlem': 'Beverwijk']: ['Heemstede-Aerdenhout': 'Haarlem']: ['Leiden Centraal': 'Heemstede-Aerdenhout']: ['Roosendaal': 'Vlissingen']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Almelo']]

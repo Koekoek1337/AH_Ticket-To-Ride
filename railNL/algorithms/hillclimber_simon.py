@@ -13,9 +13,9 @@ START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 class HillClimber():
 
 
-    def __init__(self):
+    def __init__(self, model, maxRoutes: int, maxDuration: int, randomIterations: int, maxConvergence: int):
         # Takes a random solution
-        model = randomSolution(RailNetwork("data/StationsNationaal.csv", "data/ConnectiesNationaal.csv"), 20, 180, 50)
+        model = randomSolution(model, maxRoutes, maxDuration, randomIterations)
         workModel = deepcopy(model)
 
         self.workModel = workModel
@@ -23,6 +23,7 @@ class HillClimber():
         self.score = self.workModel.score()
         self.scores: List[Dict[str, Union[int, float]]] = []
         self.iteration = 0
+        self.maxConvergence = maxConvergence
 
 
     def mutateRoute(self) -> None:
@@ -32,51 +33,24 @@ class HillClimber():
         """
         self.workModel = deepcopy(self.previousModel)
 
-        # mutate every route in the workModel 
+        # mutate every route in the workModel
         for route in self.workModel.listRoutes():
             randomFloat = random.random()
             if randomFloat <= 0.33:
+                # removes last station
                 route.popStation()
+                # add station
                 self.lengthenRoute(route)
             elif randomFloat <= 0.67:
+                # removes last station
                 route.popStation(0)
+                # add station
                 self.lengthenRoute(route)
             else:
+                # add station
                 self.lengthenRoute(route)
 
         return self.workModel
-
-
-    # def mutateLastStation(self, route: List[str]) -> List[str]:
-    #     """
-    #     Input is a route (minus the last station)
-    #     Output: adds a station to the route and makes it a route
-    #     """
-    #     # if trainroute is empty, deletes route
-    #     if route.nStations() == 1:
-    #         self.workModel.delRoute(route.getID())
-    #         return
-    #
-    #     # pop last station
-    #     route.popStation()
-    #
-    #     self.lengthenRoute(route)
-    #
-    #
-    # def mutateFirstStation(self, route: List[str]) -> List[str]:
-    #     """
-    #     Input is a route (minus the first station)
-    #     Output: adds a station to the route and makes it a route
-    #     """
-    #     # if trainroute is empty, deletes route
-    #     if route.nStations() == 1:
-    #         self.workModel.delRoute(route.getID())
-    #         return
-    #
-    #     # pop first station
-    #     route.popStation(0)
-    #
-    #     self.lengthenRoute(route)
 
 
     def lengthenRoute(self, route: List[str]) -> List[str]:
@@ -110,23 +84,28 @@ class HillClimber():
             self.previousModel = self.workModel
             self.score = newScore
             self.scores.append({"iteration":self.iteration, "score":newScore})
-            self.workModel.exportSolution("snakeClimber22", "snakeClimber")
+            self.convergence = 0
 
 
-    def run(self, iterations: int = 3000, verbose=False, mutate_nodes_number=1) -> None:
+    def run(self, verbose=False, mutate_nodes_number=1) -> None:
         """
         Runs the hillclimber algorithm for a specific amount of iterations.
         """
-        self.iterations = iterations
+        self.convergence = 0
 
-        for iteration in range(iterations):
+
+        while self.convergence <= self.maxConvergence:
 
             # Accept it if it is better
             self.checkSolution(self.mutateRoute())
             self.iteration += 1
+            self.convergence += 1
 
-        print(f"p = {self.workModel.connectionCoverage()}")
-        print(f"routes = {self.workModel.nRoute()}")
-        print(f"total duration = {self.workModel.totalDuration()}")
-        # exports scores
-        exportScores(self.scores, "snakeClimber22", "snakeClimber", START_TIMESTAMP)
+        # exports scoress
+        exportScores(self.scores, "snakeClimber", "snakeClimber", START_TIMESTAMP)
+
+
+def main(network: RailNetwork, runName: str, targetFolder: str, maxRoutes: int, maxDuration: int, randomIterations: int, maxConvergence: int) -> RailNetwork:
+    model = HillClimber(network, runName, targetFolder, maxRoutes, maxDuration, randomIterations, maxConvergence)
+    model.run()
+    return model.previousModel

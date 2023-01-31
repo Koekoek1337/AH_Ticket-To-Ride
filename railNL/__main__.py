@@ -3,10 +3,13 @@ import visualize.visualize as vis
 
 from algorithms import random_hajo
 from algorithms import hillClimber_Hajo
+from algorithms import hillclimber_simon, hillclimber_simon1, hillclimber_simon2
+from algorithms import hillClimber_Finn_Simon
 
 import json
 import datetime
 import statistics
+import time
 
 from os import path
 from sys import argv
@@ -18,8 +21,8 @@ from typing import List, Dict, Union, Any, Callable
 o How to run:
 > python railNL jobs/filename.json
     - See jobs/runHolland.json and jobs/runNetherlands.json
-    - **arguments acts like [arg1=A][arg2=b][arg3=c]. In order to build your own job file 
-      in order to run your program from main, you should 
+    - **arguments acts like [arg1=A][arg2=b][arg3=c]. In order to build your own job file
+      in order to run your program from main, you should
 
 """
 
@@ -29,18 +32,18 @@ def main(jobType: str, **arguments):
     if jobType in ["batch", "b", "bat"]:
         batch(**arguments)
         return
-    
+
     elif jobType in ["visualize", "vis", "v"]:
         visualize(**arguments)
-    
+
     return
 
 
 def batch(
-    stationsFilepath: str, 
-    connectionsFilepath: str, 
-    algorithm: str, 
-    runs: int = 1, 
+    stationsFilepath: str,
+    connectionsFilepath: str,
+    algorithm: str,
+    runs: int = 1,
     targetFolder: str = "results",
     runName: str = "solution",
     **arguments
@@ -52,9 +55,16 @@ def batch(
         "random": random_hajo.main,
         "hillclimber_hajo": hillClimber_Hajo.routeHillclimber,
         "annealing": hillClimber_Hajo.runAnnealing,
+        "snakeClimber": hillclimber_simon.main,
+        "snakeClimber1": hillclimber_simon1.main,
+        "snakeClimber2": hillclimber_simon2.main,
+        "routeSnakeClimber": hillClimber_Finn_Simon.main,
     }
 
     START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+
+    # Guarantees that the summary file will have a lower timestamp than the first result
+    time.sleep(1)
 
     network = RailNetwork(stationsFilepath, connectionsFilepath)
     algorithm = algorithm.lower()
@@ -62,27 +72,27 @@ def batch(
     # Random does not need to utilize multiple runs
     if algorithm == "random":
         ALGORITHMS[algorithm](
-            deepcopy(network), 
-            targetFolder=targetFolder, 
-            runName=runName, 
+            deepcopy(network),
+            targetFolder=targetFolder,
+            runName=runName,
             **arguments
         )
-    
+
         return
-    
+
     currentRunName = runName
-    
+
     scores: List[Dict[str, float]] = []
 
     # if multiple runs are utilized
     if runs > 1:
         currentRunName = runName + str(0)
-    
+
     for run in range(runs):
         newNetwork: RailNetwork = ALGORITHMS[algorithm](
-            deepcopy(network), 
-            targetFolder=targetFolder, 
-            runName=currentRunName, 
+            deepcopy(network),
+            targetFolder=targetFolder,
+            runName=currentRunName,
             **arguments
         )
 
@@ -100,21 +110,21 @@ def batch(
     return
 
 
-def visualize(resultFilepath: str, plotType: str= "algorithm", **arguments):
+def visualize(plotType: str= "algorithm", **arguments):
     """Loads a solution into the network and visualizes it"""
     if plotType == "algorithm":
-        plotAlgConvergence(resultFilepath, **arguments)
+        plotAlgConvergence(**arguments)
 
     elif plotType == "network":
-        plotNetwork(resultFilepath=resultFilepath, **arguments)
+        plotNetwork(**arguments)
 
     elif plotType == "hist":
-        plotHist(resultFilepath, **arguments)
-    
+        plotHist(**arguments)
+
     return
 
 
-def plotHist(resultFilepath: str, title = "", binCount = 30, **_):
+def plotHist(resultFilepath: str, title = "", binCount = 30):
     """
     plots the score data as a histogram
     """
@@ -124,53 +134,61 @@ def plotHist(resultFilepath: str, title = "", binCount = 30, **_):
     return
 
 
-def plotAlgConvergence(resultFilepath: str, title: str, **_):
+def plotAlgConvergence(resultFilepath: str, title: str):
     """
     Plots the convergence of an algorithm over iterations
     """
     summary = vis.loadSummary(resultFilepath)
-
     vis.plotAlgorithm(*summary, title)
-    
+
     return
 
 
 def plotNetwork(
-    stationsFilepath: str, 
-    connectionsFilepath: str, 
-    resultFilepath: str, 
+    stationsFilepath: str,
+    connectionsFilepath: str,
+    resultFilepath: str,
     title:str,
     stationNames: bool = False
 ):
     """
-    
+
     """
     network = RailNetwork(stationsFilepath, connectionsFilepath)
     network.loadSolution(resultFilepath)
-    
+
     vis.visualizeNetwork(
         network.connectionPoints(),
-        network.stationPoints(), 
+        network.stationPoints(),
         network.routePointLists(),
         stationNames,
         title
-        )
+    )
 
 
 def parseArgv(argv: List[str]) -> Dict[str, Union[str, int, bool]]:
-    
-    USAGEMESSAGE = "Usage: railNL [-b] [-a] dataName [convergenceLimit] [targetFolder]"
+    """
+    Takes a .JSON filepath from argv and returns it as dict
+
+    Args:
+        argv (List[str]): List of user input arguments.
+    """
+
+    USAGEMESSAGE = "Usage: railNL [jobfile.json]"
 
     if len(argv) == 1 or len(argv) > 2:
         print(USAGEMESSAGE)
         return
-    
+
     jsonPath = argv[1]
 
-    if path.exists(jsonPath):
-        with open(jsonPath) as jsonFile:
-            parms = json.load(jsonFile)
-            return parms
+    if not path.exists(jsonPath):
+        print(f"Error: File {jsonPath} not found")
+        return
+
+    with open(jsonPath) as jsonFile:
+        parms = json.load(jsonFile)
+        return parms
 
 
 if __name__ == "__main__":
