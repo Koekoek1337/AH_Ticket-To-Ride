@@ -97,13 +97,27 @@ By Simon de Jong, Finn Leurs and Hajo Groen
     all trainRoutes.
 - Figure of railNetwork with score.
 
-### Random Baseline
-- 1.6 mil random solutions
-- Figure of histogram
-
 ### Tuning
 - Simulated Annealing
 - Started by tuning convergence
+
+### Baseline
+
+#### Random
+- 1.6 mil random solutions
+- Figure of histogram
+
+#### Snake
+- Baseline fig
+- Hoogste score
+
+#### GreedyHill
+- Baseline fig
+- Hoogste score
+
+#### Anneal
+- Baseline fig
+- Hoogste score
 
 ### Station Removal
 #### Utrecht Centraal
