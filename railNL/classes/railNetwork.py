@@ -514,16 +514,3 @@ class RailNetwork:
             if not connection.isConnected():
                 listConnections.append(connection)
         return listConnections
-
-    def getNonUniqueConnections(self) -> List[Connection]:
-        """
-        TODO
-        WORK IN PROGRESS!!
-        Returns a list of connections that occur more than once
-        Current bug: uses memory address for reference instead of names
-        """
-        nonUniqueConnections = []
-        for (entry, occurence) in Counter(self._connections).items():
-            if occurence > 1:
-                nonUniqueConnections.append()
-        return nonUniqueConnections
