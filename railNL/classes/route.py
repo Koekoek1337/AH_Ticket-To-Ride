@@ -114,6 +114,8 @@ class Route:
         Post: The station node and it's associated connection nodes are removed from the route, and
             the route is unregistered from these nodes if they no longer occur in the route.
         """
+        if stationIndex < 0:
+            stationIndex += self.nStations()
 
         station = self._stations.pop(stationIndex)
 
@@ -322,7 +324,7 @@ class Route:
         if self.length() == 0:
             return
 
-        if stationIndex < self.nStations() - 1:
+        if stationIndex < self.nStations():
             self._removeConnection(stationIndex)
 
         if stationIndex > 0:
