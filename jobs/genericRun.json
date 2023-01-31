@@ -1,0 +1,15 @@
+{
+    "jobType": "batch",
+
+    "stationsFilepath": "data/StationsHolland.csv",
+    "connectionsFilepath": "data/ConnectiesHolland.csv",
+
+    "runs": 10,
+
+    "algorithm": "ALGORITHM",
+
+    "runName": "NAME",
+    "targetFolder": "results/FOLDER",
+    "maxRoutes": 7,
+    "maxDuration": 120
+}
