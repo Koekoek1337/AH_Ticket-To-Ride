@@ -127,7 +127,7 @@ From this, it was taken that initial temperature `64` had a more variable spread
 ### Geometric Cooling
 The final cooling scheme to be tuned was the geometric cooling scheme. 64 was taken as initial temperature, as it performed well with the linear cooling scheme. It was decided that the geometric cooling constant should be of nines. Therefore 4 batches of 10 runs were done with varying geometric constants as seen below (Note that the x-axis has a logarithmic scale)
 
-![annealing_geometic](docs/annealing_geoConstant.png)
+![annealing_geometric](docs/annealing_geoConstant.png)
 
 The geometric cooling scheme was taken to be outperformed by the linear cooling scheme, with initial temperature 64 and linear cooling constant `64 * 10^-4`, in all cases. For this reason, the linear cooling scheme was chosen as the best suitable for this problem.
 
@@ -141,10 +141,16 @@ These instances were both evaluated over 10 runsusing the simulated annealing al
 
 All the resulting rail systems contained all rail connections, with a high scoring system with 9035 points, as displayed below.
 
+![solution_holland](docs/holland_score9035.png)
+
+As all 10 runs resulted in a high scoring system with all routes, it can be assumed that an optimal rail system in holland uses all rail connections. It was also observed that all optimized systems used either 5, 6 or 7 routes, but no less.
 
 ### Random Baseline
-- 1.6 mil random solutions
-- Figure of histogram
+In order to judge a developed algorithm on it's effectiveness, a large baseline calculation from 1.6 million valid solutions was made using the random algorithm, which has been displayed in the histogram below.
+
+![baseline_netherlands](docs/random_hist.png)
+
+From this, it was determined that the random algorithm had an average score of 2212.11, with most scores falling between 300 and 4000 points with a slight bias towards lower scores.
 
 #### Snake
 - Baseline fig
@@ -154,7 +160,15 @@ All the resulting rail systems contained all rail connections, with a high scori
 - Baseline fig
 - Hoogste score
 
-#### Anneal
+#### Simulated
+In order to determine whether the linear cooling scheme of the simulated annealing algorithm would be effective, a baseline of the simulated annealing algorithm with the hillclimber cooling scheme was taken over 100 runs, which has been displayed in the histogram below.
+
+![annealing_baselineHill](docs/annealing_baselineHill.png)
+
+From this, it can be concluded that the algorit without any cooling scheme already far outperforms the random algorithm, both in average score and score spread.
+
+The same 
+
 - Baseline fig
 - Hoogste score
 
