@@ -4,14 +4,21 @@
     "stationsFilepath": "data/StationsHolland.csv",
     "connectionsFilepath": "data/ConnectiesHolland.csv",
 
-    "algorithm": "random",
+    "runs": 10,
 
-    "targetFolder": "results/holland",
+    "algorithm": "annealing",
 
+    "runName": "hollandOpt",
+    "targetFolder": "results/hollandOpt",
     "maxRoutes": 7,
     "maxDuration": 120,
-    
+
+    "stepFunction": "route",
+    "coolingScheme": "linear",
+
     "convergenceLimit": 5000,
-    
-    "recordAll": true
+    "randomIterations": 1000,
+
+    "initialTemperature": 64,
+    "coolingConstant": 0.0064
 }
