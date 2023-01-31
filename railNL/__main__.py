@@ -6,6 +6,7 @@ from algorithms import hillClimber_Hajo
 
 import json
 import datetime
+import statistics
 
 from os import path
 from sys import argv
@@ -58,6 +59,7 @@ def batch(
     network = RailNetwork(stationsFilepath, connectionsFilepath)
     algorithm = algorithm.lower()
 
+    # Random does not need to utilize multiple runs
     if algorithm == "random":
         ALGORITHMS[algorithm](
             deepcopy(network), 
@@ -72,23 +74,27 @@ def batch(
     
     scores: List[Dict[str, float]] = []
 
+    # if multiple runs are utilized
     if runs > 1:
         currentRunName = runName + str(0)
     
     for run in range(runs):
-        network: RailNetwork = ALGORITHMS[algorithm](
+        newNetwork: RailNetwork = ALGORITHMS[algorithm](
             deepcopy(network), 
             targetFolder=targetFolder, 
             runName=currentRunName, 
             **arguments
         )
 
-        scores.append({"run":run, "score":network.score()})
+        scores.append({"iteration":run, "score":newNetwork.score()})
 
         currentRunName = runName + str(run + 1)
 
     if runs > 1:
-        summaryName = f"{runName} - {str(runs)} runs"
+        average = statistics.mean([score["score"] for score in scores])
+        scores.append({"iteration":"average", "score": average})
+
+        summaryName = f"{runName}-{str(runs)}runs"
         random_hajo.exportScores(scores, targetFolder, summaryName, START_TIMESTAMP)
 
     return
@@ -100,7 +106,7 @@ def visualize(resultFilepath: str, plotType: str= "algorithm", **arguments):
         plotAlgConvergence(resultFilepath, **arguments)
 
     elif plotType == "network":
-        plotNetwork(**arguments)
+        plotNetwork(resultFilepath=resultFilepath, **arguments)
 
     elif plotType == "hist":
         plotHist(resultFilepath, **arguments)
@@ -129,13 +135,26 @@ def plotAlgConvergence(resultFilepath: str, title: str, **_):
     return
 
 
-def plotNetwork(stationsFilepath: str, connectionsFilepath: str, resultFilepath: str, *_):
+def plotNetwork(
+    stationsFilepath: str, 
+    connectionsFilepath: str, 
+    resultFilepath: str, 
+    title:str,
+    stationNames: bool = False
+):
     """
     
     """
     network = RailNetwork(stationsFilepath, connectionsFilepath)
     network.loadSolution(resultFilepath)
-    pass
+    
+    vis.visualizeNetwork(
+        network.connectionPoints(),
+        network.stationPoints(), 
+        network.routePointLists(),
+        stationNames,
+        title
+        )
 
 
 def parseArgv(argv: List[str]) -> Dict[str, Union[str, int, bool]]:

@@ -129,6 +129,9 @@ def loadSummary (resultFilepath: str) -> Tuple[List[int], List[float], Optional[
         for row in reader:
             if row["iteration"] == "Theoretical max":
                 return iterations, scores, float(row["score"])
+            
+            if row["iteration"] == "average":
+                return iterations, scores, None
 
             iterations.append(int(row["iteration"]))
             scores.append(float(row["score"]))
