@@ -122,6 +122,9 @@ def visualize(plotType: str= "algorithm", **arguments):
 
     elif plotType == "hist":
         plotHist(**arguments)
+    
+    else:
+        print(f"Unknown plotType: {plotType}")
 
     return
 
