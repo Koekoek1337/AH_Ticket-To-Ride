@@ -27,6 +27,9 @@ By Simon de Jong, Finn Leurs and Hajo Groen
 ---
 
 ## Overview
+
+## TODO
+
 - Introduction of the problem
 - Representation of Railnetwork, Station nodes,
     connection Nodes and routes
@@ -36,6 +39,9 @@ By Simon de Jong, Finn Leurs and Hajo Groen
 ---
 
 ## Algorithms
+
+## TODO
+
 - Introduction of our algorithms
     - First developed a random algorithm, followed by 
         three separae algorithms
@@ -192,6 +198,9 @@ The overall score for the netherlands was also recorded using the algorithm with
 Interesting about this solution is that it utilizes all possible connections in the Netherlands whilst still scoring higher than any other solution discovered.
 
 ### Station Removal
+
+## TODO
+
 #### Utrecht Centraal
 - National junction
 - Counter intuitively leads to higher overall scores as 
@@ -208,7 +217,7 @@ Interesting about this solution is that it utilizes all possible connections in 
     simulated annealing algorithm
 
 #### Groningen
-- Reccommended
+- Reccommended to us
 - Does not result in major score differences with
     simulated annealing algorithm
 
