@@ -1,0 +1,20 @@
+train,stations
+0,"[Zutphen, Deventer, Zwolle, Deventer, Almelo, Hengelo, Enschede, Hengelo, Enschede, Hengelo, Almelo, Hengelo]"
+1,"[Amsterdam Centraal, Amsterdam Amstel, Amsterdam Zuid, Amsterdam Amstel, Hilversum, Almere Centrum, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Sloterdijk]"
+2,"[Hilversum, Utrecht Centraal, Amsterdam Amstel, Amsterdam Centraal, Almere Centrum, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Zuid]"
+3,"[Arnhem Centraal, Ede-Wageningen, Utrecht Centraal, Amersfoort, Apeldoorn]"
+4,"[Amersfoort, Utrecht Centraal, Hilversum, Amsterdam Amstel, Amsterdam Zuid, Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Sloterdijk, Haarlem, Amsterdam Sloterdijk, Zaandam]"
+5,"[Leiden Centraal, Den Haag Laan v NOI, Delft, Schiedam Centrum, Rotterdam Centraal, Dordrecht, Rotterdam Centraal, Schiedam Centrum, Delft]"
+6,"[Utrecht Centraal, Schiphol Airport, Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Beverwijk, Castricum, Zaandam, Castricum, Zaandam, Amsterdam Sloterdijk, Haarlem]"
+7,"[Apeldoorn, Deventer, Zutphen, Apeldoorn, Amersfoort, Utrecht Centraal, Gouda, Utrecht Centraal, Hilversum]"
+8,"[Zaandam, Hoorn, Alkmaar, Den Helder]"
+9,"[Dieren, Zutphen, Dieren, Zutphen, Apeldoorn, Deventer, Zwolle, Steenwijk, Heerenveen]"
+10,"[Gouda, Den Haag Centraal, Leiden Centraal, Den Haag HS, Delft, Den Haag Centraal]"
+11,"[Castricum, Beverwijk, Zaandam, Amsterdam Sloterdijk, Zaandam, Castricum, Beverwijk, Castricum, Zaandam, Amsterdam Sloterdijk, Haarlem]"
+12,"[Tilburg, Breda, Dordrecht, Roosendaal, Dordrecht, Breda, Etten-Leur, Roosendaal, Dordrecht, Rotterdam Blaak]"
+13,"[Heerenveen, Leeuwarden, Heerenveen, Steenwijk, Zwolle, Assen]"
+14,"[Venlo, Helmond, Eindhoven, s-Hertogenbosch, Oss, Nijmegen, Oss]"
+15,"[Amsterdam Sloterdijk, Zaandam, Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Sloterdijk, Amsterdam Centraal, Almere Centrum, Amsterdam Centraal, Utrecht Centraal, s-Hertogenbosch, Oss]"
+16,"[Hengelo, Almelo, Deventer, Zutphen, Dieren, Zutphen, Deventer, Apeldoorn, Deventer, Almelo]"
+score,4136.574712643678
+connections missing,[['Eindhoven': 'Tilburg']: ['Gouda': 'Alphen a/d Rijn']: ['Maastricht': 'Sittard']: ['Roermond': 'Weert']: ['Roosendaal': 'Vlissingen']: ['Sittard': 'Heerlen']: ['Sittard': 'Roermond']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Weert': 'Eindhoven']: ['s-Hertogenbosch': 'Tilburg']]

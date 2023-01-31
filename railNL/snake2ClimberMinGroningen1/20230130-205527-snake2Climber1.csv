@@ -1,0 +1,18 @@
+train,stations
+0,"[Nijmegen, Oss, s-Hertogenbosch, Tilburg, Breda, Etten-Leur, Breda, Etten-Leur, Roosendaal, Etten-Leur, Roosendaal]"
+1,"[]"
+2,"[]"
+3,"[Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Amsterdam Sloterdijk, Amsterdam Zuid]"
+4,"[Schiedam Centrum, Delft, Den Haag HS, Delft, Den Haag Laan v NOI, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal, Alphen a/d Rijn, Leiden Centraal, Den Haag HS, Gouda, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Gouda, Rotterdam Alexander]"
+5,"[Schiedam Centrum, Delft, Den Haag Laan v NOI, Leiden Centraal, Den Haag Laan v NOI, Delft, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Gouda, Alphen a/d Rijn, Gouda, Den Haag Laan v NOI, Delft, Den Haag Centraal]"
+6,"[Eindhoven, Helmond, Eindhoven, Weert]"
+7,"[]"
+8,"[Amersfoort, Utrecht Centraal, Gouda, Den Haag Centraal]"
+9,"[Amsterdam Sloterdijk, Zaandam, Castricum, Beverwijk, Zaandam, Hoorn, Alkmaar, Castricum, Zaandam, Castricum]"
+10,"[]"
+11,"[Enschede, Hengelo, Almelo, Deventer, Zutphen]"
+12,"[Deventer, Apeldoorn, Deventer, Apeldoorn, Deventer, Apeldoorn, Amersfoort, Apeldoorn, Deventer, Apeldoorn]"
+13,"[Hilversum, Almere Centrum, Amsterdam Amstel, Amsterdam Zuid, Schiphol Airport, Utrecht Centraal, Gouda, Utrecht Centraal, Amsterdam Amstel, Amsterdam Zuid, Amsterdam Amstel]"
+14,"[Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Delft, Schiedam Centrum, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Delft, Den Haag Laan v NOI, Leiden Centraal, Den Haag HS]"
+score,4064.8620689655163
+connections missing,[['Alkmaar': 'Den Helder']: ['Almere Centrum': 'Lelystad Centrum']: ['Amsterdam Amstel': 'Amsterdam Centraal']: ['Amsterdam Centraal': 'Almere Centrum']: ['Assen': 'Zwolle']: ['Eindhoven': 's-Hertogenbosch']: ['Heerenveen': 'Steenwijk']: ['Helmond': 'Venlo']: ['Leeuwarden': 'Heerenveen']: ['Sittard': 'Heerlen']: ['Steenwijk': 'Zwolle']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Utrecht Centraal': 's-Hertogenbosch']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Almelo']]

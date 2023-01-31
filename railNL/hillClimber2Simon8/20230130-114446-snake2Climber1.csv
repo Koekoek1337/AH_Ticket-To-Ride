@@ -1,0 +1,17 @@
+train,stations
+0,"[Hilversum, Utrecht Centraal, Gouda, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal]"
+1,"[Gouda, Alphen a/d Rijn, Leiden Centraal, Den Haag Centraal, Gouda]"
+2,"[Ede-Wageningen, Arnhem Centraal, Nijmegen, Oss, s-Hertogenbosch, Utrecht Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Amstel, Hilversum]"
+3,"[]"
+4,"[]"
+5,"[Roosendaal, Etten-Leur, Breda, Etten-Leur, Breda, Tilburg, s-Hertogenbosch, Eindhoven, Tilburg, Eindhoven, Helmond]"
+6,"[Delft, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Centraal, Rotterdam Alexander, Gouda, Den Haag HS, Leiden Centraal, Heemstede-Aerdenhout]"
+7,"[Lelystad Centrum, Almere Centrum, Amsterdam Centraal, Amsterdam Sloterdijk]"
+8,"[Helmond, Eindhoven]"
+9,"[Rotterdam Alexander, Rotterdam Centraal]"
+10,"[Deventer, Zutphen, Deventer, Zutphen, Apeldoorn, Deventer, Zutphen, Apeldoorn]"
+11,"[]"
+12,"[Den Haag Laan v NOI, Gouda, Den Haag Centraal, Leiden Centraal, Schiphol Airport]"
+13,"[Deventer, Zutphen, Dieren, Arnhem Centraal, Nijmegen, Arnhem Centraal, Dieren, Arnhem Centraal, Ede-Wageningen, Utrecht Centraal]"
+score,4904.044943820225
+connections missing,[['Alkmaar': 'Den Helder']: ['Amsterdam Amstel': 'Almere Centrum']: ['Apeldoorn': 'Amersfoort']: ['Assen': 'Zwolle']: ['Deventer': 'Almelo']: ['Hengelo': 'Enschede']: ['Roosendaal': 'Vlissingen']: ['Roosendaal': 'Dordrecht']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Deventer']]

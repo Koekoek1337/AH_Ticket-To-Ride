@@ -1,0 +1,15 @@
+train,stations
+0,"[Enschede, Hengelo, Almelo, Deventer, Zutphen, Dieren, Arnhem Centraal, Nijmegen, Arnhem Centraal, Dieren]"
+1,"[Den Helder, Alkmaar, Hoorn, Alkmaar, Castricum, Beverwijk, Zaandam]"
+2,"[Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Amstel, Utrecht Centraal, Hilversum, Almere Centrum, Amsterdam Centraal]"
+3,"[Breda, Etten-Leur, Roosendaal, Etten-Leur, Breda, Etten-Leur, Breda, Etten-Leur, Breda, Tilburg, s-Hertogenbosch, Oss]"
+4,"[Rotterdam Alexander, Gouda, Alphen a/d Rijn, Leiden Centraal, Heemstede-Aerdenhout, Leiden Centraal, Heemstede-Aerdenhout, Leiden Centraal, Schiphol Airport, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Amstel, Amsterdam Zuid]"
+5,"[Breda, Etten-Leur, Breda, Etten-Leur, Roosendaal, Dordrecht, Breda, Dordrecht, Rotterdam Blaak]"
+6,"[Amsterdam Amstel, Amsterdam Zuid, Amsterdam Sloterdijk, Zaandam, Beverwijk, Haarlem, Heemstede-Aerdenhout, Leiden Centraal]"
+7,"[Maastricht, Sittard, Heerlen, Sittard, Heerlen]"
+8,"[Apeldoorn, Deventer, Zutphen, Dieren, Zutphen, Dieren, Arnhem Centraal, Ede-Wageningen, Utrecht Centraal, Hilversum, Utrecht Centraal]"
+9,"[Delft, Den Haag Laan v NOI, Leiden Centraal, Den Haag Centraal, Delft, Schiedam Centrum, Rotterdam Centraal, Dordrecht, Rotterdam Centraal, Schiedam Centrum, Rotterdam Blaak, Dordrecht, Roosendaal, Dordrecht]"
+10,"[Almelo, Hengelo, Almelo, Hengelo, Almelo, Deventer]"
+11,"[Leiden Centraal, Den Haag HS, Gouda, Rotterdam Alexander, Rotterdam Blaak, Dordrecht, Roosendaal, Etten-Leur, Breda, Tilburg, s-Hertogenbosch, Oss]"
+score,4014.3218390804595
+connections missing,[['Almere Centrum': 'Lelystad Centrum']: ['Amsterdam Amstel': 'Almere Centrum']: ['Amsterdam Amstel': 'Hilversum']: ['Apeldoorn': 'Amersfoort']: ['Apeldoorn': 'Zutphen']: ['Assen': 'Zwolle']: ['Delft': 'Den Haag HS']: ['Den Haag Centraal': 'Gouda']: ['Den Haag Laan v NOI': 'Gouda']: ['Eindhoven': 'Helmond']: ['Eindhoven': 'Tilburg']: ['Heerenveen': 'Steenwijk']: ['Helmond': 'Venlo']: ['Leeuwarden': 'Heerenveen']: ['Steenwijk': 'Zwolle']: ['Utrecht Centraal': 'Gouda']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Utrecht Centraal': 'Schiphol Airport']: ['Utrecht Centraal': 's-Hertogenbosch']: ['Weert': 'Eindhoven']: ['Zaandam': 'Hoorn']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Deventer']]

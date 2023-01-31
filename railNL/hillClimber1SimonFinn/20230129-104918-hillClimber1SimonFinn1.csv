@@ -1,0 +1,14 @@
+train,stations
+0,"[Zwolle, Steenwijk, Heerenveen, Leeuwarden, Groningen, Assen, Zwolle, Deventer]"
+3,"[Eindhoven, s-Hertogenbosch, Utrecht Centraal, Schiphol Airport, Leiden Centraal, Den Haag Laan v NOI, Gouda, Alphen a/d Rijn, Leiden Centraal, Den Haag Centraal]"
+5,"[Amsterdam Amstel, Amsterdam Centraal, Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Amstel, Hilversum, Utrecht Centraal, Gouda, Den Haag Centraal]"
+6,"[Rotterdam Blaak, Schiedam Centrum, Rotterdam Blaak, Dordrecht, Rotterdam Centraal, Dordrecht, Breda, Etten-Leur, Roosendaal, Dordrecht, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Centraal]"
+7,"[Heerlen, Sittard, Maastricht, Sittard, Roermond, Weert, Eindhoven, Helmond, Eindhoven]"
+11,"[Heemstede-Aerdenhout, Haarlem, Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout, Haarlem, Amsterdam Sloterdijk, Zaandam, Castricum, Beverwijk, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Alphen a/d Rijn, Leiden Centraal]"
+12,"[Tilburg, Breda, Etten-Leur, Roosendaal, Dordrecht, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Delft, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal]"
+14,"[Den Haag Centraal, Gouda, Rotterdam Alexander, Gouda, Den Haag HS, Leiden Centraal, Den Haag Laan v NOI, Gouda]"
+15,"[Nijmegen, Arnhem Centraal, Ede-Wageningen, Arnhem Centraal, Dieren, Zutphen, Deventer, Apeldoorn, Zutphen, Dieren, Zutphen, Deventer, Almelo]"
+17,"[Lelystad Centrum, Almere Centrum, Amsterdam Amstel, Hilversum, Almere Centrum, Lelystad Centrum, Almere Centrum, Amsterdam Centraal]"
+18,"[Beverwijk, Zaandam, Hoorn, Alkmaar, Castricum]"
+score,5163.52808988764
+connections missing,[['Alkmaar': 'Den Helder']: ['Almelo': 'Hengelo']: ['Amsterdam Zuid': 'Schiphol Airport']: ['Apeldoorn': 'Amersfoort']: ['Delft': 'Den Haag Centraal']: ['Delft': 'Den Haag HS']: ['Helmond': 'Venlo']: ['Hengelo': 'Enschede']: ['Oss': 'Nijmegen']: ['Roosendaal': 'Vlissingen']: ['Utrecht Centraal': 'Amsterdam Centraal']: ['Utrecht Centraal': 'Amsterdam Amstel']: ['Utrecht Centraal': 'Ede-Wageningen']: ['Utrecht Centraal': 'Amersfoort']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Almelo']: ['s-Hertogenbosch': 'Oss']: ['s-Hertogenbosch': 'Tilburg']]

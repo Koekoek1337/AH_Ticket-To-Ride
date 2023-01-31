@@ -1,0 +1,14 @@
+train,stations
+0,"[Amersfoort, Apeldoorn, Deventer, Almelo, Hengelo, Enschede, Hengelo, Almelo, Hengelo, Almelo, Deventer, Zutphen, Dieren, Zutphen, Dieren]"
+1,"[Hoorn, Zaandam, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Amstel, Hilversum]"
+2,"[Zwolle, Assen, Groningen, Assen, Groningen, Leeuwarden, Heerenveen, Steenwijk]"
+3,"[Sittard, Maastricht, Sittard, Roermond, Weert, Eindhoven, Weert, Roermond, Weert, Eindhoven, Helmond]"
+4,"[Zwolle, Deventer, Apeldoorn, Zutphen, Dieren, Arnhem Centraal, Nijmegen, Arnhem Centraal, Ede-Wageningen, Arnhem Centraal, Nijmegen]"
+5,"[Gouda, Den Haag HS, Leiden Centraal, Den Haag Centraal, Gouda, Den Haag Centraal, Delft, Schiedam Centrum, Rotterdam Blaak]"
+6,"[Amsterdam Centraal, Amsterdam Sloterdijk, Haarlem, Amsterdam Sloterdijk, Amsterdam Zuid, Schiphol Airport, Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Beverwijk, Castricum, Beverwijk]"
+7,"[Weert, Roermond, Weert, Eindhoven, s-Hertogenbosch, Oss, Nijmegen, Oss, s-Hertogenbosch, Eindhoven]"
+8,"[Leiden Centraal, Den Haag HS, Gouda, Den Haag HS, Gouda, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum]"
+9,"[Roosendaal, Dordrecht, Breda, Tilburg, Breda, Dordrecht, Rotterdam Blaak, Rotterdam Alexander, Gouda, Alphen a/d Rijn, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal, Den Haag Laan v NOI]"
+10,"[Leiden Centraal, Den Haag HS, Leiden Centraal, Den Haag Laan v NOI, Gouda, Alphen a/d Rijn, Gouda, Den Haag HS, Delft, Schiedam Centrum, Rotterdam Blaak, Dordrecht]"
+score,4965.0
+connections missing,[['Alkmaar': 'Hoorn']: ['Alkmaar': 'Den Helder']: ['Almere Centrum': 'Lelystad Centrum']: ['Amsterdam Amstel': 'Almere Centrum']: ['Amsterdam Amstel': 'Amsterdam Centraal']: ['Amsterdam Centraal': 'Almere Centrum']: ['Breda': 'Etten-Leur']: ['Castricum': 'Alkmaar']: ['Etten-Leur': 'Roosendaal']: ['Helmond': 'Venlo']: ['Roosendaal': 'Vlissingen']: ['Sittard': 'Heerlen']: ['Steenwijk': 'Zwolle']: ['Zaandam': 'Castricum']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Almelo']: ['s-Hertogenbosch': 'Tilburg']]

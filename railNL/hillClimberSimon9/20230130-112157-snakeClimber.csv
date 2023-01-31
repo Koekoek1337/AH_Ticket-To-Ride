@@ -1,0 +1,17 @@
+train,stations
+0,"[Roosendaal, Etten-Leur, Breda, Etten-Leur]"
+1,"[Rotterdam Alexander, Gouda, Den Haag Laan v NOI, Delft, Den Haag Laan v NOI, Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Beverwijk, Haarlem, Heemstede-Aerdenhout, Haarlem]"
+2,"[Alphen a/d Rijn, Gouda, Utrecht Centraal, Gouda, Rotterdam Alexander, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Blaak, Dordrecht, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Blaak]"
+3,"[Arnhem Centraal, Ede-Wageningen, Utrecht Centraal, Amersfoort, Apeldoorn, Amersfoort, Apeldoorn, Zutphen, Deventer]"
+4,"[Den Haag Centraal, Delft, Schiedam Centrum, Delft, Schiedam Centrum, Delft, Den Haag HS, Leiden Centraal, Heemstede-Aerdenhout, Leiden Centraal, Den Haag Centraal, Gouda, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum]"
+5,"[Hilversum, Utrecht Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Amstel, Almere Centrum]"
+6,"[Heerlen, Sittard, Roermond, Weert, Roermond, Weert, Roermond, Weert, Roermond, Sittard, Roermond]"
+7,"[Hengelo, Almelo, Deventer, Zutphen, Apeldoorn, Deventer, Apeldoorn, Deventer, Apeldoorn]"
+8,"[Ede-Wageningen, Arnhem Centraal, Nijmegen, Oss, Nijmegen, Arnhem Centraal]"
+9,"[Ede-Wageningen, Arnhem Centraal, Dieren, Zutphen, Deventer, Apeldoorn, Zutphen, Dieren]"
+10,"[Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem, Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout, Haarlem, Amsterdam Sloterdijk, Zaandam, Amsterdam Sloterdijk, Amsterdam Zuid]"
+11,"[Amsterdam Zuid, Schiphol Airport, Utrecht Centraal, s-Hertogenbosch, Eindhoven, Helmond, Eindhoven, Helmond, Eindhoven, s-Hertogenbosch]"
+12,"[Amsterdam Amstel, Utrecht Centraal, Alphen a/d Rijn, Leiden Centraal, Schiphol Airport, Leiden Centraal, Den Haag Laan v NOI]"
+13,"[Heerenveen, Steenwijk, Heerenveen, Leeuwarden, Heerenveen, Leeuwarden, Groningen, Assen]"
+score,4220.887640449438
+connections missing,[['Alkmaar': 'Hoorn']: ['Alkmaar': 'Den Helder']: ['Amsterdam Amstel': 'Hilversum']: ['Assen': 'Zwolle']: ['Beverwijk': 'Castricum']: ['Castricum': 'Alkmaar']: ['Hengelo': 'Enschede']: ['Hilversum': 'Almere Centrum']: ['Roosendaal': 'Vlissingen']: ['Roosendaal': 'Dordrecht']: ['Steenwijk': 'Zwolle']: ['Utrecht Centraal': 'Amsterdam Centraal']: ['Weert': 'Eindhoven']: ['Zaandam': 'Hoorn']: ['Zaandam': 'Castricum']: ['Zaandam': 'Beverwijk']: ['Zwolle': 'Almelo']]

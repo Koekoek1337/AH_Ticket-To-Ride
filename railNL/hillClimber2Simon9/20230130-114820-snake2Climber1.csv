@@ -1,0 +1,16 @@
+train,stations
+0,"[]"
+1,"[]"
+2,"[]"
+3,"[Gouda, Utrecht Centraal]"
+4,"[Den Haag Centraal, Delft, Den Haag HS, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal, Den Haag Centraal, Gouda, Rotterdam Alexander]"
+5,"[]"
+6,"[]"
+7,"[]"
+8,"[]"
+9,"[]"
+10,"[]"
+11,"[Schiphol Airport, Amsterdam Zuid, Amsterdam Amstel, Almere Centrum, Hilversum]"
+12,"[]"
+score,4559.247191011236
+connections missing,[['Alkmaar': 'Den Helder']: ['Almelo': 'Hengelo']: ['Almere Centrum': 'Lelystad Centrum']: ['Amsterdam Centraal': 'Almere Centrum']: ['Assen': 'Zwolle']: ['Eindhoven': 'Tilburg']: ['Gouda': 'Alphen a/d Rijn']: ['Groningen': 'Assen']: ['Hengelo': 'Enschede']: ['Leeuwarden': 'Groningen']: ['Roosendaal': 'Vlissingen']: ['Utrecht Centraal': 'Amsterdam Centraal']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Utrecht Centraal': 'Schiphol Airport']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Deventer']]

@@ -1,0 +1,16 @@
+train,stations
+0,"[Delft, Den Haag HS, Delft, Schiedam Centrum, Rotterdam Blaak, Schiedam Centrum, Delft, Den Haag Centraal, Gouda, Rotterdam Alexander, Rotterdam Blaak]"
+1,"[Beverwijk, Castricum, Alkmaar, Castricum, Alkmaar, Castricum, Alkmaar, Castricum, Zaandam, Beverwijk, Zaandam, Amsterdam Sloterdijk]"
+2,"[Hengelo, Enschede, Hengelo, Almelo, Hengelo, Almelo, Deventer, Zutphen, Apeldoorn, Deventer, Zwolle]"
+3,"[Etten-Leur, Breda, Tilburg, s-Hertogenbosch, Oss, s-Hertogenbosch, Oss, Nijmegen, Oss, Nijmegen]"
+4,"[Helmond, Eindhoven, s-Hertogenbosch, Oss, Nijmegen, Arnhem Centraal, Ede-Wageningen, Arnhem Centraal, Dieren, Zutphen, Deventer, Zutphen]"
+5,"[Rotterdam Centraal, Schiedam Centrum, Delft, Den Haag Laan v NOI, Leiden Centraal, Den Haag Centraal, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk, Haarlem, Amsterdam Sloterdijk]"
+6,"[Alphen a/d Rijn, Leiden Centraal, Den Haag Centraal, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Amstel, Almere Centrum, Hilversum, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Amstel]"
+7,"[Tilburg, Eindhoven, Weert, Eindhoven]"
+8,"[Rotterdam Alexander, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Blaak, Dordrecht, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Blaak, Dordrecht]"
+9,"[Vlissingen, Roosendaal, Dordrecht, Breda, Etten-Leur, Roosendaal, Etten-Leur, Breda]"
+10,"[Eindhoven, Helmond, Venlo, Helmond, Eindhoven, Helmond, Eindhoven, Tilburg, Breda, Etten-Leur]"
+11,"[s-Hertogenbosch, Oss, s-Hertogenbosch, Eindhoven, Weert, Eindhoven, Tilburg, s-Hertogenbosch]"
+12,"[Leeuwarden, Groningen]"
+score,4554.0
+connections missing,[['Alkmaar': 'Hoorn']: ['Alkmaar': 'Den Helder']: ['Almere Centrum': 'Lelystad Centrum']: ['Amsterdam Centraal': 'Almere Centrum']: ['Den Haag HS': 'Gouda']: ['Den Haag HS': 'Leiden Centraal']: ['Den Haag Laan v NOI': 'Gouda']: ['Gouda': 'Alphen a/d Rijn']: ['Heemstede-Aerdenhout': 'Haarlem']: ['Leeuwarden': 'Heerenveen']: ['Leiden Centraal': 'Heemstede-Aerdenhout']: ['Sittard': 'Heerlen']: ['Zaandam': 'Hoorn']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Almelo']]

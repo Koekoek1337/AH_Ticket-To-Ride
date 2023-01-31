@@ -1,0 +1,21 @@
+train,stations
+0,"[Dieren, Arnhem Centraal]"
+1,"[Oss, Nijmegen, Arnhem Centraal, Ede-Wageningen, Utrecht Centraal, Hilversum, Amsterdam Amstel, Amsterdam Zuid, Amsterdam Amstel, Amsterdam Zuid, Amsterdam Amstel, Amsterdam Centraal]"
+2,"[Apeldoorn, Deventer, Almelo, Hengelo, Almelo, Zwolle, Assen]"
+3,"[Rotterdam Blaak, Rotterdam Alexander, Gouda, Rotterdam Alexander, Gouda, Den Haag Centraal]"
+4,"[Tilburg, Breda, Dordrecht, Rotterdam Centraal, Schiedam Centrum, Delft]"
+5,"[]"
+6,"[Amsterdam Centraal, Amsterdam Sloterdijk, Haarlem, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Amstel, Amsterdam Zuid, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Amstel, Hilversum]"
+7,"[Apeldoorn, Deventer, Zwolle, Amersfoort, Utrecht Centraal]"
+8,"[]"
+9,"[]"
+10,"[]"
+11,"[]"
+12,"[]"
+13,"[Heerenveen, Steenwijk, Heerenveen]"
+14,"[Weert, Roermond, Sittard, Maastricht, Sittard, Roermond, Sittard, Roermond, Sittard, Heerlen, Sittard, Maastricht, Sittard]"
+15,"[Etten-Leur, Roosendaal, Dordrecht, Roosendaal, Etten-Leur]"
+16,"[]"
+17,"[Zaandam, Amsterdam Sloterdijk, Zaandam, Beverwijk, Haarlem, Heemstede-Aerdenhout, Haarlem, Amsterdam Sloterdijk, Haarlem, Amsterdam Sloterdijk, Zaandam, Beverwijk]"
+score,3983.51724137931
+connections missing,[['Alkmaar': 'Den Helder']: ['Almere Centrum': 'Lelystad Centrum']: ['Den Haag Laan v NOI': 'Gouda']: ['Dordrecht': 'Rotterdam Blaak']: ['Hilversum': 'Almere Centrum']: ['Leiden Centraal': 'Schiphol Airport']: ['Roosendaal': 'Vlissingen']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Utrecht Centraal': 's-Hertogenbosch']]

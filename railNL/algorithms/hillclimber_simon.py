@@ -14,8 +14,10 @@ class HillClimber():
 
 
     def __init__(self):
-        model = randomSolution(RailNetwork("data/StationsNationaal.csv", "data/ConnectiesNationaal.csv"), 20, 180, 50)
+        # Takes a random solution
+        model = randomSolution(RailNetwork("data/StationsMinGroningen.csv", "data/ConnectiesMinGroningen.csv"), 20, 180, 50)
         workModel = deepcopy(model)
+
         self.previousModel = deepcopy(workModel)
         self.workModel = workModel
         self.routes = workModel.listRoutes()
@@ -42,7 +44,7 @@ class HillClimber():
                 self.lengthenRoute(route)
 
 
-    def mutateLastStation(self, route) -> List[str]:
+    def mutateLastStation(self, route: List[str]) -> List[str]:
         """
         Input is a route (minus the last station)
         Output: adds a station to the route and makes it a newRoute
@@ -82,7 +84,7 @@ class HillClimber():
         return newRoute
 
 
-    def mutateFirstStation(self, route) -> List[str]:
+    def mutateFirstStation(self, route: List[str]) -> List[str]:
         """
         Input is a route (minus the first station)
         Output: adds a station to the route and makes it a newRoute
@@ -123,7 +125,7 @@ class HillClimber():
         return newRoute
 
 
-    def lengthenRoute(self, route):
+    def lengthenRoute(self, route: List[str]) -> List[str]:
         """
         Adds a station to the route, if it is still under tMax.
         """
@@ -163,13 +165,13 @@ class HillClimber():
         if newScore >= oldScore:
             self.score = newScore
             self.scores.append({"iteration":self.iteration, "score":newScore})
-            self.workModel.exportSolution("hillClimberSimon5", "snakeClimber")
+            self.workModel.exportSolution("snakeClimberMinGroningen9", "snakeClimber")
         else:
             self.workModel = self.previousModel
             self.routes = self.previousModel.listRoutes()
 
 
-    def run(self, iterations: int = 500000, verbose=False, mutate_nodes_number=1) -> None:
+    def run(self, iterations: int = 30000, verbose=False, mutate_nodes_number=1) -> None:
         """
         Runs the hillclimber algorithm for a specific amount of iterations.
         """
@@ -182,4 +184,4 @@ class HillClimber():
             self.iteration += 1
 
         # exports scores
-        exportScores(self.scores, "hillClimberSimon5", "snakeClimber", START_TIMESTAMP)
+        exportScores(self.scores, "snakeClimberMinGroningen9", "snakeClimber", START_TIMESTAMP)

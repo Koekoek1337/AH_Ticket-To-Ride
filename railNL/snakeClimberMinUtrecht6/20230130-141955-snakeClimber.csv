@@ -1,0 +1,20 @@
+train,stations
+0,"[Delft, Den Haag HS, Gouda, Den Haag Laan v NOI, Delft, Schiedam Centrum, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal, Dordrecht]"
+1,"[Delft, Den Haag Laan v NOI, Delft, Den Haag Laan v NOI, Delft, Den Haag Centraal]"
+2,"[Vlissingen, Roosendaal, Dordrecht, Roosendaal]"
+3,"[Tilburg, Breda, Etten-Leur, Roosendaal, Vlissingen, Roosendaal]"
+4,"[Amsterdam Amstel, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Zuid, Schiphol Airport, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk, Amsterdam Zuid]"
+5,"[Heerlen, Sittard, Roermond, Weert, Roermond, Weert, Eindhoven, Weert, Eindhoven, Helmond, Venlo]"
+6,"[Breda, Etten-Leur, Breda, Etten-Leur, Roosendaal]"
+7,"[Den Haag Centraal, Gouda, Den Haag HS, Gouda, Alphen a/d Rijn, Leiden Centraal, Den Haag HS, Gouda, Den Haag HS, Delft]"
+8,"[Assen, Groningen, Leeuwarden, Heerenveen, Steenwijk, Zwolle, Almelo, Hengelo, Enschede, Hengelo]"
+9,"[Dieren, Zutphen, Dieren, Arnhem Centraal, Ede-Wageningen, Arnhem Centraal, Nijmegen, Oss, Nijmegen, Arnhem Centraal, Nijmegen, Arnhem Centraal, Ede-Wageningen, Arnhem Centraal, Ede-Wageningen, Arnhem Centraal]"
+10,"[Amsterdam Centraal, Almere Centrum, Lelystad Centrum, Almere Centrum, Hilversum, Amsterdam Amstel, Amsterdam Zuid, Amsterdam Sloterdijk, Zaandam]"
+11,"[Apeldoorn, Amersfoort, Apeldoorn, Deventer, Zwolle, Amersfoort, Apeldoorn]"
+12,"[Alkmaar, Den Helder, Alkmaar, Castricum, Zaandam, Beverwijk, Haarlem, Heemstede-Aerdenhout, Haarlem]"
+13,"[Zutphen, Dieren, Zutphen, Apeldoorn, Amersfoort, Apeldoorn, Deventer, Zutphen]"
+14,"[Weert, Eindhoven, Tilburg, s-Hertogenbosch, Eindhoven, Helmond, Eindhoven, s-Hertogenbosch, Eindhoven, Weert, Eindhoven, Helmond]"
+15,"[Almere Centrum, Lelystad Centrum, Almere Centrum, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Amstel]"
+16,"[Gouda, Den Haag HS, Leiden Centraal, Alphen a/d Rijn, Gouda, Alphen a/d Rijn]"
+score,3992.0
+connections missing,[['Alkmaar': 'Hoorn']: ['Amsterdam Centraal': 'Amsterdam Sloterdijk']: ['Amsterdam Sloterdijk': 'Haarlem']: ['Assen': 'Zwolle']: ['Beverwijk': 'Castricum']: ['Breda': 'Dordrecht']: ['Den Haag Centraal': 'Leiden Centraal']: ['Den Haag Laan v NOI': 'Leiden Centraal']: ['Deventer': 'Almelo']: ['Dordrecht': 'Rotterdam Blaak']: ['Leiden Centraal': 'Heemstede-Aerdenhout']: ['Maastricht': 'Sittard']: ['Rotterdam Alexander': 'Gouda']: ['Rotterdam Blaak': 'Rotterdam Alexander']: ['Rotterdam Centraal': 'Rotterdam Alexander']: ['Zaandam': 'Hoorn']: ['s-Hertogenbosch': 'Oss']]

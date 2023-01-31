@@ -1,0 +1,16 @@
+train,stations
+0,"[]"
+1,"[]"
+2,"[]"
+3,"[Utrecht Centraal, s-Hertogenbosch, Tilburg, Breda, Etten-Leur, Roosendaal, Dordrecht]"
+4,"[Gouda, Den Haag Centraal, Delft, Schiedam Centrum, Delft, Den Haag HS, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal]"
+5,"[Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Amsterdam Sloterdijk, Amsterdam Centraal]"
+6,"[]"
+7,"[Alkmaar, Castricum, Alkmaar, Hoorn, Alkmaar, Castricum]"
+8,"[]"
+9,"[]"
+10,"[Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum]"
+11,"[Amersfoort, Utrecht Centraal, Gouda, Den Haag HS, Leiden Centraal, Schiphol Airport]"
+12,"[Leeuwarden, Heerenveen, Steenwijk, Zwolle, Almelo, Deventer, Apeldoorn]"
+score,4268.168539325843
+connections missing,[['Alkmaar': 'Den Helder']: ['Almelo': 'Hengelo']: ['Almere Centrum': 'Lelystad Centrum']: ['Amsterdam Amstel': 'Almere Centrum']: ['Amsterdam Centraal': 'Almere Centrum']: ['Assen': 'Zwolle']: ['Den Haag Centraal': 'Leiden Centraal']: ['Eindhoven': 'Tilburg']: ['Gouda': 'Alphen a/d Rijn']: ['Groningen': 'Assen']: ['Hengelo': 'Enschede']: ['Hilversum': 'Almere Centrum']: ['Leeuwarden': 'Groningen']: ['Roosendaal': 'Vlissingen']: ['Utrecht Centraal': 'Amsterdam Centraal']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Utrecht Centraal': 'Schiphol Airport']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Deventer']]

@@ -1,0 +1,21 @@
+train,stations
+0,"[Dordrecht, Roosendaal, Etten-Leur, Breda, Etten-Leur, Breda, Dordrecht, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Gouda]"
+1,"[Hengelo, Enschede, Hengelo, Enschede, Hengelo, Almelo, Hengelo, Almelo, Deventer, Zutphen]"
+2,"[Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem, Beverwijk, Zaandam, Amsterdam Sloterdijk, Zaandam, Amsterdam Sloterdijk, Amsterdam Centraal]"
+3,"[Hengelo, Enschede, Hengelo, Enschede, Hengelo, Almelo, Zwolle, Amersfoort, Apeldoorn, Amersfoort, Utrecht Centraal]"
+4,"[Hoorn, Zaandam, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Sloterdijk, Zaandam]"
+5,"[Zaandam, Amsterdam Sloterdijk, Haarlem, Beverwijk, Castricum, Alkmaar, Den Helder, Alkmaar, Castricum, Beverwijk]"
+6,"[Den Haag HS, Delft, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Rotterdam Blaak]"
+7,"[Heerenveen, Steenwijk, Heerenveen]"
+8,"[Utrecht Centraal, Alphen a/d Rijn, Gouda, Den Haag Laan v NOI]"
+9,"[Den Haag Laan v NOI, Leiden Centraal, Alphen a/d Rijn, Gouda, Den Haag HS, Leiden Centraal, Den Haag Centraal]"
+10,"[Gouda, Den Haag Centraal, Leiden Centraal, Alphen a/d Rijn, Gouda, Rotterdam Alexander, Rotterdam Blaak, Dordrecht, Rotterdam Centraal, Rotterdam Alexander]"
+11,"[Gouda, Utrecht Centraal, Schiphol Airport, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Amstel, Amsterdam Zuid]"
+12,"[Arnhem Centraal, Ede-Wageningen, Utrecht Centraal, Amsterdam Amstel, Hilversum]"
+13,"[Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Dordrecht, Breda, Etten-Leur, Roosendaal, Etten-Leur, Breda, Etten-Leur, Breda, Etten-Leur, Breda, Etten-Leur]"
+14,"[Heerenveen, Steenwijk, Zwolle, Deventer, Zutphen, Dieren, Zutphen]"
+15,"[Heerlen, Sittard, Roermond, Weert, Eindhoven, Helmond, Eindhoven, Tilburg, s-Hertogenbosch, Utrecht Centraal]"
+16,"[Oss, s-Hertogenbosch, Eindhoven, Helmond, Eindhoven]"
+17,"[Deventer, Apeldoorn, Zutphen, Dieren, Arnhem Centraal, Ede-Wageningen, Utrecht Centraal, Hilversum, Amsterdam Amstel, Amsterdam Centraal]"
+score,4396.842696629214
+connections missing,[['Alkmaar': 'Hoorn']: ['Assen': 'Zwolle']: ['Maastricht': 'Sittard']: ['Oss': 'Nijmegen']: ['Roosendaal': 'Vlissingen']: ['Utrecht Centraal': 'Schiphol Airport']]

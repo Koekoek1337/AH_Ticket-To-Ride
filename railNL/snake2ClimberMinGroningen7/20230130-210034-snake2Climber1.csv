@@ -1,0 +1,14 @@
+train,stations
+0,"[Amsterdam Centraal, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Amstel, Utrecht Centraal, Ede-Wageningen, Arnhem Centraal, Nijmegen, Oss, s-Hertogenbosch, Oss]"
+1,"[Schiedam Centrum, Delft, Den Haag HS, Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Beverwijk, Castricum, Zaandam, Castricum, Alkmaar, Castricum, Zaandam, Hoorn, Alkmaar]"
+2,"[]"
+3,"[Sittard, Maastricht, Sittard, Heerlen, Sittard, Roermond, Weert]"
+4,"[Enschede, Hengelo, Enschede, Hengelo, Almelo, Hengelo, Enschede, Hengelo, Enschede, Hengelo, Enschede]"
+5,"[Breda, Etten-Leur, Roosendaal, Dordrecht, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum]"
+6,"[Amsterdam Amstel, Amsterdam Zuid, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Sloterdijk, Zaandam, Beverwijk, Zaandam, Beverwijk, Zaandam, Amsterdam Sloterdijk]"
+7,"[s-Hertogenbosch, Oss, s-Hertogenbosch, Oss, Nijmegen, Oss, s-Hertogenbosch, Eindhoven, Weert, Roermond]"
+8,"[Zutphen, Dieren, Arnhem Centraal, Dieren, Zutphen, Apeldoorn, Deventer, Zutphen, Apeldoorn, Amersfoort]"
+9,"[Dordrecht, Roosendaal, Etten-Leur, Breda, Tilburg, Breda, Dordrecht, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Dordrecht]"
+10,"[Heerenveen, Steenwijk]"
+score,4215.379310344828
+connections missing,[['Alkmaar': 'Den Helder']: ['Almere Centrum': 'Lelystad Centrum']: ['Amsterdam Amstel': 'Almere Centrum']: ['Amsterdam Amstel': 'Hilversum']: ['Amsterdam Centraal': 'Almere Centrum']: ['Amsterdam Zuid': 'Schiphol Airport']: ['Assen': 'Zwolle']: ['Delft': 'Den Haag Laan v NOI']: ['Delft': 'Den Haag Centraal']: ['Den Haag Centraal': 'Gouda']: ['Den Haag Centraal': 'Leiden Centraal']: ['Eindhoven': 'Helmond']: ['Eindhoven': 'Tilburg']: ['Helmond': 'Venlo']: ['Hilversum': 'Almere Centrum']: ['Roosendaal': 'Vlissingen']: ['Utrecht Centraal': 'Amsterdam Centraal']: ['Utrecht Centraal': 'Hilversum']: ['Utrecht Centraal': 'Gouda']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Utrecht Centraal': 'Schiphol Airport']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Deventer']: ['Zwolle': 'Almelo']]

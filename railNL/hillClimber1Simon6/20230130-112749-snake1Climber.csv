@@ -1,0 +1,16 @@
+train,stations
+0,"[Amersfoort, Zwolle, Deventer, Zutphen, Deventer, Apeldoorn, Deventer, Apeldoorn, Deventer, Almelo]"
+1,"[Roosendaal, Etten-Leur, Breda, Etten-Leur, Breda, Etten-Leur, Breda]"
+2,"[Leiden Centraal, Den Haag Laan v NOI, Delft, Schiedam Centrum, Delft, Schiedam Centrum, Rotterdam Blaak, Dordrecht, Rotterdam Blaak, Dordrecht, Breda, Etten-Leur]"
+3,"[Heerlen, Sittard, Roermond, Weert, Roermond, Sittard, Maastricht, Sittard, Roermond]"
+4,"[Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Amstel, Almere Centrum, Hilversum, Utrecht Centraal, Amersfoort, Utrecht Centraal, Amersfoort]"
+5,"[]"
+6,"[Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Leiden Centraal, Den Haag HS, Delft, Den Haag Centraal]"
+7,"[]"
+8,"[]"
+9,"[Schiedam Centrum, Rotterdam Centraal, Dordrecht, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Gouda, Den Haag HS, Delft]"
+10,"[]"
+11,"[Enschede, Hengelo, Enschede, Hengelo, Enschede]"
+12,"[]"
+score,4724.606741573034
+connections missing,[['Almere Centrum': 'Lelystad Centrum']: ['Amsterdam Centraal': 'Almere Centrum']: ['Apeldoorn': 'Amersfoort']: ['Assen': 'Zwolle']: ['Beverwijk': 'Castricum']: ['Den Haag Laan v NOI': 'Gouda']: ['Groningen': 'Assen']: ['Haarlem': 'Beverwijk']: ['Heerenveen': 'Steenwijk']: ['Helmond': 'Venlo']: ['Leeuwarden': 'Heerenveen']: ['Leeuwarden': 'Groningen']: ['Roosendaal': 'Vlissingen']: ['Roosendaal': 'Dordrecht']: ['Zaandam': 'Beverwijk']]
