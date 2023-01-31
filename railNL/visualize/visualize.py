@@ -76,7 +76,7 @@ def visualizeNetwork(
             name = station[0]
             plt.annotate(name, (x, y))
 
-    plt.savefig("rail1.png", format="PNG")
+    plt.savefig("results/railNetwork.png", format="PNG")
     plt.show()
     plt.clf()
 
@@ -116,7 +116,9 @@ def loadScores (targetFolder: str, filename: str) -> float:
             if row["train"] == "score":
                 return float(row["stations"])
 
-def loadSummary (resultFilepath: str) -> Tuple[List[int], List[float], Optional[float]]:
+def loadSummary (
+    resultFilepath: str
+) -> Tuple[List[int], List[float], Optional[float], Optional[float]]:
     """
     Shows the scores with the amount of iterations needed.
     """
@@ -125,18 +127,21 @@ def loadSummary (resultFilepath: str) -> Tuple[List[int], List[float], Optional[
 
         iterations = []
         scores = []
+        bestScore = None
 
         for row in reader:
+            if row["iteration"] == "Best":
+                bestScore = float(row["score"])
+                continue
             if row["iteration"] == "Theoretical max":
-                return iterations, scores, float(row["score"])
-            
+                return iterations, scores, float(row["score"]), bestScore
             if row["iteration"] == "average":
-                return iterations, scores, None
+                return iterations, scores, None, None
 
             iterations.append(int(row["iteration"]))
             scores.append(float(row["score"]))
 
-        return iterations, scores, None
+        return iterations, scores, None, None
 
 
 
@@ -156,26 +161,45 @@ def plotHistAverage (scores: List[float], title: str = "", binCount: int = 30) -
     plt.ylabel("frequency")
     plt.annotate(f'{average:.2f}', (average, 0), ha='center')
     plt.stairs(counts, bins)
-    plt.savefig("hist.png", format="PNG")
+    plt.savefig("results/hist.png", format="PNG")
     plt.show()
     plt.clf()
 
 
-def plotAlgorithm (iterations: List[int], scores: List[int], theoreticalBest: float, 
-                   title: str) -> None:
+def plotAlgorithm (
+    iterations: List[int], 
+    scores: List[int], 
+    theoreticalBest: float = None, 
+    bestScore: float = None,
+    title: str = ""
+) -> None:
     """
     Input: scores, average from def choicesFiles.
     Input: scope and algorithm.
     Creates a graph of the applied algorithm.
     """
-    plt.plot(iterations, scores)
-    plt.title(title)
-    plt.suptitle(f"Highest Score: {round(scores[-1], 2)}")
+    plt.plot(iterations, scores, label="Algorithm")
+
+    if not bestScore:
+        bestScore = max(scores)
+    
+    subtitle = f"Best: {bestScore}"
+
+    plt.axhline(bestScore, linestyle="dashed", label="Best score")
     
     if theoreticalBest:
-        plt.axhline(theoreticalBest)
-        
-    plt.xlabel("iteration")
-    plt.ylabel("points")
-    plt.savefig("algorithm.png", format="PNG")
+        plt.axhline(theoreticalBest, linestyle="dotted", color='orange', label="Theoretical best")
+        subtitle += f"; Theoretical best: {theoreticalBest}"
+
+    plt.suptitle(title)
+
+    plt.title(subtitle)
+
+    plt.xlabel("Iteration")
+
+    plt.ylabel("Score")
+
+    plt.legend(loc="lower right")
+
+    plt.savefig(f"results/algorithm.png", format="PNG")
     plt.show()
