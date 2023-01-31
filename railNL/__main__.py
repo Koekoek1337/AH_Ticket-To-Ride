@@ -3,6 +3,7 @@ import visualize.visualize as vis
 
 from algorithms import random_hajo
 from algorithms import hillClimber_Hajo
+from algorithms import finnHillClimber
 
 import json
 import datetime
@@ -53,6 +54,7 @@ def batch(
         "random": random_hajo.main,
         "hillclimber_hajo": hillClimber_Hajo.routeHillclimber,
         "annealing": hillClimber_Hajo.runAnnealing,
+        "routeclimber_finn": finnHillClimber.main,
     }
 
     START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
