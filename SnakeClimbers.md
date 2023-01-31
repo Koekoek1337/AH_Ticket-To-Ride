@@ -6,6 +6,7 @@ Here for it takes a random generated railNetwork. Next it chooses for every traj
 or last station needs to be removed. This happens randomly. Next it will add a station to the
 begin or the end of the traject.
 The goal is that every time a traject improves when in finds a better path to take.
+There is also the option the the traject adds another route.
 It calculates the totally of the scores before it approves if every single traject is indeed an improvement.
 Because it is possible that a new path taken optimalizes the score of the singe traject, but downgrades
 the score of the totally of the railNetwork.
