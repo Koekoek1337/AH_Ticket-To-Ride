@@ -36,3 +36,6 @@ with routeReplace algoritm. This is another algorithm that replaces the route wi
 
 The results of this algorithm (routeSnakeClimber) is as follows: it has an average of 5636 and the range is from 4700 to 6300.
 This means that this algorithm has not gave a higher score than 'snakeClimber2', but it did gave a more usefull range.
+
+
+The 'snakeClimber2'- algorithm has run without the station Utrecht. This gave a surprising result: the scores were generally higher than that of the complete railNetwork. With an average of 5768 and an highest score of 6563.
