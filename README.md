@@ -167,7 +167,11 @@ In order to determine whether the linear cooling scheme of the simulated anneali
 
 From this, it can be concluded that the algorit without any cooling scheme already far outperforms the random algorithm, both in average score and score spread.
 
-The same 
+The same baseline was made for the simulated annealing algorithm with the linear cooling scheme, with initial temperature 64 and linear cooling constant 64 * 10^-4, which has been displayed below.
+
+![annealing_baselineLin](docs/annealing_baseline_linearCooling.png)
+
+
 
 - Baseline fig
 - Hoogste score
