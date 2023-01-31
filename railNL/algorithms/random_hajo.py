@@ -167,7 +167,7 @@ def randomRoute(network: RailNetwork, maxDuration: float):
 
 
 def randomSolution(network: RailNetwork, maxRoutes: int, maxDuration: float,
-    randomIterations: int = 10000) -> RailNetwork:
+    randomIterations: int = 1000) -> RailNetwork:
     """
     Returns a randomly solved railNetwork for optimization.
 
