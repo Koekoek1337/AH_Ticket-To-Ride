@@ -55,10 +55,10 @@ def batch(
         "random": random_hajo.main,
         "hillclimber_hajo": hillClimber_Hajo.routeHillclimber,
         "annealing": hillClimber_Hajo.runAnnealing,
-        "snakeClimber": hillclimber_simon.main,
-        "snakeClimber1": hillclimber_simon1.main,
-        "snakeClimber2": hillclimber_simon2.main,
-        "routeSnakeClimber": hillClimber_Finn_Simon.main,
+        "snakeclimber": hillclimber_simon.main,
+        "snakeclimber1": hillclimber_simon1.main,
+        "snakeclimber2": hillclimber_simon2.main,
+        "routesnakeclimber": hillClimber_Finn_Simon.main,
     }
 
     START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")

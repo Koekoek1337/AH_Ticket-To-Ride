@@ -7,18 +7,13 @@ from classes.railNetwork import RailNetwork
 from classes.route import Route
 from classes.station import Station
 from algorithms.random_hajo import randomSolution, exportScores, randomRoute
-# from algorithms.finnHillClimber import routeHillClimber
 
 
-START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-
-tMax = 180
-routeMax = 20
 
 class HillClimber():
 
 
-    def __init__(self, model, maxRoutes: int, maxDuration: int, randomIterations: int, maxConvergence: int):
+    def __init__(self, model, runName: str, targetFolder: str, maxRoutes: int, maxDuration: int, randomIterations: int, maxConvergence: int):
         # Takes a random solution
         model = randomSolution(model, maxRoutes, maxDuration, randomIterations)
         workModel = deepcopy(model)
@@ -28,7 +23,9 @@ class HillClimber():
         self.score = workModel.score()
         self.scores: List[Dict[str, Union[int, float]]] = []
         self.iteration = 0
-        self.maxConvergence = 10000
+        self.maxConvergence = maxConvergence
+        self.runName = runName
+        self.targetFolder = targetFolder
 
 
     def ReplaceOrMutate(self):
@@ -78,7 +75,7 @@ class HillClimber():
         Creates a new route with a legal amount of stations.
         """
 
-        randomRoute(self.workModel, tMax)
+        randomRoute(self.workModel, 180)
 
 
     def mutateRoute(self) -> None:
@@ -153,8 +150,9 @@ class HillClimber():
         """
         Runs the hillclimber algorithm for a specific amount of iterations.
         """
-        self.convergence = 0
+        START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
+        self.convergence = 0
 
         while self.convergence <= self.maxConvergence:
 
@@ -164,10 +162,11 @@ class HillClimber():
             self.convergence += 1
 
         # exports scores
-        exportScores(self.scores, "routeSnakeClimber", "snakeClimber", START_TIMESTAMP)
+        self.previousModel.exportSolution(self.targetFolder, self.runName)
+        exportScores(self.scores, self.targetFolder, self.runName, START_TIMESTAMP)
 
 
-def main(network: RailNetwork, runName: str, targetFolder: str, maxRoutes: int, maxDuration: int, randomIterations: int, maxConvergence: int) -> RailNetwork:
+def main(network: RailNetwork, runName: str, targetFolder: str, maxRoutes: int, maxDuration: int, randomIterations: int=50, maxConvergence: int=10000) -> RailNetwork:
     model = HillClimber(network, runName, targetFolder, maxRoutes, maxDuration, randomIterations, maxConvergence)
     model.run()
     return model.previousModel

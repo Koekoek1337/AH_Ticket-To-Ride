@@ -1,0 +1,16 @@
+{
+    "jobType": "batch",
+
+    "stationsFilepath": "data/StationsNationaal.csv",
+    "connectionsFilepath": "data/ConnectiesNationaal.csv",
+
+    "runs": 10,
+
+    "algorithm": "snakeClimber2",
+
+    "runName": "snakeClimber2",
+    "targetFolder": "results/snakeClimber2",
+    "maxRoutes": 20,
+    "maxDuration": 180,
+    "maxConvergence": 10000
+}
