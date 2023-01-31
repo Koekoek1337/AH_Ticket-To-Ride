@@ -15,13 +15,12 @@ class HillClimber():
 
     def __init__(self):
         # Takes a random solution
-        model = randomSolution(RailNetwork("data/StationsMinGroningen.csv", "data/ConnectiesMinGroningen.csv"), 20, 180, 50)
+        model = randomSolution(RailNetwork("data/StationsNationaal.csv", "data/ConnectiesNationaal.csv"), 20, 180, 50)
         workModel = deepcopy(model)
 
-        self.previousModel = deepcopy(workModel)
         self.workModel = workModel
-        self.routes = workModel.listRoutes()
-        self.score = workModel.score()
+        self.previousModel = deepcopy(self.workModel)
+        self.score = self.workModel.score()
         self.scores: List[Dict[str, Union[int, float]]] = []
         self.iteration = 0
 
@@ -31,130 +30,75 @@ class HillClimber():
         Random choice between removing first or last station for every route taken.
         Than adds a new station to the route.
         """
-        self.previousModel = deepcopy(self.workModel)
+        self.workModel = deepcopy(self.previousModel)
 
-        # mutate every route in the workModel
+        # mutate every route in the workModel 
         for route in self.workModel.listRoutes():
             randomFloat = random.random()
-            if randomFloat < 0.33:
-                self.mutateLastStation(route)
-            elif randomFloat > 0.67:
-                self.mutateFirstStation(route)
+            if randomFloat <= 0.33:
+                route.popStation()
+                self.lengthenRoute(route)
+            elif randomFloat <= 0.67:
+                route.popStation(0)
+                self.lengthenRoute(route)
             else:
                 self.lengthenRoute(route)
 
-
-    def mutateLastStation(self, route: List[str]) -> List[str]:
-        """
-        Input is a route (minus the last station)
-        Output: adds a station to the route and makes it a newRoute
-        """
-        newRoute = route
-
-        # if trainroute is empty, deletes route
-        if newRoute.nStations() == 0:
-            self.workModel.delRoute(newRoute.getID())
-            return
-
-        # pop last station
-        newRoute.popStation()
-
-        # if trainroute is empty, deletes route
-        if newRoute.nStations() == 0:
-            self.workModel.delRoute(newRoute.getID())
-            return
-
-        # if there are no legal moves possible, skips this function
-        if not newRoute.hasLegalMoves(180):
-            return
-
-        options = newRoute.getLegalMoves(180)
-        index = random.choice(list(options.keys()))
-
-        # add new station as last station
-        if index > 0:
-            newRoute.appendStation(random.choice(options[index])[0])
-
-        # add new station as first station
-        elif index == 0:
-            newRoute.insertStation(0, random.choice(options[index])[0])
-        else:
-            return
-
-        return newRoute
+        return self.workModel
 
 
-    def mutateFirstStation(self, route: List[str]) -> List[str]:
-        """
-        Input is a route (minus the first station)
-        Output: adds a station to the route and makes it a newRoute
-        """
-        newRoute = route
-
-        # if trainroute is empty, deletes route
-        if newRoute.nStations() == 0:
-            self.workModel.delRoute(newRoute.getID())
-            return
-
-        # pop first station
-        newRoute.popStation(0)
-
-        # if trainroute is empty, deletes route
-        if newRoute.nStations() == 0:
-            self.workModel.delRoute(newRoute.getID())
-            return
-
-        # if there are no legal moves possible, skips this function
-        if not newRoute.hasLegalMoves(180):
-            return
-
-        options = newRoute.getLegalMoves(180)
-        index = random.choice(list(options.keys()))
-
-        # add new station to last station
-        if index > 0:
-            newRoute.appendStation(random.choice(options[index])[0])
-
-        # add new station as first station
-        elif index == 0:
-            newRoute.insertStation(0, random.choice(options[index])[0])
-
-        else:
-            return
-
-        return newRoute
+    # def mutateLastStation(self, route: List[str]) -> List[str]:
+    #     """
+    #     Input is a route (minus the last station)
+    #     Output: adds a station to the route and makes it a route
+    #     """
+    #     # if trainroute is empty, deletes route
+    #     if route.nStations() == 1:
+    #         self.workModel.delRoute(route.getID())
+    #         return
+    #
+    #     # pop last station
+    #     route.popStation()
+    #
+    #     self.lengthenRoute(route)
+    #
+    #
+    # def mutateFirstStation(self, route: List[str]) -> List[str]:
+    #     """
+    #     Input is a route (minus the first station)
+    #     Output: adds a station to the route and makes it a route
+    #     """
+    #     # if trainroute is empty, deletes route
+    #     if route.nStations() == 1:
+    #         self.workModel.delRoute(route.getID())
+    #         return
+    #
+    #     # pop first station
+    #     route.popStation(0)
+    #
+    #     self.lengthenRoute(route)
 
 
     def lengthenRoute(self, route: List[str]) -> List[str]:
         """
         Adds a station to the route, if it is still under tMax.
         """
-        newRoute = route
-        if newRoute.nStations() == 0:
-            self.workModel.delRoute(newRoute.getID())
+        if not route.hasLegalMoves(180):
             return
 
-        if not newRoute.hasLegalMoves(180):
-            return
-
-        options = newRoute.getLegalMoves(180)
+        options = route.getLegalMoves(180)
         index = random.choice(list(options.keys()))
 
         # add new station as last station
         if index > 0:
-            newRoute.appendStation(random.choice(options[index])[0])
+            route.appendStation(random.choice(options[index])[0])
 
         # add new station as first station
         elif index == 0:
-            newRoute.insertStation(0, random.choice(options[index])[0])
-
-        else:
-            return
-
-        return newRoute
+            route.insertStation(0, random.choice(options[index])[0])
 
 
-    def checkSolution(self, newRoutes: List[List[str]]) -> None:
+    def checkSolution(self, routes: List[List[str]]) -> None:
         """
         Checks and accepts better solutions than current solution.
         """
@@ -163,15 +107,13 @@ class HillClimber():
 
         # We are looking for the highest possible K
         if newScore >= oldScore:
+            self.previousModel = self.workModel
             self.score = newScore
             self.scores.append({"iteration":self.iteration, "score":newScore})
-            self.workModel.exportSolution("snakeClimberMinGroningen9", "snakeClimber")
-        else:
-            self.workModel = self.previousModel
-            self.routes = self.previousModel.listRoutes()
+            self.workModel.exportSolution("snakeClimber22", "snakeClimber")
 
 
-    def run(self, iterations: int = 30000, verbose=False, mutate_nodes_number=1) -> None:
+    def run(self, iterations: int = 3000, verbose=False, mutate_nodes_number=1) -> None:
         """
         Runs the hillclimber algorithm for a specific amount of iterations.
         """
@@ -183,5 +125,8 @@ class HillClimber():
             self.checkSolution(self.mutateRoute())
             self.iteration += 1
 
+        print(f"p = {self.workModel.connectionCoverage()}")
+        print(f"routes = {self.workModel.nRoute()}")
+        print(f"total duration = {self.workModel.totalDuration()}")
         # exports scores
-        exportScores(self.scores, "snakeClimberMinGroningen9", "snakeClimber", START_TIMESTAMP)
+        exportScores(self.scores, "snakeClimber22", "snakeClimber", START_TIMESTAMP)

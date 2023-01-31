@@ -2,8 +2,7 @@
     "jobType": "v",
     "plotType": "algorithm",
 
-    "stationsFilepath": "data/StationsHolland.csv",
-    "connectionsFilepath": "data/ConnectiesHolland.csv",
+
 
     "title": "Snake algorithme",
 
