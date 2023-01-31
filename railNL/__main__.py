@@ -86,13 +86,13 @@ def batch(
             **arguments
         )
 
-        scores.append({"run":run, "score":newNetwork.score()})
+        scores.append({"iteration":run, "score":newNetwork.score()})
 
         currentRunName = runName + str(run + 1)
 
     if runs > 1:
         average = statistics.mean([score["score"] for score in scores])
-        scores.append({"run":"average", "score": average})
+        scores.append({"iteration":"average", "score": average})
 
         summaryName = f"{runName}-{str(runs)}runs"
         random_hajo.exportScores(scores, targetFolder, summaryName, START_TIMESTAMP)
@@ -106,7 +106,7 @@ def visualize(resultFilepath: str, plotType: str= "algorithm", **arguments):
         plotAlgConvergence(resultFilepath, **arguments)
 
     elif plotType == "network":
-        plotNetwork(**arguments)
+        plotNetwork(resultFilepath=resultFilepath, **arguments)
 
     elif plotType == "hist":
         plotHist(resultFilepath, **arguments)
@@ -135,13 +135,26 @@ def plotAlgConvergence(resultFilepath: str, title: str, **_):
     return
 
 
-def plotNetwork(stationsFilepath: str, connectionsFilepath: str, resultFilepath: str, *_):
+def plotNetwork(
+    stationsFilepath: str, 
+    connectionsFilepath: str, 
+    resultFilepath: str, 
+    title:str,
+    stationNames: bool = False
+):
     """
     
     """
     network = RailNetwork(stationsFilepath, connectionsFilepath)
     network.loadSolution(resultFilepath)
-    pass
+    
+    vis.visualizeNetwork(
+        network.connectionPoints(),
+        network.stationPoints(), 
+        network.routePointLists(),
+        stationNames,
+        title
+        )
 
 
 def parseArgv(argv: List[str]) -> Dict[str, Union[str, int, bool]]:
