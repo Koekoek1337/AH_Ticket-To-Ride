@@ -95,63 +95,52 @@ By Simon de Jong, Finn Leurs and Hajo Groen
 ---
 
 ## Tuning
-As the simulated annealing algorithm can make use of 
-multiple cooling schemes and is heavily influenced 
-by it's initial temperature and cooling constant.
-In order to more effectively apply the algorithm on the problem, the simulated annealing algorithm had to be tuned.
+As the simulated annealing algorithm can make use of multiple cooling schemes and is heavily influenced by it's initial temperature and cooling constant. In order to more effectively apply the algorithm on the problem, the simulated annealing algorithm had to be tuned.
 
 ### Convergence
 In order to find the best convergence limit, 8 batches of 10 runs were done with the simulated annealing algorithm in hillclimber mode with varying convergence limits, as seen below (note that the x-axis is not to scale).
 
 ![annealing_convergence](docs/annealing_convergence.png)
 
-From these runs, it was determined accepting runs 
-with maximum convergence of 10 000, 20 000  and 
-50 000 all yielded similar results. Therefore 10 000
-was chosen, as it gives good scores in an acceptable timeframe.
+From these runs, it was determined accepting runs with maximum convergence of `10 000`, `20 000` and `50 000` all yielded similar results. Therefore `10 000` was chosen, as it gives good scores in an acceptable timeframe.
 
 ### Logarithmic Cooling
 As the logarithmic cooling scheme is relatively simple, with one parameter that both determines cooling speed and starting temperature, 7 batches of 10 runs were done with the simulated annealing algorithm with the logarithmic cooling scheme and different logarithmic cooling constants, as seen below (note that the x-axis is not to scale).
 
 ![annealing_logCooling](docs/annealing_logCooling.png)
 
-The cooling scheme with cooling constant 10 seemed 
-to perform the best out of all the cooling 
-constants, with both the highest average as well as 
-the highest overall score. As this corresponds to an 
-initial temperature of 32, it was used as initial 
-guess temperature for the linear cooling scheme.
+The cooling scheme with cooling constant 10 seemed to perform the best out of all the cooling constants, with both the highest average as well as the highest overall score. As this corresponds to an initial temperature of `32`, it was used as initial guess temperature for the linear cooling scheme.
 
 ### Linear Cooling
 With an initial guess for the initial temperature, it was decided that the linear constant should be the initial temperature times a power of 10. To find the best power, 4 batches of 10 runs were done with varying linear constants, as seen below (Note that the x-axis has a logarithmic scale)
 
 ![annealing_linConstant](docs/annealing_linConstant.png)
 
-From this, 0.0032 (or initial temp * 10^-4) was 
-chosen as best linear constant, as it had both the 
-highest average score, as well as the best overall 
-score.
+From this, `0.0032` (or `initial temp * 10^-4`) was chosen as best linear constant, as it had both the highest average score, as well as the best overall score.
 
 Next, 3 batches of 10 runs were done with varying initial temperatures with proportionate linear constants were done as seen below (Note that the axis has a logarithmic scale).
 
 ![annealing_linTemp](docs/annealing_linTemp.png)
 
-From this, it was taken that initial temperature 64 had a more variable spread, yielding the best scoring solution that had thus yet been found, and was therefore taken as the best initial temperature for the linear cooling scheme.
+From this, it was taken that initial temperature `64` had a more variable spread, yielding the best scoring solution that had thus yet been found, and was therefore taken as the best initial temperature for the linear cooling scheme.
 
 ### Geometric Cooling
 The final cooling scheme to be tuned was the geometric cooling scheme. 64 was taken as initial temperature, as it performed well with the linear cooling scheme. It was decided that the geometric cooling constant should be of nines. Therefore 4 batches of 10 runs were done with varying geometric constants as seen below (Note that the x-axis has a logarithmic scale)
 
 ![annealing_geometic](docs/annealing_geoConstant.png)
 
-The geometric cooling scheme was taken to be outperformed by the linear cooling scheme, with initial temperature 64 and linear cooling constant 64 * 10^-4, in all cases. For this reason, the linear cooling scheme was chosen as the best suitable for this problem.
+The geometric cooling scheme was taken to be outperformed by the linear cooling scheme, with initial temperature 64 and linear cooling constant `64 * 10^-4`, in all cases. For this reason, the linear cooling scheme was chosen as the best suitable for this problem.
 
 ---
 
 ## Experiments
 ### Holland
-- Optimized route for Holland with highest score takes 
-    all trainRoutes.
-- Figure of railNetwork with score.
+The first instance of the case asked to build a rail system with up to 7 routes of up to 120 minutes that utilize all rail connections in Holland and the second instance asked to optimize the system with the score function.
+
+These instances were both evaluated over 10 runsusing the simulated annealing algorithm (linear cooling) with initial temperature `64` and linear cooling constant `64 * 10^-4`. 
+
+All the resulting rail systems contained all rail connections, with a high scoring system with 9035 points, as displayed below.
+
 
 ### Random Baseline
 - 1.6 mil random solutions
