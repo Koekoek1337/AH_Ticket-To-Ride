@@ -5,8 +5,9 @@
     "stationsFilepath": "data/StationsNationaal.csv",
     "connectionsFilepath": "data/ConnectiesNationaal.csv",
 
-    "title": "Beste oplossing simulated annealing met score 6605.0",
+    "title": "Beste oplossing snakeClimber met score 6500.28",
 
-    "resultFilepath": "results/bestNL/20230130-174517-hillSolution2_best.csv",
+    "resultFilepath": "results/snakeClimber2/20230131-175831-snakeClimber26.csv",
+
     "stationNames": false
 }
