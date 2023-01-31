@@ -2,11 +2,10 @@
     "jobType": "v",
     "plotType": "hist",
 
-    "stationsFilepath": "data/StationsHolland.csv",
-    "connectionsFilepath": "data/ConnectiesHolland.csv",
 
-    "title": "Baseline Nederland snakeclimber",
+
+    "title": "Baseline Nederland SnakeClimber2",
     "binCount": 9,
 
-    "resultFilepath": "results/baselines/100run_baselineHill.csv"
+    "resultFilepath": "results/SnakeClimber2/total_runSnakeClimber2.csv"
 }
