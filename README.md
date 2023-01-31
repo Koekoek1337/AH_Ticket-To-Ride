@@ -62,11 +62,31 @@ By Simon de Jong, Finn Leurs and Hajo Groen
 ### Simulated Annealing Hillclimber
 - Hajo
     - Based on random algorithm
+    - Short overview simulated Annealing
+        - Hillclimber
+        - Accepts all score improvements and accepts 
+        worse scoring states based on an annealing 
+        function based on Temperature
+        - Different cooling schemes
     - Every Step:
         - 12.5% chance to remove a random route
         - 12.5% chance to add a random route
         - 75% chance to replace a random route
-    
+
+#### cooling schemes
+- Hillclimber
+    - Always returns false
+- Logarithmic
+    - Cooling formula
+    - One parameter -> Tinit = C / log(2)
+- Linear
+    - Cooling formula
+    - Two parameters
+    - T < 0 -> Returns false
+- Geometric
+    - Cooling formula
+    - Two parameters
+    - Return false as T approaches 0
 
 ---
 
@@ -77,25 +97,33 @@ By Simon de Jong, Finn Leurs and Hajo Groen
     all trainRoutes.
 - Figure of railNetwork with score.
 
-### Baseline
+### Random Baseline
 - 1.6 mil random solutions
 - Figure of histogram
 
 ### Tuning
 - Simulated Annealing
+- Started by tuning convergence
 
 ### Station Removal
 #### Utrecht Centraal
 - National junction
+- Counter intuitively leads to higher overall scores as 
+    defined by our score function
 
 #### Den Helder
 - Often missing connection
+- Does not result in major score differences with
+    simulated annealing algorithm
 
 #### Vlissingen
 - Often missing connection
+- Does not result in major score differences with
+    simulated annealing algorithm
 
 #### Groningen
 - Reccommended
-- Does not show interesting results
+- Does not result in major score differences with
+    simulated annealing algorithm
 
 ## 
