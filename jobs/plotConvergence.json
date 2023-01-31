@@ -5,7 +5,7 @@
     "stationsFilepath": "data/StationsHolland.csv",
     "connectionsFilepath": "data/ConnectiesHolland.csv",
 
-    "title": "Snake algorithme",
+    "title": "Linear Annealing",
 
-    "resultFilepath": "railNL/hillClimberSimon/20230125-104706-summary-snakeClimber.csv"
+    "resultFilepath": "results/bestNL/20230130-174517-summary-hillSolution2.csv"
 }
