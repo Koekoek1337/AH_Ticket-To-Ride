@@ -1,0 +1,15 @@
+train,stations
+1,"[Ede-Wageningen, Arnhem Centraal, Nijmegen, Oss, s-Hertogenbosch, Tilburg, Eindhoven, s-Hertogenbosch, Eindhoven, Helmond, Eindhoven]"
+2,"[Leeuwarden, Heerenveen, Steenwijk, Zwolle, Deventer, Almelo, Hengelo, Enschede, Hengelo, Enschede]"
+3,"[Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Den Haag Laan v NOI, Delft, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Gouda, Rotterdam Alexander, Rotterdam Centraal, Dordrecht, Breda, Etten-Leur, Roosendaal]"
+4,"[Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Den Haag Centraal, Delft, Den Haag HS, Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Amsterdam Sloterdijk, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Centraal]"
+5,"[Castricum, Alkmaar, Castricum, Alkmaar, Hoorn, Alkmaar, Hoorn, Zaandam, Castricum, Beverwijk]"
+7,"[Amersfoort, Apeldoorn, Zutphen, Deventer, Almelo, Hengelo, Enschede, Hengelo, Enschede, Hengelo, Enschede, Hengelo, Enschede, Hengelo]"
+8,"[Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Gouda, Den Haag HS, Leiden Centraal, Schiphol Airport]"
+10,"[Vlissingen, Roosendaal, Dordrecht, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander]"
+11,"[Almere Centrum, Hilversum, Amsterdam Amstel, Almere Centrum, Lelystad Centrum, Almere Centrum, Amsterdam Amstel, Amsterdam Zuid]"
+13,"[Heerenveen, Steenwijk, Heerenveen, Steenwijk, Heerenveen, Leeuwarden, Groningen, Assen, Zwolle]"
+14,"[Gouda, Den Haag Laan v NOI, Delft, Den Haag HS, Leiden Centraal, Alphen a/d Rijn]"
+16,"[Amsterdam Sloterdijk, Zaandam, Amsterdam Sloterdijk, Haarlem, Beverwijk, Zaandam, Hoorn, Alkmaar, Hoorn]"
+score,5002.0
+connections missing,[['Alkmaar': 'Den Helder']: ['Amsterdam Centraal': 'Almere Centrum']: ['Arnhem Centraal': 'Dieren']: ['Den Haag Centraal': 'Gouda']: ['Deventer': 'Apeldoorn']: ['Dordrecht': 'Rotterdam Blaak']: ['Maastricht': 'Sittard']: ['Roermond': 'Weert']: ['Sittard': 'Heerlen']: ['Sittard': 'Roermond']: ['Tilburg': 'Breda']: ['Weert': 'Eindhoven']: ['Zutphen': 'Dieren']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Almelo']]

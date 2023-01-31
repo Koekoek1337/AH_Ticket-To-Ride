@@ -1,0 +1,23 @@
+train,stations
+1,"[Hilversum, Utrecht Centraal, Amsterdam Amstel, Utrecht Centraal, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Zuid, Amsterdam Sloterdijk, Zaandam, Hoorn, Zaandam]"
+2,"[Zaandam, Amsterdam Sloterdijk, Amsterdam Centraal, Almere Centrum, Lelystad Centrum, Almere Centrum, Hilversum, Almere Centrum, Lelystad Centrum, Almere Centrum]"
+4,"[Rotterdam Alexander, Gouda, Utrecht Centraal, Alphen a/d Rijn, Leiden Centraal, Den Haag Centraal, Leiden Centraal, Den Haag HS, Gouda]"
+7,"[Nijmegen, Arnhem Centraal, Nijmegen, Oss, Nijmegen, Arnhem Centraal, Ede-Wageningen, Utrecht Centraal, Amersfoort]"
+8,"[Sittard, Roermond, Weert, Eindhoven, Tilburg, Breda, Etten-Leur, Breda, Tilburg, Eindhoven, Helmond, Venlo]"
+11,"[Amsterdam Zuid, Amsterdam Sloterdijk, Zaandam, Castricum, Alkmaar, Castricum, Beverwijk, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal, Den Haag Laan v NOI, Delft]"
+12,"[Beverwijk, Zaandam, Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Den Haag Centraal, Leiden Centraal, Den Haag Laan v NOI, Gouda, Rotterdam Alexander]"
+13,"[Maastricht, Sittard, Maastricht, Sittard, Heerlen, Sittard, Roermond, Weert, Eindhoven, Helmond]"
+14,"[Den Haag Centraal, Gouda, Den Haag Centraal, Delft, Den Haag HS, Leiden Centraal, Schiphol Airport, Amsterdam Zuid]"
+15,"[Eindhoven, s-Hertogenbosch, Tilburg, Breda, Etten-Leur, Roosendaal, Dordrecht, Rotterdam Centraal, Schiedam Centrum, Delft, Den Haag Centraal, Gouda, Alphen a/d Rijn, Leiden Centraal]"
+16,"[Amsterdam Zuid, Amsterdam Amstel, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Utrecht Centraal, s-Hertogenbosch, Tilburg]"
+17,"[Den Haag HS, Gouda, Rotterdam Alexander, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Rotterdam Blaak, Schiedam Centrum, Delft]"
+19,"[Apeldoorn, Deventer, Zwolle, Steenwijk, Heerenveen, Steenwijk, Heerenveen, Leeuwarden, Heerenveen, Steenwijk]"
+21,"[Heerenveen, Steenwijk, Zwolle, Almelo, Deventer, Almelo]"
+22,"[Etten-Leur, Roosendaal, Dordrecht, Rotterdam Blaak, Dordrecht, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal, Dordrecht, Breda, Etten-Leur]"
+24,"[Den Helder, Alkmaar, Hoorn, Zaandam, Beverwijk, Castricum, Alkmaar, Hoorn]"
+25,"[Zwolle, Deventer, Zutphen, Dieren, Arnhem Centraal, Nijmegen, Oss, s-Hertogenbosch, Oss, s-Hertogenbosch, Oss]"
+28,"[Apeldoorn, Zutphen, Dieren, Zutphen, Dieren, Zutphen, Apeldoorn, Amersfoort, Zwolle, Assen]"
+39,"[Leeuwarden, Heerenveen, Steenwijk, Zwolle, Almelo, Hengelo, Enschede, Hengelo, Enschede, Hengelo, Enschede]"
+40,"[Amsterdam Centraal, Amsterdam Amstel, Hilversum, Almere Centrum]"
+score,4849.057471264368
+connections missing,[['Roosendaal': 'Vlissingen']]

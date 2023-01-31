@@ -1,0 +1,19 @@
+train,stations
+0,"[Delft, Den Haag Centraal, Delft, Den Haag HS, Delft, Schiedam Centrum, Delft, Schiedam Centrum, Delft]"
+1,"[Den Haag Centraal, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk]"
+2,"[Amsterdam Amstel, Almere Centrum, Amsterdam Centraal, Amsterdam Sloterdijk, Zaandam, Castricum, Beverwijk, Castricum]"
+3,"[Helmond, Venlo, Helmond, Eindhoven, Helmond]"
+4,"[Hilversum, Almere Centrum, Lelystad Centrum, Almere Centrum, Hilversum, Almere Centrum, Amsterdam Amstel]"
+5,"[Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Blaak, Dordrecht, Breda, Dordrecht, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Centraal, Rotterdam Alexander, Gouda, Rotterdam Alexander, Rotterdam Centraal, Dordrecht]"
+6,"[Leiden Centraal, Alphen a/d Rijn, Leiden Centraal, Heemstede-Aerdenhout, Leiden Centraal, Alphen a/d Rijn, Leiden Centraal, Den Haag HS, Leiden Centraal, Heemstede-Aerdenhout]"
+7,"[Den Haag Centraal, Gouda, Den Haag HS, Leiden Centraal, Den Haag HS]"
+8,"[Roosendaal, Etten-Leur, Breda, Dordrecht, Roosendaal]"
+9,"[Enschede, Hengelo, Enschede, Hengelo, Almelo, Hengelo, Almelo, Zwolle, Steenwijk, Heerenveen]"
+10,"[Heerlen, Sittard, Heerlen, Sittard, Heerlen, Sittard, Heerlen, Sittard, Heerlen, Sittard, Roermond, Sittard]"
+11,"[Den Helder, Alkmaar, Castricum, Beverwijk, Zaandam, Castricum, Zaandam, Amsterdam Sloterdijk, Zaandam]"
+12,"[Deventer, Apeldoorn, Deventer, Zutphen, Dieren, Arnhem Centraal, Ede-Wageningen, Arnhem Centraal, Dieren, Zutphen, Apeldoorn, Amersfoort, Zwolle]"
+13,"[Roermond, Weert, Roermond, Weert, Roermond, Sittard, Maastricht]"
+14,"[s-Hertogenbosch, Oss, Nijmegen, Arnhem Centraal, Nijmegen, Arnhem Centraal, Ede-Wageningen, Arnhem Centraal, Nijmegen, Arnhem Centraal, Nijmegen]"
+15,"[Nijmegen, Oss, s-Hertogenbosch, Oss, s-Hertogenbosch]"
+score,4871.0
+connections missing,[['Assen': 'Zwolle']: ['Deventer': 'Almelo']: ['Groningen': 'Assen']: ['Leeuwarden': 'Groningen']: ['Roosendaal': 'Vlissingen']: ['Zwolle': 'Deventer']]

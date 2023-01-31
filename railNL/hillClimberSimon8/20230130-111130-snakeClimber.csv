@@ -1,0 +1,16 @@
+train,stations
+0,"[Utrecht Centraal, Gouda, Den Haag Centraal, Delft, Den Haag HS, Delft, Den Haag HS, Delft, Den Haag HS, Leiden Centraal, Den Haag Laan v NOI, Leiden Centraal, Den Haag HS, Gouda]"
+1,"[s-Hertogenbosch, Utrecht Centraal, Amersfoort, Apeldoorn, Zutphen, Deventer, Zutphen]"
+2,"[Den Haag Laan v NOI, Leiden Centraal, Alphen a/d Rijn, Utrecht Centraal, Ede-Wageningen, Utrecht Centraal, Amersfoort]"
+3,"[Steenwijk, Zwolle, Almelo, Hengelo, Enschede, Hengelo, Enschede, Hengelo]"
+4,"[Rotterdam Alexander, Gouda, Rotterdam Alexander, Gouda, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Delft]"
+5,"[Weert, Roermond, Sittard]"
+6,"[Gouda, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Dordrecht, Roosendaal, Etten-Leur, Breda, Etten-Leur, Breda]"
+7,"[Amsterdam Zuid, Amsterdam Sloterdijk, Zaandam, Castricum]"
+8,"[Zutphen, Dieren, Arnhem Centraal, Dieren, Arnhem Centraal, Dieren, Arnhem Centraal, Ede-Wageningen, Utrecht Centraal]"
+9,"[Amsterdam Amstel, Amsterdam Zuid, Schiphol Airport, Leiden Centraal, Den Haag Laan v NOI, Delft, Den Haag Centraal, Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout]"
+10,"[Nijmegen, Arnhem Centraal, Ede-Wageningen, Arnhem Centraal, Nijmegen, Oss, s-Hertogenbosch]"
+11,"[Lelystad Centrum, Almere Centrum, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Sloterdijk, Haarlem, Amsterdam Sloterdijk, Haarlem, Beverwijk, Zaandam]"
+12,"[Leeuwarden, Heerenveen]"
+score,4480.887640449438
+connections missing,[['Alkmaar': 'Hoorn']: ['Amsterdam Amstel': 'Almere Centrum']: ['Assen': 'Zwolle']: ['Breda': 'Dordrecht']: ['Dordrecht': 'Rotterdam Blaak']: ['Eindhoven': 'Helmond']: ['Eindhoven': 'Tilburg']: ['Groningen': 'Assen']: ['Helmond': 'Venlo']: ['Hilversum': 'Almere Centrum']: ['Leeuwarden': 'Groningen']: ['Roosendaal': 'Vlissingen']: ['Utrecht Centraal': 'Amsterdam Centraal']: ['Utrecht Centraal': 'Schiphol Airport']: ['Weert': 'Eindhoven']: ['Zaandam': 'Hoorn']: ['Zwolle': 'Deventer']]

@@ -1,0 +1,19 @@
+train,stations
+0,"[Gouda, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Delft, Den Haag Laan v NOI, Leiden Centraal, Den Haag HS, Delft, Den Haag Centraal, Leiden Centraal]"
+1,"[Amersfoort, Apeldoorn, Zutphen, Deventer, Almelo, Hengelo, Almelo, Hengelo]"
+2,"[Lelystad Centrum, Almere Centrum, Amsterdam Centraal, Amsterdam Amstel, Almere Centrum]"
+3,"[Den Haag Centraal, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Amstel]"
+4,"[Oss, s-Hertogenbosch, Tilburg, Breda, Etten-Leur, Roosendaal, Dordrecht, Rotterdam Blaak, Schiedam Centrum, Rotterdam Blaak, Dordrecht]"
+5,"[]"
+6,"[Arnhem Centraal, Ede-Wageningen, Arnhem Centraal, Ede-Wageningen, Arnhem Centraal, Ede-Wageningen, Arnhem Centraal, Dieren, Zutphen, Dieren, Zutphen]"
+7,"[s-Hertogenbosch, Oss, s-Hertogenbosch, Oss, s-Hertogenbosch, Oss]"
+8,"[Apeldoorn, Deventer, Apeldoorn, Deventer, Zwolle, Steenwijk, Heerenveen, Steenwijk, Heerenveen, Steenwijk]"
+9,"[Amsterdam Centraal, Amsterdam Sloterdijk, Amsterdam Zuid, Amsterdam Amstel, Amsterdam Centraal, Almere Centrum, Lelystad Centrum, Almere Centrum, Lelystad Centrum, Almere Centrum, Lelystad Centrum]"
+10,"[Haarlem, Beverwijk, Zaandam, Amsterdam Sloterdijk, Haarlem, Beverwijk, Haarlem, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem]"
+11,"[Rotterdam Alexander, Rotterdam Centraal, Dordrecht, Breda, Tilburg, s-Hertogenbosch, Tilburg, Eindhoven, s-Hertogenbosch]"
+12,"[Hoorn]"
+13,"[Roermond, Sittard, Heerlen, Sittard, Maastricht, Sittard, Maastricht, Sittard, Roermond, Weert]"
+14,"[Venlo, Helmond, Eindhoven, Weert, Eindhoven]"
+15,"[Almere Centrum, Hilversum, Amsterdam Amstel, Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Schiphol Airport, Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout]"
+score,4584.0
+connections missing,[['Alkmaar': 'Den Helder']: ['Den Haag HS': 'Gouda']: ['Den Haag Laan v NOI': 'Gouda']: ['Gouda': 'Alphen a/d Rijn']: ['Leiden Centraal': 'Alphen a/d Rijn']: ['Roosendaal': 'Vlissingen']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Almelo']]

@@ -1,0 +1,19 @@
+train,stations
+0,"[Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Den Haag Laan v NOI, Gouda, Rotterdam Alexander, Gouda, Den Haag HS, Leiden Centraal, Den Haag Centraal]"
+1,"[Delft, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Centraal, Rotterdam Alexander, Gouda, Alphen a/d Rijn, Gouda, Rotterdam Alexander, Rotterdam Centraal, Rotterdam Alexander, Gouda, Rotterdam Alexander]"
+2,"[Hilversum, Almere Centrum, Amsterdam Amstel, Amsterdam Zuid, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Zuid, Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Amstel, Hilversum]"
+3,"[Almelo, Deventer, Zutphen, Deventer, Zutphen, Dieren, Zutphen, Dieren, Arnhem Centraal, Nijmegen]"
+4,"[Tilburg, Eindhoven, s-Hertogenbosch, Tilburg, s-Hertogenbosch, Oss, Nijmegen, Arnhem Centraal, Dieren, Zutphen, Dieren]"
+5,"[Den Haag Centraal, Delft, Schiedam Centrum, Delft, Schiedam Centrum, Delft, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Delft, Den Haag HS, Delft, Den Haag Laan v NOI]"
+6,"[Alphen a/d Rijn, Leiden Centraal, Schiphol Airport, Amsterdam Zuid, Amsterdam Sloterdijk, Zaandam, Amsterdam Sloterdijk, Zaandam, Amsterdam Sloterdijk]"
+7,"[Etten-Leur, Breda, Etten-Leur, Roosendaal, Dordrecht, Rotterdam Blaak, Schiedam Centrum, Delft, Den Haag Centraal, Gouda]"
+8,"[]"
+9,"[Lelystad Centrum, Almere Centrum, Amsterdam Centraal, Amsterdam Sloterdijk, Haarlem, Beverwijk, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Amsterdam Sloterdijk, Zaandam, Castricum, Alkmaar]"
+10,"[Helmond, Eindhoven, Weert, Roermond, Sittard]"
+11,"[Deventer, Almelo, Deventer, Apeldoorn, Zutphen, Dieren, Zutphen, Deventer]"
+12,"[Rotterdam Alexander, Gouda, Rotterdam Alexander, Rotterdam Blaak, Dordrecht, Rotterdam Centraal, Rotterdam Alexander, Gouda, Rotterdam Alexander, Rotterdam Centraal, Dordrecht, Rotterdam Centraal, Dordrecht, Rotterdam Blaak]"
+13,"[Enschede, Hengelo, Enschede]"
+14,"[Amsterdam Sloterdijk, Zaandam, Beverwijk]"
+15,"[Etten-Leur, Breda, Etten-Leur, Breda, Etten-Leur, Breda, Etten-Leur, Breda]"
+score,4485.0
+connections missing,[['Alkmaar': 'Den Helder']: ['Assen': 'Zwolle']: ['Beverwijk': 'Castricum']: ['Breda': 'Dordrecht']: ['Groningen': 'Assen']: ['Helmond': 'Venlo']: ['Leeuwarden': 'Groningen']: ['Roosendaal': 'Vlissingen']: ['Zwolle': 'Amersfoort']]

@@ -5,8 +5,8 @@
     "stationsFilepath": "data/StationsNationaal.csv",
     "connectionsFilepath": "data/ConnectiesNationaal.csv",
 
-    "title": "Snake algorithm oplossing Nederland met score 4414.12",
+    "title": "Beste oplossing simulated annealing met score 6605.0",
 
-    "resultFilepath": "railNL/hillClimberSimon/20230125-105823-snakeClimber.csv",
+    "resultFilepath": "results/bestNL/20230130-174517-hillSolution2_best.csv",
     "stationNames": false
 }

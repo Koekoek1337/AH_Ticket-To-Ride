@@ -5,8 +5,8 @@
     "stationsFilepath": "data/StationsHolland.csv",
     "connectionsFilepath": "data/ConnectiesHolland.csv",
 
-    "title": "Baseline Nederland Random",
-    "binCount": 150,
+    "title": "Baseline Nederland climber",
+    "binCount": 9,
 
-    "resultFilepath": "results/Netherlands/baseline2/20230125-005129-summary-solution.csv"
+    "resultFilepath": "results/baselines/100run_baselineHill.csv"
 }

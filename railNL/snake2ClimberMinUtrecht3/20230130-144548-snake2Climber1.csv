@@ -1,0 +1,20 @@
+train,stations
+0,"[Tilburg, Eindhoven, Helmond, Eindhoven, Weert, Roermond, Sittard, Heerlen, Sittard, Roermond]"
+1,"[]"
+2,"[Schiedam Centrum, Rotterdam Centraal]"
+3,"[]"
+4,"[Dieren, Arnhem Centraal, Dieren, Zutphen, Deventer, Zwolle, Amersfoort]"
+5,"[Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum]"
+6,"[]"
+7,"[]"
+8,"[]"
+9,"[]"
+10,"[]"
+11,"[Tilburg]"
+12,"[Den Haag Centraal, Gouda, Rotterdam Alexander, Rotterdam Blaak, Rotterdam Alexander]"
+13,"[Amsterdam Amstel, Amsterdam Zuid]"
+14,"[Rotterdam Centraal, Schiedam Centrum, Delft]"
+15,"[]"
+16,"[]"
+score,4464.0
+connections missing,[['Alkmaar': 'Hoorn']: ['Alkmaar': 'Den Helder']: ['Helmond': 'Venlo']: ['Leiden Centraal': 'Heemstede-Aerdenhout']: ['Roosendaal': 'Vlissingen']: ['Roosendaal': 'Dordrecht']: ['Zaandam': 'Hoorn']]

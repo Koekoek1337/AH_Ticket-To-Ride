@@ -1,0 +1,14 @@
+train,stations
+0,"[Haarlem, Beverwijk]"
+1,"[Utrecht Centraal, Hilversum, Utrecht Centraal, s-Hertogenbosch, Eindhoven, Weert, Roermond, Weert, Eindhoven, Helmond, Venlo]"
+2,"[Hilversum, Utrecht Centraal, Gouda, Den Haag Laan v NOI, Delft, Den Haag Laan v NOI, Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem]"
+3,"[]"
+4,"[Arnhem Centraal, Dieren, Zutphen, Apeldoorn, Amersfoort, Apeldoorn, Amersfoort, Utrecht Centraal]"
+5,"[Amsterdam Centraal, Amsterdam Amstel, Utrecht Centraal, Ede-Wageningen, Arnhem Centraal]"
+6,"[Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Gouda, Den Haag Laan v NOI]"
+7,"[Rotterdam Alexander, Rotterdam Blaak, Dordrecht, Rotterdam Centraal, Rotterdam Alexander, Gouda, Den Haag HS]"
+8,"[Utrecht Centraal, Alphen a/d Rijn, Gouda, Den Haag HS, Leiden Centraal, Den Haag Centraal, Delft, Schiedam Centrum]"
+9,"[Amsterdam Centraal, Amsterdam Amstel, Hilversum, Almere Centrum, Amsterdam Centraal, Utrecht Centraal, Hilversum]"
+10,"[Amsterdam Zuid, Schiphol Airport, Amsterdam Zuid, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Zuid, Amsterdam Sloterdijk, Amsterdam Centraal, Amsterdam Amstel, Amsterdam Zuid, Amsterdam Sloterdijk, Zaandam, Amsterdam Sloterdijk]"
+score,3707.6091954022986
+connections missing,[['Alkmaar': 'Den Helder']: ['Almelo': 'Hengelo']: ['Almere Centrum': 'Lelystad Centrum']: ['Assen': 'Zwolle']: ['Breda': 'Etten-Leur']: ['Breda': 'Dordrecht']: ['Deventer': 'Apeldoorn']: ['Deventer': 'Almelo']: ['Deventer': 'Zutphen']: ['Eindhoven': 'Tilburg']: ['Etten-Leur': 'Roosendaal']: ['Heerenveen': 'Steenwijk']: ['Hengelo': 'Enschede']: ['Leeuwarden': 'Heerenveen']: ['Leiden Centraal': 'Alphen a/d Rijn']: ['Maastricht': 'Sittard']: ['Roosendaal': 'Vlissingen']: ['Roosendaal': 'Dordrecht']: ['Rotterdam Blaak': 'Schiedam Centrum']: ['Sittard': 'Heerlen']: ['Sittard': 'Roermond']: ['Steenwijk': 'Zwolle']: ['Tilburg': 'Breda']: ['Zaandam': 'Beverwijk']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Deventer']: ['Zwolle': 'Almelo']: ['s-Hertogenbosch': 'Tilburg']]

@@ -1,0 +1,12 @@
+train,stations
+0,"[Heerlen, Sittard]"
+1,"[Arnhem Centraal, Nijmegen, Arnhem Centraal, Nijmegen, Oss, s-Hertogenbosch, Oss]"
+2,"[Dieren, Arnhem Centraal, Ede-Wageningen, Utrecht Centraal, Amsterdam Amstel, Amsterdam Centraal, Almere Centrum, Lelystad Centrum, Almere Centrum, Lelystad Centrum]"
+3,"[Leiden Centraal, Alphen a/d Rijn, Gouda, Rotterdam Alexander, Gouda, Den Haag Centraal, Leiden Centraal, Den Haag Centraal, Delft, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Rotterdam Blaak]"
+4,"[Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Delft, Den Haag HS, Delft, Den Haag Laan v NOI]"
+5,"[Etten-Leur, Breda, Dordrecht, Rotterdam Blaak, Dordrecht, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Centraal, Rotterdam Alexander, Rotterdam Blaak, Schiedam Centrum, Rotterdam Centraal]"
+6,"[Enschede, Hengelo, Almelo, Deventer, Zwolle, Deventer, Apeldoorn, Zutphen]"
+7,"[Leiden Centraal, Den Haag HS, Delft, Schiedam Centrum, Delft, Den Haag HS, Gouda, Den Haag Laan v NOI]"
+8,"[Alkmaar, Hoorn, Zaandam, Amsterdam Sloterdijk]"
+score,4335.932584269663
+connections missing,[['Alkmaar': 'Den Helder']: ['Amsterdam Amstel': 'Almere Centrum']: ['Amsterdam Amstel': 'Hilversum']: ['Amsterdam Centraal': 'Amsterdam Sloterdijk']: ['Amsterdam Zuid': 'Amsterdam Sloterdijk']: ['Apeldoorn': 'Amersfoort']: ['Assen': 'Zwolle']: ['Beverwijk': 'Castricum']: ['Castricum': 'Alkmaar']: ['Eindhoven': 's-Hertogenbosch']: ['Eindhoven': 'Tilburg']: ['Groningen': 'Assen']: ['Heerenveen': 'Steenwijk']: ['Helmond': 'Venlo']: ['Hilversum': 'Almere Centrum']: ['Leeuwarden': 'Heerenveen']: ['Leeuwarden': 'Groningen']: ['Steenwijk': 'Zwolle']: ['Utrecht Centraal': 'Amsterdam Centraal']: ['Utrecht Centraal': 'Hilversum']: ['Utrecht Centraal': 'Amersfoort']: ['Utrecht Centraal': 'Alphen a/d Rijn']: ['Utrecht Centraal': 'Schiphol Airport']: ['Utrecht Centraal': 's-Hertogenbosch']: ['Zaandam': 'Castricum']: ['Zaandam': 'Beverwijk']: ['Zwolle': 'Amersfoort']: ['Zwolle': 'Almelo']]

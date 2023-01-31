@@ -1,6 +1,5 @@
 import random
 import datetime
-import time
 
 from copy import deepcopy
 from math import exp, log10
@@ -20,9 +19,6 @@ The algorithm can be ran via either runAnnealing to have acccess to the specifie
 cooling scheme, or via routeHillclimber to run the algorithm as a pure hillclimber with the route 
 stepfunction.
 """
-
-
-START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
 
 # Run macros
@@ -99,7 +95,7 @@ def annealingClimber(
         convergenceLimit: int = 5000,
         randomIterations: int = 1000, 
         recordAll: bool = False,
-        exportImprovements: bool = True
+        exportImprovements: bool = False
     ) -> RailNetwork:
     """
     Annealing hillclimber algorithm. Takes a stepfunction and an annealingFunction (analagous to
@@ -130,6 +126,8 @@ def annealingClimber(
     
     Returns (RailNetwork): The optimized network
     """
+    START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+
     convergence = 0
     iteration = 0
 
@@ -325,9 +323,6 @@ def linearCooling(
     https://doi.org/10.13053/cys-21-3-2553.
     """
     currentTemperature = initialTemp - constantCoolingSpeed * iteration
-
-    if currentTemperature <= 0:
-        return False
     
     return annealingProbability(scoreDiff, currentTemperature)
 
@@ -345,6 +340,8 @@ def annealingProbability(scoreDiff: float, temperature: float) -> bool:
     Schedules in the Context of Dense Image Matching. Computación y Sistemas, 2017, 21. 
     https://doi.org/10.13053/cys-21-3-2553.
     """
+    if temperature <= 0:
+        return False
 
     probability = exp(-(scoreDiff / temperature))
     if random.random() <= probability:

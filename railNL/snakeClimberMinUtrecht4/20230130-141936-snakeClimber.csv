@@ -1,0 +1,15 @@
+train,stations
+0,"[Amsterdam Zuid, Amsterdam Amstel, Amsterdam Centraal, Amsterdam Sloterdijk, Zaandam, Castricum, Alkmaar, Hoorn, Zaandam]"
+1,"[Beverwijk, Haarlem, Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem, Beverwijk, Castricum, Beverwijk, Haarlem, Heemstede-Aerdenhout]"
+2,"[Leiden Centraal, Den Haag HS, Delft, Den Haag HS, Gouda, Den Haag Laan v NOI, Delft, Den Haag Laan v NOI, Leiden Centraal, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout, Haarlem, Heemstede-Aerdenhout]"
+3,"[Zutphen, Apeldoorn, Amersfoort, Zwolle, Almelo, Hengelo, Enschede]"
+4,"[Gouda, Alphen a/d Rijn, Leiden Centraal, Den Haag Centraal, Delft, Schiedam Centrum, Rotterdam Centraal, Rotterdam Alexander, Gouda, Den Haag Centraal, Leiden Centraal, Schiphol Airport]"
+5,"[Rotterdam Centraal, Schiedam Centrum, Rotterdam Centraal, Schiedam Centrum, Rotterdam Blaak, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Blaak, Dordrecht, Rotterdam Centraal, Dordrecht, Roosendaal, Etten-Leur, Breda]"
+6,"[Eindhoven, Helmond, Eindhoven, s-Hertogenbosch, Oss, s-Hertogenbosch]"
+7,"[Assen, Groningen, Assen, Zwolle, Almelo, Deventer]"
+8,"[Arnhem Centraal, Dieren, Zutphen, Apeldoorn, Zutphen, Apeldoorn, Deventer, Apeldoorn]"
+9,"[Rotterdam Centraal, Schiedam Centrum, Rotterdam Blaak, Schiedam Centrum, Rotterdam Blaak, Rotterdam Alexander]"
+10,"[Sittard, Roermond, Weert, Eindhoven]"
+11,"[Zaandam, Castricum, Beverwijk, Castricum, Alkmaar, Den Helder, Alkmaar, Castricum, Zaandam]"
+score,4931.0
+connections missing,[['Almere Centrum': 'Lelystad Centrum']: ['Amsterdam Amstel': 'Almere Centrum']: ['Amsterdam Amstel': 'Hilversum']: ['Amsterdam Centraal': 'Almere Centrum']: ['Heerenveen': 'Steenwijk']: ['Hilversum': 'Almere Centrum']: ['Leeuwarden': 'Heerenveen']: ['Leeuwarden': 'Groningen']: ['Maastricht': 'Sittard']: ['Roosendaal': 'Vlissingen']: ['Sittard': 'Heerlen']: ['Steenwijk': 'Zwolle']: ['Tilburg': 'Breda']: ['Zwolle': 'Deventer']]
