@@ -103,7 +103,7 @@ In order to increase effectiveness of the hillclimber, the temperature is reduce
 - Hillclimber
     - A worse state for the system is never accepted
 - Logarithmic cooling
-    - The system temperature (T) depends on a single constant (C) and the total amount of iterations (i), as seen in the following formula<sup>1</sup>
+    - The system temperature (T) depends on a single constant (C) and the total amount of iterations (i), as seen in the following formula<sup>1</sup> 
     $$
         T = {C \over log(1 + i)}
     $$
