@@ -103,7 +103,7 @@ class HillClimber():
             # Accept it if it is better
             self.checkSolution(self.mutateRoute())
             self.iteration += 1
-            self.iterations += 1
+            self.iteration += 1
 
         # exports scoress
         self.previousModel.exportSolution(self.targetFolder, self.runName)
