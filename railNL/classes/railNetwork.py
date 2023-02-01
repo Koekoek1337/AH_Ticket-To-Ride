@@ -14,6 +14,8 @@ from typing import Optional, List, Tuple, Dict, Union
 class RailNetwork:
     """Network of station nodes connected via connection nodes for train route optimization problem
 
+    Loads stations and rail connections from formatted csv files upon initialization.
+
     Quick Guide
     o ROUTES
     > Creating a new route:
