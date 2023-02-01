@@ -5,14 +5,17 @@ if TYPE_CHECKING:
 
 
 class Station:
-    """
-    Station node for a rail network
+    """Station node for a rail network
+
+    Stations link to connection nodes that link to their connected station nodes. Stations keep
+    track of all routes objects that they are incorporated in.
 
     Attributes:
-        name (str): The name of the station
-        position (Tuple[float, float]): The x and y coordinates of the station.
-        Connections (Dict[str, Tuple[Station, int]]): Connected stations and the time the rail
+        _name (str): The name of the station
+        _position (Tuple[float, float]): The x and y coordinates of the station.
+        _Connections (Dict[str, Tuple[Station, int]]): Connected stations and the time the rail
             connection takes keyed by station name.
+        _routes (Set[int]): The set of route ID's of routes registered to the station.
     """
 
     def __init__(self, name: str, x: float, y: float):
