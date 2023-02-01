@@ -312,26 +312,13 @@ Interesting about this solution is that it utilizes all possible connections in 
 ### Station Removal
 To test what would happen to the final scores of an optimized network if certain stations were removed, 5 batches of 10 runs were done with the simulated annealing algorithm (Linear cooling, T64, C64*10^-4), each lacking a single station, as well as a control batch of 10 runs with all stations.
 
-The stations chosen were
+The stations chosen were Den Helder, as it often went unused in high scoring algorithms; Groningen, as it was reccommended to us since a previous group found good results from it; Utrecht, as it was part of our case and as it is a national junction; Vlissingen, for the same reasons as Den Helder; and Zwolle as it holds multiple connections with long durations. The final scores have been visualized below.
 
 ![removedStations](docs/removedStations_finalScores.png)
 
+Den Helder, Groningen, Vlissingen and Zwolle all came out with similar scores to the control test. This could have been expected from Den Helder and Vlissingen, as networks lacking them often got high scores overall. Removing Groningen did not result in higher scores within our sample, leading us to believe earlier findings were outliers. As for Zwolle, it aparently is a Neutral station overall.
 
-#### Utrecht Centraal
-One of the assignments was to  disconnect Utrecht Centraal from the railNetwork connections. The results of leaving Utrecht out, were surprising at first. The results, counter intuitively, lead to higher overall scores as defined by our score function. We believe that the cause of this is that Utrecht is the biggest junction on the map. Omitting this station causes a significant reduction in the amount of rail that can be traveled. This influences the percentage of rails traveled, and might be the reason for higher scores.
-
-#### Den Helder
-Den Helder is an often missing connection in the railNetwork. This is the reason why we decided to remove this station from the network. But this new lay out does not result in major score differences with simulated annealing algorithm.
-
-#### Vlissingen
-Vlissingen is, just like Den Helder, a connection that is frequently missing in the results. But leaving this out does not show major results differences in score with simulated annealing algorithm. The reason why there is not a major difference without Vlissingen (or Den Helder) is, we think, because of the fact that they are often left out in the standard run as well. The amount of rail reduction is not a lot (only 1 connection), therefore it does not make a big difference in percentage covered rail. (Unlike Utrecht).
-
-#### Groningen
-Groningen was a recommendation. It only has a few connections, and these are of long distances. But the results in score are not significantly different with simulated algorithm.
-
-#### Zwolle
-We decided to remove Zwolle from the stations, because it only has a few connections. These connections are of long distance. Because Zwolle is normally a part of routes, it is surprising that this does not give major different results. The reason could be that, just like Groningen, the amount of rails omitted and time gains, does not make a significant contrast in the calculation.
-
+Removing Utrecht Centraal on the other hand resulted in significantly better scores within our sample size, which could be explained by the complexity of the network around it, given that it connects to 8 other stations. Thus as the removal lead to a simpeler system overall, it became easier to optimize
 
 ---
 
