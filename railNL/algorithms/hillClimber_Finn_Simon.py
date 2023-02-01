@@ -6,7 +6,7 @@ import datetime
 from classes.railNetwork import RailNetwork
 from classes.route import Route
 from classes.station import Station
-from algorithms.random_hajo import randomSolution, exportScores, randomRoute
+from algorithms.random import randomSolution, exportScores, randomRoute
 
 
 

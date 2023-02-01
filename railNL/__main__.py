@@ -1,8 +1,8 @@
 from classes.railNetwork import RailNetwork
 import visualize.visualize as vis
 
-from algorithms import random_hajo
-from algorithms import hillClimber_Hajo
+from algorithms import random as randomAlgorithm
+from algorithms import simulatedAnnealing
 from algorithms import hillclimber_simon, hillclimber_simon1, hillclimber_simon2
 from algorithms import hillClimber_Finn_Simon
 from algorithms import finnHillClimber
@@ -53,9 +53,9 @@ def batch(
     Runs an algorithm in batch as specified by the given job.json file
     """
     ALGORITHMS: Dict[str, Callable[[RailNetwork, Any], RailNetwork]] = {
-        "random": random_hajo.main,
-        "hillclimber_hajo": hillClimber_Hajo.routeHillclimber,
-        "annealing": hillClimber_Hajo.runAnnealing,
+        "random": randomAlgorithm.main,
+        "hillclimber_hajo": simulatedAnnealing.routeHillclimber,
+        "annealing": simulatedAnnealing.runAnnealing,
         "snakeclimber": hillclimber_simon.main,
         "snakeclimber1": hillclimber_simon1.main,
         "snakeclimber2": hillclimber_simon2.main,
@@ -107,7 +107,7 @@ def batch(
         scores.append({"iteration":"average", "score": average})
 
         summaryName = f"{runName}-{str(runs)}runs"
-        random_hajo.exportScores(scores, targetFolder, summaryName, START_TIMESTAMP)
+        randomAlgorithm.exportScores(scores, targetFolder, summaryName, START_TIMESTAMP)
 
     return
 

@@ -11,7 +11,7 @@ from classes.station import Station
 from typing import List, Dict, Union, Callable, Optional
 
 
-import algorithms.random_hajo as randomAlgorithm
+import algorithms.random as randomAlgorithm
 
 """Module for a Simulated Annealing Hillclimber Algorithm
 
@@ -47,6 +47,7 @@ def runAnnealing(
     """
     COOLING_SCHEMES: Dict[str, Callable[[float, float, int, float], bool]] = \
     {
+        ""
         "logarithmic": logarithmicCooling,
         "geometric": geometricCooling,
         "linear": linearCooling,

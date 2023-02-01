@@ -1,4 +1,4 @@
-from algorithms.random_hajo import randomSolution, randomRoute, exportScores
+from algorithms.random import randomSolution, randomRoute, exportScores
 
 from classes.railNetwork import RailNetwork
 from classes.route import Route
