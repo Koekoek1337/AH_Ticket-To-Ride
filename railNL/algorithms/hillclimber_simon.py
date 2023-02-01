@@ -89,7 +89,7 @@ class HillClimber():
             self.convergence = 0
 
 
-    def run(self, iterations: int= 30000, verbose=False, mutate_nodes_number=1) -> None:
+    def run(self, verbose=False, mutate_nodes_number=1) -> None:
         """
         Runs the hillclimber algorithm for a specific amount of iterations.
         """
@@ -97,7 +97,6 @@ class HillClimber():
         START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
         self.convergence = 0
-        self.iterations = iterations
 
         while self.convergence <= self.maxConvergence:
 
@@ -105,7 +104,6 @@ class HillClimber():
             self.checkSolution(self.mutateRoute())
             self.iteration += 1
             self.iterations += 1
-            self.convergence += 1
 
         # exports scoress
         self.previousModel.exportSolution(self.targetFolder, self.runName)
