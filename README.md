@@ -33,11 +33,21 @@ By Simon de Jong, Finn Leurs and Hajo Groen
 
 ## Overview
 
+rain routing is a highly complex problem. It involves creating a rail network that routes existing connections between train stations in the most optimal a way. The routing of a rail network is considered optimal when the connection coverage is high and when the amount of duplicate connections is low. This while keeping the amount of routes in the rail network and the total time those routes in the rail network take as low as possible. Note that a high connection coverage does not mean every connection has to be used.
+
+To measure the quality of a rail network in our case, it should generate as high as score as possible in the following function
+
+$$
+    K = 10000p - (100T + duration_{tot})
+$$
+
+Where p is the fractions of connections covered, T is the amount of routes in a rail network and duration<sub>tot</sub> is the sum of durations for all routes in the network. 
+
+When optimizing a rail network for Holland, the network is restricted to 7 routes with a maximum duration of 120 minutes. The theoretical maximum score for this rail network would be 9219.0 if all connections were covered by as little routes as possible.
+
+When optimizing a rail network for the Netherlands, the network is restricted to 20 routes with a maximum duration of 180 minutes. The theoretical maximum score for this rail network would be 7549.0 if all connections were covered by as little routes as possible.
+
 ## TODO
-- Introduction of the problem
-- Representation of Railnetwork, Station nodes,
-    connection Nodes and routes
-- Optimization via algorithms
 - Statespace
 
 ---
