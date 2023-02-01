@@ -303,6 +303,11 @@ The overall score for the netherlands was also recorded using the algorithm with
 Interesting about this solution is that it utilizes all possible connections in the Netherlands whilst still scoring higher than any other solution discovered.
 
 ### Station Removal
+To test what would happen to the final scores of an optimized network if certain stations were removed, 5 batches of 10 runs were done with the simulated annealing algorithm (Linear cooling, T64, C64*10^-4), each lacking a single station, as well as a control batch of 10 runs with all stations.
+
+The stations chosen were:
+
+![removedStations](docs/removedStations_finalScores.png)
 
 ## TODO
 
