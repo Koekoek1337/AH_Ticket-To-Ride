@@ -1,0 +1,19 @@
+{
+    "jobType": "batch",
+
+    "stationsFilepath": "data/StationsNationaal.csv",
+    "connectionsFilepath": "data/ConnectiesNational.csv",
+
+    "runs": 10,
+
+    "algorithm": "annealing",
+
+    "runName": "solution",
+    "targetFolder": "results/annealing",
+    "maxRoutes": 20,
+    "maxDuration": 180,
+
+    "coolingScheme": "linear",
+    "initialTemperature": 64,
+    "coolingConstant": 0.0064
+}

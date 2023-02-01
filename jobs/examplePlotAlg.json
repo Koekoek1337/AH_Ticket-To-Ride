@@ -1,0 +1,8 @@
+{
+    "jobType": "v",
+    "plotType": "algorithm",
+
+    "title": "Convergence of simulated annealing algorithm (Linear cooling, T64, C64e-4)",
+
+    "resultFilepath": "exampleResults/highestScoreNational/20230130-174517-summary-hillSolution2.csv"
+}

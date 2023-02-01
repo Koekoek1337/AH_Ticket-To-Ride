@@ -1,0 +1,9 @@
+{
+    "jobType": "v",
+    "plotType": "hist",
+
+    "title": "baseline Random",
+    "binCount": 10,
+
+    "resultFilepath": "exampleResults/baselines/random.csv"
+}
