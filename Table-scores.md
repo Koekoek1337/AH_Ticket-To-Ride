@@ -1,4 +1,6 @@
-﻿| **Algorithm**                           | **lowest score** | **average score** | **highest score** | **runs**    |
+﻿The following table shows the highest and lowest scores of every algorithm observed during baselining, as well as their average. 
+
+| **Algorithm**                           | **lowest score** | **average score** | **highest score** | **runs**    |
 |:---------------------------------------:|:----------------:|:-----------------:|:-----------------:|:-----------:|
 | **Random**                              | -681.52          | 2212.11           | 4677.65           | 1.6 million |
 | **snakeClimber**                        | 4215.2           | 5155.15           | 5991.76           | 100         |
@@ -9,7 +11,7 @@
 | **Simulated Annealing (hillclimber)**   | 5886.64          | 6165.99           | 6441.00           | 100         |
 | **Simulated Annealing (linear cooling)**| 4709.60          | 6050.45           | 6605.00           | 100         |
 
-This table shows the highest and lowest scores of every algorithm observed during baselining, as well as their average. All algorithms have shown to be a significant improvement over the random algorithm. What is also clear, is that the original snakeClimber algorithm - which manipulated only 1 station at a time - shows the worst results of all algorithms. But by adjusting the amount of stations removied and added per iteration improved the algorithm by resulting in higher scores.
+All algorithms have shown to be a significant improvement over the random algorithm.  What is also clear, is that the original snakeClimber algorithm - which manipulated only 1 station at a time - shows the worst results of all algorithms. But by adjusting the amount of stations removied and added per iteration improved the algorithm by resulting in higher scores.
 
 An interesting observation is that the routeSnakeClimber (a combination of the snakeClimber and greedy hillclimber) does give a higher average, with a smaller range than the algorithms it consists of.
 
