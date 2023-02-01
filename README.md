@@ -41,7 +41,7 @@ $$
     K = 10000p - (100T + duration_{tot})
 $$
 
-where p is the fraction of connections covered, T is the amount of routes in a rail network and duration<sub>tot</sub> is the sum of durations for all routes in the network. 
+where p is the fraction of connections covered, T is the amount of routes in a rail network and duration<sub>tot</sub> is the sum of durations for all routes in the network.
 
 When optimizing a rail network for Holland, the network is restricted to 7 routes with a maximum duration of 120 minutes per route. The theoretical maximum score for this rail network would be 9219.0 if all connections were covered by as few routes as possible.
 
@@ -62,8 +62,8 @@ $$
                 \over
                 r!(n-1)!
             }
-        })! 
-        \over 
+        })!
+        \over
         i!
         (
             ({
@@ -79,7 +79,7 @@ $$
     }
 $$
 
-with x for the maximum amount of routes, m for the maximum length of a route, r for the connections in a route and n for the total amount of connections in the system. 
+with x for the maximum amount of routes, m for the maximum length of a route, r for the connections in a route and n for the total amount of connections in the system.
 
 As the equation is too computationally expensive to solve using tools like WolframAlpha, a number can not be given.
 
@@ -225,7 +225,7 @@ The geometric cooling scheme was taken to be outperformed by the `linear cooling
 ### Holland
 The first instance of the case asked to build a rail system with up to 7 routes of each up to 120 minutes that utilizes all rail connections in Holland. The second instance asked to optimize the system with the score function.
 
-These instances were both evaluated over 10 runs using the simulated annealing algorithm (`linear cooling`) with initial temperature `64` and `linear cooling` constant `64 * 10^-4`. 
+These instances were both evaluated over 10 runs using the simulated annealing algorithm (`linear cooling`) with initial temperature `64` and `linear cooling` constant `64 * 10^-4`.
 
 All the resulting rail systems contained all rail connections, with a high scoring system with 9035 points, as displayed below.
 
@@ -309,30 +309,27 @@ Interesting about this solution is that it utilizes all possible connections in 
 ### Station Removal
 To test what would happen to the final scores of an optimized network if certain stations were removed, 5 batches of 10 runs were done with the simulated annealing algorithm (Linear cooling, T64, C64*10^-4), each lacking a single station, as well as a control batch of 10 runs with all stations.
 
-The stations chosen were 
+The stations chosen were
 
 ![removedStations](docs/removedStations_finalScores.png)
 
-## TODO
 
 #### Utrecht Centraal
-- National junction
-- Counter intuitively leads to higher overall scores as defined by our score function
+One of the assignments was to  disconnect Utrecht Centraal from the railNetwork connections. The results of leaving Utrecht out, were surprising at first. The results, counter intuitively, lead to higher overall scores as defined by our score function. We believe that the cause of this is that Utrecht is the biggest junction on the map. Omitting this station causes a significant reduction in the amount of rail that can be traveled. This influences the percentage of rails traveled, and might be the reason for higher scores.
 
 #### Den Helder
-- Often missing connection
-- Does not result in major score differences with
-    simulated annealing algorithm
+Den Helder is an often missing connection in the railNetwork. This is the reason why we decided to remove this station from the network. But this new lay out does not result in major score differences with simulated annealing algorithm.
 
 #### Vlissingen
-- Often missing connection
-- Does not result in major score differences with
-    simulated annealing algorithm
+Vlissingen is, just like Den Helder, a connection that is frequently missing in the results. But leaving this out does not show major results differences in score with simulated annealing algorithm. The reason why there is not a major difference without Vlissingen (or Den Helder) is, we think, because of the fact that they are often left out in the standard run as well. The amount of rail reduction is not a lot (only 1 connection), therefore it does not make a big difference in percentage covered rail. (Unlike Utrecht).
+
 
 #### Groningen
-- Recommended to us
-- Does not result in major score differences with
-    simulated annealing algorithm
+Groningen was a recommendation. It only has a few connections, and these are of long distances. But the results in score are not significantly different with simulated algorithm.
+
+#### Zwolle
+We decided to remove Zwolle from the stations, because it only has a few connections. These connections are of long distance. Because Zwolle is normally a part of routes, it is surprising that this does not give major different results. The reason could be that, just like Groningen, the amount of rails omitted and time gains, does not make a significant contrast in the calculation.
+
 
 ---
 
@@ -384,7 +381,7 @@ In order to optimize rail networks in batch mode, call the module like `python .
 
 `"initialTemperature":`: The initial temperature for the simulated Annealing algorithm. 64 for the best tested linear annealing scheme. Not nessesary when using the Logarithmic cooling scheme.
 `"coolingConstant":` The constant in the cooling scheme. 0.0064 for the best tested linear annealing scheme.
-    
+
 ---
 
 ### Visualization mode
@@ -397,7 +394,7 @@ The different types of visualization and their .json properties are explained be
 ### Network visualization
 Visualizes a solution for the train routing problem.
 
-`"jobType":` any one of `["visualize", "vis", "v"]` 
+`"jobType":` any one of `["visualize", "vis", "v"]`
 
 `"plotType":` any one of `["network", "net", "n"]`
 
@@ -418,7 +415,7 @@ Plots the score of an algorithm over iterations.
 
 
 
-`"jobType":` any one of `["visualize", "vis", "v"]` 
+`"jobType":` any one of `["visualize", "vis", "v"]`
 
 `"plotType":` any one of `["algorithm", "alg", "a"]`
 
