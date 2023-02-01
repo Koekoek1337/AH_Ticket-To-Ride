@@ -47,26 +47,49 @@ When optimizing a rail network for Holland, the network is restricted to 7 route
 
 When optimizing a rail network for the Netherlands, the network is restricted to 20 routes with a maximum duration of 180 minutes. The theoretical maximum score for this rail network would be 7549.0 if all connections were covered by as little routes as possible.
 
-## TODO
-- Statespace
+### Statespace
+The amount of permuations of the system depends on the amount of routes and the possible permutations per route. If a route is taken as a list of connections in the network that do not have to be connected, the order of connections does not matter while duplicate connections are allowed. The permutations per route are also dependant on the lengths of the route, which is between 1 and a maximum length dependant on what the maximum amount route durations is that fit inside the maximum time, which means the sum of all permutations of all possible route lengths has to be taken. As the amount of routes is variable, the sum of all permutations of the system for every amount of routes has to be taken. This results in the following equation for the statespace
+
+$$
+    \sum_{i=1}^{x}
+    {
+        ({
+            \sum_{r = 1}^{m}
+            {
+                (r+n-1)!
+                \over
+                r!(n-1)!
+            }
+        })! 
+        \over 
+        i!
+        (
+            ({
+                \sum_{r = 1}^{m}
+            {
+                (r+n-1)!
+                \over
+                r!(n-1)!
+            }
+            })
+            -i
+        )!
+    }
+$$
+With x for the maximum amount of routes, m for the maximum length of a route, r for the connections in a route and n for the total amount of connections in the system. As the equation is too computationally expensive to solve using tools like wolfram alpha, a number can not be given.
 
 ---
 
 ## Algorithms
-## TODO
-- Introduction of our algorithms
-    - First developed a random algorithm, followed by 
-        three separae algorithms
-    - What are legal moves
-    - Our score function
-
-A legal move is appending a station to a route, so that it has a connection with a station in the
-route and that the duration of the appended route does not exceed it's maximum duration.
+In order to find the best possible solution for this train routing problem, four different algorithms were developed, starting with a random algorithm as a baseline. The individual algorthms are explained below.
 
 <br>
 
 ### Random
-The random algorithm would chooses amount of routes between a minimum (either 1 or the minimum amount of routes required to satisfy all connections) and the maximum amount of routes allowed for the problem. It would then choose a random maximum duration for every route between the duration of the longest connection in the system and the maximum duration for a route allowed by the system. It then attempts to fill the route up to the maximum duration until it can no longer make any legal moves.
+The random algorithm would chooses amount of routes between a minimum (either 1 or the minimum amount of routes required to satisfy all connections) and the maximum amount of routes allowed for the problem. It would then choose a random maximum duration for every route between the duration of the longest connection in the system and the maximum duration for a route allowed by the system. It then attempts to fill the route up to the maximum duration until it can no longer make any legal moves, after which it starts with a new route.
+
+A legal move in this case is appending a station to a route, so that it has a connection with a station in the
+route and that the duration of the appended route does not exceed it's maximum duration.
 
 Any new generated route has to be able to score points if they were in an isolated system. If a route does not adhere to this, it is emptied and a new route is made.
 
