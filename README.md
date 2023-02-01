@@ -258,11 +258,13 @@ Interesting about this solution is that it utilizes all possible connections in 
 - Does not result in major score differences with
     simulated annealing algorithm
 
-## Usage
-In order to optimize rail networks in batch mode, call the module, call the module like
-`python .\railNL [FILENAME].json`
+---
 
-.json properties and their valid values are explained below.
+## Usage
+### Batch mode
+In order to optimize rail networks in batch mode, call the module like `python .\railNL [FILENAME].json`
+
+.json properties for batch mode and their valid values are explained below.
 
 ### Main batch properties
 `"jobType":` Whether an optimization algorithm has to be ran or if data has to be visualized. Valid values are `["batch" , "bat", "b"]` for batch mode and `["visualize", "vis", "v"]` for visualization mode.
@@ -274,9 +276,8 @@ In order to optimize rail networks in batch mode, call the module, call the modu
 `"runs":` The amout of times the algorithm has to be ran in batch. Must be an integer equal to or more than 1.
 
 `"algorithm":` The name of the chosen algorithm. Current options are:
-- `"random"`
-- `"hillclimber_hajo"`
-- `"annealing"`
+- `"random"` - Random Algorithm
+- `"annealing"` - Simulated Annealing Algorithm
 - `"snakeclimber"`
 - `"snakeclimber1"`
 - `"snakeclimber2"`
@@ -292,12 +293,22 @@ In order to optimize rail networks in batch mode, call the module, call the modu
 `"maxDuration":` The maximum duration a route is allowed to have. 120 for Holland, 180 for the Netherlands
 
 ### Algorithm specific properties
-#### annealing
+#### Simulated Annealing Algorithm
 `"coolingScheme":` The name of the cooling scheme to be used. Current options are:
-- `"Logarithmic"`
-- `"Linear"`
-- `"Geometric"`
+- `"Hillclimber"` - Runs the algorithm as a hillclimber
+- `"Logarithmic"` - Runs the algorithm with the logarithmic cooling scheme
+- `"Linear"` - Runs the algorithm with the linear cooling scheme. Best tested cooling scheme.
+- `"Geometric"` - Runs the algorithm with the geometric cooling scheme.
 
-`"initialTemperature":`: The initial temperature for the simulated Annealing algorithm. 64 for the best tested linear annealing scheme. Redundant for logarithmic
+`"initialTemperature":`: The initial temperature for the simulated Annealing algorithm. 64 for the best tested linear annealing scheme. Not nessesary when using the Logarithmic cooling scheme.
 `"coolingConstant":` The constant in the cooling scheme. 0.0064 for the best tested linear annealing scheme.
     
+---
+
+### Visualization mode
+In order to visualize obtained results, you also call the module like `python .\railNL [FILENAME].json`
+
+The different types of visualization and their .json properties are explained below.
+
+### Network visualization
+
