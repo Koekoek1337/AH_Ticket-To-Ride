@@ -5,7 +5,7 @@
     "stationsFilepath": "data/StationsNationaal.csv",
     "connectionsFilepath": "data/ConnectiesNationaal.csv",
 
-    "title": "Beste oplossing snakeClimber met score 6500.28",
+    "title": "Beste oplossing SnakeClimber 3-stations met score 6500.28",
 
     "resultFilepath": "results/snakeClimber2/20230131-175831-snakeClimber26.csv",
 

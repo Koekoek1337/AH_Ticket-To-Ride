@@ -12,7 +12,8 @@ from algorithms.random_hajo import randomSolution, exportScores
 class HillClimber():
 
 
-    def __init__(self, model, runName: str, targetFolder: str, maxRoutes: int, maxDuration: int, randomIterations: int, maxConvergence: int):
+    def __init__(self, model, runName: str, targetFolder: str, maxRoutes: int,
+                 maxDuration: int, randomIterations: int, maxConvergence: int):
         # Takes a random solution
         model = randomSolution(model, maxRoutes, maxDuration, randomIterations)
         workModel = deepcopy(model)
@@ -88,7 +89,7 @@ class HillClimber():
             self.convergence = 0
 
 
-    def run(self, verbose=False, mutate_nodes_number=1) -> None:
+    def run(self, iterations: int= 30000, verbose=False, mutate_nodes_number=1) -> None:
         """
         Runs the hillclimber algorithm for a specific amount of iterations.
         """
@@ -96,13 +97,14 @@ class HillClimber():
         START_TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
         self.convergence = 0
-
+        self.iterations = iterations
 
         while self.convergence <= self.maxConvergence:
 
             # Accept it if it is better
             self.checkSolution(self.mutateRoute())
             self.iteration += 1
+            self.iterations += 1
             self.convergence += 1
 
         # exports scoress
@@ -110,7 +112,11 @@ class HillClimber():
         exportScores(self.scores, self.targetFolder, self.runName, START_TIMESTAMP)
 
 
-def main(network: RailNetwork, runName: str, targetFolder: str, maxRoutes: int, maxDuration: int, randomIterations: int=50, maxConvergence: int=10000) -> RailNetwork:
-    model = HillClimber(network, runName, targetFolder, maxRoutes, maxDuration, randomIterations, maxConvergence)
+def main(network: RailNetwork, runName: str, targetFolder: str, maxRoutes: int,
+         maxDuration: int, randomIterations: int=50,
+         maxConvergence: int=10000) -> RailNetwork:
+
+    model = HillClimber(network, runName, targetFolder, maxRoutes, maxDuration,
+                        randomIterations, maxConvergence)
     model.run()
     return model.previousModel

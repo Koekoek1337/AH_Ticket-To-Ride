@@ -1,10 +1,11 @@
 {
     "jobType": "v",
-    "plotType": "algorithm",
+    "plotType": "hist",
 
 
 
-    "title": "Best routeSnakeClimber",
+    "title": "Best SnakeClimber 3-stations",
+    "binCount": 9,
 
-    "resultFilepath": "results/routeSnakeClimber/20230131-141934-summary-snakeClimber.csv"
+    "resultFilepath": "results/SnakeClimber2/total_runSnakeClimber2.csv"
 }

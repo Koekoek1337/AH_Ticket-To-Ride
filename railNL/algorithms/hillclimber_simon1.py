@@ -11,7 +11,8 @@ from algorithms.random_hajo import randomSolution, exportScores
 
 class HillClimber():
 
-    def __init__(self, model, runName: str, targetFolder: str, maxRoutes: int, maxDuration: int, randomIterations: int, maxConvergence: int):
+    def __init__(self, model, runName: str, targetFolder: str, maxRoutes: int,
+                 maxDuration: int, randomIterations: int, maxConvergence: int):
         # Takes a random solution
         model = randomSolution(model, maxRoutes, maxDuration, randomIterations)
         workModel = deepcopy(model)
@@ -112,7 +113,11 @@ class HillClimber():
         self.previousModel.exportSolution(self.targetFolder, self.runName)
         exportScores(self.scores, self.targetFolder, self.runName, START_TIMESTAMP)
 
-def main(network: RailNetwork, runName: str, targetFolder: str, maxRoutes: int, maxDuration: int, randomIterations: int=50, maxConvergence: int=10000) -> RailNetwork:
-    model = HillClimber(network, runName, targetFolder, maxRoutes, maxDuration, randomIterations, maxConvergence)
+def main(network: RailNetwork, runName: str, targetFolder: str, maxRoutes: int,
+         maxDuration: int, randomIterations: int=50,
+         maxConvergence: int=10000) -> RailNetwork:
+
+    model = HillClimber(network, runName, targetFolder, maxRoutes, maxDuration,
+                        randomIterations, maxConvergence)
     model.run()
     return model.previousModel

@@ -2,7 +2,7 @@
     "jobType": "v",
     "plotType": "algorithm",
 
-    "title": "Beste oplossing snakeClimber met score 6500.28",
+    "title": "Beste oplossing SnakeClimber 3-Stations met score 6500.28",
 
-    "resultFilepath": "C:/Users/gebruiker/Documents/Programming/per3/Ticket-To-Ride/results/Experiments/linear/T32Ce-2/20230130-152617-summary-hillSolution0.csv"
+    "resultFilepath": "results/snakeClimber2/20230131-175245-summary-snakeClimber26.csv"
 }

@@ -1,15 +1,15 @@
 {
     "jobType": "batch",
 
-    "stationsFilepath": "data/StationsNationaal-Utrecht.csv",
+    "stationsFilepath": "data/StationsNationaal.csv",
     "connectionsFilepath": "data/ConnectiesNationaal.csv",
 
-    "runs": 20,
+    "runs": 53,
 
     "algorithm": "snakeClimber2",
 
     "runName": "snakeClimber2",
-    "targetFolder": "results/snakeClimberUtrecht2",
+    "targetFolder": "results/snakeClimber2",
     "maxRoutes": 20,
     "maxDuration": 180,
     "maxConvergence": 10000
