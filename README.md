@@ -68,13 +68,15 @@ Greedy Hillclimber is an algorithm that improves a random rail network. It does 
 <br>
 
 ### Snake Hillclimber
-This algorthm is a hill climber that seeks to optimize the score of a traject within the totally of the railNetwork. Here for it takes a random generated railNetwork. Next it chooses for every traject if the first or last station needs to be removed. This happens randomly. Next it will add a station to the begin or the end of the traject. The goal is that every time a traject improves when in finds a better path to take. There is also the option the the traject adds another route. It calculates the totally of the scores before it approves if every single traject is indeed an improvement. Because it is possible that a new path taken optimalizes the score of the singe traject, but downgrades the score of the totally of the railNetwork.
+This algorithm is a hill climber that seeks to optimize the score of a traject within the totally of the railNetwork.
+Here for it takes a random generated railNetwork. Next it chooses for every traject if the first or last station needs to be removed. This happens randomly. Next it will add a station to the begin or the end of the traject. The goal is that every time a traject improves when in finds a better path to take. There is also the option the the traject adds another route. It calculates the totally of the scores before it approves if every single traject is indeed an improvement. Because it is possible that a new path taken optimizes the score of the singe traject, but downgrades the score of the totally of the railNetwork.
 
-I noticed that this method has mainly effect on the outer stations of every single traject, but does not easily/often lead to changes in the middle of the traject. To resolves this problem, there are two algorithmswith a small change. 
+<br>
 
-`SnakeHillClimber1` removes the first two or the last two stations of the traject, and adds two.
+#### Adjustments to the algorithm
+I noticed that this method has mainly effect on the outer stations of every single traject, but does not easily/often lead to changes in the middle of the traject. To resolves this problem, there are two algorithms with a small change. 'SnakeHillClimber1' removes the first two or the last two stations of the traject, and adds two.
+'SnakeHillClimber2' removes the stations at the beginning or the end of a traject and replaces them next. This is done so that the middle section of traject will easily be changed as well.
 
-`SnakeHillClimber2` removes the stations at the beginning or the end of a traject and replaces them next. This is done so that the middle section of traject will easily be changed as well.
 
 <br>
 
