@@ -11,9 +11,9 @@ I noticed that this method has mainly effect on the outer stations of every sing
 
 ##Comparing scores
 # snakeClimber
-To start with the comparison with the random baseline. The 'snakeClimber' already improves this. With results ranging from 4500 toward 5990 points. With a average of 5614. This is way above
+To start with the comparison with the random baseline. The 'snakeClimber' already improves this. With results ranging from 4212.20 towards 5991.76 points. With a average of 5155.15. This is above random, but can be improved.
 [Solution](/docs/railNetwork-snakeClimber.png)
-[Hist](//docs/hist-snakeClimber.png)
+[Hist](//docs/hist-SnakeClimber.png)
 
 #snakeClimber1
 'snakeClimber1' has an average of 5487.20, with a broader range; the lowest is 4304.12. But interesting to see is that it turns out that it gives more results on the higher end of the spectrum, with a highest result of 6536.76 points.
