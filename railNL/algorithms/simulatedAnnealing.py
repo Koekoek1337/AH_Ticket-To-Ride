@@ -201,9 +201,9 @@ def routeClimb(network: RailNetwork, maxRoutes: int, maxDuration: float) -> None
     Either adds, removes or replaces a random route.
 
     Args:
-        network (RailNetwork):
-        maxRoutes (maxRoutes):
-        maxDuration (maxDuration):
+        network (RailNetwork): The railnetwork to be changed
+        maxRoutes (maxRoutes): The maximum amount of routes allowed in the network.
+        maxDuration (maxDuration): The maximum duration of routes in the network.
     
     post: The argument network will have a route replaced, added or removed.
     """
@@ -253,7 +253,7 @@ def logarithmicCooling(scoreDiff:float, _: float, iteration: int, constant: floa
     Source:
     Mahdi, W.; Medjahed, S. A.; Ouali, M. Performance Analysis of Simulated Annealing Cooling 
     Schedules in the Context of Dense Image Matching. Computación y Sistemas, 2017, 21. 
-    https://doi.org/10.13053/cys-21-3-2553.
+    https://doi.org/10.13053/cys-21-3-2553
     """
     currentTemperature = constant / log10(1 + iteration)
 
