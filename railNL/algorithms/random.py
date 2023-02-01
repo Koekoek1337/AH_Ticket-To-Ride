@@ -63,8 +63,6 @@ def main(
     iteration = 1
     highest = 0
 
-    minimumoutes = network.minimumRoutes(maxDuration)
-
     scores: List[Dict[str, Union[int, float]]] = []
 
     while convergence <= convergenceLimit:
@@ -72,7 +70,7 @@ def main(
             print(f"iteration: {iteration}")
 
         workNetwork = deepcopy(network)
-        randomAlgorithm(workNetwork, maxRoutes, maxDuration, minimumoutes)
+        randomAlgorithm(workNetwork, maxRoutes, maxDuration)
         
         newScore = workNetwork.score()
 
