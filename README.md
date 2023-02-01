@@ -102,8 +102,12 @@ Probability increases with higher temperatures, and decreases with higher score 
 
 In order to increase effectiveness of the hillclimber, the temperature is reduced according to a cooling scheme, of which four have been implemented:
 
+<br>
+
 #### Hillclimber
 Not a cooling sceme per-se, but is handled as such. Makes the algorithm act purely as a hillclimber, a worse state for the system will never accepted.
+
+<br>
 
 #### Logarithmic cooling
 The system temperature (T) depends on a single constant (C) and the total amount of iterations (i), as seen in the following formula<sup>1</sup>
@@ -118,17 +122,24 @@ $$
 
 #### Linear cooling
 The temperature (T) of the system depends on an initial temperature (T<sub>init</sub>) and decreases linearly over iterations (i) with a constant speed (C) according to the following formula<sup>1</sup>
+
 $$
     T = T_{init} - Ci
 $$
 
-A worse state is never accepted if T is less than or equal to T.
+A worse state is never accepted if the temperature is less than or equal to 0.
 
+<br>
 
 #### Geometric cooling
-    - Cooling formula
-    - Two parameters
-    - Return false as T approaches 0
+The temperature (T) of the system depends on an initial temperature (T<sub>init</sub>) and decreases geometrically over iterations (i) depending on a consant (C) according to the following formula<sup>1</sup>
+$$
+    T = T_{init}C^{i}
+$$
+
+Where C is any number between 0 and 1.
+
+As T approaches 0, a worse state will not be accepted.
 
 ---
 
