@@ -25,7 +25,7 @@ stepfunction.
 def runAnnealing(
         network: RailNetwork, 
         stepFunction: str = "route", 
-        coolingScheme: str = "logarithmic", 
+        coolingScheme: str = "hillclimber", 
         **arguments
     ) -> RailNetwork:
     """
@@ -35,6 +35,7 @@ def runAnnealing(
         - "route": See routeClimb() for description
 
     There are currently three cooling schemes in this module:
+        - "hillclimber": See hillClimbCoolingScheme() for description
         - "logarithmic": See logarithmicCooling() for description
         - "geometric": See geometricCooling() for description
         - "linear": See linearCooling() for description
@@ -47,7 +48,7 @@ def runAnnealing(
     """
     COOLING_SCHEMES: Dict[str, Callable[[float, float, int, float], bool]] = \
     {
-        ""
+        "hillclimber": hillClimbCoolingScheme,
         "logarithmic": logarithmicCooling,
         "geometric": geometricCooling,
         "linear": linearCooling,
@@ -60,25 +61,8 @@ def runAnnealing(
     
     return annealingClimber(
         network, 
-        stepFunction = STEP_FUNCTIONS[stepFunction], 
-        annealingFunction = COOLING_SCHEMES[coolingScheme], 
-        **arguments
-    )
-
-
-def routeHillclimber(
-    network: RailNetwork, 
-    **arguments
-) -> RailNetwork:
-    """
-    Runs the annealing climber as a standard hillclimber
-    """
-    return annealingClimber(
-        network, 
-        stepFunction = routeClimb,
-        annealingFunction = hillClimbCoolingScheme, 
-        initialTemperature = 0,
-        coolingConstant = 0,
+        stepFunction = STEP_FUNCTIONS[stepFunction.lower()], 
+        annealingFunction = COOLING_SCHEMES[coolingScheme.lower()], 
         **arguments
     )
 
