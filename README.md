@@ -47,6 +47,8 @@ When optimizing a rail network for Holland, the network is restricted to 7 route
 
 When optimizing a rail network for the Netherlands, the network is restricted to 20 routes with a maximum duration of 180 minutes. The theoretical maximum score for this rail network would be 7549.0 if all connections were covered by as little routes as possible.
 
+<br>
+
 ### Statespace
 The amount of permuations of the system depends on the amount of routes and the possible permutations per route. If a route is taken as a list of connections in the network that do not have to be connected, the order of connections does not matter while duplicate connections are allowed. The permutations per route are also dependant on the lengths of the route, which is between 1 and a maximum length dependant on what the maximum amount route durations is that fit inside the maximum time, which means the sum of all permutations of all possible route lengths has to be taken. As the amount of routes is variable, the sum of all permutations of the system for every amount of routes has to be taken. This results in the following equation for the statespace
 
@@ -76,7 +78,9 @@ $$
         )!
     }
 $$
-With x for the maximum amount of routes, m for the maximum length of a route, r for the connections in a route and n for the total amount of connections in the system. As the equation is too computationally expensive to solve using tools like wolfram alpha, a number can not be given.
+With x for the maximum amount of routes, m for the maximum length of a route, r for the connections in a route and n for the total amount of connections in the system. 
+
+As the equation is too computationally expensive to solve using tools like wolfram alpha, a number can not be given.
 
 ---
 
