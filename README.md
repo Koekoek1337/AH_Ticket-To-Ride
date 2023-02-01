@@ -145,18 +145,20 @@ Not a cooling sceme per-se, but is handled as such. Makes the algorithm act pure
 <br>
 
 #### Logarithmic cooling
-The system temperature (T) depends on a single constant (C) and the total amount of iterations (i), as seen in the following formula<sup>1</sup>:
+The system temperature (T) depends on a single constant (C) and the total amount of iterations (i), as seen in the following formula<sup>1</sup>
+
 $$
     T = {C \over log(1 + i)}
 $$
 
 The initial temperature (T<sub>init</sub>) in this case will be equal to
+
 $$
     T_{init} = {C \over log(2)}
 $$
 
 #### Linear cooling
-The temperature (T) of the system depends on an initial temperature (T<sub>init</sub>) and decreases linearly over iterations (i) with a constant speed (C) according to the following formula<sup>1</sup>:
+The temperature (T) of the system depends on an initial temperature (T<sub>init</sub>) and decreases linearly over iterations (i) with a constant speed (C) according to the following formula<sup>1</sup>
 
 $$
     T = T_{init} - Ci
@@ -167,7 +169,8 @@ A worse state is never accepted if the temperature is less than or equal to 0.
 <br>
 
 #### Geometric cooling
-The temperature (T) of the system depends on an initial temperature (T<sub>init</sub>) and decreases geometrically over iterations (i) depending on a constant (C) according to the following formula<sup>1</sup>:
+The temperature (T) of the system depends on an initial temperature (T<sub>init</sub>) and decreases geometrically over iterations (i) depending on a constant (C) according to the following formula<sup>1</sup>
+
 $$
     T = T_{init}C^{i}
 $$
