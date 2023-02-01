@@ -23,6 +23,12 @@ By Simon de Jong, Finn Leurs and Hajo Groen
     * [Logarithmic Cooling](#logarithmic-cooling)
     * [Linear Cooling](#linear-cooling)
     * [Geometric Cooling](#geometric-cooling)
+* [Experiments](#experiments)
+    * [Holland](#holland)
+    * [Random Baseline](#random-baseline)
+    * [Snake Hillclimber](#snake-hillclimber-1)
+    * [Greedy Hillclimber](#greedy-hillclimber-1)
+    * [Simulated Annealing Hillclimber](#simulated-annealing-hillclimber-1)
 * [Usage](#usage)
 ---
 
@@ -48,6 +54,8 @@ By Simon de Jong, Finn Leurs and Hajo Groen
     - What are legal moves
     - Our score function
 
+<br>
+
 ### Random
 - Chooses a random amount of railconnections between the
     minimum amount of connections required to satisfy
@@ -67,8 +75,12 @@ By Simon de Jong, Finn Leurs and Hajo Groen
 - Multile random solutions can be made in series after
     which the highest score is taken.
 
+<br>
+
 ### Greedy Hillclimber
 Greedy Hillclimber is an algorithm that improves a random rail network. It does so by taking the lowest scoring route in a rail network and then compares that to a randomly generated route. Whichever of the two routes is better gets incorporated into the rail network. It does this until it fails to improve the rail network 15 thousand times.
+
+<br>
 
 ### Snake Hillclimber
 This algorthm is a hill climber that seeks to optimize the score of a traject within the
@@ -89,7 +101,9 @@ two.
 `SnakeHillClimber2` removes the stations at the beginning or the end of a traject and replaces them next.
 This is done so that the middle section of traject will easily be changed as well.
 
-### Simulated Annealing
+<br>
+
+### Simulated Annealing Hillclimber
 - Hajo
     - Based on random algorithm
     - Short overview simulated Annealing
@@ -182,7 +196,7 @@ From this, it was determined that the random algorithm had an average score of 2
 
 ---
 
-### Snake
+### Snake Hillclimber
 To start with the comparison with the random baseline. The `snakeClimber` already improves this.
 With results ranging from 4500 toward 5990 points. With a average of 5614. This is way above
 
@@ -201,13 +215,12 @@ with routeReplace algoritm. This is another algorithm that replaces the route wi
 The results of this algorithm `routeSnakeClimber` is as follows: it has an average of 5636 and the range is from 4700 to 6300.
 This means that this algorithm has not gave a higher score than `snakeClimber2`, but it did gave a more usefull range.
 
-
 The `snakeClimber2`- algorithm has run without the station Utrecht. This gave a surprising result: the scores were generally higher than that of the complete railNetwork. With an average of 5768 and an highest score of 6563.
 
 
 ---
 
-### GreedyHill
+### Greedy Hillclimber
 With an average score of 5354.58 and a range of final scores between 4449.12 and 6274.28, the algorithm performs significantly better in a shorter amount of time.
 
 ![map_rail_network_greedy_hillclimber](docs/railNetworkGreedyHillClimberNederland.png)
@@ -216,7 +229,7 @@ With an average score of 5354.58 and a range of final scores between 4449.12 and
 
 ---
 
-### Simulated Annealing
+### Simulated Annealing Hillclimber
 In order to determine whether the `linear cooling` scheme of the simulated annealing algorithm would be effective, a baseline of the simulated annealing algorithm with the hillclimber cooling scheme was taken over 100 runs, which has been displayed in the histogram below.
 
 ![annealing_baselineHill](docs/annealing_baselineHill.png)
@@ -266,6 +279,8 @@ In order to optimize rail networks in batch mode, call the module like `python .
 
 .json properties for batch mode and their valid values are explained below.
 
+<br>
+
 ### Main batch properties
 `"jobType":` Whether an optimization algorithm has to be ran or if data has to be visualized. Valid values are `["batch" , "bat", "b"]` for batch mode and `["visualize", "vis", "v"]` for visualization mode.
 
@@ -292,6 +307,10 @@ In order to optimize rail networks in batch mode, call the module like `python .
 
 `"maxDuration":` The maximum duration a route is allowed to have. 120 for Holland, 180 for the Netherlands
 
+`"maxConvergence"`: The maximum amount of iteration the algorithm should continue to run for without score improvments.
+
+<br>
+
 ### Algorithm specific properties
 #### Simulated Annealing Algorithm
 `"coolingScheme":` The name of the cooling scheme to be used. Current options are:
@@ -310,5 +329,47 @@ In order to visualize obtained results, you also call the module like `python .\
 
 The different types of visualization and their .json properties are explained below.
 
-### Network visualization
+<br>
 
+### Network visualization
+Visualizes a solution for the train routing problem.
+
+`"jobType":` any one of `["visualize", "vis", "v"]` 
+
+`"plotType":` any one of `["network", "net", "n"]`
+
+`"stationsFilepath":` The filepath of the CSV file containing station names and coordinates.
+
+`"connectionsFilepath":` The filepath of the CSV file containing station connections anddurations.
+
+`"resultFilepath":` The filepath of the solution csv file to visualize.
+
+`"title":` The title of the figure.
+
+`"stationNames":` True if station names have to be displayed next to station nodes, else false.
+
+<br>
+
+### Algotithm Convergence visualization
+Plots the score of an algorithm over iterations.
+
+
+
+`"jobType":` any one of `["visualize", "vis", "v"]` 
+
+`"plotType":` any one of `["algorithm", "alg", "a"]`
+
+`"resultFilepath":` The filepath of the run summary file to collect data from.
+
+`"title":` The title to be displayed on the figure.
+
+<br>
+
+### Histogram visualization
+plots the score data from a batch summary file as a histogram.
+
+`"resultFilepath":` The filepath of the batch summary file to collect data from.
+
+`"title":` The title to be displayed on the figure.
+
+`"binCount":` The amount of bins for the histogram
