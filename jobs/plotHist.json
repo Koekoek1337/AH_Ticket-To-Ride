@@ -4,8 +4,8 @@
 
 
 
-    "title": "Best SnakeClimber 3-stations",
-    "binCount": 9,
+    "title": "SnakeClimber",
+    "binCount": 10,
 
-    "resultFilepath": "results/SnakeClimber2/total_runSnakeClimber2.csv"
+    "resultFilepath": "results/snakeClimber/total_runSnakeClimber.csv"
 }
