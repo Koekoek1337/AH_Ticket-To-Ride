@@ -121,16 +121,19 @@ def batch(
 
 def visualize(plotType: str= "algorithm", **arguments):
     """
-    Loads a solution into the network and visualizes it
+    Selects one of three visualization modes.
     
+    Args:
+        plotType (str): The name of the plotType
+        arguments (Dict[str, any]): Keyword arguments for the plotTypes.
     """
-    if plotType == "algorithm":
+    if plotType in ["algorithm", "alg", "a"]:
         plotAlgConvergence(**arguments)
 
-    elif plotType == "network":
+    elif plotType in ["network", "net", "n"]:
         plotNetwork(**arguments)
 
-    elif plotType == "hist":
+    elif plotType in ["histogram", "hist", "h"]:
         plotHist(**arguments)
     
     else:
@@ -141,7 +144,12 @@ def visualize(plotType: str= "algorithm", **arguments):
 
 def plotHist(resultFilepath: str, title = "", binCount = 30):
     """
-    plots the score data as a histogram
+    plots the score data from a batch summary file as a histogram.
+
+    Args:
+        resultFilepath (str): The filepath of the batch summary file to collect data from.
+        title (str): The title to be displayed on the figure.
+        binCount (str): The amount of bins for the histogram
     """
     summary = vis.loadSummary(resultFilepath)
     vis.plotHistAverage(summary[1], title=title, binCount=binCount)
@@ -151,7 +159,11 @@ def plotHist(resultFilepath: str, title = "", binCount = 30):
 
 def plotAlgConvergence(resultFilepath: str, title: str):
     """
-    Plots the convergence of an algorithm over iterations
+    Plots the score of an algorithm over iterations.
+
+    Args:
+        resultFilepath (str): The filepath of the run summary file to collect data from.
+        title (str): The title to be displayed on the figure.
     """
     summary = vis.loadSummary(resultFilepath)
     vis.plotAlgorithm(*summary, title)
@@ -167,7 +179,17 @@ def plotNetwork(
     stationNames: bool = False
 ):
     """
+    Visualizes a solution for the train routing problem.
 
+    Args:
+        stationsFilepath (str): The filepath of the CSV file containing station names and 
+            coordinates.
+        connectionsFilepath(str): The filepath of the CSV file containing station connections and
+            durations.
+        resultFilepath (str): The filepath of the solution csv file.
+        title (Str): The title of the figure.
+        stationNames (bool): True if station names have to be displayed next to station nodes, else
+            false.
     """
     network = RailNetwork(stationsFilepath, connectionsFilepath)
     network.loadSolution(resultFilepath)
