@@ -1,8 +1,8 @@
 from classes.railNetwork import RailNetwork
 import visualize.visualize as vis
 
-from algorithms import random_hajo
-from algorithms import hillClimber_Hajo
+from algorithms import random as randomAlgorithm
+from algorithms import simulatedAnnealing
 from algorithms import hillclimber_simon, hillclimber_simon1, hillclimber_simon2
 from algorithms import hillClimber_Finn_Simon
 from algorithms import finnHillClimber
@@ -50,12 +50,20 @@ def batch(
     **arguments
 ) -> None:
     """
-    Runs an algorithm in batch as specified by the given job.json file
+    Runs an algorithm in batch as specified by the given job.json file.
+
+    Args:
+        stationsFilepath (str): The filepath of the CSV file containing station names and 
+            coordinates.
+        connectionsFilepath(str): The filepath of the CSV file containing station connections and
+            durations.
+        runs (int): The amount of times the algorithm should be ran.
+        targetFolder (str): The folder where result files should be saved to.
+        runName (str): The human readable part for the name of the result files.
     """
     ALGORITHMS: Dict[str, Callable[[RailNetwork, Any], RailNetwork]] = {
-        "random": random_hajo.main,
-        "hillclimber_hajo": hillClimber_Hajo.routeHillclimber,
-        "annealing": hillClimber_Hajo.runAnnealing,
+        "random": randomAlgorithm.main,
+        "annealing": simulatedAnnealing.runAnnealing,
         "snakeclimber": hillclimber_simon.main,
         "snakeclimber1": hillclimber_simon1.main,
         "snakeclimber2": hillclimber_simon2.main,
@@ -69,11 +77,10 @@ def batch(
     time.sleep(1)
 
     network = RailNetwork(stationsFilepath, connectionsFilepath)
-    algorithm = algorithm.lower()
 
     # Random does not need to utilize multiple runs
     if algorithm == "random":
-        ALGORITHMS[algorithm](
+        ALGORITHMS[algorithm.lower()](
             deepcopy(network),
             targetFolder=targetFolder,
             runName=runName,
@@ -107,20 +114,26 @@ def batch(
         scores.append({"iteration":"average", "score": average})
 
         summaryName = f"{runName}-{str(runs)}runs"
-        random_hajo.exportScores(scores, targetFolder, summaryName, START_TIMESTAMP)
+        randomAlgorithm.exportScores(scores, targetFolder, summaryName, START_TIMESTAMP)
 
     return
 
 
 def visualize(plotType: str= "algorithm", **arguments):
-    """Loads a solution into the network and visualizes it"""
-    if plotType == "algorithm":
+    """
+    Selects one of three visualization modes.
+    
+    Args:
+        plotType (str): The name of the plotType
+        arguments (Dict[str, any]): Keyword arguments for the plotTypes.
+    """
+    if plotType in ["algorithm", "alg", "a"]:
         plotAlgConvergence(**arguments)
 
-    elif plotType == "network":
+    elif plotType in ["network", "net", "n"]:
         plotNetwork(**arguments)
 
-    elif plotType == "hist":
+    elif plotType in ["histogram", "hist", "h"]:
         plotHist(**arguments)
     
     else:
@@ -131,7 +144,12 @@ def visualize(plotType: str= "algorithm", **arguments):
 
 def plotHist(resultFilepath: str, title = "", binCount = 30):
     """
-    plots the score data as a histogram
+    plots the score data from a batch summary file as a histogram.
+
+    Args:
+        resultFilepath (str): The filepath of the batch summary file to collect data from.
+        title (str): The title to be displayed on the figure.
+        binCount (str): The amount of bins for the histogram
     """
     summary = vis.loadSummary(resultFilepath)
     vis.plotHistAverage(summary[1], title=title, binCount=binCount)
@@ -141,7 +159,11 @@ def plotHist(resultFilepath: str, title = "", binCount = 30):
 
 def plotAlgConvergence(resultFilepath: str, title: str):
     """
-    Plots the convergence of an algorithm over iterations
+    Plots the score of an algorithm over iterations.
+
+    Args:
+        resultFilepath (str): The filepath of the run summary file to collect data from.
+        title (str): The title to be displayed on the figure.
     """
     summary = vis.loadSummary(resultFilepath)
     vis.plotAlgorithm(*summary, title)
@@ -157,7 +179,17 @@ def plotNetwork(
     stationNames: bool = False
 ):
     """
+    Visualizes a solution for the train routing problem.
 
+    Args:
+        stationsFilepath (str): The filepath of the CSV file containing station names and 
+            coordinates.
+        connectionsFilepath(str): The filepath of the CSV file containing station connections and
+            durations.
+        resultFilepath (str): The filepath of the solution csv file.
+        title (Str): The title of the figure.
+        stationNames (bool): True if station names have to be displayed next to station nodes, else
+            false.
     """
     network = RailNetwork(stationsFilepath, connectionsFilepath)
     network.loadSolution(resultFilepath)

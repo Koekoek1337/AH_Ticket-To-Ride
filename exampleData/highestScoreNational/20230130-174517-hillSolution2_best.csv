@@ -1,0 +1,18 @@
+train,stations
+46,"[Lelystad Centrum, Almere Centrum, Amsterdam Centraal, Amsterdam Amstel, Almere Centrum, Lelystad Centrum, Almere Centrum, Hilversum, Amsterdam Amstel, Amsterdam Zuid, Schiphol Airport]"
+51,"[Deventer, Apeldoorn, Zutphen, Dieren, Arnhem Centraal, Nijmegen, Oss, s-Hertogenbosch, Tilburg, Breda, Etten-Leur]"
+59,"[Hilversum, Utrecht Centraal, s-Hertogenbosch, Eindhoven, Helmond, Venlo, Helmond]"
+68,"[Rotterdam Alexander, Gouda, Utrecht Centraal, Amersfoort, Utrecht Centraal, Amsterdam Centraal, Amsterdam Sloterdijk, Haarlem, Heemstede-Aerdenhout, Leiden Centraal, Den Haag Laan v NOI, Delft, Schiedam Centrum]"
+103,"[Leiden Centraal, Den Haag Laan v NOI, Gouda, Alphen a/d Rijn, Utrecht Centraal, Ede-Wageningen]"
+109,"[Castricum, Zaandam, Beverwijk, Haarlem, Beverwijk, Castricum, Alkmaar, Hoorn]"
+113,"[Ede-Wageningen, Arnhem Centraal, Dieren, Zutphen, Deventer, Almelo, Hengelo, Enschede]"
+119,"[Assen, Zwolle, Deventer, Apeldoorn, Amersfoort, Zwolle]"
+126,"[Assen, Groningen, Leeuwarden, Heerenveen, Steenwijk, Zwolle, Almelo]"
+127,"[Leiden Centraal, Alphen a/d Rijn, Leiden Centraal, Schiphol Airport, Utrecht Centraal, Amsterdam Amstel]"
+128,"[Maastricht, Sittard, Maastricht, Sittard, Heerlen, Sittard, Roermond, Weert, Eindhoven, Tilburg, Breda]"
+129,"[Rotterdam Blaak, Schiedam Centrum, Delft, Den Haag HS, Leiden Centraal, Den Haag Centraal, Gouda]"
+131,"[Schiedam Centrum, Rotterdam Centraal, Dordrecht, Rotterdam Blaak, Rotterdam Alexander, Rotterdam Centraal, Schiedam Centrum, Delft, Den Haag Centraal, Gouda, Den Haag HS, Delft]"
+133,"[Vlissingen, Roosendaal, Dordrecht, Breda, Etten-Leur, Roosendaal, Etten-Leur, Breda]"
+134,"[Castricum, Alkmaar, Den Helder, Alkmaar, Hoorn, Zaandam, Amsterdam Sloterdijk, Amsterdam Zuid, Schiphol Airport]"
+score,6605.0
+connections missing,[]
