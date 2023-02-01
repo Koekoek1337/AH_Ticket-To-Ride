@@ -78,6 +78,7 @@ $$
         )!
     }
 $$
+
 with x for the maximum amount of routes, m for the maximum length of a route, r for the connections in a route and n for the total amount of connections in the system. 
 
 As the equation is too computationally expensive to solve using tools like WolframAlpha, a number can not be given.
