@@ -98,7 +98,7 @@ def batch(
         currentRunName = runName + str(0)
 
     for run in range(runs):
-        newNetwork: RailNetwork = ALGORITHMS[algorithm](
+        newNetwork: RailNetwork = ALGORITHMS[algorithm.lower()](
             deepcopy(network),
             targetFolder=targetFolder,
             runName=currentRunName,
