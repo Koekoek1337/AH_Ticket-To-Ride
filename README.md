@@ -41,7 +41,7 @@ $$
     K = 10000p - (100T + duration_{tot})
 $$
 
-where p is the fractions of connections covered, T is the amount of routes in a rail network and duration<sub>tot</sub> is the sum of durations for all routes in the network. 
+where p is the fraction of connections covered, T is the amount of routes in a rail network and duration<sub>tot</sub> is the sum of durations for all routes in the network. 
 
 When optimizing a rail network for Holland, the network is restricted to 7 routes with a maximum duration of 120 minutes per route. The theoretical maximum score for this rail network would be 9219.0 if all connections were covered by as few routes as possible.
 
@@ -127,7 +127,7 @@ Any change that results in a point increase for the system is immediately accept
 #### Cooling schemes
 The main reason for using simulated annealing algorithms is that it allows an algorithm to accept a state that may score less points than the previous state. This can prevent an algorithm from getting stuck at a local optimum, giving it more opportunities to find the true optimum state of a system.
 
-Probability of the accepting the worse state is based on the score difference between the old and new state (dScore) and the "Temperature" (T) of the system according to the following formula<sup>1</sup>
+Probability of the accepting the worse state is based on the score difference between the old and new state (dScore) and the "Temperature" (T) of the system according to the following formula<sup>1</sup>:
 
 $$
     P = e^{-{dScore \over T}}
@@ -145,7 +145,7 @@ Not a cooling sceme per-se, but is handled as such. Makes the algorithm act pure
 <br>
 
 #### Logarithmic cooling
-The system temperature (T) depends on a single constant (C) and the total amount of iterations (i), as seen in the following formula<sup>1</sup>
+The system temperature (T) depends on a single constant (C) and the total amount of iterations (i), as seen in the following formula<sup>1</sup>:
 $$
     T = {C \over log(1 + i)}
 $$
@@ -156,7 +156,7 @@ $$
 $$
 
 #### Linear cooling
-The temperature (T) of the system depends on an initial temperature (T<sub>init</sub>) and decreases linearly over iterations (i) with a constant speed (C) according to the following formula<sup>1</sup>
+The temperature (T) of the system depends on an initial temperature (T<sub>init</sub>) and decreases linearly over iterations (i) with a constant speed (C) according to the following formula<sup>1</sup>:
 
 $$
     T = T_{init} - Ci
@@ -167,7 +167,7 @@ A worse state is never accepted if the temperature is less than or equal to 0.
 <br>
 
 #### Geometric cooling
-The temperature (T) of the system depends on an initial temperature (T<sub>init</sub>) and decreases geometrically over iterations (i) depending on a constant (C) according to the following formula<sup>1</sup>
+The temperature (T) of the system depends on an initial temperature (T<sub>init</sub>) and decreases geometrically over iterations (i) depending on a constant (C) according to the following formula<sup>1</sup>:
 $$
     T = T_{init}C^{i}
 $$
@@ -305,7 +305,7 @@ Interesting about this solution is that it utilizes all possible connections in 
 ### Station Removal
 To test what would happen to the final scores of an optimized network if certain stations were removed, 5 batches of 10 runs were done with the simulated annealing algorithm (Linear cooling, T64, C64*10^-4), each lacking a single station, as well as a control batch of 10 runs with all stations.
 
-The stations chosen were:
+The stations chosen were 
 
 ![removedStations](docs/removedStations_finalScores.png)
 
