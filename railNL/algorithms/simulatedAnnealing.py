@@ -5,10 +5,8 @@ from copy import deepcopy
 from math import exp, log10
 
 from classes.railNetwork import RailNetwork
-from classes.route import Route
-from classes.station import Station
 
-from typing import List, Dict, Union, Callable, Optional
+from typing import List, Dict, Union, Callable
 
 
 import algorithms.random as randomAlgorithm
