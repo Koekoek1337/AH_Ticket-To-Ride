@@ -1,6 +1,4 @@
 # RailNL Ticket-To-Ride
-- Introduction
-
 This module allows the user to optimize train routing for a rail network consisting of train stations and connections in batch mode with user-defined parameters.
 
 Obtained results can then be visualized using the visualization tools supplied in visualization mode.
@@ -30,12 +28,12 @@ By Simon de Jong, Finn Leurs and Hajo Groen
     * [Greedy Hillclimber](#greedy-hillclimber-1)
     * [Simulated Annealing Hillclimber](#simulated-annealing-hillclimber-1)
 * [Usage](#usage)
+* [References](#references)
 ---
 
 ## Overview
 
 ## TODO
-
 - Introduction of the problem
 - Representation of Railnetwork, Station nodes,
     connection Nodes and routes
@@ -45,35 +43,22 @@ By Simon de Jong, Finn Leurs and Hajo Groen
 ---
 
 ## Algorithms
-
 ## TODO
-
 - Introduction of our algorithms
     - First developed a random algorithm, followed by 
         three separae algorithms
     - What are legal moves
     - Our score function
 
+A legal move is appending a station to a route, so that it has a connection with a station in the
+route and that the duration of the appended route does not exceed it's maximum duration.
+
 <br>
 
 ### Random
-- Chooses a random amount of railconnections between the
-    minimum amount of connections required to satisfy
-    all connections and the maximum allowed amount of 
-    connections.
-- Picks per route an arbitrary maximum duration between 
-    the duration of the longest connection and the 
-    maximum duration of a route.
-- Attempts to fill the route by performing random 
-    legal moves untill the route has the new arbitrary   
-    duration or untill the route can no longer make any
-    legal moves.
-- A new route is then only accepted if it would result 
-    in a nett point gain in an isolated network. (Ergo, 
-    if it were the first route in a network, it would 
-    result in a positive amount of points.)
-- Multile random solutions can be made in series after
-    which the highest score is taken.
+The random algorithm would chooses amount of routes between a minimum (either 1 or the minimum amount of routes required to satisfy all connections) and the maximum amount of routes allowed for the problem. It would then choose a random maximum duration for every route between the duration of the longest connection in the system and the maximum duration for a route allowed by the system. It then attempts to fill the route up to the maximum duration until it can no longer make any legal moves.
+
+Any new generated route has to be able to score points if they were in an isolated system. If a route does not adhere to this, it is emptied and a new route is made.
 
 <br>
 
@@ -83,49 +68,52 @@ Greedy Hillclimber is an algorithm that improves a random rail network. It does 
 <br>
 
 ### Snake Hillclimber
-This algorthm is a hill climber that seeks to optimize the score of a traject within the
-totally of the railNetwork.
-Here for it takes a random generated railNetwork. Next it chooses for every traject if the first
-or last station needs to be removed. This happens randomly. Next it will add a station to the
-begin or the end of the traject.
-The goal is that every time a traject improves when in finds a better path to take.
-There is also the option the the traject adds another route.
-It calculates the totally of the scores before it approves if every single traject is indeed an improvement.
-Because it is possible that a new path taken optimalizes the score of the singe traject, but downgrades
-the score of the totally of the railNetwork.
+This algorthm is a hill climber that seeks to optimize the score of a traject within the totally of the railNetwork. Here for it takes a random generated railNetwork. Next it chooses for every traject if the first or last station needs to be removed. This happens randomly. Next it will add a station to the begin or the end of the traject. The goal is that every time a traject improves when in finds a better path to take. There is also the option the the traject adds another route. It calculates the totally of the scores before it approves if every single traject is indeed an improvement. Because it is possible that a new path taken optimalizes the score of the singe traject, but downgrades the score of the totally of the railNetwork.
 
-I noticed that this method has mainly effect on the outer stations of every single traject, but does not
-easily/often lead to changes in the middle of the traject. To resolves this problem, there are two algorithms
-with a small change. `SnakeHillClimber1` removes the first two or the last two stations of the traject, and adds
-two.
-`SnakeHillClimber2` removes the stations at the beginning or the end of a traject and replaces them next.
-This is done so that the middle section of traject will easily be changed as well.
+I noticed that this method has mainly effect on the outer stations of every single traject, but does not easily/often lead to changes in the middle of the traject. To resolves this problem, there are two algorithmswith a small change. 
+
+`SnakeHillClimber1` removes the first two or the last two stations of the traject, and adds two.
+
+`SnakeHillClimber2` removes the stations at the beginning or the end of a traject and replaces them next. This is done so that the middle section of traject will easily be changed as well.
 
 <br>
 
 ### Simulated Annealing Hillclimber
-- Hajo
-    - Based on random algorithm
-    - Short overview simulated Annealing
-        - Hillclimber
-        - Accepts all score improvements and accepts 
-        worse scoring states based on an annealing 
-        function based on Temperature
-        - Different cooling schemes
-    - Every Step:
-        - 12.5% chance to remove a random route
-        - 12.5% chance to add a random route
-        - 75% chance to replace a random route
+The simulated annealing Hillclimber algorithm attempts to optimize a random solution for the train routing problem by either removing, adding or replacing a route. The algorithm is biased towards replacing a route with a 75% chance. Adding and removing a route both have a 12.5% chance to occur.
 
-#### cooling schemes
+New routes are created in the same manner that they are created for the random algrithm.
+
+Any change that results in a point increase for the system is immeadiately accepted. Otherwise it has a chance of being accepted based on it's cooling scheme.
+
+<br>
+
+#### Cooling schemes
+The main use of using simulated annealing algorithms is that it allows an algorithm to accept a state that may scores less points than the previous state. This can prevent an algorithm from getting stuck at a local optimum, giving it more opportunities to find the true optimum state of a system.
+
+Probability of the accepting the worse state is based on the score difference between the old and new state (dScore) and the "Temperature" (T) of the system according to the following formula<sup>1</sup>
+
+$$
+    P = e^{-{dScore \over T}}
+$$
+
+Probability increases with higher temperatures, and decreases with higher score differences. "Temperature" is therefore in layman's terms a measure for how likely a worse state is accepted.
+
+In order to increase effectiveness of the hillclimber, the temperature is reduced according to a cooling scheme, of which four have been implemented:
+
 - Hillclimber
-    - Always returns false
-- Logarithmic
-    - Cooling formula
-    - One parameter -> Tinit = C / log(2)
-- Linear
-    - Cooling formula
-    - Two parameters
+    - A worse state for the system is never accepted
+- Logarithmic cooling
+    - The system temperature (T) depends on a single constant (C) and the total amount of iterations (i), as seen in the following formula<sup>1</sup>
+    $$
+        T = {C \over log(1 + i)}
+    $$
+    - The initial temperature (T<sub>init</sub>) in this case will be equal to
+    $$
+        T_{init} = {C \over log(2)}
+    $$
+
+- Linear cooling
+    - The temperature (T) of the system depends on an initial temperature (T<sub>init</sub>) and decreases linearly over iterations according to the following formula
     - T < 0 -> Returns false
 - Geometric
     - Cooling formula
@@ -373,3 +361,8 @@ plots the score data from a batch summary file as a histogram.
 `"title":` The title to be displayed on the figure.
 
 `"binCount":` The amount of bins for the histogram
+
+---
+
+## References
+1: Mahdi, W.; Medjahed, S. A.; Ouali, M. Performance Analysis of Simulated Annealing Cooling Schedules in the Context of Dense Image Matching. Computación y Sistemas, 2017, 21. https://doi.org/10.13053/cys-21-3-2553
