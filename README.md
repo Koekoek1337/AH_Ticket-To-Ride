@@ -33,24 +33,24 @@ By Simon de Jong, Finn Leurs and Hajo Groen
 
 ## Overview
 
-rain routing is a highly complex problem. It involves creating a rail network that routes existing connections between train stations in the most optimal a way. The routing of a rail network is considered optimal when the connection coverage is high and when the amount of duplicate connections is low. This while keeping the amount of routes in the rail network and the total time those routes in the rail network take as low as possible. Note that a high connection coverage does not mean every connection has to be used.
+Train routing is a highly complex problem. It involves creating a rail network that routes existing connections between train stations in the most optimal way. The routing of a rail network is considered optimal when the connection coverage is high and when the amount of duplicate connections is low. This while keeping the amount of routes in the rail network and the total time those routes in the rail network take as low as possible. Note that a high connection coverage does not mean every connection has to be used.
 
-To measure the quality of a rail network in our case, it should generate as high as score as possible in the following function
+To measure the quality of a rail network in our case, it should generate as high as score as possible in the following function:
 
 $$
     K = 10000p - (100T + duration_{tot})
 $$
 
-Where p is the fractions of connections covered, T is the amount of routes in a rail network and duration<sub>tot</sub> is the sum of durations for all routes in the network. 
+where p is the fractions of connections covered, T is the amount of routes in a rail network and duration<sub>tot</sub> is the sum of durations for all routes in the network. 
 
-When optimizing a rail network for Holland, the network is restricted to 7 routes with a maximum duration of 120 minutes. The theoretical maximum score for this rail network would be 9219.0 if all connections were covered by as little routes as possible.
+When optimizing a rail network for Holland, the network is restricted to 7 routes with a maximum duration of 120 minutes per route. The theoretical maximum score for this rail network would be 9219.0 if all connections were covered by as few routes as possible.
 
-When optimizing a rail network for the Netherlands, the network is restricted to 20 routes with a maximum duration of 180 minutes. The theoretical maximum score for this rail network would be 7549.0 if all connections were covered by as little routes as possible.
+When optimizing a rail network for the Netherlands, the network is restricted to 20 routes with a maximum duration of 180 minutes per route. The theoretical maximum score for this rail network would be 7549.0 if all connections were covered by as few routes as possible.
 
 <br>
 
 ### Statespace
-The amount of permuations of the system depends on the amount of routes and the possible permutations per route. If a route is taken as a list of connections in the network that do not have to be connected, the order of connections does not matter while duplicate connections are allowed. The permutations per route are also dependant on the lengths of the route, which is between 1 and a maximum length dependant on what the maximum amount route durations is that fit inside the maximum time, which means the sum of all permutations of all possible route lengths has to be taken. As the amount of routes is variable, the sum of all permutations of the system for every amount of routes has to be taken. This results in the following equation for the statespace
+The amount of permuations of the system depends on the amount of routes and the possible permutations per route. The order of connections does not matter while duplicate connections are allowed if a route is taken as a list of connections in the network that do not have to be connected. The permutations per route also depend on the lengths of the route, which is between 1 and a maximum length. This then depends on what the maximum amount of route durations is that fit inside the maximum time. This means that the sum of all permutations of all possible route lengths has to be taken. As the amount of routes is variable, the sum of all permutations of the system for every amount of routes has to be taken. This results in the following equation for the statespace:
 
 $$
     \sum_{i=1}^{x}
@@ -78,24 +78,24 @@ $$
         )!
     }
 $$
-With x for the maximum amount of routes, m for the maximum length of a route, r for the connections in a route and n for the total amount of connections in the system. 
+with x for the maximum amount of routes, m for the maximum length of a route, r for the connections in a route and n for the total amount of connections in the system. 
 
-As the equation is too computationally expensive to solve using tools like wolfram alpha, a number can not be given.
+As the equation is too computationally expensive to solve using tools like WolframAlpha, a number can not be given.
 
 ---
 
 ## Algorithms
-In order to find the best possible solution for this train routing problem, four different algorithms were developed, starting with a random algorithm as a baseline. The individual algorthms are explained below.
+In order to find the best possible solution for this train routing problem, four different algorithms were developed, starting with a random algorithm as a baseline. The individual algorithms are explained below.
 
 <br>
 
 ### Random
-The random algorithm would chooses amount of routes between a minimum (either 1 or the minimum amount of routes required to satisfy all connections) and the maximum amount of routes allowed for the problem. It would then choose a random maximum duration for every route between the duration of the longest connection in the system and the maximum duration for a route allowed by the system. It then attempts to fill the route up to the maximum duration until it can no longer make any legal moves, after which it starts with a new route.
+The random algorithm chooses an amount of routes between a minimum (either 1 or the minimum amount of routes required to satisfy all connections) and the maximum amount of routes allowed for the problem. It then chooses a random maximum duration for every route between the duration of the longest connection in the system and the maximum duration for a route allowed by the system. It then attempts to fill up the route to the maximum duration until it can no longer make any legal moves. When it cannot make any new, legal moves, it starts with a new route.
 
-A legal move in this case is appending a station to a route, so that it has a connection with a station in the
-route and that the duration of the appended route does not exceed it's maximum duration.
+A legal move in this case means that a station is appended to a route, so that this station has a connection with a station in the
+route. The duration of the appended route may not exceed its maximum duration.
 
-Any new generated route has to be able to score points if they were in an isolated system. If a route does not adhere to this, it is emptied and a new route is made.
+Any newly generated route has to be able to score points if they were in an isolated system. If a route does not adhere to this, it is emptied and a new route is made.
 
 <br>
 
@@ -105,7 +105,7 @@ Greedy Hillclimber is an algorithm that improves a random rail network. It does 
 <br>
 
 ### Snake Hillclimber
-This algorithm is a hill climber that seeks to optimize the score of a traject within the totally of the railNetwork. Here for it takes a random generated railNetwork. Next it chooses for every traject if the first or last station needs to be removed. This happens randomly. Next it will add a station to the begin or the end of the traject. The goal is that every time a traject improves when in finds a better path to take. There is also the option the the traject adds another route. It calculates the totally of the scores before it approves if every single traject is indeed an improvement. Because it is possible that a new path taken optimizes the score of the singe traject, but downgrades the score of the totally of the railNetwork.
+This algorithm is a hill climber that seeks to optimize the score of a traject within the totality of the railNetwork. To do this, it takes a random generated railNetwork. Next, it chooses for every traject if the first or last station needs to be removed. This happens randomly. Next, it will add a station to the beginning or the end of the traject. The goal is that a traject improves every time it finds a better path to take. There is also the option that the traject adds another route. It calculates the totality of the scores before it approves if every single traject is indeed an improvement. Because it is possible that a new path taken optimizes the score of the single traject, but downgrades the score of the totality of the railNetwork.
 
 <br>
 
@@ -118,14 +118,14 @@ I noticed that this method has mainly effect on the outer stations of every sing
 ### Simulated Annealing Hillclimber
 The simulated annealing Hillclimber algorithm attempts to optimize a random solution for the train routing problem by either removing, adding or replacing a route. The algorithm is biased towards replacing a route with a 75% chance. Adding and removing a route both have a 12.5% chance to occur.
 
-New routes are created in the same manner that they are created for the random algrithm.
+New routes are created in the same manner that they are created for the random algorithm.
 
-Any change that results in a point increase for the system is immeadiately accepted. Otherwise it has a chance of being accepted based on it's cooling scheme.
+Any change that results in a point increase for the system is immediately accepted. Otherwise it has a chance of being accepted based on its cooling scheme.
 
 <br>
 
 #### Cooling schemes
-The main use of using simulated annealing algorithms is that it allows an algorithm to accept a state that may scores less points than the previous state. This can prevent an algorithm from getting stuck at a local optimum, giving it more opportunities to find the true optimum state of a system.
+The main reason for using simulated annealing algorithms is that it allows an algorithm to accept a state that may score less points than the previous state. This can prevent an algorithm from getting stuck at a local optimum, giving it more opportunities to find the true optimum state of a system.
 
 Probability of the accepting the worse state is based on the score difference between the old and new state (dScore) and the "Temperature" (T) of the system according to the following formula<sup>1</sup>
 
@@ -133,7 +133,7 @@ $$
     P = e^{-{dScore \over T}}
 $$
 
-Probability increases with higher temperatures, and decreases with higher score differences. "Temperature" is therefore in layman's terms a measure for how likely a worse state is accepted.
+Probability increases with higher temperatures, and decreases with higher score differences. "Temperature" is therefore, in layman's terms, a measure for how likely a worse state is accepted.
 
 In order to increase effectiveness of the hillclimber, the temperature is reduced according to a cooling scheme, of which four have been implemented:
 
