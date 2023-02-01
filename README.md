@@ -326,7 +326,6 @@ Den Helder is an often missing connection in the railNetwork. This is the reason
 #### Vlissingen
 Vlissingen is, just like Den Helder, a connection that is frequently missing in the results. But leaving this out does not show major results differences in score with simulated annealing algorithm. The reason why there is not a major difference without Vlissingen (or Den Helder) is, we think, because of the fact that they are often left out in the standard run as well. The amount of rail reduction is not a lot (only 1 connection), therefore it does not make a big difference in percentage covered rail. (Unlike Utrecht).
 
-
 #### Groningen
 Groningen was a recommendation. It only has a few connections, and these are of long distances. But the results in score are not significantly different with simulated algorithm.
 
@@ -337,7 +336,7 @@ We decided to remove Zwolle from the stations, because it only has a few connect
 ---
 
 ## Conclusion
-The following table shows the highest and lowest scores of every algorithm observed during baselining, as well as their average. 
+The following table shows the highest and lowest scores of every algorithm observed during baselining, as well as their average.
 
 | **Algorithm**                           | **lowest score** | **average score** | **highest score** | **runs**    |
 |:---------------------------------------:|:----------------:|:-----------------:|:-----------------:|:-----------:|
