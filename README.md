@@ -439,5 +439,9 @@ plots the score data from a batch summary file as a histogram.
 
 ---
 
+Example jobfiles have been provided in the jobs folder for every algorithm and visualisation type, as well as a generic job file for running algorithms.
+
+---
+
 ## References
 1: Mahdi, W.; Medjahed, S. A.; Ouali, M. Performance Analysis of Simulated Annealing Cooling Schedules in the Context of Dense Image Matching. Computación y Sistemas, 2017, 21. https://doi.org/10.13053/cys-21-3-2553
