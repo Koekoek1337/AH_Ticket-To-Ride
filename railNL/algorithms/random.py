@@ -42,7 +42,8 @@ def main(
     recordAll: bool = False
     ):
     """
-    Random solver for Train routing problem.
+    Random solver for Train routing problem. Intended for baselining and for generating standalone
+    solutions.
 
     Args:
         network (RailNetwork): Empty graph consisting of station and connection nodes.
@@ -67,7 +68,8 @@ def main(
     scores: List[Dict[str, Union[int, float]]] = []
 
     while convergence <= convergenceLimit:
-        print(f"iteration: {iteration}")
+        if not iteration % 1000:
+            print(f"iteration: {iteration}")
 
         workNetwork = deepcopy(network)
         randomAlgorithm(workNetwork, maxRoutes, maxDuration, minimumoutes)
@@ -94,16 +96,18 @@ def main(
             convergence += 1
 
         iteration += 1
-
-        print("retrying")
     
     scores.append({"iteration":"Theoretical max", "score": network.theoreticalMaxScore(maxDuration)})
     exportScores(scores, targetFolder, runName, START_TIMESTAMP)
+    
+    print(f"Terminating with best score {highest}")
 
     return
 
 
-def randomAlgorithm(network: RailNetwork, maxRoutes: int, maxDuration: int, minimumRoutes: int=1):
+def randomAlgorithm(
+    network: RailNetwork, maxRoutes: int, maxDuration: int, minimumRoutes: int=1
+) -> None:
     """
     Randomly generates a solution for a Train routing problem with up to maxRoutes trainRoutes and 
     of up to maxDuration
@@ -112,6 +116,7 @@ def randomAlgorithm(network: RailNetwork, maxRoutes: int, maxDuration: int, mini
         network (RailNetwork): The object containing all nodes and routes of the system.
         maxRoutes (int): The maximum amount of train routes that can be utilized.
         maxDuration (float): The maximum duration a single route may have.
+        minimumRoutes (int): The minimum amount of routes the solution must have.
 
     Post: The network given as argument will hold a random solution for the train routing problem.
     """
@@ -123,7 +128,7 @@ def randomAlgorithm(network: RailNetwork, maxRoutes: int, maxDuration: int, mini
     return
 
 
-def randomRoute(network: RailNetwork, maxDuration: float):
+def randomRoute(network: RailNetwork, maxDuration: float) -> None:
     """
     Randomly adds a route to a rail network in a Train routing problem. The route will have a random
     duration between the longest connecting and maxDuration. Generated routes must have a score
@@ -166,11 +171,22 @@ def randomRoute(network: RailNetwork, maxDuration: float):
     return
 
 
-def randomSolution(network: RailNetwork, maxRoutes: int, maxDuration: float,
-    randomIterations: int = 1000) -> RailNetwork:
+def randomSolution(
+    network: RailNetwork, 
+    maxRoutes: int, 
+    maxDuration: float,
+    randomIterations: int = 1000
+) -> RailNetwork:
     """
-    Returns a randomly solved railNetwork for optimization.
+    Returns the best solution for a railNetwork after a given amount of iterations for optimization.
 
+    Args:
+        network (RailNetwork): Empty graph consisting of station and connection nodes.
+        maxRoutes (int): The maximum amount of train routes that can be utilized.
+        maxDuration (float): The maximum duration a single route may have.
+        randomIterations(int): The amount of iteration to run the algorithm for.
+    
+    Returns (RailNetwork): A valid solution for network.
     """
     bestNetwork = network
 
