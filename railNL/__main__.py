@@ -229,4 +229,6 @@ def parseArgv(argv: List[str]) -> Dict[str, Union[str, int, bool]]:
 
 
 if __name__ == "__main__":
-    main(**parseArgv(argv))
+    arguments = parseArgv(argv)
+    if arguments:
+        main(**arguments)
