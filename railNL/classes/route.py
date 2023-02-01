@@ -7,8 +7,18 @@ import numpy as np
 
 
 class Route:
-    """
-    Route object that tracks rail connections between stations
+    """Route object that tracks station and connection nodes
+
+    Routes are built up by appending and inserting stations and have to be initialized with a root
+    station node (Note that this root station has no further significant meaning). The route will 
+    automatically find the connection node between stations when appending and inserting if one is
+    available and will insert this connecion in the appropriate location. When a connection is
+    broken by inserting a station between two stations with an existing connection, the connection
+    is replaced and a new conection is inserted if available. Stations can also be popped and the
+    route will similarily keep track of connection nodes.
+
+    Routes are registered to station and connection nodes when appending and inserting, and
+    unregistered when popping, but only if said node does not occur more than once in the route.
 
     properties:
         _id (int): The unique identifier of the Route

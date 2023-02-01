@@ -5,8 +5,9 @@ if TYPE_CHECKING:
 
 
 class Connection:
-    """
-    Connection Node for rain network graph
+    """Connection Node for rain network graph
+
+    Connection nodes link to two station nodes and track which routes they are incorporated in.
 
     Attributes:
         _id (int): inique identifier.
