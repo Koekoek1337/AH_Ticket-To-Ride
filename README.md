@@ -90,7 +90,7 @@ In order to find the best possible solution for this train routing problem, four
 <br>
 
 ### Random
-The random algorithm chooses an amount of routes between a minimum (either 1 or the minimum amount of routes required to satisfy all connections) and the maximum amount of routes allowed for the problem. It then chooses a random maximum duration for every route between the duration of the longest connection in the system and the maximum duration for a route allowed by the system. It then attempts to fill up the route to the maximum duration until it can no longer make any legal moves. When it cannot make any new, legal moves, it starts with a new route.
+The random algorithm chooses an amount of routes between a minimum (either 1 or the minimum amount of routes required to satisfy all connections) and the maximum amount of routes allowed for the problem. It then chooses a random maximum duration for every route between the duration of the longest connection in the system and the maximum duration for a route allowed by the system. After this, it attempts to fill up the route to the maximum duration until it can no longer make any legal moves. When it cannot make any new, legal moves, it starts with a new route.
 
 A legal move in this case means that a station is appended to a route, so that this station has a connection with a station in the
 route. The duration of the appended route may not exceed its maximum duration.
@@ -167,7 +167,7 @@ A worse state is never accepted if the temperature is less than or equal to 0.
 <br>
 
 #### Geometric cooling
-The temperature (T) of the system depends on an initial temperature (T<sub>init</sub>) and decreases geometrically over iterations (i) depending on a consant (C) according to the following formula<sup>1</sup>
+The temperature (T) of the system depends on an initial temperature (T<sub>init</sub>) and decreases geometrically over iterations (i) depending on a constant (C) according to the following formula<sup>1</sup>
 $$
     T = T_{init}C^{i}
 $$
@@ -179,17 +179,17 @@ As T approaches 0, a worse state will not be accepted.
 ---
 
 ## Tuning
-As the simulated annealing algorithm can make use of multiple cooling schemes and is heavily influenced by it's initial temperature and cooling constant. In order to more effectively apply the algorithm on the problem, the simulated annealing algorithm had to be tuned.
+The simulated annealing algorithm can make use of multiple cooling schemes and is heavily influenced by its initial temperature and cooling constant. In order to more effectively apply the algorithm to the problem, the simulated annealing algorithm had to be tuned.
 
 ### Convergence
-In order to find the best convergence limit, 8 batches of 10 runs were done with the simulated annealing algorithm in hillclimber mode with varying convergence limits, as seen below (note that the x-axis is not to scale).
+In order to find the best convergence limit, 8 batches of 10 runs were done with the simulated annealing algorithm in hillclimber mode using varying convergence limits, as seen below (note that the x-axis is not to scale).
 
 ![annealing_convergence](docs/annealing_convergence.png)
 
-From these runs, it was determined accepting runs with maximum convergence of `10 000`, `20 000` and `50 000` all yielded similar results. Therefore `10 000` was chosen, as it gives good scores in an acceptable timeframe.
+From these runs, it was determined that accepting runs with maximum convergence of `10 000`, `20 000` and `50 000` all yielded similar results. Therefore `10 000` was chosen, as it gives good scores in an acceptable timeframe.
 
 ### Logarithmic Cooling
-As the logarithmic cooling scheme is relatively simple, with one parameter that both determines cooling speed and starting temperature, 7 batches of 10 runs were done with the simulated annealing algorithm with the logarithmic cooling scheme and different logarithmic cooling constants, as seen below (note that the x-axis is not to scale).
+The logarithmic cooling scheme is relatively simple, with one parameter that both determines cooling speed and starting temperature. 7 batches of 10 runs were done with the simulated annealing algorithm using the logarithmic cooling scheme and different logarithmic cooling constants, as seen below (note that the x-axis is not to scale).
 
 ![annealing_logCooling](docs/annealing_logCooling.png)
 
@@ -200,13 +200,13 @@ With an initial guess for the initial temperature, it was decided that the linea
 
 ![annealing_linConstant](docs/annealing_linConstant.png)
 
-From this, `0.0032` (or `initial temp * 10^-4`) was chosen as best linear constant, as it had both the highest average score, as well as the best overall score.
+From this, `0.0032` (or `initial temp * 10^-4`) was chosen as the best linear constant, for it had both the highest average score, as well as the best overall score.
 
-Next, 3 batches of 10 runs were done with varying initial temperatures with proportionate linear constants were done as seen below (Note that the axis has a logarithmic scale).
+Next, 3 batches of 10 runs were done with varying initial temperatures with proportionate linear constants, as seen below (Note that the axis has a logarithmic scale).
 
 ![annealing_linTemp](docs/annealing_linTemp.png)
 
-From this, it was taken that initial temperature `64` had a more variable spread, yielding the best scoring solution that had thus yet been found, and was therefore taken as the best initial temperature for the `linear cooling` scheme.
+From this, it was taken that initial temperature `64` had a more variable spread, yielding the best scoring solution than had thus been found, and was therefore taken as the best initial temperature for the `linear cooling` scheme.
 
 ### Geometric Cooling
 The final cooling scheme to be tuned was the geometric cooling scheme. 64 was taken as initial temperature, as it performed well with the `linear cooling` scheme. It was decided that the geometric cooling constant should be of nines. Therefore 4 batches of 10 runs were done with varying geometric constants as seen below (Note that the x-axis has a logarithmic scale)
@@ -219,20 +219,20 @@ The geometric cooling scheme was taken to be outperformed by the `linear cooling
 
 ## Experiments
 ### Holland
-The first instance of the case asked to build a rail system with up to 7 routes of up to 120 minutes that utilize all rail connections in Holland and the second instance asked to optimize the system with the score function.
+The first instance of the case asked to build a rail system with up to 7 routes of each up to 120 minutes that utilizes all rail connections in Holland. The second instance asked to optimize the system with the score function.
 
-These instances were both evaluated over 10 runsusing the simulated annealing algorithm (`linear cooling`) with initial temperature `64` and `linear cooling` constant `64 * 10^-4`. 
+These instances were both evaluated over 10 runs using the simulated annealing algorithm (`linear cooling`) with initial temperature `64` and `linear cooling` constant `64 * 10^-4`. 
 
 All the resulting rail systems contained all rail connections, with a high scoring system with 9035 points, as displayed below.
 
 ![solution_holland](docs/holland_score9035.png)
 
-As all 10 runs resulted in a high scoring system with all routes, it can be assumed that an optimal rail system in holland uses all rail connections. It was also observed that all optimized systems used either 5, 6 or 7 routes, but no less. The score is also very close to the theoretical maximum score of 9219, indicating that there is very little left that can be optimized for this network.
+As all 10 runs resulted in a high scoring system with all routes, it can be assumed that an optimal rail system in Holland uses all rail connections. It was also observed that all optimized systems used either 5, 6 or 7 routes, but no less. The score is also very close to the theoretical maximum score of 9219, indicating that there is very little left that can be optimized for this network.
 
 ---
 
 ### Random Baseline
-In order to judge a developed algorithm on it's effectiveness, a large baseline calculation from 1.6 million valid solutions was made using the random algorithm, which has been displayed in the histogram below.
+In order to judge a developed algorithm on its effectiveness, a large baseline calculation from 1.6 million valid solutions was made using the random algorithm, which has been displayed in the histogram below:
 
 ![baseline_netherlands](docs/random_hist.png)
 
@@ -241,41 +241,41 @@ From this, it was determined that the random algorithm had an average score of 2
 ---
 
 ### Snake Hillclimber
-To start with the comparison with the random baseline. The 'snakeClimber' already improves this. With results ranging from 4212.20 towards 5991.76 points. With a average of 5155.15. This is above random, but can be improved.
+To start, the 'snakeClimber' is compared to the random baseline. The 'snakeClimber' significantly outperforms the random baseline. With results ranging from 4212.20 towards 5991.76 points and an average of 5155.15. This is above random, but can be improved.
 ![Solution](docs/railNetwork-snakeClimber.png)
 ![Hist](docs/hist-SnakeClimber.png)
 
 #### snakeClimber1
-'snakeClimber1' has an average of 5487.20, with a broader range; the lowest is 4304.12. But interesting to see is that it turns out that it gives more results on the higher end of the spectrum, with a highest result of 6536.76 points.
-Therefore it gives faster better results than the 'snakeClimber'.
+'snakeClimber1' has an average of 5487.20, with a broader range; the lowest is 4304.12. But, interestingly, it turns out that 'snakeClimber1' gives more results on the higher end of the spectrum compared to 'snakeClimber', with a highest result of 6536.76 points.
+This means that it gives faster better results than the 'snakeClimber'.
 ![Solution](docs/railNetwork-snakeClimber1.png)
 ![Hist](docs/hist-snakeClimber1.png)
 
 #### snakeClimber2
-'snakeClimber2' has an average of 5528.73 with a minimum of 4445.92, but it gives more higher
-results. It even reaches the 6500.28. This is probably due the fact that it has a higher probability
-to change middle route. So the adjustments on the algorithm generated the expected changes.
+'snakeClimber2' has an average of 5528.73 with a minimum of 4445.92, but it gives higher
+results than 'snakeClimber1'. It even reaches the 6500.28. This is probably due the fact that it has a higher probability
+to change closer to the middle of the route. This means that the adjustments to the algorithm generated the expected changes.
 ![Solution](docs/railNetwork-snakeClimber2.png)
 ![Hist](docs/hist-SnakeClimber2.png)
 
 It is interesting for further studies to see what will happen when we eliminate 4, 5 or even 6 stations,
-but this will probably re-do a total route. Therefore the choice has been made to combine this algorithm 'snakeClimber2'
-with routeReplace algorithm. This is another algorithm that replaces the route with the lowest score.
+but this will probably re-do a total route. Therefore, the choice has been made to combine this algorithm 'snakeClimber2'
+with a greedy route replacing algorithm. This is another algorithm that replaces the route with the lowest score.
 
 #### routesnakeclimber
-The results of this algorithm (routeSnakeClimber) is as follows: it has an average of 5690.80 and the range is from 4650.12 to 6468.20.
-This means that this algorithm has not gave a higher score than 'snakeClimber1', but it did gave a more useful range.
+The results of this algorithm (routeSnakeClimber) are as follows: it has an average of 5690.80 and the range is from 4650.12 to 6468.20.
+This means that this algorithm has not generated a higher score than 'snakeClimber1', but it did give a more useful range.
 ![Solution](docs/railNetwork-routeSnakeClimber.png)
 ![Hist](docs/hist-routeSnakeClimber.png)
 
 #### snakeClimber2-WithoutUtrecht
-The 'snakeClimber2'- algorithm has run without the station Utrecht. This gave a surprising result: the scores were generally higher than that of the complete railNetwork. With an average of 5768.85 and an highest score of 6563.0. Which gives surprisingly a higher score than the runs with Utrecht.
+The 'snakeClimber2'- algorithm has run without the station Utrecht. This gave a surprising result: the scores were generally higher than that of the complete railNetwork. With an average of 5768.85 and a highest score of 6563.0, which gives a higher score than the runs with Utrecht.
 [Hist](docs/hist-SnakeClimberUtrecht2.png)
 
 ---
 
 ### Greedy Hillclimber
-With an average score of 5354.58 and a range of final scores between 4449.12 and 6274.28, the algorithm performs significantly better in a shorter amount of time.
+With an average score of 5354.58 over 350 runs and a range of final scores between 4449.12 and 6274.28, the algorithm performs significantly better than random in a shorter amount of time.
 
 ![map_rail_network_greedy_hillclimber](docs/railNetworkGreedyHillClimberNederland.png)
 
@@ -288,19 +288,19 @@ In order to determine whether the `linear cooling` scheme of the simulated annea
 
 ![annealing_baselineHill](docs/annealing_baselineHill.png)
 
-From this, it can be concluded that the algorit without any cooling scheme already far outperforms the random algorithm, both in it's average score of 6165.99 and overall score spread.
+From this, it can be concluded that the algorithm without any cooling scheme already far outperforms the random algorithm, both in its average score of 6165.99 and overall score spread.
 
-The same baseline was made for the simulated annealing algorithm with the `linear cooling` scheme, with initial temperature 64 and `linear cooling` constant 64 * 10^-4, which has been displayed below.
+The same baseline was made for the simulated annealing algorithm with the `linear cooling` scheme, with initial temperature 64 and `linear cooling` constant 64 * 10^-4, as displayed below.
 
 ![annealing_baselineLin](docs/annealing_baseline_linearCooling.png)
 
-The results from this baseline are interesting, as it shows a worse overall spread and lower average score of 6050.45, but also having a better median score and is more likely to obtain results with more than 6400 points overall. It is therefore preferrable to run with the `linear cooling` scheme when performing multiple runs over a longer period of time.
+The results from this baseline are interesting, as it shows a worse overall spread and lower average score of 6050.45, while also having a better median score and being more likely to obtain results with scores higher than 6400 points overall. It is therefore preferable to run with the `linear cooling` scheme when performing multiple runs over a longer period of time.
 
-The overall score for the netherlands was also recorded using the algorithm with the same cooling schedule and parameters. This network had a score of 6605.0 and is displayed below.
+The overall score for the Netherlands was also recorded using the algorithm with the same cooling schedule and parameters. This network had a score of 6605.0 and is displayed below.
 
 ![bestSolution](docs/annealing_best_overall.png)
 
-Interesting about this solution is that it utilizes all possible connections in the Netherlands whilst still scoring higher than any other solution discovered.
+Interesting about this solution is that it utilizes all possible connections in the Netherlands, whilst still scoring higher than any other solution discovered.
 
 ### Station Removal
 To test what would happen to the final scores of an optimized network if certain stations were removed, 5 batches of 10 runs were done with the simulated annealing algorithm (Linear cooling, T64, C64*10^-4), each lacking a single station, as well as a control batch of 10 runs with all stations.
@@ -326,7 +326,7 @@ The stations chosen were:
     simulated annealing algorithm
 
 #### Groningen
-- Reccommended to us
+- Recommended to us
 - Does not result in major score differences with
     simulated annealing algorithm
 
