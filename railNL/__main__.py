@@ -50,11 +50,19 @@ def batch(
     **arguments
 ) -> None:
     """
-    Runs an algorithm in batch as specified by the given job.json file
+    Runs an algorithm in batch as specified by the given job.json file.
+
+    Args:
+        stationsFilepath (str): The filepath of the CSV file containing station names and 
+            coordinates.
+        connectionsFilepath(str): The filepath of the CSV file containing station connections and
+            durations.
+        runs (int): The amount of times the algorithm should be ran.
+        targetFolder (str): The folder where result files should be saved to.
+        runName (str): The human readable part for the name of the result files.
     """
     ALGORITHMS: Dict[str, Callable[[RailNetwork, Any], RailNetwork]] = {
         "random": randomAlgorithm.main,
-        "hillclimber_hajo": simulatedAnnealing.routeHillclimber,
         "annealing": simulatedAnnealing.runAnnealing,
         "snakeclimber": hillclimber_simon.main,
         "snakeclimber1": hillclimber_simon1.main,
@@ -69,11 +77,10 @@ def batch(
     time.sleep(1)
 
     network = RailNetwork(stationsFilepath, connectionsFilepath)
-    algorithm = algorithm.lower()
 
     # Random does not need to utilize multiple runs
     if algorithm == "random":
-        ALGORITHMS[algorithm](
+        ALGORITHMS[algorithm.lower()](
             deepcopy(network),
             targetFolder=targetFolder,
             runName=runName,
@@ -113,7 +120,10 @@ def batch(
 
 
 def visualize(plotType: str= "algorithm", **arguments):
-    """Loads a solution into the network and visualizes it"""
+    """
+    Loads a solution into the network and visualizes it
+    
+    """
     if plotType == "algorithm":
         plotAlgConvergence(**arguments)
 
